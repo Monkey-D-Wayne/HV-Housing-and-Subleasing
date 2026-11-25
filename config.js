@@ -10,6 +10,6 @@
 window.HVH_CONFIG = {
   googleMapsApiKey: "AIzaSyA4WLCjx5R3aZYGH69Yut3f-8l-qEfP5SU",
   googleMapId: "DEMO_MAP_ID",
-  supabaseUrl: "",
-  supabaseKey: ""
+  supabaseUrl: "https://jszujotoetfhywyshxjq.supabase.co",
+  supabaseKey: "sb_publishable_fqP0hlqVyXpIS6cqOoBj2Q_2_HdH7Lp"
 };
