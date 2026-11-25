@@ -80,12 +80,12 @@ function plansHtml(l){
   const beds=[...new Set(ps.map(p=>bdTxt(p.beds)).filter(Boolean))];
   const chips=ps.length>3&&beds.length>1?`<div class="pchips" role="group" aria-label="Filter floor plans">${["All",...beds].map((b,i)=>`<button class="chip" aria-pressed="${i===0}" data-b="${esc(b)}">${esc(b)}</button>`).join("")}</div>`:"";
   const card=(p,k)=>{const im=planImgs(p);const spec=[bdTxt(p.beds),p.baths!=null&&p.baths!==""?p.baths+" ba":"",p.sqft?p.sqft+" sq ft":""].filter(Boolean).join(" · ");
-    const rates=(p.rates||[]).map(r=>`<li><span>${r.n===1?"1 person":r.n+" people"}</span><b>${fmt(r.pp)}${r.n>1?"<small> each</small>":""}</b>${r.was&&r.was>r.pp?`<s>${fmt(r.was)}</s>`:""}</li>`).join("");
+    const rates=(p.rates||[]).map(r=>`<li><span>${r.whole?"Whole unit":r.n===1?"1 person":r.n+" people"}</span><b>${fmt(r.pp)}${r.n>1?"<small> each</small>":r.whole?"<small> total</small>":""}</b>${r.unit?`<small class="tot">${fmt(r.unit)} total</small>`:""}${r.was&&r.was>r.pp?`<s>${fmt(r.was)}</s>`:""}</li>`).join("");
     return `<article class="plan${p.status?" out":""}" data-b="${esc(bdTxt(p.beds))}">
     <button class="pimg" data-k="${k}" ${im.length?"":"disabled"} aria-label="See ${esc(p.name)} photos">${im.length?`<img src="${esc(im[0])}" alt="${esc(p.name)} floor plan" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('noimg');this.remove()">`:""}${im.length>1?`<span class="pcount">${im.length} photos</span>`:""}${p.status?`<span class="pstat">${esc(p.status)}</span>`:""}</button>
     <div class="pbody"><h4>${esc(p.name)}</h4><div class="pspec">${esc(spec)}</div>
     ${rates?`<ul class="rates">${rates}</ul>`:`<div class="pprice">${esc(p.price||"Ask for pricing")}</div>`}
-    ${p.lease?`<div class="plea">${esc(p.lease)} lease</div>`:""}${p.page?`<a href="${esc(p.page)}" target="_blank" rel="noopener">See this plan on ${esc(host(p.page))}</a>`:""}</div></article>`};
+    ${p.note?`<div class="plea">${esc(p.note)}</div>`:""}${p.lease?`<div class="plea">${esc(p.lease)} lease</div>`:""}${p.page?`<a href="${esc(p.page)}" target="_blank" rel="noopener">See this plan on ${esc(host(p.page))}</a>`:""}</div></article>`};
   return `<div class="plans"><h3>Floor plans <span>${ps.length}</span></h3>${chips}<div class="pgrid">${ps.map(card).join("")}</div><p class="fine">Prices are per person per month, by how many people share the unit, as listed on the building's website on Nov 25, 2026. Confirm with the building before signing.</p></div>`;
 }
 /* full-screen photo viewer */
