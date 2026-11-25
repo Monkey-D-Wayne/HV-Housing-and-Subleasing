@@ -3486,5 +3486,93 @@
     "price": "$1,575/mo"
    }
   ]
+ },
+ {
+  "id": 210,
+  "name": "The Brandywine",
+  "address": "510 Brandywine Dr",
+  "type": "apartment",
+  "beds": [
+   3,
+   3
+  ],
+  "price": "$3,700/mo (3 bed, 3.5 bath townhome, 2,037 sq ft)",
+  "ppm": null,
+  "est": false,
+  "lat": 40.785294,
+  "lng": -77.804455,
+  "source": "web",
+  "site": "https://www.apartmentstore.com/locations/state-college/the-brandywine/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2023/04/Brandywine-Website-Pics-1.png?fit=940%2C788&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-brandywine/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2023/04/Brandywine-kitchen.png?fit=940%2C788&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-brandywine/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2023/04/Brandywine-Diningroom.png?fit=940%2C788&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-brandywine/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2023/04/Brandywine-Den.png?fit=940%2C788&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-brandywine/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "3 Bedroom, 3.5 Bathroom Townhome",
+    "beds": 3,
+    "baths": 3.5,
+    "sqft": 2037,
+    "price": "$3,700/mo"
+   }
+  ]
+ },
+ {
+  "id": 211,
+  "name": "Alma Mater Court",
+  "address": "142B Alma Mater Ct",
+  "type": "apartment",
+  "beds": [
+   2,
+   2
+  ],
+  "price": "$1,950 (fully rented; rates per person, vary by number of roommates)",
+  "ppm": 1950,
+  "est": false,
+  "lat": 40.825361,
+  "lng": -77.879777,
+  "source": "web",
+  "site": "https://www.apartmentstore.com/locations/state-college/alma-mater-court/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/07/AlmaMaterCourt-1.jpg?fit=768%2C1024&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/alma-mater-court/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/07/AlmaMaterCourt-2.jpg?fit=1024%2C768&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/alma-mater-court/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/06/AlmaMater_Dining-Living-Kitchen-scaled.jpg?fit=1440%2C1080&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/alma-mater-court/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/07/AlmaMaterCourt-3.jpg?fit=768%2C1024&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/alma-mater-court/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Two Bedroom 1.5 Bathroom Furnished (fully rented)",
+    "beds": 2,
+    "baths": 1.5,
+    "sqft": null,
+    "price": "$1,950/mo"
+   }
+  ]
  }
 ]
