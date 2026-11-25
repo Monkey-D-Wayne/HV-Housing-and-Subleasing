@@ -106,6 +106,8 @@ function clusterHtml(ls){const p=ls.map(l=>l.ppm).filter(x=>x!=null);return `${l
 const MAP={ready:false,pending:null,setRows(r){this.pending=r;if(this.ready)this.impl.setRows(r)},select(id){if(this.ready)this.impl.select(id)},hot(id){if(this.ready)this.impl.hot(id)},focus(l){if(this.ready)this.impl.focus(l)},fit(){if(this.ready)this.impl.fit()},resize(){if(this.ready)this.impl.resize?.()}};
 function markReady(impl){MAP.impl=impl;MAP.ready=true;if(MAP.pending)impl.setRows(MAP.pending)}
 
+// Google calls this when the key is rejected; swap to the OpenStreetMap map instead of showing an error box
+window.gm_authFailure=function(){console.warn("Google Maps key rejected; using OpenStreetMap");MAP.ready=false;const m=$("#map");m.innerHTML="";m.removeAttribute("style");m.className="";initLeaflet().catch(e=>console.error(e))};
 async function initGoogle(){
   window.__hvGoogleReady=()=>{};
   await loadScript(`https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(CFG.googleMapsApiKey)}&v=weekly&libraries=marker&loading=async&callback=__hvGoogleReady`);
