@@ -1,0 +1,1896 @@
+[
+ {
+  "id": 1,
+  "name": "The Yards at Old State",
+  "address": "1830 Blue Course Dr",
+  "type": "complex",
+  "beds": [
+   2,
+   5
+  ],
+  "price": "$889\u2013$1,499 per bedroom",
+  "ppm": 889,
+  "est": false,
+  "lat": 40.76849,
+  "lng": -77.86042,
+  "source": "ocp",
+  "site": "https://www.theyardsatoldstate.com/",
+  "photos": [
+   {
+    "url": "https://www.theyardsatoldstate.com/wp-content/uploads/2022/01/the-yards-at-old-state-exterior-24-college-pa.jpg",
+    "page": "https://www.theyardsatoldstate.com/"
+   },
+   {
+    "url": "https://www.theyardsatoldstate.com/wp-content/uploads/2022/01/the-yards-at-old-state-exterior-2-college-pa-795x1000.jpg",
+    "page": "https://www.theyardsatoldstate.com/"
+   },
+   {
+    "url": "https://www.theyardsatoldstate.com/wp-content/uploads/2022/01/the-yards-at-old-state-interior-1-college-pa-1.jpg",
+    "page": "https://www.theyardsatoldstate.com/"
+   }
+  ]
+ },
+ {
+  "id": 2,
+  "name": "South Allen",
+  "address": "426 S Allen St",
+  "type": "apartment",
+  "beds": [
+   2,
+   2
+  ],
+  "price": "$2,100 per unit",
+  "ppm": 1050,
+  "est": true,
+  "lat": 40.79108,
+  "lng": -77.8567,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/south-allen/"
+ },
+ {
+  "id": 3,
+  "name": "The Heights at State College",
+  "address": "201 Northwick Blvd",
+  "type": "complex",
+  "beds": [
+   2,
+   4
+  ],
+  "price": "$799\u2013$2,787 per bedroom",
+  "ppm": 799,
+  "est": false,
+  "lat": 40.78794,
+  "lng": -77.89705,
+  "source": "ocp",
+  "site": "https://www.heightsatstatecollege.com/",
+  "photos": [
+   {
+    "url": "https://www.heightsatstatecollege.com/wp-content/uploads/2025/05/The-Heights-State-College-index-hero.jpg",
+    "page": "https://www.heightsatstatecollege.com/"
+   },
+   {
+    "url": "https://www.heightsatstatecollege.com/wp-content/uploads/2026/02/index-slider-pool.webp",
+    "page": "https://www.heightsatstatecollege.com/"
+   },
+   {
+    "url": "https://www.heightsatstatecollege.com/wp-content/uploads/2025/05/heights-at-state-college_index_apartment-kitchen.jpg",
+    "page": "https://www.heightsatstatecollege.com/"
+   }
+  ]
+ },
+ {
+  "id": 4,
+  "name": "University Gateway",
+  "address": "616 E College Ave",
+  "type": "apartment",
+  "beds": [
+   2,
+   2
+  ],
+  "price": "$2,000\u2013$2,680 per unit",
+  "ppm": 1000,
+  "est": true,
+  "lat": 40.80061,
+  "lng": -77.85281,
+  "source": "ocp"
+ },
+ {
+  "id": 5,
+  "name": "Aspen State College",
+  "address": "350 Squirrel Dr",
+  "type": "complex",
+  "beds": [
+   1,
+   5
+  ],
+  "price": "$999\u2013$2,299 per bedroom",
+  "ppm": 999,
+  "est": false,
+  "lat": 40.80674,
+  "lng": -77.83316,
+  "source": "ocp",
+  "site": "https://www.aspenstatecollege.com/",
+  "photos": [
+   {
+    "url": "https://www.aspenstatecollege.com/wp-content/uploads/2026/11/home-footer-new1.webp",
+    "page": "https://www.aspenstatecollege.com/"
+   },
+   {
+    "url": "https://www.aspenstatecollege.com/wp-content/uploads/2026/11/home-hero-new1.webp",
+    "page": "https://www.aspenstatecollege.com/"
+   },
+   {
+    "url": "https://www.aspenstatecollege.com/wp-content/uploads/2026/11/home-amenities-appliances.webp",
+    "page": "https://www.aspenstatecollege.com/"
+   }
+  ]
+ },
+ {
+  "id": 6,
+  "name": "Beaver Terrace",
+  "address": "456 E Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   2,
+   2
+  ],
+  "price": "$2,970\u2013$3,180 per unit",
+  "ppm": 1485,
+  "est": true,
+  "lat": 40.79763,
+  "lng": -77.85398,
+  "source": "ocp"
+ },
+ {
+  "id": 7,
+  "name": "The Valley",
+  "address": "870 Toftrees Ave",
+  "type": "complex",
+  "beds": [
+   1,
+   5
+  ],
+  "price": "$719\u2013$1,879 per bedroom",
+  "ppm": 719,
+  "est": false,
+  "lat": 40.82161,
+  "lng": -77.88408,
+  "source": "ocp",
+  "site": "https://www.thevalleystatecollege.com/",
+  "photos": [
+   {
+    "url": "https://www.thevalleystatecollege.com/wp-content/uploads/2024/12/DSC07526-Mark-1.jpg",
+    "page": "https://www.thevalleystatecollege.com/"
+   },
+   {
+    "url": "https://www.thevalleystatecollege.com/wp-content/uploads/2024/12/DSC07431-Mark-1.webp",
+    "page": "https://www.thevalleystatecollege.com/"
+   },
+   {
+    "url": "https://www.thevalleystatecollege.com/wp-content/uploads/2024/12/DSC07266-Mark-1.jpg",
+    "page": "https://www.thevalleystatecollege.com/"
+   }
+  ]
+ },
+ {
+  "id": 8,
+  "name": "The Villas at Happy Valley",
+  "address": "1335 Dreibelbis St",
+  "type": "complex",
+  "beds": [
+   1,
+   3
+  ],
+  "price": "$765\u2013$2,250 per bedroom",
+  "ppm": 765,
+  "est": false,
+  "lat": 40.83432,
+  "lng": -77.81281,
+  "source": "ocp",
+  "site": "https://www.villashappyvalley.com/",
+  "photos": [
+   {
+    "url": "https://images.squarespace-cdn.com/content/v1/684300c4b4a08c76813ea27d/470ba680-f635-467b-9fbe-3c22c68f7f64/2026.08.06_VillasHappyValley_Pool_007v2.jpg",
+    "page": "https://www.villashappyvalley.com/"
+   },
+   {
+    "url": "https://images.squarespace-cdn.com/content/v1/684300c4b4a08c76813ea27d/ba83b4a8-e285-486b-a863-b77af45ae975/01+-+The+Villas+at+Happy+Valley+-+Living+Room+and+Kitchen.jpg",
+    "page": "https://www.villashappyvalley.com/"
+   },
+   {
+    "url": "https://images.squarespace-cdn.com/content/v1/684300c4b4a08c76813ea27d/13031155-5777-42ed-a93a-c7486c120c02/04+-+The+Villas+at+Happy+Valley+-+Bedroom+2.jpg",
+    "page": "https://www.villashappyvalley.com/"
+   }
+  ]
+ },
+ {
+  "id": 9,
+  "name": "The View",
+  "address": "850 Toftrees Ave",
+  "type": "complex",
+  "beds": [
+   2,
+   3
+  ],
+  "price": "$699\u2013$1,035 per bedroom",
+  "ppm": 699,
+  "est": false,
+  "lat": 40.82307,
+  "lng": -77.88371,
+  "source": "ocp",
+  "site": "https://www.theviewstatecollege.com/",
+  "photos": [
+   {
+    "url": "https://theviewstatecollege.com/wp-content/uploads/2026/10/The-View_001.jpg",
+    "page": "https://www.theviewstatecollege.com/"
+   },
+   {
+    "url": "https://theviewstatecollege.com/wp-content/uploads/2026/10/The-View_020.jpg",
+    "page": "https://www.theviewstatecollege.com/"
+   },
+   {
+    "url": "https://theviewstatecollege.com/wp-content/uploads/2024/12/DSC07951-Mark.jpg",
+    "page": "https://www.theviewstatecollege.com/"
+   }
+  ]
+ },
+ {
+  "id": 10,
+  "name": "oLiv Hetzel",
+  "address": "114 Hetzel St",
+  "type": "complex",
+  "beds": [
+   0,
+   5
+  ],
+  "price": "$1,275\u2013$2,165 per bedroom",
+  "ppm": 1275,
+  "est": false,
+  "lat": 40.79898,
+  "lng": -77.85491,
+  "source": "ocp",
+  "site": "https://olivhetzel.com/",
+  "photos": [
+   {
+    "url": "https://olivhetzel.com/wp-content/uploads/2024/11/oliv-hetzel-index-hero-4.jpg",
+    "page": "https://olivhetzel.com/"
+   },
+   {
+    "url": "https://olivhetzel.com/wp-content/uploads/2024/11/oliv-hetzel-index-lifestyle-gallery-live-like-a-classic.jpg",
+    "page": "https://olivhetzel.com/"
+   },
+   {
+    "url": "https://olivhetzel.com/wp-content/uploads/2024/11/oliv-hetzel-index-hero-3.jpg",
+    "page": "https://olivhetzel.com/"
+   }
+  ]
+ },
+ {
+  "id": 11,
+  "name": "Southside Commons",
+  "address": "610 Southgate Dr",
+  "type": "townhouse",
+  "beds": [
+   2,
+   3
+  ],
+  "price": "$1,700\u2013$1,880 per unit",
+  "ppm": 567,
+  "est": true,
+  "lat": 40.77497,
+  "lng": -77.85684,
+  "source": "ocp"
+ },
+ {
+  "id": 12,
+  "name": "The Canyon",
+  "address": "309 E Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   3
+  ],
+  "price": "$1,050\u2013$2,025 per bedroom",
+  "ppm": 1050,
+  "est": false,
+  "lat": 40.79595,
+  "lng": -77.85731,
+  "source": "ocp",
+  "site": "https://www.livethecanyon.com/"
+ },
+ {
+  "id": 13,
+  "name": "Southside Court",
+  "address": "1610 S Ashwicken Ct",
+  "type": "townhouse",
+  "beds": [
+   2,
+   2
+  ],
+  "price": "$1,800\u2013$1,875 per unit",
+  "ppm": 900,
+  "est": true,
+  "lat": 40.77272,
+  "lng": -77.86199,
+  "source": "ocp"
+ },
+ {
+  "id": 14,
+  "name": "oLiv Highland",
+  "address": "240 S Pugh St",
+  "type": "complex",
+  "beds": [
+   2,
+   5
+  ],
+  "price": "$999\u2013$1,810 as listed",
+  "ppm": 999,
+  "est": false,
+  "lat": 40.79354,
+  "lng": -77.85777,
+  "source": "ocp",
+  "site": "https://www.olivhighland.com/",
+  "photos": [
+   {
+    "url": "https://www.olivhighland.com/wp-content/uploads/2024/11/oliv-highland-index-live-like-a-classic.jpg",
+    "page": "https://www.olivhighland.com/"
+   },
+   {
+    "url": "https://www.olivhighland.com/wp-content/uploads/2024/11/oLiv-Highland-index-amenities-sustainability.jpg",
+    "page": "https://www.olivhighland.com/"
+   },
+   {
+    "url": "https://www.olivhighland.com/wp-content/uploads/2024/11/oLiv-Highland-index-Hero-1.jpg",
+    "page": "https://www.olivhighland.com/"
+   }
+  ]
+ },
+ {
+  "id": 15,
+  "name": "Southside Court II",
+  "address": "921 Southgate Dr",
+  "type": "townhouse",
+  "beds": [
+   2,
+   2
+  ],
+  "price": "$1,650\u2013$1,725 per unit",
+  "ppm": 825,
+  "est": true,
+  "lat": 40.77393,
+  "lng": -77.86139,
+  "source": "ocp"
+ },
+ {
+  "id": 16,
+  "name": "Park Hill",
+  "address": "478 E Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$1,095\u2013$1,850 per bedroom",
+  "ppm": 1095,
+  "est": false,
+  "lat": 40.7979,
+  "lng": -77.85336,
+  "source": "ocp"
+ },
+ {
+  "id": 17,
+  "name": "Beaver Plaza",
+  "address": "222 W Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   2,
+   2
+  ],
+  "price": "$1,000\u2013$2,975 per bedroom",
+  "ppm": 1000,
+  "est": false,
+  "lat": 40.79185,
+  "lng": -77.86206,
+  "source": "ocp"
+ },
+ {
+  "id": 18,
+  "name": "The Graduate Apartments",
+  "address": "138 S Atherton St",
+  "type": "apartment",
+  "beds": [
+   1,
+   3
+  ],
+  "price": "$1,654\u2013$3,960 per unit",
+  "ppm": 1320,
+  "est": true,
+  "lat": 40.79088,
+  "lng": -77.8642,
+  "source": "ocp"
+ },
+ {
+  "id": 19,
+  "name": "Haus",
+  "address": "914 W College Ave",
+  "type": "apartment",
+  "beds": [
+   2,
+   3
+  ],
+  "price": "$1,439\u2013$1,694 per unit \u00b7 11-month lease",
+  "ppm": 480,
+  "est": true,
+  "lat": 40.78661,
+  "lng": -77.87138,
+  "source": "ocp",
+  "site": "https://www.hausstatecollege.com/",
+  "photos": [
+   {
+    "url": "https://www.hausstatecollege.com/wp-content/uploads/2025/05/1.jpg",
+    "page": "https://www.hausstatecollege.com/"
+   },
+   {
+    "url": "https://www.hausstatecollege.com/wp-content/uploads/2025/05/haus-state-college-Homepage_Livelikeaclassic_footerimage.jpg",
+    "page": "https://www.hausstatecollege.com/"
+   },
+   {
+    "url": "https://www.hausstatecollege.com/wp-content/uploads/2025/07/haus-state-college-index-amenities-fitness.webp",
+    "page": "https://www.hausstatecollege.com/"
+   }
+  ]
+ },
+ {
+  "id": 20,
+  "name": "Barcroft Building",
+  "address": "522 E College Ave",
+  "type": "apartment",
+  "beds": [
+   0,
+   0
+  ],
+  "price": "$1,795 furnished studio \u00b7 7-month lease",
+  "ppm": 1795,
+  "est": false,
+  "lat": 40.79969,
+  "lng": -77.85408,
+  "source": "ocp"
+ },
+ {
+  "id": 21,
+  "name": "Blue Course Commons",
+  "address": "446 Blue Course Dr",
+  "type": "complex",
+  "beds": [
+   3,
+   3
+  ],
+  "price": "$885\u2013$1,245 per bedroom",
+  "ppm": 885,
+  "est": false,
+  "lat": 40.79838,
+  "lng": -77.88821,
+  "source": "ocp",
+  "site": "https://www.livebluecourse.com/",
+  "photos": [
+   {
+    "url": "https://www.livebluecourse.com/wp-content/uploads/2024/06/index-split-banner.png",
+    "page": "https://www.livebluecourse.com/"
+   },
+   {
+    "url": "https://www.livebluecourse.com/wp-content/uploads/2024/06/bedroom.png",
+    "page": "https://www.livebluecourse.com/"
+   }
+  ]
+ },
+ {
+  "id": 22,
+  "name": "Divine Comfort Space",
+  "address": "663 Marjorie Mae St",
+  "type": "room",
+  "beds": [
+   3,
+   3
+  ],
+  "price": "$1,250\u2013$1,500 per room \u00b7 shared house",
+  "ppm": 1250,
+  "est": false,
+  "lat": 40.81355,
+  "lng": -77.88827,
+  "source": "ocp"
+ },
+ {
+  "id": 23,
+  "name": "The Palmerton",
+  "address": "316 W Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$1,775\u2013$1,999 per unit",
+  "ppm": 888,
+  "est": true,
+  "lat": 40.79109,
+  "lng": -77.86294,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/the-palmerton/",
+  "photos": [
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2026/02/Palmerton-Exterior.jpg",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-palmerton/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Palmerton_003-scaled-1.jpg?fit=2560%2C1994&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-palmerton/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/palmerton-image-1-scaled-4.jpg?fit=2560%2C1777&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-palmerton/"
+   }
+  ]
+ },
+ {
+  "id": 24,
+  "name": "Longmeadow Townhouses",
+  "address": "100\u2013102 Long Meadow Ln",
+  "type": "townhouse",
+  "beds": [
+   4,
+   4
+  ],
+  "price": "$750 per bedroom",
+  "ppm": 750,
+  "est": false,
+  "lat": 40.80206,
+  "lng": -77.877,
+  "source": "ocp"
+ },
+ {
+  "id": 25,
+  "name": "Centre Court",
+  "address": "141 S Garner St",
+  "type": "apartment",
+  "beds": [
+   4,
+   4
+  ],
+  "price": "$5,980 per unit",
+  "ppm": 1495,
+  "est": true,
+  "lat": 40.79759,
+  "lng": -77.85573,
+  "source": "ocp",
+  "site": "https://www.arpm.com/property/centre-court/",
+  "photos": [
+   {
+    "url": "https://www.arpm.com/wp-content/uploads/2023/01/Centre-Court-Ext-New.jpg",
+    "page": "https://www.arpm.com/property/centre-court/"
+   }
+  ]
+ },
+ {
+  "id": 26,
+  "name": "Collegiate Arms",
+  "address": "218 S Sparks St",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$1,158\u2013$1,496 per unit",
+  "ppm": 579,
+  "est": true,
+  "lat": 40.78757,
+  "lng": -77.86675,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/collegiate-arms/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/collegiate-arms-ext-scaled-1.jpg?fit=2560%2C1707&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/collegiate-arms/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Collegiate-Arms-2B-LR-scaled-4.jpg?fit=2560%2C1649&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/collegiate-arms/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Collegiate-Arms-2B-bedroom-scaled-3.jpg?fit=2560%2C1686&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/collegiate-arms/"
+   }
+  ]
+ },
+ {
+  "id": 27,
+  "name": "Nicholas Tower",
+  "address": "301 S Pugh St",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$2,000 per unit",
+  "ppm": 2000,
+  "est": false,
+  "lat": 40.79332,
+  "lng": -77.85652,
+  "source": "ocp"
+ },
+ {
+  "id": 28,
+  "name": "The Edge",
+  "address": "254 E Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   4,
+   4
+  ],
+  "price": "$7,200 per unit",
+  "ppm": 1800,
+  "est": true,
+  "lat": 40.79527,
+  "lng": -77.85753,
+  "source": "ocp"
+ },
+ {
+  "id": 29,
+  "name": "The Station State College",
+  "address": "801 Toftrees Ave",
+  "type": "complex",
+  "beds": [
+   5,
+   5
+  ],
+  "price": "$862 per bedroom \u00b7 11-month lease",
+  "ppm": 862,
+  "est": false,
+  "lat": 40.82428,
+  "lng": -77.8874,
+  "source": "ocp",
+  "site": "https://thestationstatecollege.landmark-properties.com/"
+ },
+ {
+  "id": 30,
+  "name": "Campus Tower",
+  "address": "419 E Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   3,
+   4
+  ],
+  "price": "$4,650\u2013$6,300 per unit",
+  "ppm": 1550,
+  "est": true,
+  "lat": 40.79711,
+  "lng": -77.85571,
+  "source": "ocp"
+ },
+ {
+  "id": 31,
+  "name": "Fairmount Hills",
+  "address": "215 W Fairmount Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$1,575 per unit",
+  "ppm": 1575,
+  "est": false,
+  "lat": 40.78956,
+  "lng": -77.85856,
+  "source": "ocp",
+  "site": "https://www.arpm.com/property/fairmount-hills/",
+  "photos": [
+   {
+    "url": "https://www.arpm.com/wp-content/uploads/2016/04/Fairmount-Hills_EXT_16x9-scaled.jpg",
+    "page": "https://www.arpm.com/property/fairmount-hills/"
+   }
+  ]
+ },
+ {
+  "id": 32,
+  "name": "Lexington House",
+  "address": "518 University Dr",
+  "type": "apartment",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$950\u2013$1,999 per unit",
+  "ppm": 667,
+  "est": true,
+  "lat": 40.79951,
+  "lng": -77.84871,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/lexington-house/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Lexington-2BD-LR-2-4.jpg?fit=600%2C379&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/lexington-house/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Lexington-2BD-Bedroom-1.jpg?fit=600%2C398&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/lexington-house/"
+   },
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/Lexington-SpringAvail.jpg",
+    "page": "https://www.apartmentstore.com/locations/state-college/lexington-house/"
+   }
+  ]
+ },
+ {
+  "id": 40,
+  "name": "Traditional hall, double",
+  "address": "West Halls and other traditional halls",
+  "type": "dorm",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$4,150 per semester + required meal plan ($2,988 default)",
+  "ppm": 1038,
+  "est": false,
+  "lat": 40.79647,
+  "lng": -77.86602,
+  "source": "psu",
+  "semester": true,
+  "photos": [
+   {
+    "url": "photos/westhalls.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:West_Halls_PSU.jpg"
+   }
+  ]
+ },
+ {
+  "id": 41,
+  "name": "Renovated hall, double",
+  "address": "South Halls and other renovated halls",
+  "type": "dorm",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$4,766 per semester + required meal plan",
+  "ppm": 1192,
+  "est": false,
+  "lat": 40.79922,
+  "lng": -77.85776,
+  "source": "psu",
+  "semester": true,
+  "photos": [
+   {
+    "url": "photos/southhalls.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:South_Residence_Halls_at_Pennsylvania_State_University_from_Shortlidge_Road.jpeg"
+   }
+  ]
+ },
+ {
+  "id": 42,
+  "name": "Suite, 2 bed / 4 people",
+  "address": "Beam, Holmes, Leete & Runkle (North Halls)",
+  "type": "dorm",
+  "beds": [
+   2,
+   2
+  ],
+  "price": "$5,323 per semester + required meal plan",
+  "ppm": 1331,
+  "est": false,
+  "lat": 40.8029,
+  "lng": -77.86682,
+  "source": "psu",
+  "semester": true
+ },
+ {
+  "id": 43,
+  "name": "Eastview Terrace, single with bath",
+  "address": "Eastview Terrace (East Halls area)",
+  "type": "dorm",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$6,456 per semester + required meal plan",
+  "ppm": 1614,
+  "est": false,
+  "lat": 40.8064,
+  "lng": -77.8602,
+  "source": "psu",
+  "semester": true,
+  "approx": true,
+  "photos": [
+   {
+    "url": "photos/eastview.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Penn_State_University_Eastview_Terrace_Appartments.jpg"
+   }
+  ]
+ },
+ {
+  "id": 44,
+  "name": "Nittany Apartments, 4 bed garden",
+  "address": "Nittany Apartments",
+  "type": "dorm",
+  "beds": [
+   4,
+   4
+  ],
+  "price": "$5,650 per semester \u00b7 meal plan optional",
+  "ppm": 1413,
+  "est": false,
+  "lat": 40.80369,
+  "lng": -77.85699,
+  "source": "psu",
+  "semester": true
+ },
+ {
+  "id": 45,
+  "name": "White Course Apartments",
+  "address": "Patterson Hall, 4 bed / 4 people",
+  "type": "dorm",
+  "beds": [
+   4,
+   4
+  ],
+  "price": "$938 per person per month \u00b7 meal plan optional",
+  "ppm": 938,
+  "est": false,
+  "lat": 40.79001,
+  "lng": -77.87272,
+  "source": "psu"
+ },
+ {
+  "id": 50,
+  "name": "Rise at State College",
+  "address": "532 E College Ave",
+  "type": "complex",
+  "beds": [
+   0,
+   5
+  ],
+  "price": "$1,189\u2013$2,239 per bedroom",
+  "ppm": 1189,
+  "est": false,
+  "lat": 40.799953,
+  "lng": -77.85374,
+  "source": "ocp",
+  "site": "https://risestatecollege.com/",
+  "photos": [
+   {
+    "url": "https://risestatecollege.com/images/homepage/hero-pic-2-mob.webp",
+    "page": "https://risestatecollege.com/"
+   },
+   {
+    "url": "https://risestatecollege.com/images/homepage/homepage-pic-14.webp",
+    "page": "https://risestatecollege.com/"
+   },
+   {
+    "url": "https://risestatecollege.com/images/homepage/homepage-s1-1.webp",
+    "page": "https://risestatecollege.com/"
+   }
+  ]
+ },
+ {
+  "id": 51,
+  "name": "The Maxxen",
+  "address": "131 Hiester St",
+  "type": "complex",
+  "beds": [
+   2,
+   5
+  ],
+  "price": "$1,385\u2013$2,039 per bedroom",
+  "ppm": 1385,
+  "est": false,
+  "lat": 40.796944,
+  "lng": -77.856753,
+  "source": "ocp",
+  "site": "https://www.themaxxen.com/",
+  "photos": [
+   {
+    "url": "https://www.themaxxen.com/wp-content/uploads/2022/06/index-header-1600x680-c-default.jpg",
+    "page": "https://www.themaxxen.com/"
+   }
+  ]
+ },
+ {
+  "id": 52,
+  "name": "Echelon State College",
+  "address": "338 W College Ave",
+  "type": "complex",
+  "beds": [
+   0,
+   4
+  ],
+  "price": "$1,254\u2013$2,579 as listed",
+  "ppm": 1254,
+  "est": false,
+  "lat": 40.792259,
+  "lng": -77.864368,
+  "source": "ocp",
+  "site": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+ },
+ {
+  "id": 53,
+  "name": "The Metropolitan",
+  "address": "412 W College Ave",
+  "type": "complex",
+  "beds": [
+   0,
+   5
+  ],
+  "price": "From $1,380 per bedroom (current relet listing)",
+  "ppm": 1380,
+  "est": false,
+  "lat": 40.791343,
+  "lng": -77.865194,
+  "source": "ocp",
+  "site": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+ },
+ {
+  "id": 54,
+  "name": "Pugh Centre",
+  "address": "150 E Beaver Ave",
+  "type": "complex",
+  "beds": [
+   4,
+   4
+  ],
+  "price": "Ask for pricing",
+  "ppm": null,
+  "est": false,
+  "lat": 40.79392,
+  "lng": -77.858886,
+  "source": "news"
+ },
+ {
+  "id": 55,
+  "name": "The Retreat on Westerly",
+  "address": "418 Westerly Pkwy",
+  "type": "complex",
+  "beds": [
+   2,
+   5
+  ],
+  "price": "$1,115\u2013$1,550 per bedroom",
+  "ppm": 1115,
+  "est": false,
+  "lat": 40.783908,
+  "lng": -77.852095,
+  "source": "ocp",
+  "site": "https://www.retreatwesterly.com/",
+  "photos": [
+   {
+    "url": "https://www.retreatwesterly.com/wp-content/uploads/2026/08/The-Retreat-on-Westerly-index-hero.jpg",
+    "page": "https://www.retreatwesterly.com/"
+   }
+  ]
+ },
+ {
+  "id": 56,
+  "name": "The Pointe at State College",
+  "address": "501 Vairo Blvd",
+  "type": "complex",
+  "beds": [
+   2,
+   4
+  ],
+  "price": "$799\u2013$1,099 per bedroom",
+  "ppm": 799,
+  "est": false,
+  "lat": 40.810908,
+  "lng": -77.890477,
+  "source": "af",
+  "site": "https://www.pointestatecollege.com/",
+  "photos": [
+   {
+    "url": "https://www.pointestatecollege.com/wp-content/uploads/2026/09/home-hero-new1-1.webp",
+    "page": "https://www.pointestatecollege.com/"
+   },
+   {
+    "url": "https://www.pointestatecollege.com/wp-content/uploads/2026/09/the-pointe-state-college-amenities-pool.webp",
+    "page": "https://www.pointestatecollege.com/"
+   }
+  ]
+ },
+ {
+  "id": 57,
+  "name": "The Bryn",
+  "address": "601 Vairo Blvd",
+  "type": "complex",
+  "beds": [
+   2,
+   4
+  ],
+  "price": "$699\u2013$999 per bedroom",
+  "ppm": 699,
+  "est": false,
+  "lat": 40.810605,
+  "lng": -77.892655,
+  "source": "ocp",
+  "site": "https://www.livethebryn.com/"
+ },
+ {
+  "id": 58,
+  "name": "Tremont",
+  "address": "201 Vairo Blvd",
+  "type": "complex",
+  "beds": [
+   2,
+   4
+  ],
+  "price": "$550\u2013$1,878 per bedroom",
+  "ppm": 550,
+  "est": false,
+  "lat": 40.812972,
+  "lng": -77.886426,
+  "source": "ocp",
+  "site": "https://tremontstudentliving.com/"
+ },
+ {
+  "id": 59,
+  "name": "Vairo Village",
+  "address": "10 Vairo Blvd",
+  "type": "apartment",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$1,195\u2013$1,930 per unit",
+  "ppm": 643,
+  "est": true,
+  "lat": 40.816476,
+  "lng": -77.887146,
+  "source": "ocp",
+  "site": "https://www.vairovillage.com/"
+ },
+ {
+  "id": 60,
+  "name": "Parkway Plaza",
+  "address": "1000 Plaza Dr",
+  "type": "complex",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$699\u2013$1,350 as listed",
+  "ppm": 699,
+  "est": false,
+  "lat": 40.784486,
+  "lng": -77.854922,
+  "source": "ocp"
+ },
+ {
+  "id": 61,
+  "name": "Brexx at State College",
+  "address": "300 Waupelani Dr",
+  "type": "complex",
+  "beds": [
+   2,
+   5
+  ],
+  "price": "$889\u2013$1,469 per bedroom",
+  "ppm": 889,
+  "est": false,
+  "lat": 40.7798,
+  "lng": -77.850549,
+  "source": "af",
+  "site": "https://www.brexxpsu.com/",
+  "photos": [
+   {
+    "url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/Brexx-state-college-index-hero.webp",
+    "page": "https://www.brexxpsu.com/"
+   },
+   {
+    "url": "https://www.brexxpsu.com/wp-content/uploads/2026/09/index-amenities-pool-2.webp",
+    "page": "https://www.brexxpsu.com/"
+   }
+  ]
+ },
+ {
+  "id": 62,
+  "name": "Alight State College",
+  "address": "348 Blue Course Dr",
+  "type": "complex",
+  "beds": [
+   4,
+   4
+  ],
+  "price": "From $599 per bedroom",
+  "ppm": 599,
+  "est": false,
+  "lat": 40.800322,
+  "lng": -77.8865,
+  "source": "ocp"
+ },
+ {
+  "id": 63,
+  "name": "State College Collective on Northbrook",
+  "address": "145 Northbrook Ln",
+  "type": "complex",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$1,045\u2013$1,325 per bedroom",
+  "ppm": 1045,
+  "est": false,
+  "lat": 40.805859,
+  "lng": -77.902327,
+  "source": "af",
+  "site": "https://www.statecollegecollective.com/",
+  "photos": [
+   {
+    "url": "https://www.statecollegecollective.com/wp-content/uploads/2021/10/northbrook-greens-aerial-2-1.jpg",
+    "page": "https://www.statecollegecollective.com/"
+   },
+   {
+    "url": "https://www.statecollegecollective.com/wp-content/uploads/2021/10/Northbrook-Greens-Aerial-2-3.jpg",
+    "page": "https://www.statecollegecollective.com/"
+   }
+  ]
+ },
+ {
+  "id": 64,
+  "name": "Meridian on College Avenue",
+  "address": "646 E College Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "From $710 per bedroom",
+  "ppm": 710,
+  "est": false,
+  "lat": 40.801025,
+  "lng": -77.852012,
+  "source": "af",
+  "site": "https://www.meridianoncollegeavenue.com/"
+ },
+ {
+  "id": 65,
+  "name": "Park Place Apartments",
+  "address": "224 S Burrowes St",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$1,824\u2013$2,804 per unit",
+  "ppm": 912,
+  "est": true,
+  "lat": 40.791001,
+  "lng": -77.862074,
+  "source": "af"
+ },
+ {
+  "id": 66,
+  "name": "Marion Place",
+  "address": "135 E Nittany Ave",
+  "type": "apartment",
+  "beds": [
+   2,
+   2
+  ],
+  "price": "$2,062 per unit",
+  "ppm": 1031,
+  "est": true,
+  "lat": 40.792686,
+  "lng": -77.856906,
+  "source": "af",
+  "site": "https://marionplace.com/",
+  "photos": [
+   {
+    "url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4866-1024x700.jpg",
+    "page": "https://marionplace.com/"
+   },
+   {
+    "url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4931-1024x736.jpg",
+    "page": "https://marionplace.com/"
+   },
+   {
+    "url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4869-1024x683.jpg",
+    "page": "https://marionplace.com/"
+   }
+  ]
+ },
+ {
+  "id": 67,
+  "name": "Calder Commons",
+  "address": "520 E Calder Way",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$1,360 per unit (2 bd)",
+  "ppm": 680,
+  "est": true,
+  "lat": 40.799304,
+  "lng": -77.853671,
+  "source": "ocp",
+  "site": "https://www.caldercommons.com/"
+ },
+ {
+  "id": 68,
+  "name": "the co.space",
+  "address": "244 E Nittany Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$895\u2013$1,125 as listed",
+  "ppm": 895,
+  "est": false,
+  "lat": 40.793828,
+  "lng": -77.855248,
+  "source": "af"
+ },
+ {
+  "id": 69,
+  "name": "Hemmingway Place",
+  "address": "1051 Teaberry Ln",
+  "type": "townhouse",
+  "beds": [
+   2,
+   3
+  ],
+  "price": "$1,465\u2013$2,020 per unit",
+  "ppm": 673,
+  "est": true,
+  "lat": 40.796605,
+  "lng": -77.884964,
+  "source": "af"
+ },
+ {
+  "id": 70,
+  "name": "Briarwood Apartments and Townhomes",
+  "address": "679 Waupelani Dr",
+  "type": "townhouse",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$1,520\u2013$1,764 per unit",
+  "ppm": 588,
+  "est": true,
+  "lat": 40.773817,
+  "lng": -77.85586,
+  "source": "af"
+ },
+ {
+  "id": 71,
+  "name": "Southgate Apartments and Townhomes",
+  "address": "713 Southgate Dr",
+  "type": "townhouse",
+  "beds": [
+   1,
+   3
+  ],
+  "price": "$1,475\u2013$2,050 per unit",
+  "ppm": 683,
+  "est": true,
+  "lat": 40.775454,
+  "lng": -77.858459,
+  "source": "ocp"
+ },
+ {
+  "id": 72,
+  "name": "Waupelani Lofts",
+  "address": "219 Waupelani Dr",
+  "type": "apartment",
+  "beds": [
+   4,
+   5
+  ],
+  "price": "From $2,300 per unit",
+  "ppm": 460,
+  "est": true,
+  "lat": 40.782449,
+  "lng": -77.850153,
+  "source": "af"
+ },
+ {
+  "id": 73,
+  "name": "Nittany Garden Apartments",
+  "address": "445 Waupelani Dr",
+  "type": "apartment",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$1,250\u2013$2,500 per unit",
+  "ppm": 833,
+  "est": true,
+  "lat": 40.777838,
+  "lng": -77.854699,
+  "source": "ocp"
+ },
+ {
+  "id": 74,
+  "name": "South View Apartments and Townhomes",
+  "address": "425 Waupelani Dr",
+  "type": "townhouse",
+  "beds": [
+   0,
+   2
+  ],
+  "price": "$1,225\u2013$1,950 per unit",
+  "ppm": 975,
+  "est": true,
+  "lat": 40.779179,
+  "lng": -77.856064,
+  "source": "ocp"
+ },
+ {
+  "id": 75,
+  "name": "Lion's Gate Apartments",
+  "address": "424 Waupelani Dr",
+  "type": "apartment",
+  "beds": [
+   0,
+   2
+  ],
+  "price": "$1,050\u2013$1,460 per unit",
+  "ppm": 730,
+  "est": true,
+  "lat": 40.777993,
+  "lng": -77.852514,
+  "source": "ocp"
+ },
+ {
+  "id": 76,
+  "name": "Mount Nittany by Allen & Pugh",
+  "address": "1006 S Pugh St",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$1,850\u2013$3,700 per unit",
+  "ppm": 1850,
+  "est": false,
+  "lat": 40.78904,
+  "lng": -77.849735,
+  "source": "ocp",
+  "site": "https://ethosresidential.com/mount-nittany/"
+ },
+ {
+  "id": 77,
+  "name": "Penny by Allen & Pugh",
+  "address": "1013 S Allen St",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$1,850\u2013$3,700 per unit",
+  "ppm": 1850,
+  "est": false,
+  "lat": 40.787728,
+  "lng": -77.850597,
+  "source": "ocp",
+  "site": "https://ethosresidential.com/penny/"
+ },
+ {
+  "id": 78,
+  "name": "Allegory by Allen & Pugh",
+  "address": "917 S Allen St",
+  "type": "apartment",
+  "beds": [
+   1,
+   3
+  ],
+  "price": "$1,400\u2013$2,250 per unit",
+  "ppm": 750,
+  "est": true,
+  "lat": 40.788304,
+  "lng": -77.851255,
+  "source": "af",
+  "site": "https://ethosresidential.com/allegory/"
+ },
+ {
+  "id": 79,
+  "name": "College Park by Allen & Pugh",
+  "address": "415 W College Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$975\u2013$1,950 per unit",
+  "ppm": 975,
+  "est": false,
+  "lat": 40.791593,
+  "lng": -77.865943,
+  "source": "ocp",
+  "site": "https://ethosresidential.com/college-park/"
+ },
+ {
+  "id": 80,
+  "name": "Hampshire Apartments",
+  "address": "626 S Pugh St",
+  "type": "apartment",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$1,575\u2013$3,685 per unit",
+  "ppm": 1228,
+  "est": true,
+  "lat": 40.791136,
+  "lng": -77.853487,
+  "source": "ocp",
+  "site": "https://www.brickworkproperties.com/state-college/hampshire/student/"
+ },
+ {
+  "id": 81,
+  "name": "Riviera Apartments",
+  "address": "1229 S Allen St",
+  "type": "apartment",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$1,575\u2013$2,995 per unit",
+  "ppm": 998,
+  "est": true,
+  "lat": 40.785269,
+  "lng": -77.84818,
+  "source": "ocp"
+ },
+ {
+  "id": 82,
+  "name": "Twin Towers",
+  "address": "1218 S Allen St",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$1,699 per unit",
+  "ppm": 1699,
+  "est": false,
+  "lat": 40.785498,
+  "lng": -77.848816,
+  "source": "ocp",
+  "site": "https://www.brickworkproperties.com/state-college/twin-towers/student/"
+ },
+ {
+  "id": 83,
+  "name": "Falport 1215",
+  "address": "1215 S Allen St",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$1,385 per unit",
+  "ppm": 1385,
+  "est": false,
+  "lat": 40.785713,
+  "lng": -77.848541,
+  "source": "ocp"
+ },
+ {
+  "id": 84,
+  "name": "Parkview Apartments",
+  "address": "127 E Hamilton Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   3
+  ],
+  "price": "$1,785\u2013$4,020 per unit",
+  "ppm": 1340,
+  "est": true,
+  "lat": 40.790838,
+  "lng": -77.853862,
+  "source": "ocp",
+  "site": "https://www.brickworkproperties.com/state-college/parkview/student/"
+ },
+ {
+  "id": 85,
+  "name": "Hamilton House",
+  "address": "128 E Hamilton Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$1,175\u2013$1,375 per unit",
+  "ppm": 1175,
+  "est": false,
+  "lat": 40.79066,
+  "lng": -77.853304,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/hamilton-house/"
+ },
+ {
+  "id": 86,
+  "name": "The Bellaire",
+  "address": "711 Bellaire Ave",
+  "type": "apartment",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$1,383\u2013$2,200 per unit",
+  "ppm": 733,
+  "est": true,
+  "lat": 40.799868,
+  "lng": -77.847417,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/the-bellaire/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Bellaire_402_livingroom_share-5.jpg?fit=1800%2C1200&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Bellaire_410_kitchen2_share-5.jpg?fit=1800%2C1200&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/"
+   },
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/Bellaire-Spring-Avail.jpg",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/"
+   }
+  ]
+ },
+ {
+  "id": 87,
+  "name": "University Terrace Apartments",
+  "address": "825 Bellaire Ave",
+  "type": "apartment",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$700\u2013$1,275 per unit",
+  "ppm": 425,
+  "est": true,
+  "lat": 40.801219,
+  "lng": -77.845965,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/university-terrace/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/UT_outside1-scaled-1.jpg?fit=2560%2C1707&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/university-terrace/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/UT_pool2-scaled.jpg?fit=2560%2C1707&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/university-terrace/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/UT-bath.jpeg?fit=768%2C565&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/university-terrace/"
+   }
+  ]
+ },
+ {
+  "id": 88,
+  "name": "Penn State Apartments",
+  "address": "525 W Foster Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   3
+  ],
+  "price": "$850\u2013$1,175 per unit",
+  "ppm": 392,
+  "est": true,
+  "lat": 40.788187,
+  "lng": -77.86479,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/penn-state-apartments/",
+  "photos": [
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/Penn-State-Apt-scaled.jpg",
+    "page": "https://www.apartmentstore.com/locations/state-college/penn-state-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/PennStateApts_002-scaled-8.jpg?fit=2560%2C1709&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/penn-state-apartments/"
+   }
+  ]
+ },
+ {
+  "id": 89,
+  "name": "College Avenue Apartments",
+  "address": "536 W College Ave",
+  "type": "apartment",
+  "beds": [
+   0,
+   1
+  ],
+  "price": "$1,300\u2013$1,525 per unit",
+  "ppm": 1300,
+  "est": false,
+  "lat": 40.789882,
+  "lng": -77.867136,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/"
+ },
+ {
+  "id": 90,
+  "name": "811 West College",
+  "address": "811 W College Ave",
+  "type": "apartment",
+  "beds": [
+   3,
+   3
+  ],
+  "price": "$1,067 per bedroom",
+  "ppm": 1067,
+  "est": false,
+  "lat": 40.788129,
+  "lng": -77.870754,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/811-west-college-ave/"
+ },
+ {
+  "id": 91,
+  "name": "REVIVE on Prospect",
+  "address": "219 E Prospect Ave",
+  "type": "apartment",
+  "beds": [
+   0,
+   1
+  ],
+  "price": "$1,595\u2013$1,745 per unit",
+  "ppm": 1595,
+  "est": false,
+  "lat": 40.79247,
+  "lng": -77.854055,
+  "source": "ocp"
+ },
+ {
+  "id": 92,
+  "name": "Sutton Court Apartments",
+  "address": "650 E Prospect Ave",
+  "type": "apartment",
+  "beds": [
+   0,
+   2
+  ],
+  "price": "$950\u2013$1,350 per unit",
+  "ppm": 675,
+  "est": true,
+  "lat": 40.798851,
+  "lng": -77.847811,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/sutton-court/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Sutton-LR-45.jpg?fit=800%2C518&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/sutton-court/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Sutton-kitchen-scaled-19.jpg?fit=2560%2C1864&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/sutton-court/"
+   },
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/SuttonCourt-Spring-Avail.jpg",
+    "page": "https://www.apartmentstore.com/locations/state-college/sutton-court/"
+   }
+  ]
+ },
+ {
+  "id": 93,
+  "name": "Foster Apartments",
+  "address": "140 E College Ave",
+  "type": "apartment",
+  "beds": [
+   5,
+   5
+  ],
+  "price": "$1,625 per bedroom",
+  "ppm": 1625,
+  "est": false,
+  "lat": 40.794742,
+  "lng": -77.86104,
+  "source": "ocp"
+ },
+ {
+  "id": 94,
+  "name": "Greenwich Court",
+  "address": "418 E College Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$1,350\u2013$2,199 per unit",
+  "ppm": 1100,
+  "est": true,
+  "lat": 40.798065,
+  "lng": -77.85654,
+  "source": "ocp"
+ },
+ {
+  "id": 95,
+  "name": "University Towers",
+  "address": "458 E College Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$1,500 per unit",
+  "ppm": 1500,
+  "est": false,
+  "lat": 40.798803,
+  "lng": -77.855283,
+  "source": "ocp"
+ },
+ {
+  "id": 96,
+  "name": "Penn Tower",
+  "address": "255 E Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   0,
+   2
+  ],
+  "price": "$1,447 studio \u00b7 $3,560 for 2 bd, furnished, utilities included",
+  "ppm": 1447,
+  "est": false,
+  "lat": 40.795533,
+  "lng": -77.85784,
+  "source": "ocp"
+ },
+ {
+  "id": 97,
+  "name": "Alexander Court (The Canyon)",
+  "address": "321 E Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   4
+  ],
+  "price": "From $1,029 per bedroom",
+  "ppm": 1029,
+  "est": false,
+  "lat": 40.795915,
+  "lng": -77.85717,
+  "source": "ocp",
+  "site": "https://www.livethecanyon.com/alexander-court/",
+  "photos": [
+   {
+    "url": "https://www.livethecanyon.com/wp-content/uploads/2020/07/0003_ViewBuilding_FloorPlans2.jpg",
+    "page": "https://www.livethecanyon.com/alexander-court/"
+   },
+   {
+    "url": "https://www.livethecanyon.com/wp-content/uploads/2020/07/apt-includes-14.jpg",
+    "page": "https://www.livethecanyon.com/alexander-court/"
+   }
+  ]
+ },
+ {
+  "id": 98,
+  "name": "Cedarbrook (The Canyon)",
+  "address": "320 E Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   0,
+   2
+  ],
+  "price": "From $1,249 per bedroom",
+  "ppm": 1249,
+  "est": false,
+  "lat": 40.79584,
+  "lng": -77.856801,
+  "source": "ocp",
+  "site": "https://www.livethecanyon.com/cedarbrook/",
+  "photos": [
+   {
+    "url": "https://www.livethecanyon.com/wp-content/uploads/2020/07/0004_ViewBuilding_FloorPlans1-2.jpg",
+    "page": "https://www.livethecanyon.com/cedarbrook/"
+   },
+   {
+    "url": "https://www.livethecanyon.com/wp-content/uploads/2020/07/rent-includes-14.jpg",
+    "page": "https://www.livethecanyon.com/cedarbrook/"
+   },
+   {
+    "url": "https://www.livethecanyon.com/wp-content/uploads/2020/07/0001_ViewBuilding_FloorPlans4-3.jpg",
+    "page": "https://www.livethecanyon.com/cedarbrook/"
+   }
+  ]
+ },
+ {
+  "id": 99,
+  "name": "The Pad",
+  "address": "138 High St",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$1,389\u2013$2,462 per unit",
+  "ppm": 1231,
+  "est": true,
+  "lat": 40.799541,
+  "lng": -77.852713,
+  "source": "ocp",
+  "site": "https://www.brickworkproperties.com/state-college/the-pad/conventional/"
+ },
+ {
+  "id": 100,
+  "name": "Toftrees Apartments",
+  "address": "390 Toftrees Ave",
+  "type": "apartment",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$1,388\u2013$2,517 per unit",
+  "ppm": 839,
+  "est": true,
+  "lat": 40.823325,
+  "lng": -77.891652,
+  "source": "ocp"
+ },
+ {
+  "id": 101,
+  "name": "Sundown Apartments",
+  "address": "720 Stratford Dr",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$1,150 per unit",
+  "ppm": 1150,
+  "est": false,
+  "lat": 40.773799,
+  "lng": -77.857128,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/sundown-apartments/"
+ },
+ {
+  "id": 102,
+  "name": "Old Boalsburg Road Apartments",
+  "address": "901 Old Boalsburg Rd",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$800\u2013$1,300 per unit",
+  "ppm": 650,
+  "est": true,
+  "lat": 40.789133,
+  "lng": -77.850797,
+  "source": "ocp",
+  "site": "https://www.apartmentstore.com/locations/state-college/old-boalsburg-road/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/OBR-ext-1.jpg?fit=800%2C510&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/old-boalsburg-road/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/OBR-kitchen-2-11.jpg?fit=800%2C564&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/old-boalsburg-road/"
+   }
+  ]
+ },
+ {
+  "id": 103,
+  "name": "Corl West",
+  "address": "419 Corl St",
+  "type": "apartment",
+  "beds": [
+   2,
+   2
+  ],
+  "price": "$1,768 per unit",
+  "ppm": 884,
+  "est": true,
+  "lat": 40.780381,
+  "lng": -77.870335,
+  "source": "ocp",
+  "site": "https://www.brickworkproperties.com/state-college/corl-west-apartments/student/"
+ }
+]
