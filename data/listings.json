@@ -45,7 +45,36 @@
   "lat": 40.79108,
   "lng": -77.8567,
   "source": "ocp",
-  "site": "https://www.apartmentstore.com/locations/state-college/south-allen/"
+  "site": "https://www.apartmentstore.com/locations/state-college/south-allen/",
+  "photos": [
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/SouthAllen_Rented_26-27.jpg",
+    "page": "https://www.apartmentstore.com/locations/state-college/south-allen/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Two Bedroom 1.5 Bath Furnished #1 (fully rented)",
+    "beds": 2,
+    "baths": 1.5,
+    "sqft": null,
+    "price": "$750 - $2,999/mo"
+   },
+   {
+    "name": "Two Bedroom Furnished #2 (fully rented)",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$499 - $1,998/mo"
+   },
+   {
+    "name": "Two Bedroom Unfurnished #3 (fully rented)",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$525 - $2,150/mo"
+   }
+  ]
  },
  {
   "id": 3,
@@ -708,8 +737,28 @@
     "page": "https://www.apartmentstore.com/locations/state-college/the-palmerton/"
    },
    {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_7743-scaled.jpg?fit=1508%2C1080&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-palmerton/"
+   },
+   {
     "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/palmerton-image-1-scaled-4.jpg?fit=2560%2C1777&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/the-palmerton/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$750 - $1,999/mo"
+   },
+   {
+    "name": "Two Bedroom Furnished",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "$760 - $3,550/mo"
    }
   ]
  },
@@ -789,6 +838,33 @@
    {
     "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Collegiate-Arms-2B-bedroom-scaled-3.jpg?fit=2560%2C1686&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/collegiate-arms/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Collegiate-Arms-1B-bedroom-scaled-3.jpg?fit=2560%2C1789&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/collegiate-arms/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$748 - $1,496/mo"
+   },
+   {
+    "name": "Two Bedroom Standard Furnished (fully rented)",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$1,037 - $2,074/mo"
+   },
+   {
+    "name": "Two Bedroom Large Furnished",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$525 - $2,316/mo"
    }
   ]
  },
@@ -902,12 +978,67 @@
     "page": "https://www.apartmentstore.com/locations/state-college/lexington-house/"
    },
    {
-    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Lexington-2BD-Bedroom-1.jpg?fit=600%2C398&ssl=1",
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Lex-1-Bed-Bedroom-4-4.jpg?fit=600%2C400&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/lexington-house/"
    },
    {
-    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/Lexington-SpringAvail.jpg",
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Duplex-Kitchen-scaled-1.jpg?fit=2560%2C1690&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/lexington-house/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Lex-1-Bed-DR-1.jpg?fit=600%2C412&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/lexington-house/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Studio Unfurnished",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$600 - $1,199/mo"
+   },
+   {
+    "name": "Studio Furnished",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$638 - $1,275/mo"
+   },
+   {
+    "name": "One Bedroom Unfurnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$450 - $1,350/mo"
+   },
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$483 - $1,450/mo"
+   },
+   {
+    "name": "Two Bedroom Unfurnished",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$570 - $1,900/mo"
+   },
+   {
+    "name": "Two Bedroom Furnished",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$350 - $1,925/mo"
+   },
+   {
+    "name": "Three Bedroom Furnished",
+    "beds": 3,
+    "baths": 1,
+    "sqft": null,
+    "price": "$720 - $2,999/mo"
    }
   ]
  },
@@ -2043,7 +2174,55 @@
   "lat": 40.79066,
   "lng": -77.853304,
   "source": "ocp",
-  "site": "https://www.apartmentstore.com/locations/state-college/hamilton-house/"
+  "site": "https://www.apartmentstore.com/locations/state-college/hamilton-house/",
+  "photos": [
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/HH-ext.jpg",
+    "page": "https://www.apartmentstore.com/locations/state-college/hamilton-house/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/5d80e1aa58ddb6.80244494134.jpg?fit=640%2C480&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/hamilton-house/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/5a05f6ff48bcb479.jpg?fit=600%2C380&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/hamilton-house/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/5a05f6ff43478511.jpg?fit=600%2C382&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/hamilton-house/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "One Bedroom Lower Level Unfurnished (Unit 1)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$588 - $1,175/mo"
+   },
+   {
+    "name": "One Bedroom Lower Level Unfurnished (Unit 2)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$588 - $1,175/mo"
+   },
+   {
+    "name": "One Bedroom Standard Unfurnished (Units 3 and 4)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$688 - $1,375/mo"
+   },
+   {
+    "name": "One Bedroom Standard Unfurnished (Units 5 and 6)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$688 - $1,375/mo"
+   }
+  ]
  },
  {
   "id": 86,
@@ -2071,8 +2250,56 @@
     "page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/"
    },
    {
-    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/Bellaire-Spring-Avail.jpg",
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Bellaire_405_hugespace_share-5.jpg?fit=1800%2C1200&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Bellaire_405_bedroom2_share-1-1.jpg?fit=1800%2C1200&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Studio Furnished",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$988 - $1,625/mo"
+   },
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$583 - $2,200/mo"
+   },
+   {
+    "name": "Two Bedroom Two Bath Furnished",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "$575 - $1,475/mo"
+   },
+   {
+    "name": "Three Bedroom Two Bath Furnished",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": "$867 - $1,383/mo"
+   },
+   {
+    "name": "Three Bedroom Three Bath Furnished",
+    "beds": 3,
+    "baths": 3,
+    "sqft": null,
+    "price": "$492 - $1,399/mo"
+   },
+   {
+    "name": "Three Bedroom XL Furnished",
+    "beds": 3,
+    "baths": 3.5,
+    "sqft": null,
+    "price": "$888 - $1,425/mo"
    }
   ]
  },
@@ -2102,8 +2329,112 @@
     "page": "https://www.apartmentstore.com/locations/state-college/university-terrace/"
    },
    {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/ut-1.jpg?fit=640%2C480&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/university-terrace/"
+   },
+   {
     "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/UT-bath.jpeg?fit=768%2C565&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/university-terrace/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Small Studio Furnished (fully rented)",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$1,050/mo"
+   },
+   {
+    "name": "Studio Unfurnished",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$550 - $1,099/mo"
+   },
+   {
+    "name": "Studio Furnished",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$588 - $1,175/mo"
+   },
+   {
+    "name": "One Bedroom Unfurnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$598 - $1,195/mo"
+   },
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$638 - $1,275/mo"
+   },
+   {
+    "name": "Two Bedroom Unfurnished",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$788 - $1,575/mo"
+   },
+   {
+    "name": "Two Bedroom Furnished",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$830 - $1,660/mo"
+   },
+   {
+    "name": "Private Bedroom in a Three Bedroom Apartment Furnished (female roommate matching only)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$780 - $805/mo"
+   },
+   {
+    "name": "Three Bedroom Patio Unfurnished",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": "$396 - $2,100/mo"
+   },
+   {
+    "name": "Three Bedroom Patio Furnished",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": "$396 - $2,200/mo"
+   },
+   {
+    "name": "Three Bedroom Split Unfurnished",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": "$425 - $2,175/mo"
+   },
+   {
+    "name": "Three Bedroom Split Furnished",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": "$442 - $2,275/mo"
+   },
+   {
+    "name": "Three Bedroom Custom Patio Furnished",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": "$481 - $2,513/mo"
+   },
+   {
+    "name": "Three Bedroom Custom Split Furnished (fully rented)",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": "$488 - $2,550/mo"
    }
   ]
  },
@@ -2125,12 +2456,71 @@
   "site": "https://www.apartmentstore.com/locations/state-college/penn-state-apartments/",
   "photos": [
    {
-    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/Penn-State-Apt-scaled.jpg",
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/PennStateApts_002-scaled-8.jpg?fit=2560%2C1709&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/penn-state-apartments/"
    },
    {
-    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/PennStateApts_002-scaled-8.jpg?fit=2560%2C1709&ssl=1",
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/thumbNailer-2-scaled-1.jpg?fit=2560%2C1651&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/penn-state-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/thumbNailer-1-1-scaled-1.jpg?fit=2560%2C1694&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/penn-state-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/thumbNailer-3-scaled-1.jpg?fit=2560%2C1618&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/penn-state-apartments/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "One Bedroom Unfurnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$588 - $1,175/mo"
+   },
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$650 - $1,299/mo"
+   },
+   {
+    "name": "Two Bedroom Standard Furnished (fully rented)",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$850 - $1,699/mo"
+   },
+   {
+    "name": "Two Bedroom Large Unfurnished",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$450 - $1,799/mo"
+   },
+   {
+    "name": "Two Bedroom Large Furnished",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$463 - $1,850/mo"
+   },
+   {
+    "name": "Three Bedroom Unfurnished (fully rented)",
+    "beds": 3,
+    "baths": 1,
+    "sqft": null,
+    "price": "$867 - $2,600/mo"
+   },
+   {
+    "name": "Three Bedroom Furnished",
+    "beds": 3,
+    "baths": 1,
+    "sqft": null,
+    "price": "$942 - $2,825/mo"
    }
   ]
  },
@@ -2149,7 +2539,62 @@
   "lat": 40.789882,
   "lng": -77.867136,
   "source": "ocp",
-  "site": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/"
+  "site": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/",
+  "photos": [
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/College-Ave-scaled.jpg",
+    "page": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/College-Ave-LR-1-scaled-1.jpg?fit=2560%2C1707&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/College-Ave-UNF-kitchen-1-scaled-1.jpg?fit=2560%2C1679&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/College-Ave-bedroom-1-scaled-1.jpg?fit=2560%2C1803&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Studio Unfurnished",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$650 - $1,300/mo"
+   },
+   {
+    "name": "Studio Furnished",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$675 - $1,350/mo"
+   },
+   {
+    "name": "One Bedroom Unfurnished",
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "price": "$725 - $1,450/mo"
+   },
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$750 - $1,499/mo"
+   },
+   {
+    "name": "One Bedroom (1.5 Bath) Unfurnished",
+    "beds": 1,
+    "baths": 1.5,
+    "sqft": null,
+    "price": "$763 - $1,525/mo"
+   }
+  ]
  },
  {
   "id": 90,
@@ -2202,6 +2647,10 @@
   "site": "https://www.apartmentstore.com/locations/state-college/sutton-court/",
   "photos": [
    {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_6471-scaled.jpg?fit=2560%2C1654&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/sutton-court/"
+   },
+   {
     "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Sutton-LR-45.jpg?fit=800%2C518&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/sutton-court/"
    },
@@ -2210,8 +2659,80 @@
     "page": "https://www.apartmentstore.com/locations/state-college/sutton-court/"
    },
    {
-    "url": "https://www.apartmentstore.com/wp-content/uploads/2020/10/SuttonCourt-Spring-Avail.jpg",
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Sutton-bed-1-scaled-39.jpg?fit=2560%2C1731&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/sutton-court/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Studio Furnished (fully rented)",
+    "beds": "Studio",
+    "baths": null,
+    "sqft": null,
+    "price": "$583 - $1,165/mo"
+   },
+   {
+    "name": "Studio Furnished Upgraded Lower Level",
+    "beds": "Studio",
+    "baths": null,
+    "sqft": null,
+    "price": "$593 - $1,185/mo"
+   },
+   {
+    "name": "Studio Furnished w/Den (fully rented)",
+    "beds": "Studio",
+    "baths": null,
+    "sqft": null,
+    "price": "$620 - $1,240/mo"
+   },
+   {
+    "name": "One Bedroom Standard Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$675 - $1,350/mo"
+   },
+   {
+    "name": "One Bedroom Large Unfurnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$655 - $1,310/mo"
+   },
+   {
+    "name": "Two Bedroom Unfurnished (fully rented)",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$700 - $1,700/mo"
+   },
+   {
+    "name": "Two Bedroom Furnished",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$430 - $1,899/mo"
+   },
+   {
+    "name": "Two Bedroom Lower Level Furnished Upgraded (fully rented)",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$535 - $1,925/mo"
+   },
+   {
+    "name": "Two Bedroom Furnished Upgraded (female roommate matching only)",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$550 - $1,999/mo"
+   },
+   {
+    "name": "Three Bedroom Furnished (fully rented)",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": "$708 - $1,167/mo"
    }
   ]
  },
@@ -2424,7 +2945,34 @@
   "lat": 40.773799,
   "lng": -77.857128,
   "source": "ocp",
-  "site": "https://www.apartmentstore.com/locations/state-college/sundown-apartments/"
+  "site": "https://www.apartmentstore.com/locations/state-college/sundown-apartments/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/Sundown-Unit10-5.jpg?fit=1024%2C683&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/sundown-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/Sundown-LR-scaled.jpg?fit=2560%2C1707&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/sundown-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_1448-scaled.jpg?fit=2560%2C1707&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/sundown-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/Sundown-Unit10-1.jpg?fit=1024%2C683&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/sundown-apartments/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "One Bedroom Unfurnished (fully rented)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$1,050/mo"
+   }
+  ]
  },
  {
   "id": 102,
@@ -2448,8 +2996,46 @@
     "page": "https://www.apartmentstore.com/locations/state-college/old-boalsburg-road/"
    },
    {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_8828-scaled.jpg?fit=2560%2C1920&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/old-boalsburg-road/"
+   },
+   {
     "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/OBR-kitchen-2-11.jpg?fit=800%2C564&ssl=1",
     "page": "https://www.apartmentstore.com/locations/state-college/old-boalsburg-road/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_8844-scaled.jpg?fit=2560%2C1920&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/old-boalsburg-road/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "One Bedroom Unfurnished (fully rented)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$550 - $1,099/mo"
+   },
+   {
+    "name": "One Bedroom Furnished (fully rented)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$599 - $1,199/mo"
+   },
+   {
+    "name": "Two Bedroom Unfurnished (fully rented)",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$517 - $1,550/mo"
+   },
+   {
+    "name": "Two Bedroom Furnished (fully rented)",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$550 - $1,650/mo"
    }
   ]
  },
@@ -2518,5 +3104,387 @@
   "lat": 40.819021,
   "lng": -77.895203,
   "source": "web"
+ },
+ {
+  "id": 203,
+  "name": "Carlton Apartments",
+  "address": "325 S Garner St",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$592 - $1,625 (rates per person, vary by number of roommates)",
+  "ppm": 592,
+  "est": false,
+  "lat": 40.796052,
+  "lng": -77.853299,
+  "source": "web",
+  "site": "https://www.apartmentstore.com/locations/state-college/carlton-apartments/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Carlton_003-scaled-6.jpg?fit=2560%2C1709&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/carlton-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Carlton-virtually-staged-BR-scaled-4.jpg?fit=2560%2C1639&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/carlton-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Carlton-UNF-LR-and-kitchen-scaled-1.jpg?fit=2560%2C1656&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/carlton-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Carlton-UNF-bathroom-scaled-3.jpg?fit=1936%2C2560&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/carlton-apartments/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "One Bedroom Unfurnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$592 - $1,525/mo"
+   },
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$625 - $1,625/mo"
+   }
+  ]
+ },
+ {
+  "id": 204,
+  "name": "Homerella",
+  "address": "112 S Pugh St",
+  "type": "apartment",
+  "beds": [
+   1,
+   2
+  ],
+  "price": "$898 - $2,999 (rates per person, vary by number of roommates)",
+  "ppm": 898,
+  "est": false,
+  "lat": 40.795133,
+  "lng": -77.860381,
+  "source": "web",
+  "site": "https://www.apartmentstore.com/locations/state-college/homerella/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Homerella-small.jpg?fit=1500%2C1586&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/homerella/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/5f7610308af780.50665327356.jpg?fit=640%2C480&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/homerella/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/5f761094903d94.51407443106.jpg?fit=640%2C480&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/homerella/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/5f7614144fc4c5.96709319317.jpg?fit=640%2C480&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/homerella/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$898 - $1,795/mo"
+   },
+   {
+    "name": "Two Bedroom Furnished (fully rented)",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$925 - $2,999/mo"
+   }
+  ]
+ },
+ {
+  "id": 205,
+  "name": "Graham Building",
+  "address": "126 S Allen St",
+  "type": "apartment",
+  "beds": [
+   1,
+   3
+  ],
+  "price": "$750 - $4,500 (rates per person, vary by number of roommates)",
+  "ppm": 750,
+  "est": false,
+  "lat": 40.793861,
+  "lng": -77.861046,
+  "source": "web",
+  "site": "https://www.apartmentstore.com/locations/state-college/graham-building/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Graham-scaled-1.jpg?fit=1707%2C2560&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/graham-building/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Graham-1-bed-Kitchen-1.jpg?fit=600%2C422&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/graham-building/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Graham-1-bed-Bed-2-1.jpg?fit=800%2C563&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/graham-building/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Copy-of-Graham-3-bed-LR.jpg?fit=800%2C538&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/graham-building/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$750 - $2,000/mo"
+   },
+   {
+    "name": "Three Bedroom Unfurnished (fully rented)",
+    "beds": 3,
+    "baths": 1.5,
+    "sqft": null,
+    "price": "$960 - $4,300/mo"
+   },
+   {
+    "name": "Three Bedroom Furnished (fully rented)",
+    "beds": 3,
+    "baths": 1.5,
+    "sqft": null,
+    "price": "$1,000 - $4,500/mo"
+   }
+  ]
+ },
+ {
+  "id": 206,
+  "name": "Burrowes Street Apartments",
+  "address": "331 S Burrowes St",
+  "type": "apartment",
+  "beds": [
+   0,
+   2
+  ],
+  "price": "$412 - $1,900 (rates per person, vary by number of roommates)",
+  "ppm": 412,
+  "est": false,
+  "lat": 40.789872,
+  "lng": -77.859934,
+  "source": "web",
+  "site": "https://www.apartmentstore.com/locations/state-college/burrowes-street-apartments/",
+  "photos": [
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Burrowes-scaled-1.jpg?fit=1707%2C2560&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/burrowes-street-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Burrowes-2-1-scaled-1.jpg?fit=2560%2C1607&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/burrowes-street-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Burrowes-3-1-scaled-1.jpg?fit=2560%2C1638&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/burrowes-street-apartments/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2021/01/Burrowes-1-1-scaled-1.jpg?fit=2560%2C1625&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/burrowes-street-apartments/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Small Studio Unfurnished",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$1,175/mo"
+   },
+   {
+    "name": "Medium Studio Unfurnished",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$600 - $1,199/mo"
+   },
+   {
+    "name": "Large Studio Unfurnished",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$625 - $1,250/mo"
+   },
+   {
+    "name": "Large Studio Unfurnished, Electricity Included (fully rented)",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": null,
+    "price": "$638 - $1,275/mo"
+   },
+   {
+    "name": "One Bedroom Unfurnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$412 - $1,235/mo"
+   },
+   {
+    "name": "Two Bedroom Unfurnished",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "$475 - $1,900/mo"
+   }
+  ]
+ },
+ {
+  "id": 207,
+  "name": "Allen",
+  "address": "729-739 S Allen St",
+  "type": "apartment",
+  "beds": [
+   0,
+   3
+  ],
+  "price": "$1,350 - $2,975 (rates per person, vary by number of roommates)",
+  "ppm": 1350,
+  "est": false,
+  "lat": 40.790883,
+  "lng": -77.855737,
+  "source": "web",
+  "site": "https://www.apartmentstore.com/locations/state-college/allen/",
+  "photos": [
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2024/09/AllenIrvin.png",
+    "page": "https://www.apartmentstore.com/locations/state-college/allen/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Studio Furnished",
+    "beds": "Studio",
+    "baths": null,
+    "sqft": null,
+    "price": "$1,350/mo"
+   },
+   {
+    "name": "One Bedroom One Bathroom Unfurnished (fully rented)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$1,375/mo"
+   },
+   {
+    "name": "One Bedroom One Bathroom Furnished (fully rented)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$1,425/mo"
+   },
+   {
+    "name": "Three Bedroom One Bathroom Unfurnished",
+    "beds": 3,
+    "baths": 1,
+    "sqft": null,
+    "price": "$2,975/mo"
+   }
+  ]
+ },
+ {
+  "id": 208,
+  "name": "Irvin",
+  "address": "109 E Irvin Ave",
+  "type": "apartment",
+  "beds": [
+   0,
+   1
+  ],
+  "price": "$1,030 - $1,300 (rates per person, vary by number of roommates)",
+  "ppm": 1030,
+  "est": false,
+  "lat": 40.789926,
+  "lng": -77.85265,
+  "source": "web",
+  "site": "https://www.apartmentstore.com/locations/state-college/irvin/",
+  "photos": [
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2024/09/Allen_Irvin-Irvin109-Ext.jpg",
+    "page": "https://www.apartmentstore.com/locations/state-college/irvin/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Studio Furnished",
+    "beds": "Studio",
+    "baths": null,
+    "sqft": null,
+    "price": "$1,275/mo"
+   },
+   {
+    "name": "One Bedroom One Bathroom Lower Level Unfurnished (fully rented)",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$1,030/mo"
+   },
+   {
+    "name": "One Bedroom One Bathroom Unfurnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$1,300/mo"
+   }
+  ]
+ },
+ {
+  "id": 209,
+  "name": "Hetzel Plaza",
+  "address": "500 E College Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$1,575 (rates per person)",
+  "ppm": 1575,
+  "est": false,
+  "lat": 40.799318,
+  "lng": -77.854575,
+  "source": "web",
+  "site": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/",
+  "photos": [
+   {
+    "url": "https://www.apartmentstore.com/wp-content/uploads/2024/02/Hetzel-Plaza.png",
+    "page": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza-Unit206-1.jpg?fit=1024%2C683&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza-Unit206-3.jpg?fit=1024%2C683&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/"
+   },
+   {
+    "url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza-Unit206-2.jpg?fit=1024%2C683&ssl=1",
+    "page": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "One Bedroom Furnished",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "$1,575/mo"
+   }
+  ]
  }
 ]
