@@ -1432,8 +1432,8 @@
 3,
 3
 ],
-"price": "$765–$2,250 per bedroom",
-"ppm": 765,
+"price": "$820 per person / mo (2027-2028 (08/20/2027 - 07/31/2028))",
+"ppm": 820,
 "est": false,
 "lat": 40.83432,
 "lng": -77.81281,
@@ -1511,7 +1511,8 @@
 "beds": 3,
 "baths": "3.5",
 "sqft": "1256",
-"price": "Price per bed shown only in Entrata pricing widget (entratasnipit.villashappyvalley.com, not reachable/allowlisted)",
+"price": "$820 / person",
+"img": "https://medialibrarycfo.entrata.com/18136/MLv3/4/22/2026/03/13/120403/69b451930ea874.01339625575.jpg",
 "photos": [
 "https://images.squarespace-cdn.com/content/v1/684300c4b4a08c76813ea27d/d004f107-6989-4184-b4c8-c64aca5cd07e/02+-+The+Villas+at+Happy+Valley+-+Kitchen.jpg",
 "https://images.squarespace-cdn.com/content/v1/684300c4b4a08c76813ea27d/9a44ab5d-60df-4637-a8b9-8aaab95c62f1/03+-+The+Villas+at+Happy+Valley+-+Living+Room.jpg",
@@ -1526,8 +1527,16 @@
 "https://images.squarespace-cdn.com/content/v1/684300c4b4a08c76813ea27d/61f2c7de-39a7-4f47-a48a-be3f7bff7312/The+Villas+at+Happy+Valley+-+In-Unit+Washer+and+Dryer.jpg",
 "https://images.squarespace-cdn.com/content/v1/684300c4b4a08c76813ea27d/ba83b4a8-e285-486b-a863-b77af45ae975/01+-+The+Villas+at+Happy+Valley+-+Living+Room+and+Kitchen.jpg"
 ],
-"lease": "Fall 2027",
-"page": "https://www.villashappyvalley.com/pricing"
+"rates": [
+{
+"n": 3,
+"pp": 820,
+"was": null
+}
+],
+"lease": "2027-2028 (08/20/2027 - 07/31/2028)",
+"note": "Individual Bedroom $820/mo; Two Bed Spaces $1,640/mo; Entire Unit $2,099/mo (27/28 lease, per Entrata pricing page)",
+"page": "https://entratasnipit.villashappyvalley.com/state-college/the-villas-at-happy-valley/floorplans/3x35-townhome-1056310/fp_name/occupancy_type/student/lease_start_window[id]/97163/lease_term[id]/127656/space_configuration_id/268/"
 }
 ]
 },
@@ -4886,7 +4895,7 @@
 0,
 5
 ],
-"price": "$1,189–$2,239 per bedroom",
+"price": "$1,189–$2,449 per person / mo (2027-2028 12 month (08/21/2027 - 07/29/2028))",
 "ppm": 1189,
 "est": false,
 "lat": 40.799953,
@@ -4961,49 +4970,364 @@
 ],
 "plans": [
 {
-"name": "Studio",
+"name": "Sx1 Terrace",
 "beds": 0,
 "baths": "1",
-"sqft": "309-371",
-"price": "No prices on site; pricing only in Entrata availability widget (Check Availability)",
-"lease": "2026 (site says Now leasing for 2026)",
-"page": "https://risestatecollege.com/availability"
+"sqft": "309",
+"price": "$2,399 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/10/28/122100/6ae23d0c68a851.88869205332.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 2399,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $2,399 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/sx1-terrace-915012/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
 },
 {
-"name": "2 Bedroom",
+"name": "Sx1 Terrace - Graduate",
+"beds": 0,
+"baths": "1",
+"sqft": "309",
+"price": "$2,239 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/10/28/122438/6ae23de65f1798.12697930313.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 2239,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $2,239 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/sx1-terrace-graduate-1028541/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
+},
+{
+"name": "Sx1 Penthouse",
+"beds": 0,
+"baths": "1",
+"sqft": "309",
+"price": "$2,449 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/10/28/121659/6ae23c1af0fc00.29742490355.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 2449,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $2,449 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/sx1-penthouse-915011/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
+},
+{
+"name": "2x1 Terrace - Graduate",
 "beds": 2,
-"baths": "1-2",
-"sqft": "450-707",
-"price": "No prices on site; pricing only in Entrata availability widget (Check Availability)",
-"lease": "2026 (site says Now leasing for 2026)",
-"page": "https://risestatecollege.com/availability"
+"baths": "1",
+"sqft": "450",
+"price": "$1,349 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/09/04/081507/6a9ad26b1944a2.26265091690.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1349,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $1,349 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/2x1-terrace-graduate-914991/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
 },
 {
-"name": "3 Bedroom",
+"name": "2x2 Terrace",
+"beds": 2,
+"baths": "2",
+"sqft": "592",
+"price": "$2,249 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/10/28/120611/6ae239936bdf57.36886178308.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 2249,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $2,249 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/2x2-terrace-1152404/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
+},
+{
+"name": "2x2 Terrace - Graduate",
+"beds": 2,
+"baths": "2",
+"sqft": "569",
+"price": "$1,549 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/09/04/085827/6a9adc937722b3.18567276720.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1549,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $1,549 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/2x2-terrace-graduate-1028543/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
+},
+{
+"name": "3x2 Terrace - Graduate",
 "beds": 3,
-"baths": "2-3",
-"sqft": "670-857",
-"price": "No prices on site; pricing only in Entrata availability widget (Check Availability)",
-"lease": "2026 (site says Now leasing for 2026)",
-"page": "https://risestatecollege.com/availability"
+"baths": "2",
+"sqft": "670",
+"price": "$1,189 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/09/04/090709/6a9ade9da97005.07646607369.jpg",
+"rates": [
+{
+"n": 3,
+"pp": 1189,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Standard $1,189; Master $1,299 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/3x2-terrace-graduate-914996/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/157/"
 },
 {
-"name": "4 Bedroom",
+"name": "3x3 Terrace",
+"beds": 3,
+"baths": "3",
+"sqft": "742",
+"price": "$1,819 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/11/18/012136/6afe08d0af0394.17855173157.jpg",
+"rates": [
+{
+"n": 3,
+"pp": 1819,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $1,819 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/3x3-terrace-914998/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
+},
+{
+"name": "3x3 Terrace - Graduate",
+"beds": 3,
+"baths": "3",
+"sqft": "742",
+"price": "$1,309 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/11/18/012444/6afe098c6ff179.76518928772.jpg",
+"rates": [
+{
+"n": 3,
+"pp": 1309,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $1,309 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/3x3-terrace-graduate-1028547/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
+},
+{
+"name": "3x3 Penthouse",
+"beds": 3,
+"baths": "3",
+"sqft": "742",
+"price": "$1,899 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/11/18/123754/6afdfe92b5d062.08948349269.jpg",
+"rates": [
+{
+"n": 3,
+"pp": 1899,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $1,899 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/3x3-penthouse-914997/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
+},
+{
+"name": "4x3 Terrace",
 "beds": 4,
-"baths": "3-4",
-"sqft": "871-1118",
-"price": "No prices on site; pricing only in Entrata availability widget (Check Availability)",
-"lease": "2026 (site says Now leasing for 2026)",
-"page": "https://risestatecollege.com/availability"
+"baths": "3",
+"sqft": "871",
+"price": "$1,749 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/11/18/012626/6afe09f27ca901.26544673218.jpg",
+"rates": [
+{
+"n": 4,
+"pp": 1749,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Standard $1,749; Master $1,769 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/4x3-terrace-915001/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/157/"
 },
 {
-"name": "5 Bedroom",
+"name": "4x3 Penthouse",
+"beds": 4,
+"baths": "3",
+"sqft": "871",
+"price": "$1,734 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/10/28/121142/6ae23ade5ae324.50404745641.jpg",
+"rates": [
+{
+"n": 4,
+"pp": 1734,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Standard $1,734; Master $1,769 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/4x3-penthouse-1009032/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/157/"
+},
+{
+"name": "4x4 Terrace",
+"beds": 4,
+"baths": "4",
+"sqft": "1014",
+"price": "$1,739 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/09/04/093348/6a9ae4dc0137c6.22567988457.jpg",
+"rates": [
+{
+"n": 4,
+"pp": 1739,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $1,799; Shared Private $1,739; Shared $1,359; Premium View $1,829 per bed | Special: FLASH SALE: $100 OFF/MONTH + WAIVED APP & ADMIN FEES On",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/4x4-terrace-915003/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
+},
+{
+"name": "4x4 Penthouse",
+"beds": 4,
+"baths": "4",
+"sqft": "1014",
+"price": "$1,729 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/09/04/093928/6a9ae630098817.32525503801.jpg",
+"rates": [
+{
+"n": 4,
+"pp": 1729,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $1,869; Shared Private $1,729; Shared $1,349; Premium View $1,899 per bed | Special: FLASH SALE: $100 OFF/MONTH + WAIVED APP & ADMIN FEES On",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/4x4-penthouse-915002/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
+},
+{
+"name": "5x3 Terrace",
 "beds": 5,
-"baths": "3-4",
-"sqft": "1063-1510",
-"price": "No prices on site; pricing only in Entrata availability widget (Check Availability)",
-"lease": "2026 (site says Now leasing for 2026)",
-"page": "https://risestatecollege.com/availability"
+"baths": "3",
+"sqft": "1063",
+"price": "$1,619 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/10/28/121510/6ae23baeafbfa0.46860139415.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1619,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Standard $1,619; Master $1,659 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/5x3-terrace-915006/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/157/"
+},
+{
+"name": "5x3 Penthouse",
+"beds": 5,
+"baths": "3",
+"sqft": "1063",
+"price": "$1,599 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/11/18/012732/6afe0a34a26f81.15719316553.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1599,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Standard $1,599; Master $1,629 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/5x3-penthouse-915005/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/157/"
+},
+{
+"name": "5x3 Terrace Loft",
+"beds": 5,
+"baths": "3",
+"sqft": "1269",
+"price": "$1,659 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/10/28/121611/6ae23beba6a335.58784438860.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1659,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Standard $1,659; Master $1,699 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/5x3-terrace-loft-915007/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/157/"
+},
+{
+"name": "5x4 Terrace Loft",
+"beds": 5,
+"baths": "4",
+"sqft": "1510",
+"price": "$1,699 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/11/18/012834/6afe0a72129477.43735530439.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1699,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Standard $1,699; Master $1,739 per bed",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/5x4-terrace-loft-915008/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/157/"
+},
+{
+"name": "5x5 Terrace",
+"beds": 5,
+"baths": "5",
+"sqft": "1191",
+"price": "$1,739 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/09/04/094739/6a9ae81ba363b2.22402068320.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1739,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $1,739 per bed | Special: FLASH SALE: $100 OFF/MONTH + WAIVED APP & ADMIN FEES On",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/5x5-terrace-915010/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
+},
+{
+"name": "5x5 Penthouse",
+"beds": 5,
+"baths": "5",
+"sqft": "1194",
+"price": "$1,779 / person",
+"img": "https://medialibrarycfo.entrata.com/10364/MLv3/4/22/2026/09/04/095326/6a9ae976c2b693.27884167684.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1779,
+"was": null
+}
+],
+"lease": "2027-2028 12 month (08/21/2027 - 07/29/2028)",
+"note": "Private $1,779 per bed | Special: FLASH SALE: $100 OFF/MONTH + WAIVED APP & ADMIN FEES On",
+"page": "https://entrata.risestatecollege.com/state-college/rise-at-state-college/floorplans/5x5-penthouse-915009/fp_name/occupancy_type/student/lease_start_window[id]/63734/lease_term[id]/8156/space_configuration_id/2/"
 }
 ]
 },
@@ -11949,13 +12273,131 @@
 0,
 2
 ],
-"price": "Ask for pricing",
-"ppm": null,
+"price": "$896–$1,304 per person / mo",
+"ppm": 896,
 "est": false,
 "lat": 40.792454,
 "lng": -77.857826,
-"source": "web",
-"site": "https://www.theallenway.com/"
+"source": "site",
+"site": "https://theallenway.com/",
+"plans": [
+{
+"name": "Two Bedrooms",
+"beds": 2,
+"sqft": "975-1113",
+"price": "$896 / person",
+"img": "https://theallenway.com/wp-content/uploads/2018/06/Two-bedrooms.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 896,
+"was": null
+}
+],
+"note": "$1791-$1865 per unit",
+"page": "https://theallenway.com/apartments/"
+},
+{
+"name": "One Bedroom",
+"beds": 1,
+"baths": "1",
+"sqft": "621-756",
+"price": "$1,304 / person",
+"img": "https://theallenway.com/wp-content/uploads/2018/06/One-bedroom.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 1304,
+"was": null
+}
+],
+"note": "$1304-$1407 per unit",
+"page": "https://theallenway.com/apartments/"
+},
+{
+"name": "Efficiency",
+"beds": 0,
+"baths": "1",
+"sqft": "452-680",
+"price": "$1,134 / person",
+"img": "https://theallenway.com/wp-content/uploads/2018/06/Efficiency.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 1134,
+"was": null
+}
+],
+"note": "$1134-$1215 per unit",
+"page": "https://theallenway.com/apartments/"
+}
+],
+"photos": [
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/AR_Allenway_slide4.png",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/14.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/13.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/16.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/15.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/12.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/18.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/AR_Allenway_slide2.png",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/1.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/2.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/9.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/7.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/4.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/5.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/3.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/10.jpg",
+"page": "https://theallenway.com/"
+}
+]
 },
 {
 "id": 201,
