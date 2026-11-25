@@ -5924,279 +5924,737 @@
 "type": "complex",
 "beds": [
 0,
-4
+5
 ],
-"price": "$1,254–$2,579 as listed",
+"price": "$1,254–$2,579 per person / mo (12-month academic year (Aug-Jul))",
 "ppm": 1254,
 "est": false,
 "lat": 40.792259,
 "lng": -77.864368,
-"source": "ocp",
+"source": "site",
 "site": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon",
 "plans": [
 {
-"name": "Chestnut C1 - 3 Bed, 5 Occupants, 3 Bath",
-"beds": 3,
-"baths": 3,
-"sqft": null,
-"price": "From $1,254.00"
-},
-{
-"name": "Chestnut C3 - 3 Bed, 5 Occupants, 3 Bath",
-"beds": 3,
-"baths": 3,
-"sqft": null,
-"price": "From $1,254.00"
-},
-{
-"name": "Chestnut C4 - 3 Bed, 5 Occupants, 3 Bath",
-"beds": 3,
-"baths": 3,
-"sqft": null,
-"price": "From $1,264.00"
-},
-{
-"name": "Chestnut C2 - 3 Bed, 5 Occupants, 3 Bath",
-"beds": 3,
-"baths": 3,
-"sqft": null,
-"price": "From $1,274.00"
-},
-{
-"name": "Birch B9 - 2 Bed, 4 Occupants, 2 Bath",
+"name": "Basswood - 2 Bed, 4 Occupants, 4 Bath",
 "beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,374.00"
-},
-{
-"name": "Buckthorn Deluxe - 2 Bed, 2 Bath",
-"beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,919.00"
+"baths": "4",
+"sqft": "1105",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/859028/5005ddec21f400f9244eb8b019732be5/basswood-2-bed-4-occupants-4-bath-cropped-data.png",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/basswood-2-bed-4-occupants-4-bath-815796"
 },
 {
 "name": "Beech Deluxe - 2 Bed, 3 Bath",
 "beds": 2,
-"baths": 3,
-"sqft": null,
-"price": "From $1,899.00"
-},
+"baths": "3",
+"sqft": "1084",
+"price": "$1,899 / person",
+"img": "https://yugo.com/resource/blob/816014/7c46b3d09c0d6ac309af8f98b7135058/beech-2-bed-3-bath-data.jpg",
+"rates": [
 {
-"name": "Boxelder B2 - 2 Bed, 2 Bath",
-"beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,925.00"
-},
-{
-"name": "Boxwood Deluxe - 2 Bed, 2 Bath",
-"beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,925.00"
-},
-{
-"name": "Buckeye B1 (INC) - 2 Bed, 1 Bath",
-"beds": 2,
-"baths": 1,
-"sqft": null,
-"price": "From $1,925.00"
-},
-{
-"name": "Birch B4 Deluxe - 2 Bed, 2 Bath",
-"beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,960.00"
+"n": 2,
+"pp": 1899,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/beech-deluxe-2-bed-3-bath-815778"
 },
 {
 "name": "Birch B2A Deluxe - 2 Bed, 2 Occupants, 2 Bath",
 "beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,965.00"
+"baths": "2",
+"sqft": "904",
+"price": "$1,965 / person",
+"img": "https://yugo.com/resource/blob/816128/224c14e2dece7514308a20fccd62b0b0/birch-b2b-2-bed-4-occupants-2-bath-data.png",
+"rates": [
+{
+"n": 2,
+"pp": 1965,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/birch-b2a-deluxe-2-bed-2-occupants-2-bath-815798"
 },
 {
 "name": "Birch B2B - 2 Bed, 4 Occupants, 2 Bath",
 "beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,965.00"
+"baths": "2",
+"sqft": "868",
+"price": "$1,965 / person",
+"img": "https://yugo.com/resource/blob/816128/224c14e2dece7514308a20fccd62b0b0/birch-b2b-2-bed-4-occupants-2-bath-data.png",
+"rates": [
+{
+"n": 4,
+"pp": 1965,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/birch-b2b-2-bed-4-occupants-2-bath-858908"
 },
 {
 "name": "Birch B2C Deluxe - 2 Bed, 2 Bath",
 "beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,975.00"
+"baths": "2",
+"sqft": "872-996",
+"price": "$1,975 / person",
+"img": "https://yugo.com/resource/blob/816016/3cd266e7551dc7fdc39f0d45769ef5cf/birch-2-bed-2-bath-data.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1975,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/birch-b2c-deluxe-2-bed-2-bath-815780"
 },
 {
-"name": "Studio - Spruce",
-"beds": "Studio",
-"baths": null,
-"sqft": null,
-"price": "From $2,579.00"
+"name": "Birch B4 Deluxe- 2 Bed, 2 Bath",
+"beds": 2,
+"baths": "2",
+"sqft": "872-996",
+"price": "$1,960 / person",
+"img": "https://yugo.com/resource/blob/816024/2572ded9ac84a59c1fbc0122dd413804/boxelder-2-bed-2-bath-data.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1960,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/birch-b4-deluxe-2-bed-2-bath-858910"
+},
+{
+"name": "Birch B9 - 2 Bed, 4 Occupants, 2 Bath",
+"beds": 2,
+"baths": "2",
+"sqft": "973",
+"price": "$1,374 / person",
+"img": "https://yugo.com/resource/blob/816252/0b76d17b0adbdc6a9bdd86e4d3cfd5ee/birch-b9-2-bed-4-occupants-2-bath-data.jpg",
+"rates": [
+{
+"n": 4,
+"pp": 1374,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/birch-b9-2-bed-4-occupants-2-bath-815800"
+},
+{
+"name": "Boxelder B2 - 2 Bed, 2 Bath",
+"beds": 2,
+"baths": "2",
+"sqft": "703",
+"price": "$1,925 / person",
+"img": "https://yugo.com/resource/blob/816024/2572ded9ac84a59c1fbc0122dd413804/boxelder-2-bed-2-bath-data.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1925,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/boxelder-b2-2-bed-2-bath-858914"
+},
+{
+"name": "Boxelder B2 (INC) - 2 Bed, 2 Bath",
+"beds": 2,
+"baths": "2",
+"sqft": "703",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816024/2572ded9ac84a59c1fbc0122dd413804/boxelder-2-bed-2-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/boxelder-b2-inc-2-bed-2-bath-815782"
+},
+{
+"name": "Boxwood Deluxe - 2 Bed, 2 Bath",
+"beds": 2,
+"baths": "2",
+"sqft": "947",
+"price": "$1,925 / person",
+"img": "https://yugo.com/resource/blob/816026/5c416659c562dbed5e3758aa8364053a/boxwood-2-bed-2-bath-data.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1925,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/boxwood-deluxe-2-bed-2-bath-815784"
+},
+{
+"name": "Buckeye B1 (INC) - 2 Bed, 1 Bath",
+"beds": 2,
+"baths": "1",
+"sqft": "668",
+"price": "$1,925 / person",
+"img": "https://yugo.com/resource/blob/816104/247cebfef836ffcf8eee0a190a613be4/buckeye-2-bed-1-bath-data.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1925,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/buckeye-b1-inc-2-bed-1-bath-815786"
+},
+{
+"name": "Buckeye B6 (INC) - 2 Bed, 1 Bath",
+"beds": 2,
+"baths": "1",
+"sqft": "668",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816104/247cebfef836ffcf8eee0a190a613be4/buckeye-2-bed-1-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/buckeye-b6-inc-2-bed-1-bath-858916"
+},
+{
+"name": "Buckthorn Deluxe - 2 Bed, 2 Bath",
+"beds": 2,
+"baths": "2",
+"sqft": "1022",
+"price": "$1,919 / person",
+"img": "https://yugo.com/resource/blob/816108/9ab218f2002826379bb31155b66c4d9a/buckthorn-2-bed-2-bath-data.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1919,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/buckthorn-deluxe-2-bed-2-bath-815788"
 },
 {
 "name": "Cedar (INC) - 3 Bed, 4 Occupants, 2 Bath",
 "beds": 3,
-"baths": 2,
-"sqft": null,
-"price": "Inquire"
+"baths": "2",
+"sqft": "1025",
+"price": "Inquire Now",
+"img": "https://yugo.com/resource/blob/816114/ee1743aa945408ee1d041c9a0c22199f/cedar-3-bed-4-occupants-2-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/cedar-inc-3-bed-4-occupants-2-bath-815790"
 },
 {
-"name": "Basswood - 2 Bed, 4 Occupants, 4 Bath",
-"beds": 2,
-"baths": 4,
-"sqft": null,
-"price": "Sold out"
+"name": "Chestnut C1 - 3 Bed, 5 Occupants, 3 Bath",
+"beds": 3,
+"baths": "3",
+"sqft": "1145",
+"price": "$1,254 / person",
+"img": "https://yugo.com/resource/blob/816264/00dc458606fa9d4c61390f59ac33463d/chestnut-3-bed-5-occupants-3-bath-data.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1254,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/chestnut-c1-3-bed-5-occupants-3-bath-821516"
+},
+{
+"name": "Chestnut C2 - 3 Bed, 5 Occupants, 3 Bath",
+"beds": 3,
+"baths": "3",
+"sqft": "1993",
+"price": "$1,274 / person",
+"img": "https://yugo.com/resource/blob/816264/00dc458606fa9d4c61390f59ac33463d/chestnut-3-bed-5-occupants-3-bath-data.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1274,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/chestnut-c2-3-bed-5-occupants-3-bath-821518"
+},
+{
+"name": "Chestnut C3 - 3 Bed, 5 Occupants, 3 Bath",
+"beds": 3,
+"baths": "3",
+"sqft": "1151",
+"price": "$1,254 / person",
+"img": "https://yugo.com/resource/blob/816264/00dc458606fa9d4c61390f59ac33463d/chestnut-3-bed-5-occupants-3-bath-data.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1254,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/chestnut-c3-3-bed-5-occupants-3-bath-858760"
+},
+{
+"name": "Chestnut C4 - 3 Bed, 5 Occupants, 3 Bath",
+"beds": 3,
+"baths": "3",
+"sqft": "1145",
+"price": "$1,264 / person",
+"img": "https://yugo.com/resource/blob/816264/00dc458606fa9d4c61390f59ac33463d/chestnut-3-bed-5-occupants-3-bath-data.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1264,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/chestnut-c4-3-bed-5-occupants-3-bath-815804"
 },
 {
 "name": "Cottonwood - 3 Bed, 2 Bath",
 "beds": 3,
-"baths": 2,
-"sqft": null,
-"price": "Sold out"
+"baths": "2",
+"sqft": "1112",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816118/a6767a70bd1d6c2c1f999bdbf4cc13e8/cottonwood-3-bed-2-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/cottonwood-3-bed-2-bath-815792"
 },
 {
 "name": "Cypress - 3 Bed, 3 Bath",
 "beds": 3,
-"baths": 3,
-"sqft": null,
-"price": "Sold out"
+"baths": "3",
+"sqft": "1025",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816120/c6fb36d41b29034dabdd3e44fab70c61/cypres-3-bed-3-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/cypress-3-bed-3-bath-815794"
 },
 {
 "name": "Dogwood D2 - 4 Bed, 5 Occupants, 3 Bath",
 "beds": 4,
-"baths": 3,
-"sqft": null,
-"price": "Sold out"
+"baths": "3",
+"sqft": "1281",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816270/5c28520f67279442e973e4561c948104/dogwood-d2-4-bed-5-occupants-3-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/dogwood-d2-4-bed-5-occupants-3-bath-815806"
+},
+{
+"name": "Dogwood D2A - 4 Bed, 5 Occupants, 3 Bath",
+"beds": 4,
+"baths": "3",
+"sqft": "1281",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816270/5c28520f67279442e973e4561c948104/dogwood-d2-4-bed-5-occupants-3-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/dogwood-d2a-4-bed-5-occupants-3-bath-858918"
 },
 {
 "name": "Dove - 4 Bed, 4 Bath",
 "beds": 4,
-"baths": 4,
-"sqft": null,
-"price": "Sold out"
+"baths": "4",
+"sqft": "1169",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816256/5599e86c005cf2322bc87e35e8cf6f48/dove-4-bed-4-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/dove-4-bed-4-bath-815802"
 },
 {
 "name": "Elm E1 - 5 Bed, 3 Bath",
 "beds": 5,
-"baths": 3,
-"sqft": null,
-"price": "Sold out"
+"baths": "3",
+"sqft": "1324",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816272/7db1cd4cee76c5c1a11b0a9cdcbd6db0/elm-5-bed-3-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/elm-e1-5-bed-3-bath-815808"
+},
+{
+"name": "Elm E1A - 5 Bed, 3 Bath",
+"beds": 5,
+"baths": "3",
+"sqft": "1324",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816272/7db1cd4cee76c5c1a11b0a9cdcbd6db0/elm-5-bed-3-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/elm-e1a-5-bed-3-bath-858920"
+},
+{
+"name": "Studio - Spruce",
+"beds": 0,
+"baths": "1",
+"sqft": "386",
+"price": "$2,579 / person",
+"img": "https://yugo.com/resource/blob/816012/527d4b57189e295b9413d725205b36d1/spruce-studio-data.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 2579,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon/studio-spruce-815776"
+}
+],
+"photos": [
+{
+"url": "https://yugo.com/resource/image/816578/landscape_ratio4x3/2560/1920/418094c883a66b27f7d31c928221a9dd/8962624C82051048F01ACED916B5E385/exterior-view-night-2-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816534/landscape_ratio4x3/2560/1920/5bfe1026ac7f95a5b5eea8d59374725d/F7A19647E77E554385350BEDCCD817F5/bird-eye-view-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816670/landscape_ratio4x3/2560/1920/364ebd5f0e0a7f1fefea5aaea86bbac/9CC437D5A957C4468628B0942A09F245/rooftop-day-time-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816530/landscape_ratio4x3/2560/1920/46c8217ba69dd46ff50f6eb3ec076bd9/90E31E83DB27D430BD647FF96673E3DF/bbq-area-4-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816610/landscape_ratio4x3/2560/1920/bc63eae447a96fb6d38e51c79838bc18/399DD7E3471AAE6D19F25FC914138BDA/hammock-rooftop-2-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816544/landscape_ratio4x3/2560/1920/9f4382c43c22757d4638df2d38052246/70FCDA3C597F18A72D72F606BE78BAF3/common-area-1-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816588/landscape_ratio4x3/2560/1920/e24226a62c2a7700e5f9277e1990e0eb/7454720FF8960743E7DD7BA7FFB32724/games-room-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816540/landscape_ratio4x3/2560/1920/f34824c3fb63a00eeb9b8e4923b56832/D0DEF0B140109EE0BDCFDF0902993153/common-area-tv-area-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816564/landscape_ratio4x3/2560/1920/395a36b2b94f458d52e62e42d30097cb/585B8B9FE9B231246BE8CC5CADBF7856/computer-area-1-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816598/landscape_ratio4x3/2560/1920/ae18ca4fa63ce6b5b28cad950b17dcb4/B9B482164E670805A51C85BC8F07A52A/gym-5-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/830720/landscape_ratio4x3/2560/1920/9a4d02272970e3bd06a4a0b49afdb7d2/AFB61BEDB635D794A2F55E9E651EBF0B/gym-6-yugo-echelon-data.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816688/landscape_ratio4x3/2560/1920/ff5dd51f59e7b00f27b72d2bf7c91554/6C7265D3AFBB5F189664A0F149746DF5/stimulator-1-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816614/landscape_ratio4x3/2560/1920/323f59a32e69ea51503d7adf74ab64d8/EDE10DA82F6BEED4BF3B62029BD13D26/kitchen-modely-unit-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816632/landscape_ratio4x3/2560/1920/9ed6b48302c5a771486e5d2b355c47cd/57EF1250BB4563D1B524DB6C68D407D2/living-area-2-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816526/landscape_ratio4x3/2560/1920/cadfe05c14117bdaa9e28ff6357e55de/B2FCB8C1FFC405C159275D0E825B81AF/bathroom-3-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+},
+{
+"url": "https://yugo.com/resource/image/816704/landscape_ratio4x3/2560/1920/4fd8416f6a3fbe78fa91dfb33ba9b130/5A672E3FA8CC0A7ED93540562D619B79/twin-model-unit-room-yugo-skyline.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
 }
 ]
 },
 {
 "id": 53,
 "name": "Yugo Pinnacle (The Metropolitan)",
-"address": "412 W College Ave",
+"address": "412 W. College Ave.",
 "type": "complex",
 "beds": [
 0,
 5
 ],
-"price": "From $1,380 per bedroom (current relet listing)",
-"ppm": 1380,
+"price": "$1,287–$2,619 per person / mo (12-month academic year (Aug-Jul))",
+"ppm": 1287,
 "est": false,
 "lat": 40.791343,
 "lng": -77.865194,
-"source": "ocp",
+"source": "site",
 "site": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle",
 "plans": [
 {
-"name": "The Soho - Studio",
-"beds": "Studio",
-"baths": null,
-"sqft": null,
-"price": "From $2,619.00"
-},
-{
 "name": "The Arden - 1 Bed, 1 Bath",
 "beds": 1,
-"baths": 1,
-"sqft": null,
-"price": "Sold out"
+"baths": "1",
+"sqft": "480",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816356/854a3918fc194ea26b21dfe3405e9d1b/the-arden-1-bed-1-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-arden-1-bed-1-bath-815690"
 },
 {
 "name": "The Bexley - 2 Bed, 2 Bath",
 "beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,309.00"
+"baths": "2",
+"sqft": "790-863",
+"price": "$1,309 / person",
+"img": "https://yugo.com/resource/blob/816358/c8055500b3b34c1a0444bbd5b2f2b28e/the-bexley-2-bed-2-bath-data.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1309,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-bexley-2-bed-2-bath-815692"
 },
 {
 "name": "The Bradford - 2 Bed, 2 Bath",
 "beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,329.00"
+"baths": "2",
+"sqft": "1015",
+"price": "$1,329 / person",
+"img": "https://yugo.com/resource/blob/816360/8a71368c72d8c2eb2978885bba66a871/the-bradford-2-bed-2-bath-data.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1329,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-bradford-2-bed-2-bath-815696"
 },
 {
 "name": "The Brooklyn - 2 Bed, 2 Bath",
 "beds": 2,
-"baths": 2,
-"sqft": null,
-"price": "From $1,899.00"
+"baths": "2",
+"sqft": "725",
+"price": "$1,899 / person",
+"img": "https://yugo.com/resource/blob/821232/c9e4c2b7243bfba668bc3faf09506111/3-4-2-1-1-16-4-the-metropolitan-ge-the-brooklyn-data.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1899,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-brooklyn-2-bed-2-bath-815694"
 },
 {
 "name": "The Camden - 3 Bed, 3 Bath",
 "beds": 3,
-"baths": 3,
-"sqft": null,
-"price": "Sold out"
+"baths": "3",
+"sqft": "1347",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816362/d6c4a04b618401a79c8445fe7065ecae/the-camden-3-bed-3-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-camden-3-bed-3-bath-815698"
 },
 {
 "name": "The Chelsea - 3 Bed, 3 Bath",
 "beds": 3,
-"baths": 3,
-"sqft": null,
-"price": "From $1,297.00"
-},
+"baths": "3",
+"sqft": "1070",
+"price": "$1,297 / person",
+"img": "https://yugo.com/resource/blob/816456/1b46be7956f074bedb834cad5bbfe616/the-chelsea-3-bed-3-bath-data.jpg",
+"rates": [
 {
-"name": "The Derby - 4 Bed, 3 Bath",
-"beds": 4,
-"baths": 3,
-"sqft": null,
-"price": "From $1,287.00"
+"n": 3,
+"pp": 1297,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-chelsea-3-bed-3-bath-815700"
 },
 {
 "name": "The Deerwood - 4 Bed, 3 Bath",
 "beds": 4,
-"baths": 3,
-"sqft": null,
-"price": "From $1,287.00"
+"baths": "3",
+"sqft": "1248",
+"price": "$1,287 / person",
+"img": "https://yugo.com/resource/blob/816516/a21e3a7f8c2e38bce146ccda68cd2fba/the-deerwood-4-bed-3-bath-data.jpg",
+"rates": [
+{
+"n": 4,
+"pp": 1287,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-deerwood-4-bed-3-bath-815706"
 },
 {
-"name": "The Downing - 4 Bed, 3 Bath",
+"name": "The Derby - 4 Bed, 3 Bath",
 "beds": 4,
-"baths": 3,
-"sqft": null,
-"price": "Sold out"
+"baths": "3",
+"sqft": "1259",
+"price": "$1,287 / person",
+"img": "https://yugo.com/resource/blob/816514/c43f3c2976c14c1c06987c3c79524954/the-derby-4-bed-3-bath-data.jpg",
+"rates": [
+{
+"n": 4,
+"pp": 1287,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-derby-4-bed-3-bath-815704"
 },
 {
 "name": "The Dover - 4 Bed, 4 Bath",
 "beds": 4,
-"baths": 4,
-"sqft": null,
-"price": "Sold out"
+"baths": "4",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816512/ee1835b4cde6b2348a4f8714d0207497/the-dover-4-bed-4-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-dover-4-bed-4-bath-815702"
+},
+{
+"name": "The Downing - 4 Bed, 3 Bath",
+"beds": 4,
+"baths": "3",
+"sqft": "1247-1484",
+"price": "SOLD OUT (Join Waitlist)",
+"img": "https://yugo.com/resource/blob/816518/42db6f5f2b9726860066332fd46c68f8/the-downing-4-bed-3-bath-data.jpg",
+"lease": "12-month academic year (Aug-Jul)",
+"status": "Waitlist",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-downing-4-bed-3-bath-815718"
 },
 {
 "name": "The Gramercy - 5 Bed, 4 Bath",
 "beds": 5,
-"baths": 4,
-"sqft": null,
-"price": "From $1,559.00"
+"baths": "4",
+"sqft": "1265",
+"price": "$1,559 / person",
+"img": "https://yugo.com/resource/blob/816524/5dab4e61c7541ee0a0e7a1d1c2e0e67a/the-gramercy-5-bed-4-bath-data.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1559,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-gramercy-5-bed-4-bath-815764"
 },
 {
 "name": "The Greenwich - 5 Bed, 5 Bath",
 "beds": 5,
-"baths": 5,
-"sqft": null,
-"price": "From $1,599.00"
+"baths": "5",
+"sqft": "1673",
+"price": "$1,599 / person",
+"img": "https://yugo.com/resource/blob/816520/c675b344638d39fa876841e7879771db/the-greenwich-5-bed-5-bath-data.jpg",
+"rates": [
+{
+"n": 5,
+"pp": 1599,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-greenwich-5-bed-5-bath-815760"
+},
+{
+"name": "The Soho - Studio",
+"beds": 0,
+"baths": "1",
+"sqft": "413-444",
+"price": "$2,619 / person",
+"img": "https://yugo.com/resource/blob/816352/4302d133d0ebfd02b9fe3961b0f3bfef/the-soho-studio-data.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 2619,
+"was": null
+}
+],
+"lease": "12-month academic year (Aug-Jul)",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle/the-soho-studio-815688"
+}
+],
+"photos": [
+{
+"url": "https://yugo.com/resource/image/816766/landscape_ratio4x3/2560/1920/550ff091a5deb9c4c86a133efb765116/B6281820384C5F10AAB5A83508094434/outside-area-night-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816730/landscape_ratio4x3/2560/1920/482b322f62676b1f9459b61363a66dd2/6052F1A27FC77A16A538E2F731A9A2C9/games-area-11-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816720/landscape_ratio4x3/2560/1920/fed2b861ba0673fe459254f3de7f5f8b/A7D8D3DBA2BA8E1B6DBD88B2A5875C8A/games-area-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816712/landscape_ratio4x3/2560/1920/2a16fea7778ee9040a6ebd390558a20f/3CEE86162FA5286CCFA9624915BD6FCC/common-area-2-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816716/landscape_ratio4x3/2560/1920/58594c76b8afce30ba0466e7aa3d4f9d/27C723A31C7225F058A19C10A0756397/computer-area-4-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816718/landscape_ratio4x3/2560/1920/80f22cccae57488c55d9b6629d76a6f7/1608FAF83793ABB4F20E8F1EF4BBEF02/computer-area-6-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816732/landscape_ratio4x3/2560/1920/78cfacfa9408b037f42c8f3cb704cd64/C897393BF8C2C5DB3A4DF72C5D296BAC/gym-1-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816734/landscape_ratio4x3/2560/1920/c8d72e66e698ec32264bb788553c30c6/5A6B1F1736B51536B35D4DDDC780BEE9/gym-2-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816778/landscape_ratio4x3/2560/1920/4ba435c9818bdde637379d2819fc7805/C7D3CC16E91C8FADAD6AC882E009136F/swimming-sitting-area-0-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816736/landscape_ratio4x3/2560/1920/921110794224d9ebe1601a1adb2dce56/E29082FCDEC7B498705D43D0F7949ABC/jacuzzi-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816774/landscape_ratio4x3/2560/1920/65b4fefec24e25e5077e75f76be4f06b/0A5EFE07D56BA14531A89E748F0F21C4/swimming-pool-view-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816742/landscape_ratio4x3/2560/1920/dcdc5bf92197150f63f358f280142613/D5535665F9F2511D048ED67E05617CD8/kithc-model-unit-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816738/landscape_ratio4x3/2560/1920/c1fc2c41576205bd9c67c691fdcdc335/997777F900D10E5258A3C7EDC790B7E5/kitch-mdoel-unit-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816754/landscape_ratio4x3/2560/1920/bfdb2f95fc5b8ae04d0daeba090fa508/C1FFD92AA42156C355E66E49E8084757/model-unit-common-area-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816748/landscape_ratio4x3/2560/1920/b0667f8ac61b916768d192b7ef4253cc/686B0751C41A73C3B647B2C8A7A6E21B/model-unit-5-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+},
+{
+"url": "https://yugo.com/resource/image/816752/landscape_ratio4x3/2560/1920/b0d88fe1110f5ec3c8ecc4f7e69f3f2b/AD29D1FA5CB8A786784269AF8AFF4B93/model-unit-bathroom-5-the-view.webp",
+"page": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
 }
 ]
 },
@@ -6850,21 +7308,457 @@
 2,
 5
 ],
-"price": "$889–$1,469 per bedroom",
+"price": "$889–$1,469 per person / mo (2027-2028)",
 "ppm": 889,
 "est": false,
 "lat": 40.7798,
 "lng": -77.850549,
-"source": "af",
+"source": "site",
 "site": "https://www.brexxpsu.com/",
 "photos": [
 {
-"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/Brexx-state-college-index-hero.webp",
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-cottage-exterior.webp",
 "page": "https://www.brexxpsu.com/"
 },
 {
-"url": "https://www.brexxpsu.com/wp-content/uploads/2026/09/index-amenities-pool-2.webp",
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-community-aerial.webp",
 "page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-clubhouse-aerial.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-resort-pool.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-pool-and-spa.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-clubhouse-lounge.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-fitness-centre.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-game-room.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-basketball-court.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-firepit.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-covered-porch.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-living-room.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-kitchen.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-dining-area.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-bedroom-blue.webp",
+"page": "https://www.brexxpsu.com/"
+},
+{
+"url": "https://www.brexxpsu.com/wp-content/uploads/2026/08/brexx-bathroom-vanity.webp",
+"page": "https://www.brexxpsu.com/"
+}
+],
+"plans": [
+{
+"name": "2X2.5 Birchmore",
+"beds": 2,
+"baths": "2.5",
+"sqft": "1398",
+"price": "$1,469 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8336_100045863_5e3b2ab3037e04.91658588128.png",
+"rates": [
+{
+"n": 2,
+"pp": 1469,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#2x2-5-birchmore"
+},
+{
+"name": "3X3 Birchmore",
+"beds": 3,
+"baths": "3",
+"sqft": "1395",
+"price": "$1,229 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8337_100045863_5e3b2ad6bc1ba7.41869563660.png",
+"rates": [
+{
+"n": 3,
+"pp": 1229,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#3x3-birchmore"
+},
+{
+"name": "4x4 Courtyard Upgraded",
+"beds": 4,
+"baths": "4",
+"sqft": "1832",
+"price": "$999 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/677d4f4459e5a8.28351710116.png",
+"rates": [
+{
+"n": 4,
+"pp": 999,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x4-courtyard-upgraded"
+},
+{
+"name": "4x4.5 Springmore Upgraded",
+"beds": 4,
+"baths": "4",
+"sqft": "2124",
+"price": "$1,019 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/677d4f7f1edb74.34526381204.png",
+"rates": [
+{
+"n": 4,
+"pp": 1019,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x4-5-springmore-upgraded"
+},
+{
+"name": "4X45B Brookshire",
+"beds": 4,
+"baths": "4.5",
+"sqft": "2332",
+"price": "$989 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8338_100045863_5e3b2ae9be66f0.46888451417.png",
+"rates": [
+{
+"n": 4,
+"pp": 989,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x45b-brookshire"
+},
+{
+"name": "4X45S Stafford",
+"beds": 4,
+"baths": "4.5",
+"sqft": "2000",
+"price": "$1,019 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/688bc87cbbc7c6.90855978797.png",
+"rates": [
+{
+"n": 4,
+"pp": 1019,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x45s-stafford"
+},
+{
+"name": "4X45SP Springmore",
+"beds": 4,
+"baths": "4.5",
+"sqft": "2124",
+"price": "$1,009 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8347_100045863_5e3b2bbc0e6b91.62952755450.png",
+"rates": [
+{
+"n": 4,
+"pp": 1009,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x45sp-springmore"
+},
+{
+"name": "4X4A Artisan",
+"beds": 4,
+"baths": "4",
+"sqft": "1892",
+"price": "$989 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8335_100045863_5e3b2b251476b5.32002136223.png",
+"rates": [
+{
+"n": 4,
+"pp": 989,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x4a-artisan"
+},
+{
+"name": "4X4BF Bloomfield",
+"beds": 4,
+"baths": "4",
+"sqft": "2124",
+"price": "$1,019 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8340_100045863_5e3b2b49394801.53532914753.png",
+"rates": [
+{
+"n": 4,
+"pp": 1019,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x4bf-bloomfield"
+},
+{
+"name": "4X4BV Boulevard",
+"beds": 4,
+"baths": "4",
+"sqft": "1832",
+"price": "$989 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8331_100045863_5e3b2b607514e7.82447458798.png",
+"rates": [
+{
+"n": 4,
+"pp": 989,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x4bv-boulevard"
+},
+{
+"name": "4X4C Courtyard",
+"beds": 4,
+"baths": "4",
+"sqft": "1832",
+"price": "$989 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8332_100045863_5e3b2b7817e5f9.69181796458.png",
+"rates": [
+{
+"n": 4,
+"pp": 989,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x4c-courtyard"
+},
+{
+"name": "4X4L Lumpkin",
+"beds": 4,
+"baths": "4",
+"sqft": "1780",
+"price": "$989 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/68dc0ffa1fd8d3.69590954121.png",
+"rates": [
+{
+"n": 4,
+"pp": 989,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x4l-lumpkin"
+},
+{
+"name": "4X4SC Sycamore",
+"beds": 4,
+"baths": "4",
+"sqft": "1832",
+"price": "$989 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8344_100045863_5e3b2ba58d15c0.97794247119.png",
+"rates": [
+{
+"n": 4,
+"pp": 989,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x4sc-sycamore"
+},
+{
+"name": "4X4T Thornberry",
+"beds": 4,
+"baths": "4",
+"sqft": "1892",
+"price": "$989 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8341_100045863_5e3b2bd115a656.85554116914.png",
+"rates": [
+{
+"n": 4,
+"pp": 989,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#4x4t-thornberry"
+},
+{
+"name": "5x5 Courtyard Upgraded",
+"beds": 5,
+"baths": "5",
+"sqft": "2075",
+"price": "$899 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/67b635a52ca436.43170155943.png",
+"rates": [
+{
+"n": 5,
+"pp": 899,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#5x5-courtyard-upgraded"
+},
+{
+"name": "5x5.5 Rutherford Upgraded",
+"beds": 5,
+"baths": "5",
+"sqft": "2365",
+"price": "$999 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/rutherford-3d-new.webp",
+"rates": [
+{
+"n": 5,
+"pp": 999,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#5x5-5-rutherford-upgraded"
+},
+{
+"name": "5X5C Courtyard",
+"beds": 5,
+"baths": "5",
+"sqft": "2075",
+"price": "$899 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8333_100045863_5e3b2bfe142635.52491513520.png",
+"rates": [
+{
+"n": 5,
+"pp": 899,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#5x5c-courtyard"
+},
+{
+"name": "5X5M Magnolia",
+"beds": 5,
+"baths": "5",
+"sqft": "2165",
+"price": "$889 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8342_100045863_5e3b2c2a0ab062.94205539761.png",
+"rates": [
+{
+"n": 5,
+"pp": 889,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#5x5m-magnolia"
+},
+{
+"name": "5X5S Sycamore",
+"beds": 5,
+"baths": "5",
+"sqft": "2075",
+"price": "$889 / person",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8345_100045863_5e3b2c40ca2c29.62401354221.png",
+"rates": [
+{
+"n": 5,
+"pp": 889,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.brexxpsu.com/floor-plans/#5x5s-sycamore"
+},
+{
+"name": "4x4 Artisan Upgraded",
+"beds": 4,
+"baths": "4",
+"sqft": "1892",
+"price": "Sold Out",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/677d4f00115074.38668785137.png",
+"lease": "2027-2028",
+"status": "Fully rented",
+"page": "https://www.brexxpsu.com/floor-plans/#4x4-artisan-upgraded"
+},
+{
+"name": "4X45L Lumpkin",
+"beds": 4,
+"baths": "4.5",
+"sqft": "2332",
+"price": "Sold Out",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8334_100045863_5e3b2aff4e1693.15503655237.png",
+"lease": "2027-2028",
+"status": "Fully rented",
+"page": "https://www.brexxpsu.com/floor-plans/#4x45l-lumpkin"
+},
+{
+"name": "5x5 Hawthorne Upgraded",
+"beds": 5,
+"baths": "5",
+"sqft": "2280",
+"price": "Sold Out",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/67b635df09fe50.96632099751.png",
+"lease": "2027-2028",
+"status": "Fully rented",
+"page": "https://www.brexxpsu.com/floor-plans/#5x5-hawthorne-upgraded"
+},
+{
+"name": "5X5.5 Rutherford",
+"beds": 5,
+"baths": "5.5",
+"sqft": "2365",
+"price": "Sold Out",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8346_100045863_5e3b2be73a4511.57925985809.png",
+"lease": "2027-2028",
+"status": "Fully rented",
+"page": "https://www.brexxpsu.com/floor-plans/#5x5-5-rutherford"
+},
+{
+"name": "5X5H Hawthorne",
+"beds": 5,
+"baths": "5",
+"sqft": "2280",
+"price": "Sold Out",
+"img": "https://www.brexxpsu.com/wp-content/uploads/2026/08/8339_100045863_5e3b2c1380ac73.11664194395.png",
+"lease": "2027-2028",
+"status": "Fully rented",
+"page": "https://www.brexxpsu.com/floor-plans/#5x5h-hawthorne"
 }
 ]
 },
@@ -10222,7 +11116,7 @@
 },
 {
 "id": 95,
-"name": "University Towers",
+"name": "University Towers (ARPM)",
 "address": "458 E. College Ave",
 "type": "apartment",
 "beds": [
@@ -12108,7 +13002,7 @@
 },
 {
 "id": 209,
-"name": "Hetzel Plaza",
+"name": "Hetzel Plaza (ARPM)",
 "address": "500 E. College Ave",
 "type": "apartment",
 "beds": [
@@ -17084,5 +17978,150 @@
 3,
 6
 ]
+},
+{
+"id": 258,
+"name": "Hetzel Plaza (The Apartment Store)",
+"address": "500 E College Avenue",
+"type": "apartment",
+"lat": 40.799318,
+"lng": -77.854575,
+"site": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/",
+"source": "site",
+"plans": [
+{
+"name": "One Bedroom Furnished",
+"beds": 1,
+"baths": "1",
+"price": "$525–$1,575 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza1BRFloorplan.jpg?fit=768%2C432&ssl=1",
+"photos": [
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza-Unit206-4.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza-Unit206-6.jpg?w=1400&ssl=1"
+],
+"rates": [
+{
+"n": 1,
+"pp": 1575,
+"was": null
+},
+{
+"n": 2,
+"pp": 788,
+"was": null
+},
+{
+"n": 3,
+"pp": 525,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"status": "Fully rented",
+"page": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/one-bedroom-furnished-19/"
+}
+],
+"photos": [
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza-Unit206-1.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza-Unit206-3.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza-Unit206-2.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza-Unit206-5.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/HetzelPlaza-Unit206-7.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/hetzel-plaza/"
+}
+],
+"ppm": 525,
+"est": false,
+"price": "$525–$1,575 per person / mo (2027-2028 Full Year)",
+"beds": [
+1,
+1
+],
+"manager": "The Apartment Store"
+},
+{
+"id": 259,
+"name": "University Towers (The Apartment Store)",
+"address": "458 E College Avenue",
+"type": "apartment",
+"lat": 40.798803,
+"lng": -77.855283,
+"site": "https://www.apartmentstore.com/locations/state-college/university-towers/",
+"source": "site",
+"plans": [
+{
+"name": "One Bedroom Furnished",
+"beds": 1,
+"baths": "1",
+"price": "$517–$1,550 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/UTower213Floorplan.jpg?fit=768%2C432&ssl=1",
+"photos": [
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/UniversityTowers-Unit213-2.jpg?w=1400&ssl=1"
+],
+"rates": [
+{
+"n": 1,
+"pp": 1550,
+"was": null
+},
+{
+"n": 2,
+"pp": 775,
+"was": null
+},
+{
+"n": 3,
+"pp": 517,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"status": "Fully rented",
+"page": "https://www.apartmentstore.com/locations/state-college/university-towers/one-bedroom-furnished-18/"
+}
+],
+"photos": [
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/UniversityTowers-Unit213-5.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/university-towers/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/UniversityTowers-Unit213-6.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/university-towers/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/UniversityTowers-Unit213-4.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/university-towers/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/UniversityTowers-Unit213-1-1.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/university-towers/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/UniversityTowers-Unit213-3.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/university-towers/"
+}
+],
+"ppm": 517,
+"est": false,
+"price": "$517–$1,550 per person / mo (2027-2028 Full Year)",
+"beds": [
+1,
+1
+],
+"manager": "The Apartment Store"
 }
 ]
