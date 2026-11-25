@@ -73,22 +73,37 @@ function renderList(){
 }
 
 /* detail view */
+const bdTxt=b=>b===0||b==="0"||/studio/i.test(b??"")?"Studio":b!=null&&b!==""?b+" bd":"";
+function planImgs(p){return [p.img,...(p.photos||[])].filter(Boolean)}
 function plansHtml(l){
   const ps=l.plans||[];if(!ps.length)return "";
-  const bb=p=>[p.beds===0||p.beds==="0"||/studio/i.test(p.beds??"")?"Studio":p.beds!=null&&p.beds!==""?p.beds+" bd":"",p.baths!=null&&p.baths!==""?p.baths+" ba":""].filter(Boolean).join(" · ");
-  return `<div class="plans"><h3>Floor plans <span>${ps.length}</span></h3><div class="tablewrap"><table><thead><tr><th>Plan</th><th>Layout</th><th>Size</th><th>Price</th></tr></thead><tbody>${ps.map(p=>`<tr><td>${esc(p.name||"")}</td><td>${esc(bb(p))}</td><td>${p.sqft?esc(p.sqft)+" sq ft":""}</td><td>${esc(p.price||"Ask")}</td></tr>`).join("")}</tbody></table></div><p class="fine">Floor plans and prices as shown on the building's website when checked. Confirm with the building before signing.</p></div>`;
+  const beds=[...new Set(ps.map(p=>bdTxt(p.beds)).filter(Boolean))];
+  const chips=ps.length>3&&beds.length>1?`<div class="pchips" role="group" aria-label="Filter floor plans">${["All",...beds].map((b,i)=>`<button class="chip" aria-pressed="${i===0}" data-b="${esc(b)}">${esc(b)}</button>`).join("")}</div>`:"";
+  const card=(p,k)=>{const im=planImgs(p);const spec=[bdTxt(p.beds),p.baths!=null&&p.baths!==""?p.baths+" ba":"",p.sqft?p.sqft+" sq ft":""].filter(Boolean).join(" · ");
+    const rates=(p.rates||[]).map(r=>`<li><span>${r.n===1?"1 person":r.n+" people"}</span><b>${fmt(r.pp)}${r.n>1?"<small> each</small>":""}</b>${r.was&&r.was>r.pp?`<s>${fmt(r.was)}</s>`:""}</li>`).join("");
+    return `<article class="plan${p.status?" out":""}" data-b="${esc(bdTxt(p.beds))}">
+    <button class="pimg" data-k="${k}" ${im.length?"":"disabled"} aria-label="See ${esc(p.name)} photos">${im.length?`<img src="${esc(im[0])}" alt="${esc(p.name)} floor plan" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('noimg');this.remove()">`:""}${im.length>1?`<span class="pcount">${im.length} photos</span>`:""}${p.status?`<span class="pstat">${esc(p.status)}</span>`:""}</button>
+    <div class="pbody"><h4>${esc(p.name)}</h4><div class="pspec">${esc(spec)}</div>
+    ${rates?`<ul class="rates">${rates}</ul>`:`<div class="pprice">${esc(p.price||"Ask for pricing")}</div>`}
+    ${p.lease?`<div class="plea">${esc(p.lease)} lease</div>`:""}${p.page?`<a href="${esc(p.page)}" target="_blank" rel="noopener">See this plan on ${esc(host(p.page))}</a>`:""}</div></article>`};
+  return `<div class="plans"><h3>Floor plans <span>${ps.length}</span></h3>${chips}<div class="pgrid">${ps.map(card).join("")}</div><p class="fine">Prices are per person per month, by how many people share the unit, as listed on the building's website on Nov 25, 2026. Confirm with the building before signing.</p></div>`;
 }
+/* full-screen photo viewer */
+let LB={list:[],i:0,title:""};
+function lbShow(){const d=$("#lb");d.querySelectorAll(".lbprev,.lbnext").forEach(b=>b.style.visibility=LB.list.length>1?"":"hidden");const u=LB.list[LB.i];d.querySelector(".lbimg").innerHTML=`<img src="${esc(u)}" alt="${esc(LB.title)} photo ${LB.i+1}" referrerpolicy="no-referrer">`;d.querySelector(".lbcap").textContent=`${LB.title} · ${LB.i+1} / ${LB.list.length}`;d.querySelector(".lbthumbs").innerHTML=LB.list.length>1?LB.list.map((x,k)=>`<button data-k="${k}" aria-current="${k===LB.i}"><img src="${esc(x)}" alt="" loading="lazy" referrerpolicy="no-referrer"></button>`).join(""):"";d.querySelector('.lbthumbs [aria-current="true"]')?.scrollIntoView({block:"nearest",inline:"center"})}
+function lbOpen(list,i,title){if(!list.length)return;LB={list,i,title};const d=$("#lb");lbShow();if(!d.open)d.showModal()}
+function lbStep(k){LB.i=(LB.i+k+LB.list.length)%LB.list.length;lbShow()}
 let gi=0;
 function open(id){
   const l=byId[id];if(!l)return;state.sel=id;gi=0;MAP.select(id);
   const per=l.ppm==null?"Ask":l.semester?`${fmt(l.ppm)} / mo equivalent`:`${l.est?"~":""}${fmt(l.ppm)} / mo`;
   const ph=l.photos||[];
   const credit=ph.length?`Photos: ${ph.map(p=>`<a href="${esc(p.page||p.url)}" target="_blank" rel="noopener">${esc(host(p.page||p.url))}</a>`).filter((v,i,a)=>a.indexOf(v)===i).join(", ")}. Photos belong to the building's owner or manager.`:"No photo of this building yet. The picture is an illustration.";
-  const priceSrc=l.source==="psu"?`Penn State Housing 2026–27 rates (<a href="${PSU}" target="_blank" rel="noopener">liveon.psu.edu</a>)`:l.source==="ocp"?`Penn State Off-Campus Housing (<a href="${OCP}" target="_blank" rel="noopener">livingoffcampus.psu.edu</a>)`:"public listing sites";
-  $("#dlgbody").innerHTML=`<div class="hero" id="hero">${pic(l,0)}${ph.length>1?`<button class="nav prev" aria-label="Previous photo">‹</button><button class="nav next" aria-label="Next photo">›</button><span class="count" id="gcount">1 / ${ph.length}</span>`:""}<button class="close" aria-label="Close">×</button></div>
+  const priceSrc=l.source==="psu"?`Penn State Housing 2026–27 rates (<a href="${PSU}" target="_blank" rel="noopener">liveon.psu.edu</a>)`:l.source==="ocp"?`Penn State Off-Campus Housing (<a href="${OCP}" target="_blank" rel="noopener">livingoffcampus.psu.edu</a>)`:l.source==="site"&&l.site?`the building's website (<a href="${esc(l.site)}" target="_blank" rel="noopener">${esc(host(l.site))}</a>)`:"public listing sites";
+  $("#dlgbody").innerHTML=`<div class="hero" id="hero">${pic(l,0)}${ph.length>1?`<button class="nav prev" aria-label="Previous photo">‹</button><button class="nav next" aria-label="Next photo">›</button><span class="count" id="gcount">1 / ${ph.length}</span><button class="allph" id="allph">See all ${ph.length} photos</button>`:""}<button class="close" aria-label="Close">×</button></div>
   <div class="body"><div><span class="kind">${TLABEL[l.type]}</span><h2>${esc(l.name)}</h2><div class="addr">${esc(l.address)}, State College, PA · ${l.mi.toFixed(1)} mi from Old Main (${distTxt(l)})</div></div>
   <div class="facts"><div class="fact"><span>Listed price</span><b style="font-size:14px">${esc(l.price)}</b></div><div class="fact"><span>Per person, from</span><b>${per}</b></div><div class="fact"><span>Bedrooms</span><b>${bedsTxt(l)}</b></div><div class="fact"><span>Lease</span><b>${l.source==="psu"?"Academic year":(/(\d+)-month/.exec(l.price)?.[0]||"Ask")}</b></div></div>
-  <p>${l.source==="psu"?"Penn State campus housing. Rates are per person and include utilities. Most residence halls require the Campus Meal Plan; Nittany and White Course Apartments do not.":(l.ppm==null?"Pricing isn't posted publicly. Contact the building for current rates.":l.est?"Price is listed for the whole unit. The per-person figure assumes the unit is fully shared.":"Price is listed per bedroom.")}</p>
+  <p>${l.source==="psu"?"Penn State campus housing. Rates are per person and include utilities. Most residence halls require the Campus Meal Plan; Nittany and White Course Apartments do not.":(l.ppm==null?"Pricing isn't posted publicly. Contact the building for current rates.":l.est?"Price is listed for the whole unit. The per-person figure assumes the unit is fully shared.":l.source==="site"&&(l.plans||[]).some(p=>p.rates)?"Prices are per person and depend on how many people share the unit. Each floor plan below shows its price for every group size.":"Price is listed per bedroom.")}</p>
   ${plansHtml(l)}
   <div class="cta">${l.site?`<a class="btn primary" href="${esc(l.site)}" target="_blank" rel="noopener">Visit ${esc(host(l.site))}</a>`:l.source==="psu"?`<a class="btn primary" href="${PSU}" target="_blank" rel="noopener">See Penn State rates</a>`:`<a class="btn primary" href="${OCP}" target="_blank" rel="noopener">Find it on Penn State Off-Campus</a>`}
   <a class="btn" href="${gmaps(l)}" target="_blank" rel="noopener">Open in Google Maps</a><a class="btn" href="${street(l)}" target="_blank" rel="noopener">Street View</a></div>
@@ -97,6 +112,11 @@ function open(id){
   d.querySelector(".close").onclick=()=>d.close();
   const show=k=>{gi=(k+ph.length)%ph.length;const h=$("#hero");h.querySelector("img,svg")?.remove();h.insertAdjacentHTML("afterbegin",pic(l,gi));const c=$("#gcount");if(c)c.textContent=`${gi+1} / ${ph.length}`};
   d.querySelector(".prev")?.addEventListener("click",()=>show(gi-1));d.querySelector(".next")?.addEventListener("click",()=>show(gi+1));
+  const urls=ph.map(p=>p.url);
+  d.querySelector("#allph")?.addEventListener("click",()=>lbOpen(urls,gi,l.name));
+  $("#hero").addEventListener("click",e=>{if(e.target.tagName==="IMG")lbOpen(urls,gi,l.name)});
+  d.querySelectorAll(".plan .pimg").forEach(b=>b.addEventListener("click",()=>{const p=l.plans[+b.dataset.k];lbOpen(planImgs(p),0,`${l.name}: ${p.name}`)}));
+  d.querySelectorAll(".pchips .chip").forEach(c=>c.addEventListener("click",()=>{d.querySelectorAll(".pchips .chip").forEach(x=>x.setAttribute("aria-pressed",x===c));d.querySelectorAll(".plan").forEach(pl=>pl.hidden=c.dataset.b!=="All"&&pl.dataset.b!==c.dataset.b)}));
 }
 
 /* map: Google Maps when a key is set, otherwise OpenStreetMap via Leaflet */
@@ -166,8 +186,13 @@ function wire(){
   headH();document.fonts?.ready.then(headH);
 }
 
+function lbInit(){const d=$("#lb");if(!d)return;d.querySelector(".lbclose").onclick=()=>d.close();d.querySelector(".lbprev").onclick=()=>lbStep(-1);d.querySelector(".lbnext").onclick=()=>lbStep(1);
+  d.querySelector(".lbthumbs").addEventListener("click",e=>{const b=e.target.closest("button");if(b){LB.i=+b.dataset.k;lbShow()}});
+  d.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")lbStep(-1);if(e.key==="ArrowRight")lbStep(1)});
+  d.addEventListener("click",e=>{if(e.target===d)d.close()});
+  let x0=null;d.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});d.addEventListener("touchend",e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)lbStep(dx<0?1:-1);x0=null})}
 async function start(){
-  wire();
+  wire();lbInit();
   const res=await fetch("data/listings.json");ALL=await res.json();
   ALL.forEach(l=>{l.mi=miles(OM,l);byId[l.id]=l});
   renderTabs();renderList();
