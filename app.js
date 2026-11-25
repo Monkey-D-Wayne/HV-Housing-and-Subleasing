@@ -118,7 +118,7 @@ async function initGoogle(){
   const renderer={render:({count,markers:ms,position})=>{const ls=ms.map(m=>byId[m.hvId]);const d=document.createElement("div");d.className="cl";d.innerHTML=clusterHtml(ls);return new google.maps.marker.AdvancedMarkerElement({position,content:d,zIndex:1000+count})}};
   markReady({
     setRows(r){clusterer?.clearMarkers();markers.clear();const ms=r.map(l=>{const m=new google.maps.marker.AdvancedMarkerElement({position:{lat:l.lat,lng:l.lng},content:pinEl(l),title:l.name});m.hvId=l.id;m.addListener("click",()=>open(l.id));markers.set(l.id,m);return m});
-      clusterer=new markerClusterer.MarkerClusterer({map,markers:ms,renderer,algorithmOptions:{radius:60,maxZoom:17}});this.fit(r)},
+      clusterer=new markerClusterer.MarkerClusterer({map,markers:ms,renderer,algorithmOptions:{radius:110,maxZoom:17}});this.fit(r)},
     fit(r=rows){if(!r.length)return;const b=new google.maps.LatLngBounds();r.forEach(l=>b.extend({lat:l.lat,lng:l.lng}));map.fitBounds(b,48)},
     select(id){document.querySelectorAll(".pin.sel").forEach(e=>e.classList.remove("sel"));markers.get(id)?.content.classList.add("sel")},
     hot(id){document.querySelectorAll(".pin.hot").forEach(e=>e.classList.remove("hot"));if(id)markers.get(+id)?.content.classList.add("hot")},
