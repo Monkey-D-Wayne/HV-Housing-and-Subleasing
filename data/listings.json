@@ -2170,436 +2170,6 @@
 "source": "ocp"
 },
 {
-"id": 12,
-"name": "The Canyon",
-"address": "309 E Beaver Ave",
-"type": "apartment",
-"beds": [
-0,
-3
-],
-"price": "$1,050–$2,025 per bedroom",
-"ppm": 1050,
-"est": false,
-"lat": 40.79595,
-"lng": -77.85731,
-"source": "site",
-"site": "https://www.livethecanyon.com/",
-"photos": [
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/index-header.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/fitness-1.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/rental-header-1.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/Alexander-Header.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/menu-image.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2020/07/apt-includes-14.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2020/11/beaver-hill-main.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2020/11/cedarbrook-main.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/Aptmenu-CedarBrook.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2020/07/rent-includes-14.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/feature-a.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2021/03/perfect-location.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/0000_homepage_GreatAmenities.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/0002_homepage_247Maintenance.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/24-7.jpg",
-"page": "https://www.livethecanyon.com/"
-},
-{
-"url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/renovated-apartment-a-1.jpg",
-"page": "https://www.livethecanyon.com/"
-}
-],
-"plans": [
-{
-"name": "Alexander Court 1x1 A",
-"beds": 1,
-"baths": "1",
-"sqft": "491",
-"price": "Call for Pricing (1-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Alexander-Court_0000s_0008_1x1-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/alexander-one-bedroom/"
-},
-{
-"name": "Alexander Court 1x1 A - Shared",
-"beds": 1,
-"baths": "1",
-"sqft": "505",
-"price": "Call for Pricing (2-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Alexander-Court_0000s_0007_1x1-Shared-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/alexander-one-bedroom/"
-},
-{
-"name": "Alexander Court 1x1 B - Shared",
-"beds": 1,
-"baths": "1",
-"sqft": "436",
-"price": "Call for Pricing (2-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Alexander-Court_0000s_0006_1x1-Shared-B.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/alexander-one-bedroom/"
-},
-{
-"name": "Alexander Court 2x1 A",
-"beds": 2,
-"baths": "1",
-"sqft": "591",
-"price": "Call for Pricing (2-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Alexander-Court_0000s_0004_2x1-B.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/alexander-two-bedroom/"
-},
-{
-"name": "Alexander Court 2x1 Shared ADA",
-"beds": 2,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Alexander-Court_0000s_0002_2x1-Shared-ADA-1.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/alexander-two-bedroom/"
-},
-{
-"name": "Alexander Court 2x1 A ADA",
-"beds": 2,
-"baths": "1",
-"sqft": "713",
-"price": "Call for Pricing (2-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Alexander-Court_0000s_0005_2x1-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/alexander-two-bedroom/"
-},
-{
-"name": "Alexander Court 2x1 Shared A",
-"beds": 2,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Alexander-Court_0000s_0003_2x1-Shared-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/alexander-two-bedroom/"
-},
-{
-"name": "Alexander Court 2x1 Shared B",
-"beds": 2,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Alexander-Court_0000s_0001_2x1-Shared-B.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/alexander-two-bedroom/"
-},
-{
-"name": "Alexander Court 2x1 Shared C",
-"beds": 2,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Alexander-Court_0000s_0000_2x1-Shared-C.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/alexander-two-bedroom/"
-},
-{
-"name": "Beaver Hill Studio A",
-"beds": 0,
-"baths": "1",
-"price": "Call for Pricing (1-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/06/Beaver-Hill_0000s_0009_Studio-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/beaver-hill-studio/"
-},
-{
-"name": "Beaver Hill Studio Balcony",
-"beds": 0,
-"baths": "1",
-"sqft": "327",
-"price": "Call for Pricing (1-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/06/Beaver-Hill_0000s_0008_Studio-B.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/beaver-hill-studio/"
-},
-{
-"name": "Beaver Hill 1x1 Shared A",
-"beds": 1,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2022/02/Beaver-Hill_0000s_0006_1x1-Shared-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/1x1-a/"
-},
-{
-"name": "Beaver Hill 1x1 Shared B",
-"beds": 1,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2022/02/Beaver-Hill_0000s_0005_1x1-Shared-B.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/1x1-a/"
-},
-{
-"name": "Beaver Hill 1x1 A",
-"beds": 1,
-"baths": "1",
-"sqft": "520",
-"price": "Call for availability (1-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2022/02/Beaver-Hill_0000s_0007_1x1-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/1x1-a/"
-},
-{
-"name": "Beaver Hill 1x1 Balcony",
-"beds": 1,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2022/02/Beaver-Hill_0000s_0007_1x1-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/1x1-a/"
-},
-{
-"name": "Beaver Hill 2x1 Shared",
-"beds": 2,
-"baths": "1",
-"price": "Call for Pricing (4-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2022/09/Beaver-Hill_0000s_0002_2x1-Shared-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/2x1/"
-},
-{
-"name": "Beaver Hill 2x1 A",
-"beds": 2,
-"baths": "1",
-"sqft": "727",
-"price": "Call for availability (2-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2022/09/Beaver-Hill_0000s_0004_2x1-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/2x1/"
-},
-{
-"name": "Beaver Hill 2x1 B",
-"beds": 2,
-"baths": "1",
-"sqft": "739",
-"price": "Call for Pricing (3-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2022/09/Beaver-Hill_0000s_0003_2x1-B.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/2x1/"
-},
-{
-"name": "Beaver Hill 2x2 Shared",
-"beds": 2,
-"baths": "2",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2022/09/Beaver-Hill_0000s_0000_2x2-Shared-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/beaver-hill-2x2/"
-},
-{
-"name": "Cedarbrook Studio A",
-"beds": 0,
-"baths": "1",
-"price": "Call for availability",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Cedarbrook_0000s_0010_Studio-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/cedarbrook-studio/"
-},
-{
-"name": "Cedarbrook Studio Balcony A",
-"beds": 0,
-"baths": "1",
-"price": "Call for availability",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Cedarbrook_0000s_0007_Studio-Balcony-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/cedarbrook-studio/"
-},
-{
-"name": "Cedarbrook 1x1 Shared A",
-"beds": 1,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Cedarbrook_0000s_0006_1x1-Shared-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/cedarbrook-one-bedroom/"
-},
-{
-"name": "Cedarbrook 1x1 Shared Balcony A",
-"beds": 1,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Cedarbrook_0000s_0005_1x1-Shared-Balcony-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/cedarbrook-one-bedroom/"
-},
-{
-"name": "Cedarbrook 1x1 Shared A +",
-"beds": 1,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Cedarbrook_0000s_0004_1x1-Shared-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/cedarbrook-one-bedroom/"
-},
-{
-"name": "Cedarbrook 1x1 Shared + Balcony A",
-"beds": 1,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Cedarbrook_0000s_0003_1x1-Shared-Balcony-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/cedarbrook-one-bedroom/"
-},
-{
-"name": "Cedarbrook 2x2 Shared A",
-"beds": 2,
-"baths": "2",
-"price": "Call for availability",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2023/07/Cedarbrook_0000s_0002_2x2-Shared-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/cedarbrook-standard-two-bedroom/"
-},
-{
-"name": "Cedarbrook 2x2 Shared Balcony A",
-"beds": 2,
-"baths": "2",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2023/07/Cedarbrook_0000s_0001_2x2-Shared-Balcony-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/cedarbrook-standard-two-bedroom/"
-},
-{
-"name": "The Diplomat 2x2 Shared Balcony ADA",
-"beds": 2,
-"baths": "2",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Diplomat_0000s_0001_2x2-Shared-Balcony-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/diplomat-two-bedroom-supreme/"
-},
-{
-"name": "The Diplomat 2x2 Shared Balcony - Standard",
-"beds": 2,
-"baths": "2",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Diplomat_0000s_0000_2x2-Shared-Balcony-B.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/diplomat-two-bedroom-supreme/"
-},
-{
-"name": "Garner Court Studio A - Balcony",
-"beds": 0,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Garner-Court_0000s_0008_Studio-Balcony-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/garner-court-studio/"
-},
-{
-"name": "Garner Court Studio B - Balcony",
-"beds": 0,
-"baths": "1",
-"sqft": "300",
-"price": "Call for Pricing (1-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Garner-Court_0000s_0007_Studio-Balcony-B.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/garner-court-studio/"
-},
-{
-"name": "Garner Court 2x1 Balcony A",
-"beds": 2,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Garner-Court_0000s_0006_2x1-Balcony-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/garner-court-standard-two-bedroom/"
-},
-{
-"name": "Garner Court 2x1 Balcony B",
-"beds": 2,
-"baths": "1",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Garner-Court_0000s_0005_2x1-Balcony-B.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/garner-court-standard-two-bedroom/"
-},
-{
-"name": "Garner Court 2x2 Shared ADA",
-"beds": 2,
-"baths": "2",
-"price": "Call for availability",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Garner-Court_0000s_0004_2x2-Shared-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/garner-court-premier-two-bedroom/"
-},
-{
-"name": "Garner Court 3x2 A",
-"beds": 3,
-"baths": "2",
-"sqft": "1033",
-"price": "Call for availability (5-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Garner-Court_0000s_0003_3x2-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/garner-court-three-bedroom/"
-},
-{
-"name": "Garner Court 3x2 A - Balcony",
-"beds": 3,
-"baths": "2",
-"sqft": "1040",
-"price": "Call for Pricing (5-person unit)",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Garner-Court_0000s_0002_3x2-Balcony-A.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/garner-court-three-bedroom/"
-},
-{
-"name": "Garner Court 3x2 B - Balcony",
-"beds": 3,
-"baths": "2",
-"price": "Call for Pricing",
-"img": "https://www.livethecanyon.com/wp-content/uploads/2020/07/Garner-Court_0000s_0001_3x2-Balcony-B.png",
-"lease": "2027-2028",
-"page": "https://www.livethecanyon.com/garner-court-three-bedroom/"
-}
-]
-},
-{
 "id": 13,
 "name": "Southside Court",
 "address": "1610 S Ashwicken Ct",
@@ -7787,21 +7357,121 @@
 1,
 2
 ],
-"price": "$1,045–$1,325 per bedroom",
+"price": "$1,045–$1,325 per person / mo (2027-2028 (08/20/2027-07/26/2028))",
 "ppm": 1045,
 "est": false,
 "lat": 40.805859,
 "lng": -77.902327,
-"source": "af",
-"site": "https://www.statecollegecollective.com/",
+"source": "site",
+"site": "https://www.statecollegecollective.com/northbrook/",
 "photos": [
 {
 "url": "https://www.statecollegecollective.com/wp-content/uploads/2021/10/northbrook-greens-aerial-2-1.jpg",
-"page": "https://www.statecollegecollective.com/"
+"page": "https://www.statecollegecollective.com/northbrook/"
 },
 {
 "url": "https://www.statecollegecollective.com/wp-content/uploads/2021/10/Northbrook-Greens-Aerial-2-3.jpg",
-"page": "https://www.statecollegecollective.com/"
+"page": "https://www.statecollegecollective.com/northbrook/"
+},
+{
+"url": "https://www.statecollegecollective.com/wp-content/uploads/2021/10/cb-living-room.3.jpg",
+"page": "https://www.statecollegecollective.com/northbrook/"
+},
+{
+"url": "https://www.statecollegecollective.com/wp-content/uploads/2021/10/cb-living-room.4-1.jpg",
+"page": "https://www.statecollegecollective.com/northbrook/"
+},
+{
+"url": "https://www.statecollegecollective.com/wp-content/uploads/2021/10/cb-kitchen.5.jpg",
+"page": "https://www.statecollegecollective.com/northbrook/"
+},
+{
+"url": "https://www.statecollegecollective.com/wp-content/uploads/2021/10/cb-kitchen.6-1-.jpg",
+"page": "https://www.statecollegecollective.com/northbrook/"
+},
+{
+"url": "https://www.statecollegecollective.com/wp-content/uploads/2021/10/cb-bedroom.9-1.jpg",
+"page": "https://www.statecollegecollective.com/northbrook/"
+}
+],
+"plans": [
+{
+"name": "1BR/1BA – Unfurnished",
+"beds": 1,
+"baths": "1",
+"sqft": "650",
+"price": "$1,325 / person",
+"img": "https://www.statecollegecollective.com/wp-content/uploads/2024/12/6ac0167a7b18f4.48473524182.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 1325,
+"was": null
+}
+],
+"lease": "2027-2028 (08/20/2027-07/26/2028)",
+"page": "https://www.statecollegecollective.com/floor-plan/1br-1ba-unfurnished/"
+},
+{
+"name": "1BR/1BA – Furnished – Upgraded",
+"beds": 1,
+"baths": "1",
+"sqft": "650",
+"price": "Sold Out (listed Starting at: $1,385)",
+"img": "https://www.statecollegecollective.com/wp-content/uploads/2024/12/6ac0169683b477.03683230726.jpg",
+"status": "Fully rented",
+"page": "https://www.statecollegecollective.com/floor-plan/1br-1ba-furnished-upgraded/"
+},
+{
+"name": "1BR/1BA – Furnished",
+"beds": 1,
+"baths": "1",
+"sqft": "650",
+"price": "$1,325 / person",
+"img": "https://www.statecollegecollective.com/wp-content/uploads/2024/12/6ac0165842adf6.51031712521.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 1325,
+"was": null
+}
+],
+"lease": "2027-2028 (08/20/2027-07/26/2028)",
+"page": "https://www.statecollegecollective.com/floor-plan/1br-1ba-furnished/"
+},
+{
+"name": "2BR/2.5BA – Furnished",
+"beds": 2,
+"baths": "2.5",
+"sqft": "1300",
+"price": "$1,045 / person",
+"img": "https://www.statecollegecollective.com/wp-content/uploads/2024/12/68dd93f7f03389.80527840641.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1045,
+"was": null
+}
+],
+"lease": "2027-2028 (08/20/2027-07/26/2028)",
+"page": "https://www.statecollegecollective.com/floor-plan/2br-2-5ba-furnished-2/"
+},
+{
+"name": "2BR/2.5BA – Unfurnished",
+"beds": 2,
+"baths": "2.5",
+"sqft": "1300",
+"price": "$1,050 / person",
+"img": "https://www.statecollegecollective.com/wp-content/uploads/2024/10/67047a478a15f4.83040005300.jpg",
+"rates": [
+{
+"n": 2,
+"pp": 1050,
+"was": null
+}
+],
+"lease": "2027-2028 (08/20/2027-07/26/2028)",
+"page": "https://www.statecollegecollective.com/floor-plan/2br-2-5ba-unfurnished/"
 }
 ]
 },
