@@ -57,7 +57,7 @@ function filtered(){
    .sort((a,b)=>state.sort==="price"?(a.ppm??9e9)-(b.ppm??9e9):state.sort==="name"?a.name.localeCompare(b.name):a.mi-b.mi);
 }
 function renderTabs(){
-  $("#tabs").innerHTML=TYPES.map(t=>{const n=t.k==="all"?ALL.length:ALL.filter(l=>l.type===t.k).length;return `<button class="tab" role="tab" aria-selected="${state.type===t.k}" data-k="${t.k}"><svg viewBox="0 0 24 24" aria-hidden="true">${t.ico}</svg>${t.label}<span class="n">${n}</span></button>`}).join("");
+  $("#tabs").innerHTML=TYPES.map(t=>{const n=t.k==="all"?ALL.length:ALL.filter(l=>l.type===t.k).length;return `<button class="tab" role="tab" aria-selected="${state.type===t.k}" data-k="${t.k}"><svg viewBox="0 0 24 24" aria-hidden="true">${t.ico}</svg>${t.label}<span class="n">${n}</span></button>`}).join("")+`<span class="tabsep" aria-hidden="true"></span><a class="tab sublets" href="sublets.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h13l-3-3M20 17H7l3 3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Sublets<span class="n">Students</span></a>`;
 }
 function renderList(){
   rows=filtered();
@@ -170,7 +170,7 @@ async function initLeaflet(){
 function headH(){document.documentElement.style.setProperty("--head",$("#head").offsetHeight+"px")}
 function setToggle(){$("#maptoggle span").textContent=document.body.classList.contains("showmap")?"Show list":"Show map"}
 function wire(){
-  $("#tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;state.type=b.dataset.k;try{localStorage.setItem("hvh-type",state.type)}catch(_){}renderTabs();renderList()});
+  $("#tabs").addEventListener("click",e=>{const b=e.target.closest(".tab[data-k]");if(!b)return;state.type=b.dataset.k;try{localStorage.setItem("hvh-type",state.type)}catch(_){}renderTabs();renderList()});
   let qt;$("#q").addEventListener("input",e=>{clearTimeout(qt);qt=setTimeout(()=>{state.q=e.target.value;renderList()},150)});
   $("#maxp").addEventListener("input",e=>{state.maxp=+e.target.value;$("#maxpv").textContent=state.maxp>=2000?"Any":fmt(state.maxp);renderList()});
   $("#beds").addEventListener("change",e=>{state.beds=+e.target.value;renderList()});
@@ -196,6 +196,7 @@ async function start(){
   const res=await fetch("data/listings.json");ALL=await res.json();
   ALL.forEach(l=>{l.mi=miles(OM,l);byId[l.id]=l});
   renderTabs();renderList();
+  const hb=/#b=(\d+)/.exec(location.hash);if(hb&&byId[+hb[1]])open(+hb[1]);
   try{if(CFG.googleMapsApiKey)await initGoogle();else await initLeaflet()}
   catch(e){console.error("Map failed, using OpenStreetMap",e);try{if(!MAP.ready)await initLeaflet()}catch(_){}}
 }
