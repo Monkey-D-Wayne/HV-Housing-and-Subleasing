@@ -252,16 +252,60 @@
   "site": "https://olivhetzel.com/",
   "photos": [
    {
-    "url": "https://olivhetzel.com/wp-content/uploads/2024/11/oliv-hetzel-index-hero-4.jpg",
-    "page": "https://olivhetzel.com/"
-   },
-   {
     "url": "https://olivhetzel.com/wp-content/uploads/2024/11/oliv-hetzel-index-lifestyle-gallery-live-like-a-classic.jpg",
     "page": "https://olivhetzel.com/"
    },
    {
-    "url": "https://olivhetzel.com/wp-content/uploads/2024/11/oliv-hetzel-index-hero-3.jpg",
+    "url": "https://olivhetzel.com/wp-content/uploads/2024/11/oliv-hetzel-index-amenities-Rooftop-pool.jpg",
     "page": "https://olivhetzel.com/"
+   },
+   {
+    "url": "https://olivhetzel.com/wp-content/uploads/2024/11/oliv-hetzel-index-amenities-Furnishings-Features.jpg",
+    "page": "https://olivhetzel.com/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Studios + 1 Bedrooms",
+    "beds": "Studio-1",
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "2 Bedrooms",
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "3 Bedrooms",
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "4+ Bedrooms",
+    "beds": "4-5",
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "VIP upgrade",
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Gameday upgrade",
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "price": null
    }
   ]
  },
@@ -296,7 +340,86 @@
   "lat": 40.79595,
   "lng": -77.85731,
   "source": "ocp",
-  "site": "https://www.livethecanyon.com/"
+  "site": "https://www.livethecanyon.com/",
+  "photos": [
+   {
+    "url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/0001_homepage_FullyFurnished.jpg",
+    "page": "https://www.livethecanyon.com/"
+   },
+   {
+    "url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/0002_homepage_247Maintenance.jpg",
+    "page": "https://www.livethecanyon.com/"
+   },
+   {
+    "url": "https://www.livethecanyon.com/wp-content/uploads/2022/01/0000_homepage_GreatAmenities.jpg",
+    "page": "https://www.livethecanyon.com/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Beaver Hill Studio",
+    "beds": "Studio",
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Beaver Hill 1x1",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Beaver Hill 2x1",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Beaver Hill 2x2",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "The Diplomat 2x2",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Garner Court Studio",
+    "beds": "Studio",
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Garner Court 2x1",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Garner Court 2x2",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Garner Court 3x2",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": null
+   }
+  ]
  },
  {
   "id": 13,
@@ -336,12 +459,56 @@
     "page": "https://www.olivhighland.com/"
    },
    {
-    "url": "https://www.olivhighland.com/wp-content/uploads/2024/11/oLiv-Highland-index-amenities-sustainability.jpg",
+    "url": "https://www.olivhighland.com/wp-content/uploads/2024/11/oLiv-Highland-index-Hero-1.jpg",
     "page": "https://www.olivhighland.com/"
    },
    {
-    "url": "https://www.olivhighland.com/wp-content/uploads/2024/11/oLiv-Highland-index-Hero-1.jpg",
+    "url": "https://www.olivhighland.com/wp-content/uploads/2024/11/oLiv-Highland-index-amenities-Furnishing.jpg",
     "page": "https://www.olivhighland.com/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Studios + 1 Bedrooms",
+    "beds": "Studio-1",
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "2 Bedrooms",
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "3 Bedrooms",
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "4+ Bedrooms",
+    "beds": "4+",
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Townhome upgrade",
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Mansion upgrade",
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "price": null
    }
   ]
  },
@@ -427,16 +594,32 @@
   "site": "https://www.hausstatecollege.com/",
   "photos": [
    {
-    "url": "https://www.hausstatecollege.com/wp-content/uploads/2025/05/1.jpg",
-    "page": "https://www.hausstatecollege.com/"
-   },
-   {
     "url": "https://www.hausstatecollege.com/wp-content/uploads/2025/05/haus-state-college-Homepage_Livelikeaclassic_footerimage.jpg",
     "page": "https://www.hausstatecollege.com/"
    },
    {
-    "url": "https://www.hausstatecollege.com/wp-content/uploads/2025/07/haus-state-college-index-amenities-fitness.webp",
+    "url": "https://www.hausstatecollege.com/wp-content/uploads/2025/05/haus-state-college-Floorplans-kitchen-scaled.jpg",
     "page": "https://www.hausstatecollege.com/"
+   },
+   {
+    "url": "https://www.hausstatecollege.com/wp-content/uploads/2025/05/haus-state-college-Floorplan-bedroom-scaled.jpg",
+    "page": "https://www.hausstatecollege.com/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "2 Bedroom",
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "3 Bedroom",
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "price": null
    }
   ]
  },
@@ -566,6 +749,15 @@
    {
     "url": "https://www.arpm.com/wp-content/uploads/2023/01/Centre-Court-Ext-New.jpg",
     "page": "https://www.arpm.com/property/centre-court/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "4 BR (furnished, up to 5 occupants)",
+    "beds": 4,
+    "baths": 2,
+    "sqft": null,
+    "price": "$5,980 per month (per unit)"
    }
   ]
  },
@@ -857,16 +1049,60 @@
   "site": "https://risestatecollege.com/",
   "photos": [
    {
-    "url": "https://risestatecollege.com/images/homepage/hero-pic-2-mob.webp",
-    "page": "https://risestatecollege.com/"
-   },
-   {
     "url": "https://risestatecollege.com/images/homepage/homepage-pic-14.webp",
     "page": "https://risestatecollege.com/"
    },
    {
     "url": "https://risestatecollege.com/images/homepage/homepage-s1-1.webp",
     "page": "https://risestatecollege.com/"
+   },
+   {
+    "url": "https://risestatecollege.com/images/homepage/homepage-s2-1.webp",
+    "page": "https://risestatecollege.com/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Studio",
+    "beds": "Studio",
+    "baths": 1,
+    "sqft": "309-371",
+    "price": null
+   },
+   {
+    "name": "2 Bedroom",
+    "beds": 2,
+    "baths": "1-2",
+    "sqft": "450-707",
+    "price": null
+   },
+   {
+    "name": "3 Bedroom",
+    "beds": 3,
+    "baths": "2-3",
+    "sqft": "670-857",
+    "price": null
+   },
+   {
+    "name": "4 Bedroom",
+    "beds": 4,
+    "baths": "3-4",
+    "sqft": "871-1,118",
+    "price": null
+   },
+   {
+    "name": "5 Bedroom",
+    "beds": 5,
+    "baths": "3-4",
+    "sqft": "1,063-1,510",
+    "price": null
+   },
+   {
+    "name": "Grad Student (studio/2/3 bed)",
+    "beds": "Studio-3",
+    "baths": null,
+    "sqft": null,
+    "price": null
    }
   ]
  },
@@ -891,12 +1127,49 @@
     "url": "https://www.themaxxen.com/wp-content/uploads/2022/06/index-header-1600x680-c-default.jpg",
     "page": "https://www.themaxxen.com/"
    }
+  ],
+  "plans": [
+   {
+    "name": "1 Bedroom",
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "2 Bedroom",
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "3 Bedroom",
+    "beds": 3,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "4 Bedroom",
+    "beds": 4,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "5 Bedroom",
+    "beds": 5,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   }
   ]
  },
  {
   "id": 52,
-  "name": "Echelon State College",
-  "address": "338 W College Ave",
+  "name": "Yugo Echelon",
+  "address": "330 W College Ave",
   "type": "complex",
   "beds": [
    0,
@@ -908,11 +1181,167 @@
   "lat": 40.792259,
   "lng": -77.864368,
   "source": "ocp",
-  "site": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon"
+  "site": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/echelon",
+  "plans": [
+   {
+    "name": "Chestnut C1 - 3 Bed, 5 Occupants, 3 Bath",
+    "beds": 3,
+    "baths": 3,
+    "sqft": null,
+    "price": "From $1,254.00"
+   },
+   {
+    "name": "Chestnut C3 - 3 Bed, 5 Occupants, 3 Bath",
+    "beds": 3,
+    "baths": 3,
+    "sqft": null,
+    "price": "From $1,254.00"
+   },
+   {
+    "name": "Chestnut C4 - 3 Bed, 5 Occupants, 3 Bath",
+    "beds": 3,
+    "baths": 3,
+    "sqft": null,
+    "price": "From $1,264.00"
+   },
+   {
+    "name": "Chestnut C2 - 3 Bed, 5 Occupants, 3 Bath",
+    "beds": 3,
+    "baths": 3,
+    "sqft": null,
+    "price": "From $1,274.00"
+   },
+   {
+    "name": "Birch B9 - 2 Bed, 4 Occupants, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,374.00"
+   },
+   {
+    "name": "Buckthorn Deluxe - 2 Bed, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,919.00"
+   },
+   {
+    "name": "Beech Deluxe - 2 Bed, 3 Bath",
+    "beds": 2,
+    "baths": 3,
+    "sqft": null,
+    "price": "From $1,899.00"
+   },
+   {
+    "name": "Boxelder B2 - 2 Bed, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,925.00"
+   },
+   {
+    "name": "Boxwood Deluxe - 2 Bed, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,925.00"
+   },
+   {
+    "name": "Buckeye B1 (INC) - 2 Bed, 1 Bath",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": "From $1,925.00"
+   },
+   {
+    "name": "Birch B4 Deluxe - 2 Bed, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,960.00"
+   },
+   {
+    "name": "Birch B2A Deluxe - 2 Bed, 2 Occupants, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,965.00"
+   },
+   {
+    "name": "Birch B2B - 2 Bed, 4 Occupants, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,965.00"
+   },
+   {
+    "name": "Birch B2C Deluxe - 2 Bed, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,975.00"
+   },
+   {
+    "name": "Studio - Spruce",
+    "beds": "Studio",
+    "baths": null,
+    "sqft": null,
+    "price": "From $2,579.00"
+   },
+   {
+    "name": "Cedar (INC) - 3 Bed, 4 Occupants, 2 Bath",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": "Inquire"
+   },
+   {
+    "name": "Basswood - 2 Bed, 4 Occupants, 4 Bath",
+    "beds": 2,
+    "baths": 4,
+    "sqft": null,
+    "price": "Sold out"
+   },
+   {
+    "name": "Cottonwood - 3 Bed, 2 Bath",
+    "beds": 3,
+    "baths": 2,
+    "sqft": null,
+    "price": "Sold out"
+   },
+   {
+    "name": "Cypress - 3 Bed, 3 Bath",
+    "beds": 3,
+    "baths": 3,
+    "sqft": null,
+    "price": "Sold out"
+   },
+   {
+    "name": "Dogwood D2 - 4 Bed, 5 Occupants, 3 Bath",
+    "beds": 4,
+    "baths": 3,
+    "sqft": null,
+    "price": "Sold out"
+   },
+   {
+    "name": "Dove - 4 Bed, 4 Bath",
+    "beds": 4,
+    "baths": 4,
+    "sqft": null,
+    "price": "Sold out"
+   },
+   {
+    "name": "Elm E1 - 5 Bed, 3 Bath",
+    "beds": 5,
+    "baths": 3,
+    "sqft": null,
+    "price": "Sold out"
+   }
+  ]
  },
  {
   "id": 53,
-  "name": "The Metropolitan",
+  "name": "Yugo Pinnacle (The Metropolitan)",
   "address": "412 W College Ave",
   "type": "complex",
   "beds": [
@@ -925,7 +1354,100 @@
   "lat": 40.791343,
   "lng": -77.865194,
   "source": "ocp",
-  "site": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle"
+  "site": "https://yugo.com/en-us/global/united-states-of-america/state-college-pa/pinnacle",
+  "plans": [
+   {
+    "name": "The Soho - Studio",
+    "beds": "Studio",
+    "baths": null,
+    "sqft": null,
+    "price": "From $2,619.00"
+   },
+   {
+    "name": "The Arden - 1 Bed, 1 Bath",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": "Sold out"
+   },
+   {
+    "name": "The Bexley - 2 Bed, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,309.00"
+   },
+   {
+    "name": "The Bradford - 2 Bed, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,329.00"
+   },
+   {
+    "name": "The Brooklyn - 2 Bed, 2 Bath",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": "From $1,899.00"
+   },
+   {
+    "name": "The Camden - 3 Bed, 3 Bath",
+    "beds": 3,
+    "baths": 3,
+    "sqft": null,
+    "price": "Sold out"
+   },
+   {
+    "name": "The Chelsea - 3 Bed, 3 Bath",
+    "beds": 3,
+    "baths": 3,
+    "sqft": null,
+    "price": "From $1,297.00"
+   },
+   {
+    "name": "The Derby - 4 Bed, 3 Bath",
+    "beds": 4,
+    "baths": 3,
+    "sqft": null,
+    "price": "From $1,287.00"
+   },
+   {
+    "name": "The Deerwood - 4 Bed, 3 Bath",
+    "beds": 4,
+    "baths": 3,
+    "sqft": null,
+    "price": "From $1,287.00"
+   },
+   {
+    "name": "The Downing - 4 Bed, 3 Bath",
+    "beds": 4,
+    "baths": 3,
+    "sqft": null,
+    "price": "Sold out"
+   },
+   {
+    "name": "The Dover - 4 Bed, 4 Bath",
+    "beds": 4,
+    "baths": 4,
+    "sqft": null,
+    "price": "Sold out"
+   },
+   {
+    "name": "The Gramercy - 5 Bed, 4 Bath",
+    "beds": 5,
+    "baths": 4,
+    "sqft": null,
+    "price": "From $1,559.00"
+   },
+   {
+    "name": "The Greenwich - 5 Bed, 5 Bath",
+    "beds": 5,
+    "baths": 5,
+    "sqft": null,
+    "price": "From $1,599.00"
+   }
+  ]
  },
  {
   "id": 54,
@@ -1181,16 +1703,32 @@
   "site": "https://marionplace.com/",
   "photos": [
    {
-    "url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4866-1024x700.jpg",
+    "url": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Photo1-1.jpg",
     "page": "https://marionplace.com/"
    },
    {
-    "url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4931-1024x736.jpg",
+    "url": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Photo2.jpg",
     "page": "https://marionplace.com/"
    },
    {
-    "url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4869-1024x683.jpg",
+    "url": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Photo3.jpg",
     "page": "https://marionplace.com/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "1 Bedroom with Home Office",
+    "beds": 1,
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "2 Bedroom",
+    "beds": 2,
+    "baths": null,
+    "sqft": null,
+    "price": null
    }
   ]
  },
@@ -1766,6 +2304,22 @@
     "url": "https://www.livethecanyon.com/wp-content/uploads/2020/07/apt-includes-14.jpg",
     "page": "https://www.livethecanyon.com/alexander-court/"
    }
+  ],
+  "plans": [
+   {
+    "name": "Alexander Court 1x1",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Alexander Court 2x1",
+    "beds": 2,
+    "baths": 1,
+    "sqft": null,
+    "price": null
+   }
   ]
  },
  {
@@ -1796,6 +2350,29 @@
    {
     "url": "https://www.livethecanyon.com/wp-content/uploads/2020/07/0001_ViewBuilding_FloorPlans4-3.jpg",
     "page": "https://www.livethecanyon.com/cedarbrook/"
+   }
+  ],
+  "plans": [
+   {
+    "name": "Cedarbrook Studio",
+    "beds": "Studio",
+    "baths": null,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Cedarbrook 1x1",
+    "beds": 1,
+    "baths": 1,
+    "sqft": null,
+    "price": null
+   },
+   {
+    "name": "Cedarbrook 2x2 (Standard Two Bedroom)",
+    "beds": 2,
+    "baths": 2,
+    "sqft": null,
+    "price": null
    }
   ]
  },
@@ -1892,5 +2469,54 @@
   "lng": -77.870335,
   "source": "ocp",
   "site": "https://www.brickworkproperties.com/state-college/corl-west-apartments/student/"
+ },
+ {
+  "id": 200,
+  "name": "The Allenway",
+  "address": "315 S Allen St",
+  "type": "apartment",
+  "beds": [
+   0,
+   2
+  ],
+  "price": "Ask for pricing",
+  "ppm": null,
+  "est": false,
+  "lat": 40.792454,
+  "lng": -77.857826,
+  "source": "web",
+  "site": "https://www.theallenway.com/"
+ },
+ {
+  "id": 201,
+  "name": "The Phoenix",
+  "address": "501 E Beaver Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$850 - $1,400 /Bedroom",
+  "ppm": 850,
+  "est": false,
+  "lat": 40.798673,
+  "lng": -77.853707,
+  "source": "web"
+ },
+ {
+  "id": 202,
+  "name": "Kensington Court",
+  "address": "930 Oakwood Ave",
+  "type": "apartment",
+  "beds": [
+   1,
+   1
+  ],
+  "price": "$848 - $913 /Bedroom",
+  "ppm": 848,
+  "est": false,
+  "lat": 40.819021,
+  "lng": -77.895203,
+  "source": "web"
  }
 ]

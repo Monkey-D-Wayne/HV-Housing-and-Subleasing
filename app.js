@@ -67,12 +67,17 @@ function renderList(){
     <div class="photo">${pic(l)}<span class="badge">${TLABEL[l.type]}</span>${ptag(l)}${(l.photos||[]).length>1?`<span class="count">1 / ${l.photos.length}</span>`:""}</div>
     <div class="meta"><div class="t"><b>${esc(l.name)}</b><em>${distTxt(l)}</em></div>
     <div class="s">${esc(l.address)} · ${bedsTxt(l)}</div>
-    <div class="p"><strong>${priceTxt(l)}</strong>${l.ppm==null?"":" per person / mo"+(l.semester?" equiv.":"")}</div></div></button>`).join("")
+    <div class="p"><strong>${priceTxt(l)}</strong>${l.ppm==null?"":" per person / mo"+(l.semester?" equiv.":"")}</div>${(l.plans||[]).length?`<div class="fp">${l.plans.length} floor plan${l.plans.length>1?"s":""}</div>`:""}</div></button>`).join("")
    :`<div class="empty">Nothing matches those filters. Try a higher price, another bedroom count or a different search.</div>`;
   MAP.setRows(rows);
 }
 
 /* detail view */
+function plansHtml(l){
+  const ps=l.plans||[];if(!ps.length)return "";
+  const bb=p=>[p.beds===0||p.beds==="0"||/studio/i.test(p.beds??"")?"Studio":p.beds!=null&&p.beds!==""?p.beds+" bd":"",p.baths!=null&&p.baths!==""?p.baths+" ba":""].filter(Boolean).join(" · ");
+  return `<div class="plans"><h3>Floor plans <span>${ps.length}</span></h3><div class="tablewrap"><table><thead><tr><th>Plan</th><th>Layout</th><th>Size</th><th>Price</th></tr></thead><tbody>${ps.map(p=>`<tr><td>${esc(p.name||"")}</td><td>${esc(bb(p))}</td><td>${p.sqft?esc(p.sqft)+" sq ft":""}</td><td>${esc(p.price||"Ask")}</td></tr>`).join("")}</tbody></table></div><p class="fine">Floor plans and prices as shown on the building's website when checked. Confirm with the building before signing.</p></div>`;
+}
 let gi=0;
 function open(id){
   const l=byId[id];if(!l)return;state.sel=id;gi=0;MAP.select(id);
@@ -84,6 +89,7 @@ function open(id){
   <div class="body"><div><span class="kind">${TLABEL[l.type]}</span><h2>${esc(l.name)}</h2><div class="addr">${esc(l.address)}, State College, PA · ${l.mi.toFixed(1)} mi from Old Main (${distTxt(l)})</div></div>
   <div class="facts"><div class="fact"><span>Listed price</span><b style="font-size:14px">${esc(l.price)}</b></div><div class="fact"><span>Per person, from</span><b>${per}</b></div><div class="fact"><span>Bedrooms</span><b>${bedsTxt(l)}</b></div><div class="fact"><span>Lease</span><b>${l.source==="psu"?"Academic year":(/(\d+)-month/.exec(l.price)?.[0]||"Ask")}</b></div></div>
   <p>${l.source==="psu"?"Penn State campus housing. Rates are per person and include utilities. Most residence halls require the Campus Meal Plan; Nittany and White Course Apartments do not.":(l.ppm==null?"Pricing isn't posted publicly. Contact the building for current rates.":l.est?"Price is listed for the whole unit. The per-person figure assumes the unit is fully shared.":"Price is listed per bedroom.")}</p>
+  ${plansHtml(l)}
   <div class="cta">${l.site?`<a class="btn primary" href="${esc(l.site)}" target="_blank" rel="noopener">Visit ${esc(host(l.site))}</a>`:l.source==="psu"?`<a class="btn primary" href="${PSU}" target="_blank" rel="noopener">See Penn State rates</a>`:`<a class="btn primary" href="${OCP}" target="_blank" rel="noopener">Find it on Penn State Off-Campus</a>`}
   <a class="btn" href="${gmaps(l)}" target="_blank" rel="noopener">Open in Google Maps</a><a class="btn" href="${street(l)}" target="_blank" rel="noopener">Street View</a></div>
   <div class="src"><span>Price source: ${priceSrc}, checked Nov 25, 2026.</span><span>${credit}</span></div></div>`;
