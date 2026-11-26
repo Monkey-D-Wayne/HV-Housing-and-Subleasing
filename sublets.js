@@ -74,7 +74,7 @@ function demoApi(){
     demo:true,
     onAuth(f){listeners.push(f);f(user)},
     async sendCode(email){return {ok:true}},
-    async verify(email,code){if(!/^\d{6,10}$/.test(code))throw new Error("Type the 6-digit code");user={id:"demo-"+email,email};try{localStorage.setItem(UKEY,JSON.stringify(user))}catch(e){}emit()},
+    async verify(email,code){if(!/^\d{6,10}$/.test(code))throw new Error("Type the code from the email");user={id:"demo-"+email,email};try{localStorage.setItem(UKEY,JSON.stringify(user))}catch(e){}emit()},
     async signOut(){user=null;try{localStorage.removeItem(UKEY)}catch(e){}emit()},
     async list(){return [...examples(),...read().filter(s=>s.status==="live"&&s.end_date>=today())]},
     async mine(){return user?read().filter(s=>s.user_id===user.id):[]},
@@ -196,14 +196,14 @@ function openAuth(then){afterAuth=then||null;const d=$("#auth");
   $("#authbody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>Sign in with your Penn State email</h2>
   <p>Only students with a psu.edu email can post sublets or contact posters. That keeps scammers out. We send you a code, no password needed.</p>
   <form id="f1" class="stack"><label>Penn State email<input name="email" type="email" required autocomplete="email" placeholder="abc1234@psu.edu" inputmode="email"></label><p class="err" id="e1" hidden></p><button class="btn primary">Send my code</button></form>
-  <form id="f2" class="stack" hidden><p id="sent"></p><label>Code from the email<input name="code" inputmode="numeric" autocomplete="one-time-code" required pattern="[0-9]{6,10}" placeholder="123456"></label><p class="err" id="e2" hidden></p><button class="btn primary">Sign in</button><button type="button" class="linkbtn" id="back">Use a different email</button></form>
+  <form id="f2" class="stack" hidden><p id="sent"></p><label>Code from the email<input name="code" inputmode="numeric" autocomplete="one-time-code" required pattern="[0-9]{6,10}" placeholder="12345678"></label><p class="err" id="e2" hidden></p><button class="btn primary">Sign in</button><button type="button" class="linkbtn" id="back">Use a different email</button></form>
   ${API.demo?`<p class="fine">Demo mode: no email is sent. Use any @psu.edu address and type any 6 digits.</p>`:""}</div>`;
   if(!d.open)d.showModal();d.querySelector(".close").onclick=()=>d.close();
   let email="";const f1=$("#f1"),f2=$("#f2");
   f1.onsubmit=async e=>{e.preventDefault();email=f1.email.value.trim().toLowerCase();const er=$("#e1");er.hidden=true;
     if(!PSU_RE.test(email)){er.textContent="Use your @psu.edu email, like abc1234@psu.edu.";er.hidden=false;return}
     const btn=f1.querySelector("button");btn.disabled=true;btn.textContent="Sending…";
-    try{await API.sendCode(email);f1.hidden=true;f2.hidden=false;$("#sent").innerHTML=`We sent a code to <b>${esc(email)}</b>. Check your inbox (and Junk). You can also click the link in the email.`;f2.code.focus()}
+    try{await API.sendCode(email);f1.hidden=true;f2.hidden=false;$("#sent").innerHTML=`We sent a code to <b>${esc(email)}</b>. Check your inbox and Junk. It can take a few minutes. You can also click the link in the email.`;f2.code.focus()}
     catch(x){er.textContent=/rate|limit|seconds/i.test(x.message)?"Too many codes asked for. Wait a minute, then try again.":x.message;er.hidden=false}finally{btn.disabled=false;btn.textContent="Send my code"}};
   f2.onsubmit=async e=>{e.preventDefault();const er=$("#e2");er.hidden=true;try{await API.verify(email,f2.code.value.trim());d.close();toast("Signed in as "+email);const t=afterAuth;afterAuth=null;t&&t()}catch(x){er.textContent=/expired|invalid/i.test(x.message)?"That code didn't work or has expired. Ask for a new one.":x.message;er.hidden=false}};
   $("#back").onclick=()=>{f2.hidden=true;f1.hidden=false}}
