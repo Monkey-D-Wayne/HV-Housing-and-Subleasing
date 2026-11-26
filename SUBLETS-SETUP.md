@@ -55,6 +55,14 @@ Supabase's built-in email only sends to people on your own Supabase team, so stu
 6. Heads-up: Penn State's email (Microsoft) can hold mail from a brand-new Gmail for hours or longer. Every code also appears in the Gmail's **Sent** folder, which helps while testing. Before launch, send from your own domain through a sending service (for example Resend or Brevo) so codes land reliably.
 7. Optional but helpful: **Authentication**, **Rate Limits**, set "emails sent per hour" to 100.
 
+## 5b. Only let psu.edu emails sign up
+The site already asks for a psu.edu email, but someone could skip the page and ask Supabase directly. This hook makes Supabase itself refuse other emails, so no code is ever sent to them.
+1. Make sure you ran the latest `supabase/setup.sql` (step 2). It creates the `hook_psu_only` function.
+2. Left sidebar: **Authentication**, then **Auth Hooks** (under Configuration).
+3. Click **Add a new hook**, then **Before User Created**.
+4. Hook type: **Postgres**. Schema: `public`. Function: `hook_psu_only`. Click **Create hook**.
+5. Test it: on the Sublets page nothing changes for psu.edu emails. Other emails now get "Only Penn State (@psu.edu) emails can sign up."
+
 ## 6. Try it
 Open https://monkey-d-wayne.github.io/HV-Housing-and-Subleasing/sublets.html. The yellow "Demo mode" box should be gone. Click **Sign in**, enter your psu.edu email, type the code from the email, then **Post a sublet**.
 
