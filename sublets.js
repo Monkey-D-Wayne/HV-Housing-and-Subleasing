@@ -14,7 +14,7 @@ function miles(a,b){const R=3958.8,r=Math.PI/180,dLa=(b.lat-a.lat)*r,dLo=(b.lng-
 const distTxt=mi=>mi<1.2?Math.max(2,Math.round(mi*20))+" min walk":mi.toFixed(1)+" mi · bus";
 const D=s=>new Date(s+"T12:00:00");
 const iso=d=>d.toISOString().slice(0,10);
-const today=()=>iso(new Date());
+const today=()=>new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"}); // Penn State's date, YYYY-MM-DD
 const dTxt=s=>D(s).toLocaleDateString("en-US",{month:"short",day:"numeric",year:D(s).getFullYear()!==new Date().getFullYear()?"numeric":undefined});
 const months=(a,b)=>Math.max(1,Math.round((D(b)-D(a))/2629800000));
 const bedsTxt=b=>b===0?"Studio":b+" bd";
@@ -99,7 +99,8 @@ function liveApi(){
   const err=e=>{if(e)throw new Error(e.message||String(e))};
   async function upload(bucket,f,max,q){const blob=f.type==="application/pdf"?f:await shrink(f,max,q);const ext=blob.type==="application/pdf"?"pdf":"jpg";
     const path=`${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
-    const {error}=await sb.storage.from(bucket).upload(path,blob,{contentType:blob.type||"image/jpeg",upsert:false});err(error);
+    const {error}=await sb.storage.from(bucket).upload(path,blob,{contentType:blob.type||"image/jpeg",upsert:false});
+    if(error&&/row-level security|policy|unauthorized/i.test(error.message))throw new Error(bucket==="sublet-photos"?"You've reached the photo limit for your account. Delete an old sublet to free up space.":"You've reached the limit for lease proof uploads.");err(error);
     return bucket==="sublet-photos"?sb.storage.from(bucket).getPublicUrl(path).data.publicUrl:path}
   return {
     demo:false,
@@ -111,10 +112,16 @@ function liveApi(){
     async mine(){await ready;if(!user)return[];const {data,error}=await sb.from("sublets").select("*").eq("user_id",user.id).order("created_at",{ascending:false});err(error);return data||[]},
     async post(row,photos,lease){await ready;need();
       const urls=[];for(const f of photos)urls.push(await upload("sublet-photos",f,1600,.82));
-      if(lease)await upload("lease-proofs",lease,2000,.85);
-      const {data,error}=await sb.from("sublets").insert({...row,photos:urls,has_lease_doc:!!lease}).select().single();err(error);return data},
+      const lease_path=lease?await upload("lease-proofs",lease,2000,.85):null;
+      const {data,error}=await sb.from("sublets").insert({...row,photos:urls,lease_path}).select().single();
+      if(error){const own=urls.map(u=>u.split("/sublet-photos/")[1]).filter(Boolean);if(own.length)await sb.storage.from("sublet-photos").remove(own);if(lease_path)await sb.storage.from("lease-proofs").remove([lease_path])}
+      err(error);return data},
     async setStatus(id,status){await ready;need();const {error}=await sb.from("sublets").update({status}).eq("id",id);err(error)},
-    async remove(id){await ready;need();const {error}=await sb.from("sublets").delete().eq("id",id);err(error)},
+    async remove(id){await ready;need();const {data:row}=await sb.from("sublets").select("photos,lease_path").eq("id",id).maybeSingle();
+      const {error}=await sb.from("sublets").delete().eq("id",id);err(error);
+      // free up the poster's upload space
+      const own=(row?.photos||[]).map(u=>u.split("/sublet-photos/")[1]).filter(Boolean);
+      if(own.length)await sb.storage.from("sublet-photos").remove(own);if(row?.lease_path)await sb.storage.from("lease-proofs").remove([row.lease_path])},
     async contact(id){await ready;need();const {data,error}=await sb.rpc("sublet_contact",{sid:id});err(error);if(!data?.length)throw new Error("This sublet is no longer listed");return data[0]},
     async report(id,reason){await ready;need();const {error}=await sb.from("sublet_reports").insert({sublet_id:id,reason});if(error&&!/duplicate/i.test(error.message))err(error);return true}
   };
@@ -253,12 +260,13 @@ function openPost(){if(!USER){openAuth(openPost);return}PICS=[];const d=$("#post
     if(r.price<50||r.price>6000){er.textContent="Enter a monthly price between $50 and $6,000.";er.hidden=false;return}
     const btn=$("#pbtn");btn.disabled=true;btn.textContent=PICS.length?"Uploading photos…":"Posting…";
     try{const b=bById[r.building_id];let pos=b?{lat:b.lat,lng:b.lng}:await geocode(r.address);
+      if(!pos)throw new Error("We couldn't find that street address in State College. Check the spelling, or pick your building from the list.");
       const s=await API.post({...r,lat:pos.lat,lng:pos.lng},PICS,lease);d.close();
       await load();toast(s.status==="review"?"Posted. A few words in your listing need a quick review before it shows.":"Your sublet is live.");if(s.status==="live"&&byId[s.id])open(s.id)}
     catch(x){er.textContent=x.message;er.hidden=false}finally{btn.disabled=false;btn.textContent="Post sublet"}}}
 async function geocode(addr){try{const u=`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&viewbox=-77.98,40.86,-77.75,40.73&bounded=1&q=${encodeURIComponent(addr+", State College, PA")}`;
   const r=await fetch(u,{headers:{"Accept":"application/json"}});const j=await r.json();if(j[0])return {lat:+j[0].lat,lng:+j[0].lon}}catch(e){}
-  return {lat:OM.lat+(Math.random()-.5)*.004,lng:OM.lng+(Math.random()-.5)*.004}}
+  return null}
 
 /* ---------- my sublets ---------- */
 async function openMine(){const d=$("#mine");$("#minebody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>My sublets</h2><p class="lead">Signed in as <b>${esc(USER.email)}</b></p><div id="mylist" class="mylist">Loading…</div><div class="cta"><button class="btn primary" id="mpost">Post a sublet</button><button class="btn" id="mout">Sign out</button></div></div>`;
