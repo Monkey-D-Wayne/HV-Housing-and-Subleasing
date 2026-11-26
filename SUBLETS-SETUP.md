@@ -51,7 +51,9 @@ Supabase's built-in email only sends to people on your own Supabase team, so stu
    <p>If you didn't ask for this, you can ignore this email.</p>
    ```
    Subject: `Your Happy Valley Housing sign-in code`. Click **Save changes**.
-6. Optional but helpful: **Authentication**, **Rate Limits**, set "emails sent per hour" to 100.
+   Then open the **Confirm signup** template and paste the same subject and body there too. A student's very first sign-in uses Confirm signup, later ones use Magic Link, so both need the code. Click **Save changes**.
+6. Heads-up: Penn State's email (Microsoft) can hold mail from a brand-new Gmail for hours or longer. Every code also appears in the Gmail's **Sent** folder, which helps while testing. Before launch, send from your own domain through a sending service (for example Resend or Brevo) so codes land reliably.
+7. Optional but helpful: **Authentication**, **Rate Limits**, set "emails sent per hour" to 100.
 
 ## 6. Try it
 Open https://monkey-d-wayne.github.io/HV-Housing-and-Subleasing/sublets.html. The yellow "Demo mode" box should be gone. Click **Sign in**, enter your psu.edu email, type the code from the email, then **Post a sublet**.
