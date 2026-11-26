@@ -203,7 +203,7 @@ function openAuth(then){afterAuth=then||null;const d=$("#auth");
   f1.onsubmit=async e=>{e.preventDefault();email=f1.email.value.trim().toLowerCase();const er=$("#e1");er.hidden=true;
     if(!PSU_RE.test(email)){er.textContent="Use your @psu.edu email, like abc1234@psu.edu.";er.hidden=false;return}
     const btn=f1.querySelector("button");btn.disabled=true;btn.textContent="Sending…";
-    try{await API.sendCode(email);f1.hidden=true;f2.hidden=false;$("#sent").innerHTML=`We sent a code to <b>${esc(email)}</b>. Check your inbox and Junk. It can take a few minutes. You can also click the link in the email.`;f2.code.focus()}
+    try{await API.sendCode(email);f1.hidden=true;f2.hidden=false;$("#sent").innerHTML=`We sent a code to <b>${esc(email)}</b>. Check your inbox and Junk. It can take a few minutes.`;f2.code.focus()}
     catch(x){er.textContent=/rate|limit|seconds/i.test(x.message)?"Too many codes asked for. Wait a minute, then try again.":x.message;er.hidden=false}finally{btn.disabled=false;btn.textContent="Send my code"}};
   f2.onsubmit=async e=>{e.preventDefault();const er=$("#e2");er.hidden=true;try{await API.verify(email,f2.code.value.trim());d.close();toast("Signed in as "+email);const t=afterAuth;afterAuth=null;t&&t()}catch(x){er.textContent=/expired|invalid/i.test(x.message)?"That code didn't work or has expired. Ask for a new one.":x.message;er.hidden=false}};
   $("#back").onclick=()=>{f2.hidden=true;f1.hidden=false}}

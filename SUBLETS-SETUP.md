@@ -47,11 +47,11 @@ Supabase's built-in email only sends to people on your own Supabase team, so stu
    ```html
    <h2>Your Happy Valley Housing code</h2>
    <p>Your sign-in code is <b style="font-size:22px">{{ .Token }}</b></p>
-   <p>Or <a href="{{ .ConfirmationURL }}">click here to sign in</a>.</p>
+   <p>Type this code on the Happy Valley Housing page to sign in. It expires in 1 hour.</p>
    <p>If you didn't ask for this, you can ignore this email.</p>
    ```
    Subject: `Your Happy Valley Housing sign-in code`. Click **Save changes**.
-   Then open the **Confirm signup** template and paste the same subject and body there too. A student's very first sign-in uses Confirm signup, later ones use Magic Link, so both need the code. Click **Save changes**.
+   Leave the sign-in link out on purpose: Penn State's Microsoft security opens every link in incoming mail, which uses up the one-time code before the student can type it. Then open the **Confirm signup** template and paste the same subject and body there too. A student's very first sign-in uses Confirm signup, later ones use Magic Link, so both need the code. Click **Save changes**.
 6. Heads-up: Penn State's email (Microsoft) can hold mail from a brand-new Gmail for hours or longer. Every code also appears in the Gmail's **Sent** folder, which helps while testing. Before launch, send from your own domain through a sending service (for example Resend or Brevo) so codes land reliably.
 7. Optional but helpful: **Authentication**, **Rate Limits**, set "emails sent per hour" to 100.
 
