@@ -1,4 +1,4 @@
--- Happy Valley Housing: sublets database.
+-- Rhedr: sublets database.
 -- Paste this whole file into Supabase, SQL Editor, New query, then press Run.
 -- Running it again is safe.
 

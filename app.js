@@ -1,4 +1,4 @@
-/* Happy Valley Housing: listings, filters, map and detail view. */
+/* Rhedr: listings, filters, map and detail view. */
 (function(){
 "use strict";
 const CFG=window.HVH_CONFIG||{};

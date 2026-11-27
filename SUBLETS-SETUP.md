@@ -26,8 +26,8 @@ Everything below is free. Supabase's free plan holds 500 MB of listings and 1 GB
 
 ## 4. Tell Supabase where the site lives
 1. Left sidebar: **Authentication**, then **URL Configuration**.
-2. **Site URL**: `https://monkey-d-wayne.github.io/HV-Housing-and-Subleasing/sublets.html`, then **Save**.
-3. Under **Redirect URLs** click **Add URL**: `https://monkey-d-wayne.github.io/HV-Housing-and-Subleasing/**`, then **Save URLs**.
+2. **Site URL**: `https://rhedr.com/sublets.html`, then **Save**.
+3. Under **Redirect URLs** click **Add URL**: `https://rhedr.com/**`, then **Save URLs**. Add `https://www.rhedr.com/**` the same way.
 
 ## 5. Let Supabase email sign-in codes to students
 Supabase's built-in email only sends to people on your own Supabase team, so students won't get codes until you connect a sender. A Gmail account works and is free (up to about 500 emails a day).
@@ -37,7 +37,7 @@ Supabase's built-in email only sends to people on your own Supabase team, so stu
 3. Go to https://myaccount.google.com/apppasswords. App name: `Supabase`. Click **Create** and copy the 16-letter password it shows.
 4. In Supabase: **Authentication**, then **Emails** (or **Email**), then the **SMTP Settings** tab. Turn on **Enable Custom SMTP** and fill in:
    - Sender email: your Gmail address
-   - Sender name: `Happy Valley Housing`
+   - Sender name: `Rhedr`
    - Host: `smtp.gmail.com`
    - Port: `465`
    - Username: your Gmail address
@@ -45,12 +45,12 @@ Supabase's built-in email only sends to people on your own Supabase team, so stu
    Click **Save changes**.
 5. Still under **Emails**, open the **Templates** tab, then **Magic Link**. Replace the message body with:
    ```html
-   <h2>Your Happy Valley Housing code</h2>
+   <h2>Your Rhedr code</h2>
    <p>Your sign-in code is <b style="font-size:22px">{{ .Token }}</b></p>
-   <p>Type this code on the Happy Valley Housing page to sign in. It expires in 1 hour.</p>
+   <p>Type this code on the Rhedr page to sign in. It expires in 1 hour.</p>
    <p>If you didn't ask for this, you can ignore this email.</p>
    ```
-   Subject: `Your Happy Valley Housing sign-in code`. Click **Save changes**.
+   Subject: `Your Rhedr sign-in code`. Click **Save changes**.
    Leave the sign-in link out on purpose: Penn State's Microsoft security opens every link in incoming mail, which uses up the one-time code before the student can type it. Then open the **Confirm signup** template and paste the same subject and body there too. A student's very first sign-in uses Confirm signup, later ones use Magic Link, so both need the code. Click **Save changes**.
 6. Heads-up: Penn State's email (Microsoft) can hold mail from a brand-new Gmail for hours or longer. Every code also appears in the Gmail's **Sent** folder, which helps while testing. Before launch, send from your own domain through a sending service (for example Resend or Brevo) so codes land reliably.
 7. Optional but helpful: **Authentication**, **Rate Limits**, set "emails sent per hour" to 100.
@@ -64,7 +64,7 @@ The site already asks for a psu.edu email, but someone could skip the page and a
 5. Test it: on the Sublets page nothing changes for psu.edu emails. Other emails now get "Only Penn State (@psu.edu) emails can sign up."
 
 ## 6. Try it
-Open https://monkey-d-wayne.github.io/HV-Housing-and-Subleasing/sublets.html. The yellow "Demo mode" box should be gone. Click **Sign in**, enter your psu.edu email, type the code from the email, then **Post a sublet**.
+Open https://rhedr.com/sublets.html. The yellow "Demo mode" box should be gone. Click **Sign in**, enter your psu.edu email, type the code from the email, then **Post a sublet**.
 
 ## Running it day to day
 - **Listings waiting for review** (they mentioned wire transfers, WhatsApp, "I'm out of the country", or got 3 reports): **Table Editor**, `sublets`, click **Filter**, `status` equals `review`. Double-click the status cell and change it to `live` (looks fine) or `removed` (scam).

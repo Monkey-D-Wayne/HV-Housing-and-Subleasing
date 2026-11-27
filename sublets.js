@@ -1,4 +1,4 @@
-/* Happy Valley Housing: student sublets and lease takeovers.
+/* Rhedr: student sublets and lease takeovers.
    Data lives in Supabase when supabaseUrl/supabaseKey are set in config.js; otherwise demo mode (this browser only). */
 (function(){
 "use strict";
@@ -42,7 +42,7 @@ const CHECK='<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
 function badges(s){const b=[{k:"psu",t:"Penn State student",d:"Posted from a confirmed @psu.edu email."}];
   if(s.lease_verified)b.push({k:"lease",t:"Lease checked",d:"We checked a lease or proof of residence for this address."});
   if((s.photos||[]).length>=4)b.push({k:"photos",t:"Real photos",d:"The poster uploaded their own photos of the place."});
-  const bb=bById[s.building_id];if(bb&&!(bb.ppm&&s.space==="room"&&s.price<bb.ppm*0.45))b.push({k:"bldg",t:"Known building",d:"Matches a building on Happy Valley Housing, and the price fits that building."});
+  const bb=bById[s.building_id];if(bb&&!(bb.ppm&&s.space==="room"&&s.price<bb.ppm*0.45))b.push({k:"bldg",t:"Known building",d:"Matches a building on Rhedr, and the price fits that building."});
   return b}
 function score(s){const age=(Date.now()-new Date(s.created_at||Date.now()))/864e5;
   return (s.lease_verified?40:0)+(s.building_id?12:0)+Math.min((s.photos||[]).length,6)*3+(s.has_lease_doc?4:0)-Math.min(age,60)*0.3}
@@ -189,7 +189,7 @@ function open(id){const s=byId[id];if(!s)return;gi=0;MAP.select(id);const ph=s.p
   d.querySelector("#allph")?.addEventListener("click",()=>lbOpen(ph,gi,s.title));
   $("#hero").addEventListener("click",e=>{if(e.target.tagName==="IMG")lbOpen(ph,gi,s.title)});
   $("#contactbtn").onclick=async()=>{if(!USER){openAuth(()=>open(id));return}
-    try{const c=await API.contact(s.id);const subj=encodeURIComponent(`Your sublet: ${s.title}`);const body=encodeURIComponent(`Hi ${c.contact_name||""},\n\nI saw your sublet on Happy Valley Housing (${s.building_name||s.address}, ${dTxt(s.start_date)} – ${dTxt(s.end_date)}). Is it still available? When could I see it?\n\nThanks!`);
+    try{const c=await API.contact(s.id);const subj=encodeURIComponent(`Your sublet: ${s.title}`);const body=encodeURIComponent(`Hi ${c.contact_name||""},\n\nI saw your sublet on Rhedr (${s.building_name||s.address}, ${dTxt(s.start_date)} – ${dTxt(s.end_date)}). Is it still available? When could I see it?\n\nThanks!`);
       $("#contact").insertAdjacentHTML("afterend",`<div class="reveal"><div><span>Email</span><b>${esc(c.email)}</b></div>${c.unit?`<div><span>Unit</span><b>${esc(c.unit)}</b></div>`:""}<a class="btn primary" href="mailto:${esc(c.email)}?subject=${subj}&body=${body}">Write an email</a></div>`);$("#contactbtn").disabled=true}
     catch(e){toast(e.message)}};
   $("#reportbtn").onclick=()=>{if(!USER){openAuth(()=>open(id));return}if(d.querySelector(".reportbox"))return;
