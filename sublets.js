@@ -202,7 +202,7 @@ let afterAuth=null;
 function openAuth(then){afterAuth=then||null;const d=$("#auth");
   $("#authbody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>Sign in with your Penn State email</h2>
   <p>Only students with a psu.edu email can post sublets or contact posters. That keeps scammers out. We send you a code, no password needed.</p>
-  <form id="f1" class="stack"><label>Penn State email<input name="email" type="email" required autocomplete="email" placeholder="abc1234@psu.edu" inputmode="email"></label><p class="err" id="e1" hidden></p><button class="btn primary">Send my code</button></form>
+  <form id="f1" class="stack"><label>Penn State email<input name="email" type="email" required autocomplete="email" placeholder="abc1234@psu.edu" inputmode="email"></label><p class="err" id="e1" hidden></p><button class="btn primary">Send my code</button><p class="fine">By signing in, you agree to Rhedr's <a href="terms" target="_blank" rel="noopener">Terms of Use</a> and <a href="privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p></form>
   <form id="f2" class="stack" hidden><p id="sent"></p><label>Code from the email<input name="code" inputmode="numeric" autocomplete="one-time-code" required pattern="[0-9]{6,10}" placeholder="12345678"></label><p class="err" id="e2" hidden></p><button class="btn primary">Sign in</button><button type="button" class="linkbtn" id="back">Use a different email</button></form>
   ${API.demo?`<p class="fine">Demo mode: no email is sent. Use any @psu.edu address and type any 6 digits.</p>`:""}</div>`;
   if(!d.open)d.showModal();d.querySelector(".close").onclick=()=>d.close();
@@ -237,7 +237,7 @@ function openPost(){if(!USER){openAuth(openPost);return}PICS=[];const d=$("#post
    <div class="earn" id="earn"></div>
    <p class="err" id="perr" hidden></p>
    <button class="btn primary big" id="pbtn">Post sublet</button>
-   <p class="fine">By posting you confirm you live there or hold the lease, and that your landlord allows a sublet or transfer, or you'll get their approval first.</p>
+   <p class="fine">By posting you confirm you live there or hold the lease, and that your landlord allows a sublet or transfer, or you'll get their approval first. Listings must follow the <a href="terms" target="_blank" rel="noopener">Terms of Use</a>.</p>
   </form></div>`;
   if(!d.open)d.showModal();d.querySelector(".close").onclick=()=>d.close();
   const f=$("#pf");let lease=null;

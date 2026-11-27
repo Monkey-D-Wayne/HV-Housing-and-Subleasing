@@ -11,6 +11,7 @@ Live at https://rhedr.com. Rhedr is independent and is not affiliated with Penn 
 - `data/listings.json`: the buildings (name, address, type, beds, price, location, website, photos)
 - `sublets.html`, `sublets.css`, `sublets.js`: the student Sublets page (post, browse, verify)
 - `supabase/setup.sql`: the sublets database; see `SUBLETS-SETUP.md` to turn it on
+- `privacy.html`, `terms.html`: Privacy Policy and Terms of Use (rhedr.com/privacy, rhedr.com/terms). Update the date at the top when they change.
 - `photos/`: free-license Penn State dorm photos from Wikimedia Commons (CC BY-SA)
 
 ## Map
