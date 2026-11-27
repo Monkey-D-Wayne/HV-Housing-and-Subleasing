@@ -65,29 +65,79 @@ function scamCheck(s){const txt=[s.title,s.description,s.roommates].join(" ");co
   if(s.orig_price&&s.price<s.orig_price*0.35)out.push({k:"price",msg:"The price is under a third of your lease rent. If that's right, say why in the description.",warn:true});
   return out}
 
-/* contact-info masking for chats: the same rules as public.mask_contact in supabase/messaging.sql.
-   The database is what really hides it; this copy shows a heads-up while you type (and runs demo mode). */
+/* contact-info masking for chats: a copy of contact_norm, mask_contact, contact_digits, contact_deob, contact_found,
+   mask_message and mask_text in supabase/messaging.sql (the MC rules are generated from it). The database is what
+   really hides it; this copy shows a heads-up while you type and runs demo mode. tests/contact-filter.test.js
+   checks the two give the same answers. */
 const HID="[contact info hidden]";
-const NUMW="(?:zero|oh|one|two|three|four|five|six|seven|eight|nine|\\d)";
-const MASKS=[
- /[A-Za-z0-9._%+-]+\s*(?:@|\(at\)|\[at\]|\s+at\s+)\s*[A-Za-z0-9-]+(?:\s*(?:\.|\(dot\)|\[dot\]|\s+dot\s+)\s*[A-Za-z0-9-]+)*\s*(?:\.|\(dot\)|\[dot\]|\s+dot\s+)\s*(?:com|edu|net|org|io|me|co|us|info)\b/gi,
- /[A-Za-z0-9._%+-]{2,}\s*(?:@|\(at\)|\[at\]|\bat\b)?\s*psu\s*(?:\.|\(dot\)|\[dot\]|\bdot\b)?\s*edu\b/gi,
- /[A-Za-z0-9._%+-]{2,}\s*(?:@|\(at\)|\[at\])\s*psu\b/gi,
- /[A-Za-z0-9._%+-]{2,}\s*(?:@|\(at\)|\[at\]|\bat\b)?\s*(?:gmail|googlemail|yahoo|outlook|hotmail|icloud|aol|protonmail)\b(?:\s*(?:\.|\(dot\)|\[dot\]|\bdot\b)?\s*(?:com|net)\b)?/gi,
- /\b(?!rhedr\b)[A-Za-z0-9-]{2,}(?:\s*(?:\(dot\)|\[dot\]|\bdot\b)\s*|\s+\.\s*|\.\s+)(?:com|net|org|edu)\b/gi,
- /https?:\/\/(?!(?:www\.)?rhedr\.com)\S+/gi,
- /\bwww\.(?!rhedr\.com)\S+/gi,
- /\b(?!rhedr\.)[A-Za-z0-9-]{2,}\.(?:com|net|org|me|io|ly|gg|app|link|co)(?:\/\S*)?\b/gi,
- /(?:\+?1[\s.-]*)?\(?\d{3}\)?[\s.-]*\d{3}[\s.-]*\d{4}/g,
- /\b\d{3}[\s.-]\d{4}\b/g,
- /\b(?!(?:mp3|mp4|ps2|ps3|ps4|ps5)\b)[A-Za-z]{2,3}\d{1,4}\b/gi,
- new RegExp(`(?:\\b${NUMW}\\b[\\s,.-]+){6,}\\b${NUMW}\\b`,"gi"),
- /\b(?:venmo|cash\s?app|zelle|paypal|pay\s?pal|insta(?:gram)?|snapchat|whats\s?app|telegram|discord|kik|groupme|imessage|facebook|messenger|tiktok|twitter|ig|sc)\b[\s:=-]*(?:(?:is|me|at|on|to)\b[\s:=-]*)*[@$]?[A-Za-z0-9._-]*[A-Za-z0-9_]/gi,
- /\bsnap\s*(?::|@|\bis\b)[\s:@]*[A-Za-z0-9._-]*[A-Za-z0-9_]/gi,
- /\$[A-Za-z][A-Za-z0-9_]{2,}/g,
+const RX=(s,f)=>{try{return new RegExp(s,f)}catch(e){return null}};   // a browser without lookbehind skips that rule
+const RP=(t,re,w)=>re?t.replace(re,w):t;
+const PGTRIM=t=>t.replace(/^ +| +$/g,"");
+const TRM=(()=>{const a=Array.from("аеорсхуікмтнвѕјԁӏɡАЕОРСХУІКМТНВЅЈαοιρνκτυχεΑΒΕΖΗΙΚΜΝΟΡΤΥΧıȷɑøØ🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉🇦🇧🇨🇩🇪🇫🇬🇭🇮🇯🇰🇱🇲🇳🇴🇵🇶🇷🇸🇹🇺🇻🇼🇽🇾🇿❶❷❸❹❺❻❼❽❾➀➁➂➃➄➅➆➇➈➊➋➌➍➎➏➐➑➒⓵⓶⓷⓸⓹⓺⓻⓼⓽⓿·•∙⋅。｡"),b=Array.from("aeopcxyikmthbsjdlgAEOPCXYIKMTHBSJaoipvktuxeABEZHIKMNOPTYXijaooABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567891234567891234567891234567890......");return new Map(a.map((c,i)=>[c,b[i]]))})();
+const INVIS=RX("[\\u00AD\\u034F\\u061C\\u115F\\u1160\\u17B4\\u17B5\\u180E\\u200B-\\u200F\\u202A-\\u202E\\u2060-\\u206F\\u3164\\uFE00-\\uFE0F\\uFEFF\\u20E3\\u0300-\\u036F]","g");
+function contactNorm(t){if(t==null)return t;t=RP(String(t).normalize("NFKD"),INVIS,"").normalize("NFKC");return Array.from(t,c=>TRM.get(c)??c).join("")}
+const MC=[
+ [RX("([A-Za-z0-9_%+-]+\\s*(\\(dot\\)|\\[dot\\]|\\{dot\\}|<dot>|\\bdot\\b|\\s\\.\\s)\\s*)*[A-Za-z0-9._%+-]+\\s*(@|\\(at\\)|\\[at\\]|\\{at\\}|<at>|\\s+at\\s+)\\s*[A-Za-z0-9-]+(\\s*(\\.|\\(dot\\)|\\[dot\\]|\\{dot\\}|<dot>|\\s+dot\\s+)\\s*[A-Za-z0-9-]+)*\\s*(\\.|\\(dot\\)|\\[dot\\]|\\{dot\\}|<dot>|\\s+dot\\s+)\\s*(com|edu|net|org|io|me|co|us|info)\\b","gi"),HID],
+ [RX("(([A-Za-z0-9_%+-]+\\s*(\\(dot\\)|\\[dot\\]|\\{dot\\}|<dot>|\\bdot\\b|\\s\\.\\s|\\.)\\s*)*[A-Za-z0-9._%+-]{2,})\\s*(@|\\(at\\)|\\[at\\]|\\{at\\}|<at>|\\bat\\s+(sign|symbol)\\b|\\bat\\b)?\\s*psu\\s*(\\.|\\(dot\\)|\\[dot\\]|\\{dot\\}|<dot>|\\bdot\\b)?\\s*edu\\b","gi"),HID],
+ [RX("[A-Za-z0-9._%+-]{2,}\\s*(@|\\(at\\)|\\[at\\]|\\{at\\}|<at>)\\s*psu\\b","gi"),HID],
+ [RX("(([A-Za-z0-9_%+-]+\\s*(\\(dot\\)|\\[dot\\]|\\{dot\\}|<dot>|\\bdot\\b|\\s\\.\\s|\\.)\\s*)*[A-Za-z0-9._%+-]{2,})\\s*(@|\\(at\\)|\\[at\\]|\\{at\\}|<at>|\\bat\\s+(sign|symbol)\\b|\\bat\\b)?\\s*(gmail|googlemail|yahoo|outlook|hotmail|icloud|aol|protonmail|proton\\.me)\\b(\\s*(\\.|\\(dot\\)|\\[dot\\]|\\{dot\\}|<dot>|\\bdot\\b)?\\s*(com|net)\\b)?","gi"),HID],
+ [RX("\\b(?!rhedr\\b)[A-Za-z0-9-]{2,}(\\s*(\\(dot\\)|\\[dot\\]|\\{dot\\}|<dot>|\\bdot\\b)\\s*|\\s+\\.\\s*|\\.\\s+)(com|net|org|edu)\\b","gi"),HID],
+ [RX("https?://(?!(www\\.)?rhedr\\.com)[^\\s]+","gi"),HID],
+ [RX("\\bwww\\.(?!rhedr\\.com)[^\\s]+","gi"),HID],
+ [RX("\\b(?!rhedr\\.)[A-Za-z0-9-]{2,}\\.(com|net|org|me|io|ly|gg|app|link|co|us|info|xyz|page|bio|tv|ee|ai|gl|cc)(/[^\\s]*)?\\b","gi"),HID],
+ [RX("(\\+?1[\\s.-]*)?\\(?\\d{3}\\)?[\\s.-]*\\d{3}[\\s.-]*\\d{4}","g"),HID],
+ [RX("\\b(?!\\d\\d[05]-\\d\\d[05]0\\b)\\d{3}[\\s.-]\\d{4}\\b","g"),HID],
+ [RX("\\b(?!(mp3|mp4|ps2|ps3|ps4|ps5)\\b)[A-Za-z]{2,3}\\d{1,4}\\b","gi"),HID],
+ [RX("(\\b(zero|oh|one|two|three|four|five|six|seven|eight|nine|\\d)\\b[\\s,.-]+){6,}\\b(zero|oh|one|two|three|four|five|six|seven|eight|nine|\\d)\\b","gi"),HID],
+ [RX("\\b(venmo|cash\\s?app|zelle|paypal|pay\\s?pal|apple\\s?pay|insta(\\s?gram)?|the\\s+gram|snap\\s?chat|whats\\s?app|telegram|discord|kik|group\\s?me|imessage|face\\s?book|fb|messenger|tik\\s?tok|twitter|threads|linked\\s?in|signal\\s+app|wechat|reddit|bereal|ig|sc)\\b[\\s:=-]*((is|me|at|on|to|name|user\\s?name|handle|id|account|@)\\b[\\s:=-]*)*(?!(or|and|on|at|to|ok|okay|works?|fine|good|great|too|for|if|but|then|please|pls|only|instead|so|the|a|an|it|its|that|this|these|you|u|we|i|me|my|your|ur|account|app|request|payment|pay|here|there|rhedr|later|now|with|is|are|not|no|yes|either|both|also|right|thing|stuff|etc|maybe|work|accepted|is|was|will|would|could|can|do|does|did|have|has|in|of|or|not|anyone|everyone|someone|him|her|them|us|still|already|just|more|active|never|rarely|also)\\b)(@|\\$)?[A-Za-z0-9._#-]*[A-Za-z0-9_]","gi"),HID],
+ [RX("(?<![A-Za-z0-9._@$-])(?!(or|and|on|at|to|ok|okay|works?|fine|good|great|too|for|if|but|then|please|pls|only|instead|so|the|a|an|it|its|that|this|these|you|u|we|i|me|my|your|ur|account|app|request|payment|pay|here|there|rhedr|later|now|with|is|are|not|no|yes|either|both|also|right|thing|stuff|etc|maybe|work|accepted|is|was|will|would|could|can|do|does|did|have|has|in|of|or|not|anyone|everyone|someone|him|her|them|us|still|already|just|more|active|never|rarely|also)\\b)[@$]?[A-Za-z0-9._-]*[A-Za-z0-9_]{3,}\\s+(on|at|via)\\s+(venmo|cash\\s?app|zelle|paypal|insta(\\s?gram)?|the\\s+gram|ig|snap(\\s?chat)?|sc|whats\\s?app|telegram|discord|group\\s?me|face\\s?book|fb|tik\\s?tok|twitter|linked\\s?in)\\b","gi"),HID],
+ [RX("\\bsnap\\s*(:|@|\\bis\\b|\\bname\\b|\\buser\\s?name\\b|\\bhandle\\b)[\\s:@]*((is|name)\\b[\\s:@]*)*(?!(or|and|on|at|to|ok|okay|works?|fine|good|great|too|for|if|but|then|please|pls|only|instead|so|the|a|an|it|its|that|this|these|you|u|we|i|me|my|your|ur|account|app|request|payment|pay|here|there|rhedr|later|now|with|is|are|not|no|yes|either|both|also|right|thing|stuff|etc|maybe|work|accepted|is|was|will|would|could|can|do|does|did|have|has|in|of|or|not|anyone|everyone|someone|him|her|them|us|still|already|just|more|active|never|rarely|also)\\b)[A-Za-z0-9._-]*[A-Za-z0-9_]","gi"),HID],
+ [RX("\\b(user\\s?name|handle|screen\\s?name|gamertag)\\b[\\s:=-]*((is|on|at|it'?s)\\b[\\s:=-]*)*(?!(or|and|on|at|to|ok|okay|works?|fine|good|great|too|for|if|but|then|please|pls|only|instead|so|the|a|an|it|its|that|this|these|you|u|we|i|me|my|your|ur|account|app|request|payment|pay|here|there|rhedr|later|now|with|is|are|not|no|yes|either|both|also|right|thing|stuff|etc|maybe|work|accepted|is|was|will|would|could|can|do|does|did|have|has|in|of|or|not|anyone|everyone|someone|him|her|them|us|still|already|just|more|active|never|rarely|also)\\b)@?[A-Za-z0-9._-]*[A-Za-z0-9_]","gi"),HID],
+ [RX("\\$[A-Za-z][A-Za-z0-9_]{2,}","g"),HID],
+ [RX("(^|[^A-Za-z0-9._%+-])@[A-Za-z0-9._]{3,}","g"),"$1"+HID],
+ [RX("(\\[contact info hidden\\][\\s,;:/-]*){2,}","g"),HID+" "],
 ];
-function maskContact(t){let x=String(t??"");MASKS.forEach(r=>{x=x.replace(r,HID)});
-  x=x.replace(/(^|[^A-Za-z0-9._%+-])@[A-Za-z0-9._]{3,}/g,"$1"+HID).replace(/(?:\[contact info hidden\][\s,;:/-]*){2,}/g,HID+" ");return x.trim()}
+function maskContact(t){if(t==null)return t;let x=String(t);for(const [re,w] of MC)x=RP(x,re,w);return PGTRIM(x)}
+const NUMW=["zero", "0", "oh", "0", "o", "0", "one", "1", "won", "1", "two", "2", "three", "3", "four", "4", "five", "5", "six", "6", "seven", "7", "eight", "8", "nine", "9", "niner", "9", "ten", "10", "eleven", "11", "twelve", "12", "thirteen", "13", "fourteen", "14", "fifteen", "15", "sixteen", "16", "seventeen", "17", "eighteen", "18", "nineteen", "19", "twenty", "20", "thirty", "30", "forty", "40", "fourty", "40", "fifty", "50", "sixty", "60", "seventy", "70", "eighty", "80", "ninety", "90", "hundred", "00"].reduce((a,x,i,l)=>(i%2?a:[...a,[RX("(?<![a-z])"+x+"(?![a-z])","g"),l[i+1]]]),[]);
+function contactDigits(t,strict=false){let v=String(t??"").toLowerCase().replace(/(\d),(\d{3})(?!\d)/g,"$1$2");
+  for(const [re,d] of NUMW)v=RP(v,re,d);
+  if(!/\d/.test(v))return false;
+  v=RP(v,RX("(?<![a-z])(double|dbl)[\\s-]*(\\d)","g"),"$2$2");v=RP(v,RX("(?<![a-z])triple[\\s-]*(\\d)","g"),"$1$1$1");
+  for(let i=0;i<3;i++){if(!/\d[oli|!]|[oli|!]\d/.test(v))break;v=RP(v,RX("(?<=\\d)o|o(?=\\d)","g"),"0");v=RP(v,RX("(?<=\\d)[li|!]|[li|!](?=\\d)","g"),"1")}
+  for(const m of v.matchAll(/\d(?:[\s.,_*~|()+#=-]*\d)*/g)){const r=m[0];
+    if(/^(\d{1,2}[.-]\d{1,2}[.-](\d{2}|\d{4})|\d{4}[.-]\d{1,2}[.-]\d{1,2})$/.test(r))continue;
+    const dg=r.replace(/\D/g,""),nd=dg.length,ng=r.match(/\d+/g).length;
+    if(strict){if(nd===10||(nd===11&&dg[0]==="1"))return true}else if(nd>=10||(nd>=7&&ng!==2))return true}
+  return false}
+const KW=["googlemail", "protonmail", "snapchat", "instagram", "whatsapp", "telegram", "cashapp", "facebook", "linkedin", "imessage", "hotmail", "outlook", "discord", "groupme", "twitter", "paypal", "icloud", "tiktok", "gmail", "yahoo", "venmo", "zelle", "insta", "snap", "psu", "edu", "com"].map(k=>[RX("(?<![a-z])"+k.split("").join("[\\s._*~|,/-]*")+"(?![a-z])","g"),k]);
+const DEOB=[
+ [RX("(?<![a-z])(g|gee|jee|ge)[\\s._*~-]*mail(?![a-z])","g"),"gmail"],
+ [RX("(?<![a-z])(pee|p)[\\s.,_*~-]*(ess|s)[\\s.,_*~-]*(you|u)(?![a-z])","g"),"psu"],
+ [RX("(?<![a-z])(ee|e)[\\s.,_*~-]*(dee|d)[\\s.,_*~-]*(you|u)(?![a-z])","g"),"edu"],
+ [RX("(?<![a-z])(see|c)[\\s.,_*~-]*(oh|o)[\\s.,_*~-]*(em|m)(?![a-z])","g"),"com"],
+ [RX("\\s*([(\\[{<]\\s*(at|a)\\s*[)\\]}>]|(?<![a-z])at\\s+(sign|symbol)(?![a-z])|@\\s*(sign|symbol)(?![a-z]))\\s*","g"),"@"],
+ [RX("(?<=[a-z0-9])\\s*@\\s*(?=[a-z])","g"),"@"],
+ [RX("\\s*([(\\[{<]\\s*(dot|d0t|\\.)\\s*[)\\]}>]|(?<![a-z])(dot|dawt|dott|period|punto)(?=\\s*(com|edu|net|org|io|me|co|us)(?![a-z])))\\s*","g"),"."],
+ [RX("\\s*\\.\\s*(?=(com|edu|net|org|io|me|co|us)(?![a-z]))","g"),"."],
+];
+const G1=RX("(?<![a-z])(g|gee|jee|ge|pee|p|ee|e|see|c)[\\s.,_*~-]"),G2=RX("[(\\[{<@]|(?<![a-z])at\\s+(sign|symbol)|(dot|dawt|dott|period|punto|\\.)\\s*(com|edu|net|org|io|me|co|us)(?![a-z])");
+const GLUE=RX("(?<![a-z0-9])[a-z0-9@.](?![a-z0-9])(?:[\\s_*~|,/+-]+[a-z0-9@.](?![a-z0-9])){3,}","g"),GSEP=RX("[\\s_*~|,/+-]+","g");
+function contactDeob(t,oneIsL=false){let v=String(t??"").toLowerCase();
+  for(const m of [...v.matchAll(/[a-z0-9@!|$]{4,}/g)].map(x=>x[0])){if(!/[a-z].*[a-z]/.test(m)||!/[013457@!|$]/.test(m))continue;
+    let w=m;for(let i=0;i<2;i++){let nw="";for(let j=0;j<w.length;j++){let c=w[j];const k="013457@!|$".indexOf(c);
+      if(k>=0&&(/[a-z]/.test(w[j-1]||"")||/[a-z]/.test(w[j+1]||"")))c=(oneIsL?"oleastails":"oieastails")[k];nw+=c}w=nw}
+    v=v.split(m).join(w)}
+  if(G1&&G1.test(v))DEOB.slice(0,4).forEach(([re,w])=>{v=RP(v,re,w)});
+  const sq=v.replace(/[\s._*~|,/-]/g,"");
+  for(const [re,k] of KW)if(sq.includes(k))v=RP(v,re,k);
+  if(G2&&G2.test(v))DEOB.slice(4).forEach(([re,w])=>{v=RP(v,re,w)});
+  if(GLUE)for(const m of [...v.matchAll(GLUE)].map(x=>x[0]))v=v.split(m).join(m.replace(GSEP,""));
+  return v}
+function contactFound(t,strict=false){if(t==null||t==="")return false;if(contactDigits(t,strict))return true;
+  const lt=t.toLowerCase();let d=contactDeob(t);if(d!==lt&&maskContact(d)!==PGTRIM(d))return true;
+  if(!t.includes("1"))return false;d=contactDeob(t,true);return d!==lt&&maskContact(d)!==PGTRIM(d)}
+function maskText(t){if(t==null)return t;const n=contactNorm(t),m=maskContact(n);return m!==PGTRIM(n)?m:t}
+function maskMessage(t){if(t==null)return t;const n=contactNorm(t),m=maskContact(n);if(m!==PGTRIM(n))return m||HID;return contactFound(n)?HID:t}
 
 /* ---------- data layer ---------- */
 const API=DEMO?demoApi():liveApi();
@@ -140,7 +190,7 @@ function demoChat(who){
   const rd=()=>{try{return JSON.parse(localStorage.getItem(CK)||"null")||{n:0,c:[],m:[]}}catch(e){return {n:0,c:[],m:[]}}};
   const wr=x=>{try{localStorage.setItem(CK,JSON.stringify(x))}catch(e){}};
   const L=[];const fire=ev=>setTimeout(()=>L.forEach(f=>f(ev)),0);
-  const add=(db,cid,sender,body)=>{const c=db.c.find(x=>x.id===cid);const t=String(body).trim();const mk=!!sender&&!c.agreed_at?maskContact(t):t;
+  const add=(db,cid,sender,body)=>{const c=db.c.find(x=>x.id===cid);const t=String(body).trim();const mk=!!sender&&!c.agreed_at?maskMessage(t):t;
     const m={id:++db.n,created_at:new Date().toISOString(),conversation_id:cid,sender_id:sender,body:mk||HID,masked:mk!==t};db.m.push(m);c.last_at=m.created_at;if(sender===who()?.id)c.read=m.created_at;return m};
   const later=(f,ms=1400)=>setTimeout(()=>{const db=rd();const ev=f(db);wr(db);if(ev)fire(ev)},ms);
   const shape=c=>{const db=rd(),ms=db.m.filter(m=>m.conversation_id===c.id),last=ms[ms.length-1]||{};const s=byId[c.sublet_id];
@@ -233,6 +283,7 @@ function liveApi(){
     // live updates (Supabase Realtime); the page also checks every few seconds in case they're off
     onChat(f){let ch=null,off=false;ready.then(()=>{if(off)return;ch=sb.channel("rhedr-chat-"+Math.random().toString(36).slice(2))
         .on("postgres_changes",{event:"INSERT",schema:"public",table:"messages"},p=>f({type:"message",row:p.new}))
+        .on("postgres_changes",{event:"UPDATE",schema:"public",table:"messages"},p=>f({type:"message_hidden",row:p.new}))
         .on("postgres_changes",{event:"UPDATE",schema:"public",table:"conversations"},p=>f({type:"chat",row:p.new})).subscribe()});
       return ()=>{off=true;if(ch)sb.removeChannel(ch)}}
   };
@@ -412,6 +463,8 @@ async function refreshChats(){if(!USER){CHATS=[];setUnread();return}
   else{const c=CHATS.find(x=>x.id===CHAT.id);if(c){const changed=chatKey(c)!==chatKey(CHAT);CHAT=c;if(changed){drawDeal();drawComposer();loadMsgs()}}}}
 const refreshSoon=()=>{clearTimeout(chatT);chatT=setTimeout(refreshChats,500)};
 function onChatEvent(ev){
+  // a message Rhedr hid after it was sent (the AI check, or the next piece of a split number): swap the text in place
+  if(ev.type==="message_hidden"&&CHAT&&ev.row.conversation_id===CHAT.id){const m=MSGS.find(x=>x.id===ev.row.id);if(m&&m.body!==ev.row.body){m.body=ev.row.body;m.masked=ev.row.masked;drawMsgs()}}
   if(ev.type==="message"&&CHAT&&ev.row.conversation_id===CHAT.id&&$("#chat").open){if(!MSGS.some(m=>m.id===ev.row.id)){MSGS.push(ev.row);drawMsgs();if(document.visibilityState==="visible")API.readChat(CHAT.id).then(refreshSoon)}}
   refreshSoon()}
 function stopPoll(){clearInterval(threadPoll);threadPoll=null}
@@ -439,7 +492,7 @@ async function openChat(id){if(!USER){openAuth(()=>openChat(id));return}
   drawDeal();drawComposer();await loadMsgs();
   threadPoll=setInterval(()=>{if(document.visibilityState==="visible"&&$("#chat").open&&CHAT){loadMsgs(true);refreshChats()}},12000)}
 async function loadMsgs(quiet){if(!CHAT)return;const id=CHAT.id;let list;try{list=await API.messages(id)}catch(e){if(!quiet)$("#msgs").innerHTML=`<p class="err">${esc(e.message)}</p>`;return}
-  if(!CHAT||CHAT.id!==id)return;const grew=list.length!==MSGS.length;MSGS=list;if(grew||!quiet)drawMsgs();
+  if(!CHAT||CHAT.id!==id)return;const grew=list.length!==MSGS.length,edited=!grew&&list.some((m,i)=>MSGS[i]?.body!==m.body);MSGS=list;if(grew||edited||!quiet)drawMsgs();
   if(grew||!quiet)API.readChat(id).then(refreshSoon).catch(()=>{})}
 function msgHtml(m){if(!m.sender_id)return `<div class="m sys">${esc(m.body)}</div>`;const me=m.sender_id===USER?.id;
   return `<div class="m ${me?"me":"them"}"><div class="bub">${esc(m.body)}</div><span class="mt">${clock(m.created_at)}${m.masked?" · some of it is hidden until you both agree":""}</span></div>`}
@@ -472,7 +525,7 @@ function drawComposer(){const c=CHAT,el=$("#comp");if(!c||!el)return;
     if(b.dataset.x==="report"){if(el.querySelector(".reportbox"))return;
       el.insertAdjacentHTML("afterbegin",`<form class="reportbox"><label>What's wrong?<select name="r"><option>Looks like a scam</option><option>Asking to pay outside Rhedr</option><option>Harassment or rude</option><option>Not a real student</option><option>Something else</option></select></label><input name="x" placeholder="Details (optional)" maxlength="300"><button class="btn">Send report</button></form>`);
       el.querySelector(".reportbox").onsubmit=async ev=>{ev.preventDefault();const r=ev.target;try{await API.reportChat(c.id,(r.r.value+" "+r.x.value).trim());r.outerHTML=`<p class="cclosed">Thanks. Rhedr will read this chat and follow up. You can also close it.</p>`}catch(x){toast(x.message)}}}}}
-function tipFor(v,on=true){const t=$("#mtip");if(!t)return;const hit=on&&v.trim()&&maskContact(v)!==v.trim();t.hidden=!hit;
+function tipFor(v,on=true){const t=$("#mtip");if(!t)return;const hit=on&&v.trim()&&maskMessage(v.trim())!==v.trim();t.hidden=!hit;
   if(hit)t.textContent="Heads up: phone numbers, emails, links and payment handles will be hidden until you both agree on Rhedr."}
 
 function newChat(s){if(!USER){openAuth(()=>newChat(s));return}CHAT=null;MSGS=[];
