@@ -74,10 +74,8 @@ Students can add proof they live at the place (a lease page or a bill). An AI re
 1. Open the [Supabase SQL Editor](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/sql/new).
 2. Open [supabase/setup.sql on GitHub](https://github.com/Monkey-D-Wayne/hv-housing-and-subleasing/blob/main/supabase/setup.sql), click the **Copy raw file** button (two squares), paste it into the editor and click **Run**. If it asks about "destructive operations", click **Run this query**. Running it again is safe.
 
-### 7b. Make yourself an admin (1 minute)
-1. Open the [Table Editor](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/editor) and click the **admins** table.
-2. Click **Insert**, then **Insert row**. In **email**, type your own psu.edu email in lowercase (the one you sign in to Rhedr with). Click **Save**.
-3. Open https://rhedr.com/admin and sign in with that email. You should see the two switches and an empty "Waiting" list.
+### 7b. Admins
+`setup.sql` makes **boaz@rhedr.com** the admin. Admin emails don't need to be psu.edu: anyone listed in the **admins** table can sign in at https://rhedr.com/admin with a code sent to that email. To add someone, open the [Table Editor](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/editor), click **admins**, then **Insert**, **Insert row**, type their email in lowercase and click **Save**. Admins can review lease proofs but can't post sublets unless they also use a psu.edu email.
 
 ### 7c. Turn on the AI reader (10 minutes, optional, costs a little)
 Without this, every proof simply waits for you to open the file and decide. With it, each proof arrives already read and marked green, yellow or red.

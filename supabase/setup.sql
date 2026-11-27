@@ -232,32 +232,41 @@ drop policy if exists "sublet photos: delete own" on storage.objects;
 create policy "sublet photos: delete own" on storage.objects for delete to authenticated
   using (bucket_id in ('sublet-photos','lease-proofs') and (storage.foldername(name))[1] = auth.uid()::text);
 
--- 10. Only psu.edu emails can make an account -----------------------------------
+-- Who can review lease proofs (rhedr.com/admin). Any confirmed email listed here, for example boaz@rhedr.com.
+create table if not exists public.admins (
+  email      text primary key check (email = lower(email)),
+  created_at timestamptz not null default now()
+);
+alter table public.admins enable row level security;   -- no policies: only the dashboard can read or change it
+insert into public.admins (email) values ('boaz@rhedr.com') on conflict do nothing;
+
+-- 10. Only psu.edu emails (and the admins above) can make an account -----------------------------------
 -- Supabase calls this before it creates a new user (and before it emails a code).
 -- Turn it on in the dashboard: Authentication, Auth Hooks, Before User Created (see SUBLETS-SETUP.md).
 create or replace function public.hook_psu_only(event jsonb) returns jsonb
 language plpgsql as $$
 begin
-  if coalesce(lower(event -> 'user' ->> 'email'), '') ~ '^[^@]+@psu\.edu$' then
+  -- psu.edu students, plus the admin emails listed in public.admins (like boaz@rhedr.com)
+  if coalesce(lower(event -> 'user' ->> 'email'), '') ~ '^[^@]+@psu\.edu$'
+     or exists (select 1 from public.admins a where a.email = lower(event -> 'user' ->> 'email')) then
     return '{}'::jsonb;
   end if;
   return jsonb_build_object('error', jsonb_build_object(
     'http_code', 403, 'message', 'Only Penn State (@psu.edu) emails can sign up.'));
 end $$;
 grant execute on function public.hook_psu_only(jsonb) to supabase_auth_admin;
+grant usage on schema public to supabase_auth_admin;
+grant select on public.admins to supabase_auth_admin;
+drop policy if exists "admins: sign-up hook can read" on public.admins;
+create policy "admins: sign-up hook can read" on public.admins for select to supabase_auth_admin using (true);
 revoke execute on function public.hook_psu_only(jsonb) from public, anon, authenticated;
 
 -- 11. Lease checks -------------------------------------------------------------
--- Who can review lease proofs. Add your own psu.edu email in Table Editor, table admins (see SUBLETS-SETUP.md).
-create table if not exists public.admins (
-  email      text primary key check (email = lower(email)),
-  created_at timestamptz not null default now()
-);
-alter table public.admins enable row level security;   -- no policies: only the dashboard can read or change it
-
 create or replace function public.is_admin() returns boolean
 language sql stable security definer set search_path = public as $$
-  select public.is_psu() and exists (select 1 from public.admins a where a.email = lower(auth.jwt() ->> 'email')) $$;
+  select exists (select 1 from public.admins a join auth.users u on lower(u.email) = a.email
+                  where u.id = auth.uid() and u.email_confirmed_at is not null
+                    and a.email = lower(auth.jwt() ->> 'email')) $$;
 -- admins, or the check-lease Edge Function (which runs with the service role key)
 create or replace function public.can_review() returns boolean
 language sql stable security definer set search_path = public as $$
