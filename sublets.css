@@ -175,3 +175,9 @@
   .m{max-width:88%}
 }
 @media (min-width:901px) and (max-width:1400px){.msgbtn .msgl{display:none}}
+
+/* first-chat note */
+.chatrules ul{margin:4px 0 18px;padding-left:20px;line-height:1.5}
+.chatrules li{margin:0 0 10px}
+.chatrules a{color:var(--accent)}
+.chatrules #rulesok{width:100%}

@@ -157,6 +157,8 @@ function demoApi(){
     async sendCode(email){return {ok:true}},
     async verify(email,code){if(!/^\d{6,10}$/.test(code))throw new Error("Type the code from the email");user={id:"demo-"+email,email};try{localStorage.setItem(UKEY,JSON.stringify(user))}catch(e){}emit()},
     async signOut(){user=null;try{localStorage.removeItem(UKEY)}catch(e){}emit()},
+    async amLimited(){return false},
+    async chatRulesOk(){try{localStorage.setItem("rhedr-chat-rules-"+user?.id,"1")}catch(e){}},
     async list(){return [...examples(),...read().filter(s=>s.status==="live"&&s.end_date>=today())]},
     async mine(){return user?read().filter(s=>s.user_id===user.id):[]},
     async post(row,photos,lease){
@@ -239,6 +241,9 @@ function liveApi(){
     async sendCode(email){await ready;const {error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:true,emailRedirectTo:location.origin+location.pathname}});err(error);return {ok:true}},
     async verify(email,code){await ready;const {error}=await sb.auth.verifyOtp({email,token:code,type:"email"});err(error)},
     async signOut(){await ready;await sb.auth.signOut()},
+    async amLimited(){await ready;if(!user)return false;const {data,error}=await sb.rpc("am_limited");return !error&&!!data},
+    async chatRulesOk(){await ready;try{localStorage.setItem("rhedr-chat-rules-"+user?.id,"1")}catch(e){}
+      const {data}=await sb.auth.updateUser({data:{chat_rules_ok:new Date().toISOString()}});if(data?.user)user=data.user},
     async list(){await ready;const {data,error}=await sb.from("sublets_public").select("*").limit(500);err(error);return data||[]},
     async mine(){await ready;if(!user)return[];const {data,error}=await sb.from("sublets").select("*").eq("user_id",user.id).order("created_at",{ascending:false});err(error);return data||[]},
     async post(row,photos,lease){await ready;need();
@@ -308,7 +313,7 @@ function examples(){const t=new Date(),add=(d)=>iso(new Date(t.getTime()+d*864e5
   return ex.map((x,i)=>{const b=bById[x.b];if(!b)return null;const ph=bldPhotos(b);return {id:-(i+1),example:true,created_at:new Date(t.getTime()-i*36e5*20).toISOString(),kind:x.kind,space:x.space,title:x.title,building_id:x.b,building_name:b.name,address:b.address,lat:b.lat,lng:b.lng,beds:x.beds,baths:x.baths,price:x.price,orig_price:x.orig,start_date:x.a,end_date:x.e,furnished:x.furn,utilities:x.util,roommates:x.room,description:x.desc,photos:ph.slice(i%3,i%3+5),photoCredit:b.site||(b.photos||[])[0]?.page,contact_name:"Example student",has_lease_doc:!!x.lease,lease_verified:!!x.lease,status:"live"}}).filter(Boolean)}
 
 /* ---------- state + list ---------- */
-let ALL=[],byId={},rows=[],USER=null;
+let ALL=[],byId={},rows=[],USER=null,LIMITED=false;
 const state={tab:"all",q:"",maxp:2000,from:"",sort:"best"};
 function filtered(){const q=state.q.trim().toLowerCase();const tab=TABS.find(t=>t.k===state.tab);
   return ALL.filter(s=>tab.f(s)&&(!q||[s.title,s.address,s.building_name].join(" ").toLowerCase().includes(q))&&(state.maxp>=2000||s.price<=state.maxp)&&(!state.from||s.start_date<=state.from))
@@ -470,7 +475,20 @@ function onChatEvent(ev){
 function stopPoll(){clearInterval(threadPoll);threadPoll=null}
 function chatShell(html){stopPoll();$("#chatbody").innerHTML=html;const d=$("#chat");if(!d.open)d.showModal();d.querySelectorAll(".close").forEach(b=>b.onclick=()=>d.close())}
 
-async function openChats(){if(!USER){openAuth(openChats);return}CHAT=null;
+/* the first time someone opens a chat: a short, friendly note on how contact info works (remembered per account) */
+function chatRulesSeen(){if(!USER)return true;if(USER.user_metadata?.chat_rules_ok)return true;try{return localStorage.getItem("rhedr-chat-rules-"+USER.id)==="1"}catch(e){return false}}
+function chatRules(next){if(chatRulesSeen())return false;
+  chatShell(`<button class="close" aria-label="Close">×</button><div class="body chatrules"><h2>Before you chat</h2>
+    <p class="lead">Rhedr chats keep both students safe until you've agreed on a deal.</p>
+    <ul><li><b>Contact info stays hidden for now.</b> Phone numbers, emails, social and payment handles, and links are hidden automatically, even when they're spelled out or sent in pieces.</li>
+    <li><b>Agree first, then connect.</b> When you both tap <b>We agreed on Rhedr</b>, you'll see each other's psu.edu email.</li>
+    <li><b>Please don't try to get around it.</b> It's against our <a href="terms#chat-rules" target="_blank" rel="noopener">Terms of Use</a>, and accounts that keep trying can be limited.</li></ul>
+    <button class="btn primary" id="rulesok">I understand</button></div>`);
+  $("#rulesok").onclick=async e=>{e.target.disabled=true;try{await API.chatRulesOk()}catch(x){console.error(x)}
+    try{localStorage.setItem("rhedr-chat-rules-"+USER.id,"1")}catch(x){}next()};
+  return true}
+
+async function openChats(){if(!USER){openAuth(openChats);return}if(chatRules(openChats))return;CHAT=null;
   chatShell(`<button class="close" aria-label="Close">×</button><div class="body"><h2>Messages</h2><p class="lead">Your chats with other Penn State students. Emails and phone numbers stay hidden until you both agree on Rhedr.</p><div id="inbox" class="inbox"><p class="fine">Loading…</p></div></div>`);
   await refreshChats();drawInbox()}
 function drawInbox(){const el=$("#inbox");if(!el)return;
@@ -480,7 +498,7 @@ function drawInbox(){const el=$("#inbox");if(!el)return;
    :`<p class="empty">No messages yet. Open a sublet and tap <b>Message</b> to ask the poster about it.</p>`;
   el.onclick=e=>{const b=e.target.closest("[data-c]");if(b)openChat(+b.dataset.c)}}
 
-async function openChat(id){if(!USER){openAuth(()=>openChat(id));return}
+async function openChat(id){if(!USER){openAuth(()=>openChat(id));return}if(chatRules(()=>openChat(id)))return;
   let c=CHATS.find(x=>x.id===id);if(!c){await refreshChats();c=CHATS.find(x=>x.id===id)}
   if(!c){toast("That chat isn't in your messages. Sign in with the email it was sent to.");return openChats()}
   CHAT=c;MSGS=[];
@@ -511,6 +529,7 @@ async function drawDeal(){const c=CHAT,el=$("#deal");if(!c||!el)return;let h="";
   el.onclick=async e=>{const b=e.target.closest("[data-deal]");if(!b)return;b.disabled=true;try{await API.agree(c.id,b.dataset.deal==="1");await refreshChats();await loadMsgs()}catch(x){toast(x.message)}finally{b.disabled=false}}}
 function drawComposer(){const c=CHAT,el=$("#comp");if(!c||!el)return;
   if(c.closed_at){el.innerHTML=`<p class="cclosed">This chat is closed.</p>`;return}
+  if(LIMITED){el.innerHTML=`<p class="cclosed">Messaging is paused on your account for now, because of repeated tries to share contact info before agreeing. You can still read your chats. If you think that's a mistake, write to <a href="mailto:support@rhedr.com">support@rhedr.com</a>.</p>`;return}
   el.innerHTML=`<form class="composer" id="cf"><p class="mtip" id="mtip" hidden></p><div class="cin"><textarea name="m" rows="1" maxlength="2000" placeholder="Write a message" aria-label="Message" required></textarea><button class="btn primary">Send</button></div>
     <div class="cfoot"><span>${c.agreed_at?"You both agreed, so nothing is hidden now.":"Contact info is hidden until you both agree."}</span><span><button type="button" class="linkbtn" data-x="report">Report</button> · <button type="button" class="linkbtn" data-x="close">Close chat</button></span></div></form>`;
   const f=$("#cf"),ta=f.m,btn=f.querySelector(".cin .btn");
@@ -528,7 +547,7 @@ function drawComposer(){const c=CHAT,el=$("#comp");if(!c||!el)return;
 function tipFor(v,on=true){const t=$("#mtip");if(!t)return;const hit=on&&v.trim()&&maskMessage(v.trim())!==v.trim();t.hidden=!hit;
   if(hit)t.textContent="Heads up: phone numbers, emails, links and payment handles will be hidden until you both agree on Rhedr."}
 
-function newChat(s){if(!USER){openAuth(()=>newChat(s));return}CHAT=null;MSGS=[];
+function newChat(s){if(!USER){openAuth(()=>newChat(s));return}if(chatRules(()=>newChat(s)))return;CHAT=null;MSGS=[];
   const name=s.contact_name||"the poster";let me="";try{me=localStorage.getItem("rhedr-first-name")||""}catch(e){}
   const draft=`Hi ${s.contact_name||"there"}! Is your ${s.kind==="takeover"?"lease takeover":"sublet"} at ${s.building_name||s.address} still available for ${dTxt(s.start_date)} to ${dTxt(s.end_date)}? When could I see it?`;
   chatShell(`<div class="chat"><div class="chead"><button class="back" aria-label="Back to the sublet">‹</button><div class="chw"><b>Message ${esc(name)}</b><span>${esc(s.title)}</span></div><button class="close" aria-label="Close">×</button></div>
@@ -681,6 +700,7 @@ async function load(){try{ALL=await API.list()}catch(e){console.error(e);toast("
 async function start(){wire();lbInit();$("#demonote").hidden=!API.demo;
   try{BLD=await (await fetch("data/listings.json")).json();BLD.forEach(b=>bById[b.id]=b)}catch(e){console.error(e)}
   API.onAuth(u=>{const was=USER;USER=u;setAcct();setUnread();
+    if((was?.id||null)!==(u?.id||null)){LIMITED=false;if(u)API.amLimited().then(v=>{LIMITED=v;if(v&&CHAT)drawComposer()}).catch(()=>{})}
     if((was?.id||null)!==(u?.id||null)){chatOff?.();chatOff=u?API.onChat(onChatEvent):null;CHATS=[];MYIDS=new Set();if(u){refreshChats();loadMine()}else if($("#chat").open)$("#chat").close()}
     if(!!was!==!!u&&ALL.length)renderList()});
   setInterval(()=>{if(USER&&document.visibilityState==="visible"&&!threadPoll)refreshChats()},60000);

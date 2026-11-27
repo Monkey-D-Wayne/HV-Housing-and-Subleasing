@@ -11,6 +11,8 @@ const dt=s=>s?new Date(String(s).length===10?s+"T12:00:00":s).toLocaleDateString
 function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("on"),4200)}
 const REJECT=["The name doesn't match your account. Send a lease or bill with your name on it.","The address doesn't match the listing.","We couldn't read the file. Send a clearer photo or the PDF.","This isn't a lease or a bill. Send the first page of your lease or a recent bill with your name and this address.","The sublet dates fall outside your lease."];
 let sb,view="open";
+// a link from the flag email: rhedr.com/admin?report=12 opens that chat report
+const LINKED=+(new URLSearchParams(location.search).get("report")||0);if(LINKED)view="chats";
 
 function load(src){return new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=()=>no(new Error("Couldn't load "+src));document.head.appendChild(s)})}
 
@@ -91,20 +93,44 @@ async function onAction(e){
 
 function tabs(){return `<div class="tabsw"><button data-v="open" aria-pressed="${view==="open"}">Waiting</button><button data-v="done" aria-pressed="${view==="done"}">Decided</button><button data-v="chats" aria-pressed="${view==="chats"}">Chat reports</button></div>`}
 
-/* reported chats (supabase/messaging.sql). You only see a chat when one of the two students reports it. */
+/* reported and flagged chats (supabase/messaging.sql). You only see a chat when a student reports it or Rhedr flags
+   someone for trying to share contact info. "Limit" stops that student sending messages (they can still read). */
+const CAUGHT={rule:"Hidden by a rule",split:"Sent in pieces",after_hidden:"Sent right after a hidden message",ai:"Caught by the AI check"};
+let REPORTS=[];
 async function renderChats(){
   const [{data:st},{data:rows,error}]=await Promise.all([sb.rpc("chat_stats"),sb.rpc("chat_report_queue",{p_done:false})]);
-  if(error){$("#app").innerHTML=`${tabs()}<p class="err">${esc(/function|does not exist/i.test(error.message)?"Messages aren't set up yet. Run supabase/messaging.sql (see SUBLETS-SETUP.md).":error.message)}</p>`;wireTabs();return}
-  const x=st?.[0]||{};
+  if(error){$("#app").innerHTML=`${tabs()}<p class="err">${esc(/function|does not exist|column/i.test(error.message)?"Run supabase/messaging.sql again in the SQL Editor (see SUBLETS-SETUP.md), then reload.":error.message)}</p>`;wireTabs();return}
+  REPORTS=rows||[];const x=st?.[0]||{};
   $("#app").innerHTML=`${tabs()}<p class="meta">${x.chats??0} chats so far · ${x.chats_7d??0} new and ${x.messages_7d??0} messages this week · ${x.agreed??0} agreed on Rhedr · ${x.masked_7d??0} messages had contact info hidden this week</p>
-  <div id="list">${rows?.length?rows.map(r=>`<div class="chk" data-rid="${r.report_id}"><div class="top"><div><h3>${esc(r.sublet_title)}</h3><div class="meta">Reported ${dt(r.created_at)} by ${esc(r.reporter)} · poster ${esc(r.poster)} · student ${esc(r.student)}${r.agreed_at?" · agreed":""}${r.closed_at?" · closed":""}</div></div></div>
+  <div id="list">${REPORTS.length?REPORTS.map(r=>`<div class="chk${r.report_id===LINKED?" linked":""}" data-rid="${r.report_id}" id="r${r.report_id}"><div class="top"><div><h3>${esc(r.sublet_title)}</h3><div class="meta">${r.auto?"Flagged":"Reported"} ${dt(r.created_at)} by ${esc(r.reporter)} · poster ${esc(r.poster)} · student ${esc(r.student)}${r.agreed_at?" · agreed":""}${r.closed_at?" · closed":""}</div></div></div>
+    <div class="flagbar"><span>${r.auto?"Flagged":"Reported"}: <b>${esc(r.flagged_email||"unknown")}</b> · the ${esc(r.flagged_role)}${r.flagged_limited?` <span class="res res-red">Limited</span>`:""}</span>
+      <span class="fb"><button class="btn ${r.flagged_limited?"":"danger"}" data-c="${r.flagged_limited?"unlimit":"limit"}">${r.flagged_limited?"Unlimit":"Limit"}</button><button class="btn" data-c="why">Why ${r.auto?"flagged":"reported"}?</button></span></div>
     <p><b>Reason:</b> ${esc(r.reason)}</p>
     <div class="chatlog">${(r.messages||[]).map(m=>`<div><b>${esc(m.from)}</b> <span class="meta">${dt(m.at)}${m.masked?" · contact hidden":""}</span><br>${esc(m.body)}</div>`).join("")}</div>
-    <div class="acts"><button class="btn" data-c="ok">Done, nothing to do</button><button class="btn" data-c="close">Close the chat</button></div></div>`).join(""):`<p class="empty">No reported chats. Nice.</p>`}</div>`;
+    <div class="acts"><button class="btn" data-c="ok">Done, nothing to do</button><button class="btn" data-c="close">Close the chat</button></div></div>`).join(""):`<p class="empty">No reported or flagged chats. Nice.</p>`}</div>`;
   wireTabs();
-  $("#list").onclick=async e=>{const b=e.target.closest("button[data-c]");if(!b)return;const id=+b.closest("[data-rid]").dataset.rid;b.disabled=true;
-    const {error}=await sb.rpc("chat_report_resolve",{p_report:id,p_close:b.dataset.c==="close"});toast(error?error.message:b.dataset.c==="close"?"Chat closed":"Marked done");renderChats()};
+  $("#list").onclick=async e=>{const b=e.target.closest("button[data-c]");if(!b)return;const id=+b.closest("[data-rid]").dataset.rid;const r=REPORTS.find(x=>x.report_id===id);const c=b.dataset.c;
+    if(c==="why")return showWhy(r);
+    b.disabled=true;
+    if(c==="limit"||c==="unlimit"){const {error}=await sb.rpc("chat_limit",{p_user:r.flagged_id,p_limit:c==="limit",p_reason:r.reason});
+      toast(error?error.message:c==="limit"?`${r.flagged_email} can't send messages now. Tap Unlimit to undo.`:`${r.flagged_email} can send messages again.`);return renderChats()}
+    const {error}=await sb.rpc("chat_report_resolve",{p_report:id,p_close:c==="close"});toast(error?error.message:c==="close"?"Chat closed":"Marked done");renderChats()};
+  if(LINKED){const r=REPORTS.find(x=>x.report_id===LINKED);const el=$("#r"+LINKED);if(el)el.scrollIntoView({block:"center"});if(r&&!showWhy.done){showWhy.done=true;showWhy(r)}}
 }
+/* the pop-up: what the hidden messages really said (only admins can see this), when, and what caught them */
+function showWhy(r){let d=$("#why");if(!d){d=document.createElement("dialog");d.id="why";document.body.appendChild(d)}
+  const w=(r.why||[]).slice().sort((a,b)=>(b.flagged-a.flagged)||String(a.at).localeCompare(String(b.at)));
+  const when=s=>new Date(s).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+  d.innerHTML=`<button class="x" aria-label="Close">×</button><h2>Why ${esc(r.flagged_email||"this student")} was ${r.auto?"flagged":"reported"}</h2>
+    <p class="meta">${esc(r.reason)}</p>
+    ${w.length?`<p class="meta">What Rhedr hid in this chat, as they actually typed it (students never see this):</p><div class="whylist">${w.map(m=>`<div class="${m.flagged?"":"other"}"><span class="meta">${when(m.at)} · ${esc(m.from)} · ${esc(CAUGHT[m.caught_by]||m.caught_by)}</span><br><b>${esc(m.original)}</b></div>`).join("")}</div>`
+      :`<p class="meta">No hidden messages saved for this chat (it was reported by a student, or the messages were hidden before Rhedr started keeping them). The chat itself is on the report.</p>`}
+    <div class="acts"><button class="btn ${r.flagged_limited?"":"danger"}" data-l="${r.flagged_limited?0:1}">${r.flagged_limited?"Unlimit":"Limit"} ${esc(r.flagged_email||"")}</button><button class="btn" data-l="close">Close</button></div>`;
+  d.querySelector(".x").onclick=()=>d.close();
+  d.querySelector(".acts").onclick=async e=>{const b=e.target.closest("button[data-l]");if(!b)return;if(b.dataset.l==="close")return d.close();b.disabled=true;
+    const lim=b.dataset.l==="1";const {error}=await sb.rpc("chat_limit",{p_user:r.flagged_id,p_limit:lim,p_reason:r.reason});
+    toast(error?error.message:lim?`${r.flagged_email} can't send messages now.`:`${r.flagged_email} can send messages again.`);d.close();renderChats()};
+  d.showModal()}
 function wireTabs(){document.querySelectorAll(".tabsw button").forEach(b=>b.onclick=()=>{view=b.dataset.v;render()})}
 
 /* delete files that are done with; proofs nobody checked within 30 days are rejected first */

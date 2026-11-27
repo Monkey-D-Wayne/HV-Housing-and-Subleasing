@@ -14,6 +14,9 @@
 // Settings in the Supabase dashboard:
 //   Secret RESEND_API_KEY   the same one send-alerts uses (Edge Function secrets are shared by all functions)
 //   Secret ANTHROPIC_API_KEY the same one check-lease uses (without it the AI check is skipped)
+//
+// And it emails Rhedr's admin (boaz@rhedr.com, or the ADMIN_EMAIL secret) when a student is flagged for trying to
+// share contact info, or a student reports a chat: {"flag_report": id}, with a link straight to it on rhedr.com/admin.
 //   "Verify JWT" OFF        for this function, so the scheduled job can reach it.
 //                           It checks its own key instead (the x-rhedr-job header, from table public.alert_job).
 // Supabase provides SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY by itself.
@@ -135,6 +138,38 @@ async function checkMessage(admin: SupabaseClient, id: number) {
   return { checked: true, shares_contact: true, hidden, reason: out.reason };
 }
 
+/* ---------- email the admin about a flag or a report ---------- */
+const ADMIN_EMAIL = Deno.env.get("ADMIN_EMAIL") ?? "boaz@rhedr.com";
+async function flagEmail(admin: SupabaseClient, id: number) {
+  const key = Deno.env.get("RESEND_API_KEY");
+  if (!key) return { sent: false, why: "no RESEND_API_KEY" };
+  const { data, error } = await admin.rpc("chat_flag_info", { p_report: id });
+  if (error) throw new Error(error.message);
+  const r = (data ?? [])[0] as { report_id: number; auto: boolean; reason: string; sublet_title: string; flagged_email: string; hidden: number } | undefined;
+  if (!r) return { sent: false, why: "no such report" };
+  const link = `${SITE}/admin?report=${r.report_id}`;
+  const what = r.auto ? "Rhedr flagged a student" : "A student reported a chat";
+  const subject = `${what}: ${r.flagged_email ?? "a student"}`;
+  const html = `<!doctype html><html><body style="margin:0;background:#faf8f5;font-family:Arial,Helvetica,sans-serif;color:#1c1917">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#fff;border-radius:16px"><tr><td style="padding:22px">
+<div style="font-size:22px;font-weight:800">Rhedr admin</div>
+<div style="font-size:18px;font-weight:bold;margin-top:12px">${esc(what)}</div>
+<p style="font-size:15px;line-height:1.5;margin:10px 0 0"><b>${r.auto ? "Flagged" : "Reported"}:</b> ${esc(r.flagged_email)}<br>
+<b>Sublet:</b> ${esc(r.sublet_title)}<br><b>Hidden messages from them in this chat:</b> ${r.hidden}<br><b>Why:</b> ${esc(r.reason)}</p>
+<p style="margin:18px 0 0"><a href="${esc(link)}" style="display:inline-block;background:#c2410c;color:#fff;font-weight:bold;text-decoration:none;border-radius:8px;padding:10px 18px">Open it in admin</a></p>
+<p style="font-size:13px;color:#57534e;margin:14px 0 0">In admin you can see what the hidden messages really said, and limit the student with one tap.</p>
+</td></tr></table></td></tr></table></body></html>`;
+  const text = `${what}\n\n${r.auto ? "Flagged" : "Reported"}: ${r.flagged_email}\nSublet: ${r.sublet_title}\nHidden messages from them in this chat: ${r.hidden}\nWhy: ${r.reason}\n\nOpen it in admin: ${link}`;
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Idempotency-Key": await sha(`flag:${r.report_id}:${r.hidden}`) },
+    body: JSON.stringify({ from: FROM, to: [ADMIN_EMAIL], subject, html, text, tags: [{ name: "type", value: "chat_flag" }] }),
+  });
+  if (!res.ok) return { sent: false, why: `${res.status} ${(await res.text()).slice(0, 200)}` };
+  return { sent: true };
+}
+
 Deno.serve(async (req) => {
   if (req.method !== "POST") return json({ error: "POST only" }, 405);
   const admin = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, { auth: { persistSession: false } });
@@ -145,6 +180,10 @@ Deno.serve(async (req) => {
   if (!job?.secret || given.length !== job.secret.length || given !== job.secret) return json({ error: "Not allowed" }, 401);
 
   const body = await req.json().catch(() => ({}));
+  if (body?.flag_report) {
+    try { return json(await flagEmail(admin, Number(body.flag_report))); }
+    catch (e) { return json({ error: String((e as Error)?.message ?? e) }, 500); }
+  }
   if (body?.check_message) {
     try { return json(await checkMessage(admin, Number(body.check_message))); }
     catch (e) { return json({ error: String((e as Error)?.message ?? e) }, 500); }
