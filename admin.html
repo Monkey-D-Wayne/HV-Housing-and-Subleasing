@@ -11,6 +11,18 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="sublets.css">
 <style>
+  .flagbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 4px;padding:10px 12px;background:var(--bg);border:1px solid var(--line);border-radius:12px}
+  .flagbar .fb{display:flex;gap:8px}
+  .btn.danger{background:var(--stop-bg);color:var(--stop-ink);border-color:transparent}
+  .chk.linked{outline:2px solid var(--accent)}
+  #why{border:0;border-radius:16px;padding:20px;max-width:560px;width:calc(100% - 32px);background:var(--surface);color:var(--ink)}
+  #why::backdrop{background:rgba(0,0,0,.45)}
+  #why h2{margin:0 30px 6px 0;font-size:18px}
+  #why .x{position:absolute;top:12px;right:14px;border:0;background:none;font-size:24px;color:var(--muted);cursor:pointer}
+  #why .whylist{display:grid;gap:8px;margin:10px 0 16px;max-height:50vh;overflow:auto}
+  #why .whylist div{border:1px solid var(--line);border-radius:10px;padding:8px 10px;overflow-wrap:anywhere}
+  #why .whylist .other{opacity:.65}
+  #why .acts{display:flex;gap:8px;flex-wrap:wrap}
   body{min-height:100%}
   .adm{max-width:980px;margin:0 auto;padding:20px 16px 60px}
   .adm h1{font-family:var(--display);font-size:26px;letter-spacing:-.02em;margin:0 0 4px}
@@ -55,6 +67,6 @@
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="config.js"></script>
-<script src="admin.js"></script>
+<script src="admin.js?v=2"></script>
 </body>
 </html>

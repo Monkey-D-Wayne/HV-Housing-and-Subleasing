@@ -303,6 +303,34 @@ begin
       or v ~ '(?<![a-z])(numbers?|num|cell|phone|call|text|txt|sms|email|e-mail|mail|contact|reach|dm|pm|handle|user\s?name|add me|find me|look me up|search|follow|account|socials?|link|site|website|dot|com|edu|psu|gmail|outlook|yahoo|icloud|snap\w*|insta\w*|ig|venmo|zelle|cash\s?app|paypal|whats\s?app|telegram|discord|group\s?me|facebook|fb|linkedin|tiktok|twitter|hmu|hit me up|off (of )?rhedr|outside|backwards|reverse|digits)(?![a-z])';
 end $$;
 
+-- What a hidden message said, for rhedr.com/admin only (when a student is flagged, you can see why).
+-- Students can't read this table; only the admin functions below can.
+create table if not exists public.message_originals (
+  message_id      bigint primary key references public.messages(id) on delete cascade,
+  conversation_id bigint not null references public.conversations(id) on delete cascade,
+  sender_id       uuid,
+  original        text not null,
+  caught_by       text not null,          -- rule, split (sent in pieces), after_hidden, ai
+  created_at      timestamptz not null default now()
+);
+alter table public.message_originals enable row level security;
+revoke all on public.message_originals from anon, authenticated;
+
+-- Students you limited on rhedr.com/admin: they can still read their chats, but can't send messages or start new ones.
+create table if not exists public.limited_users (
+  user_id    uuid primary key references auth.users(id) on delete cascade,
+  limited_at timestamptz not null default now(),
+  reason     text
+);
+alter table public.limited_users enable row level security;
+revoke all on public.limited_users from anon, authenticated;
+
+create or replace function public.am_limited() returns boolean
+language sql stable security definer set search_path = public as $$
+  select exists (select 1 from public.limited_users where user_id = auth.uid()) $$;
+revoke all on function public.am_limited() from public, anon;
+grant execute on function public.am_limited() to authenticated;
+
 -- C. Rules for every message -------------------------------------------------------------------------
 -- Contact info split over several messages. Reads the sender's last 10 messages in this chat from the last
 -- 15 minutes together with the new one ("814" / "555" / "1234", "boaz" / "psu" / "edu", "i" "n" "s" "t" "a" ...).
@@ -339,6 +367,10 @@ begin
       hit := true; end if;
   end loop;
   if not hit then return false; end if;
+  insert into public.message_originals (message_id, conversation_id, sender_id, original, caught_by)
+    select id, conversation_id, sender_id, body, 'split' from public.messages
+     where id = any(ids) and sender_id = n.sender_id and char_length(body) <= 40
+  on conflict (message_id) do nothing;
   update public.messages set body = '[contact info hidden]', masked = true
    where id = any(ids) and sender_id = n.sender_id and char_length(body) <= 40;
   return true;
@@ -351,19 +383,35 @@ grant execute on function public.mask_split_contact(public.messages) to authenti
 alter table public.chat_reports add column if not exists auto boolean not null default false;
 create or replace function public.chat_autoflag(p_conv bigint, p_user uuid) returns void
 language plpgsql security definer set search_path = public as $$
-declare n int;
+declare n int; was_open boolean; rid bigint; open_now boolean;
 begin
   if p_user is null then return; end if;
   select count(*) into n from public.messages where conversation_id = p_conv and sender_id = p_user and masked;
   if n >= 3 then
+    select resolved_at is null into was_open from public.chat_reports where conversation_id = p_conv and user_id = p_user and auto;
     insert into public.chat_reports (conversation_id, user_id, reason, auto)
     values (p_conv, p_user, format('Automatic flag: Rhedr hid contact info in %s of this student''s messages before the two agreed.', n), true)
     on conflict (conversation_id, user_id) do update set reason = excluded.reason,
            created_at = case when chat_reports.resolved_at is not null and n % 5 = 0 then now() else chat_reports.created_at end,
            resolved_at = case when n % 5 = 0 then null else chat_reports.resolved_at end
      where chat_reports.auto;
+    select id, resolved_at is null into rid, open_now from public.chat_reports where conversation_id = p_conv and user_id = p_user and auto;
+    if open_now and was_open is not true then perform public.chat_notify_admin(rid); end if;   -- new, or back after you marked it done
   end if;
 end $$;
+-- Emails boaz@rhedr.com about a flag or a report, with a link straight to it on rhedr.com/admin (chat-emails function)
+create or replace function public.chat_notify_admin(p_report bigint) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  perform net.http_post(
+    url := 'https://jszujotoetfhywyshxjq.supabase.co/functions/v1/chat-emails',
+    headers := jsonb_build_object('Content-Type', 'application/json',
+                                  'x-rhedr-job', (select secret from public.alert_job where id = 1)),
+    body := jsonb_build_object('flag_report', p_report),
+    timeout_milliseconds := 20000);
+exception when others then null;   -- never let the email get in the way
+end $$;
+revoke all on function public.chat_notify_admin(bigint) from public, anon, authenticated;
 revoke all on function public.chat_autoflag(bigint, uuid) from public, anon, authenticated;
 grant execute on function public.chat_autoflag(bigint, uuid) to service_role;
 
@@ -372,8 +420,9 @@ alter table public.messages add column if not exists ai_check boolean not null d
 -- Not "security definer" on purpose: current_user has to be the student (or the database, for notes from Rhedr).
 create or replace function public.message_checks() returns trigger
 language plpgsql set search_path = public as $$
-declare c public.conversations; m text;
+declare c public.conversations; m text; orig text; how text;
 begin
+  perform set_config('rhedr.orig', '', true);
   if current_user in ('authenticated','anon') then
     new.sender_id := auth.uid();
     if new.sender_id is null then raise exception 'Sign in to send messages'; end if;
@@ -388,6 +437,9 @@ begin
   if new.sender_id is null then return new; end if;   -- a note from Rhedr itself (only the database can write these)
   if new.sender_id not in (c.poster_id, c.student_id) then raise exception 'You''re not in this chat'; end if;
   if c.closed_at is not null then raise exception 'This chat is closed'; end if;
+  if public.am_limited() then
+    raise exception 'Messaging is paused on your account for now, because of repeated tries to share contact info before agreeing. If you think that''s a mistake, write to support@rhedr.com.';
+  end if;
   if (select count(*) from public.messages x where x.sender_id = new.sender_id and x.created_at > now() - interval '1 minute') >= 15 then
     raise exception 'You''re sending messages very fast. Wait a minute and try again.'; end if;
   if (select count(*) from public.messages x where x.sender_id = new.sender_id and x.created_at > now() - interval '1 day') >= 400 then
@@ -402,17 +454,20 @@ begin
                   order by m2.id desc limit 3) x) then
       raise exception 'Please write your message in one go. Sending a few letters at a time is blocked, because it''s a common way to sneak contact info past Rhedr.';
     end if;
+    orig := new.body;
     m := public.mask_message(new.body);
-    if m is distinct from new.body then new.masked := true; new.body := m; end if;
+    if m is distinct from new.body then new.masked := true; new.body := m; how := 'rule'; end if;
     -- and the same check over your last few messages read together
-    if not new.masked and public.mask_split_contact(new) then new.masked := true; new.body := '[contact info hidden]'; end if;
+    if not new.masked and public.mask_split_contact(new) then new.masked := true; new.body := '[contact info hidden]'; how := 'split'; end if;
     -- right after Rhedr hid your last message, a lone username-like word ("boazwc") is hidden too
     if not new.masked and public.contact_lone_word(new.body) and exists (
          select 1 from public.messages x
           where x.id = (select max(id) from public.messages where conversation_id = new.conversation_id)
             and x.sender_id = new.sender_id and x.masked and x.created_at > now() - interval '10 minutes') then
-      new.masked := true; new.body := '[contact info hidden]';
+      new.masked := true; new.body := '[contact info hidden]'; how := 'after_hidden';
     end if;
+    -- what it said, for the admin page (saved right after the message, in message_after)
+    if new.masked then perform set_config('rhedr.orig', how || ':' || orig, true); end if;
     -- passed every rule but looks like it might be trying: a quick AI look right after it's saved (section C2)
     if not new.masked and (public.contact_suspicious(new.body) or (char_length(new.body) <= 6 and exists (
          select 1 from public.messages x where x.conversation_id = new.conversation_id and x.sender_id = new.sender_id
@@ -435,6 +490,13 @@ begin
          poster_read_at  = case when new.sender_id = c.poster_id  then new.created_at else c.poster_read_at end,
          student_read_at = case when new.sender_id = c.student_id then new.created_at else c.student_read_at end
    where c.id = new.conversation_id;
+  if new.masked and coalesce(current_setting('rhedr.orig', true), '') like '%:%' and new.sender_id is not null then
+    insert into public.message_originals (message_id, conversation_id, sender_id, original, caught_by)
+    values (new.id, new.conversation_id, new.sender_id, substr(current_setting('rhedr.orig', true), strpos(current_setting('rhedr.orig', true), ':') + 1),
+            split_part(current_setting('rhedr.orig', true), ':', 1))
+    on conflict (message_id) do nothing;
+    perform set_config('rhedr.orig', '', true);
+  end if;
   if new.masked then perform public.chat_autoflag(new.conversation_id, new.sender_id); end if;
   if new.ai_check then
     begin   -- never let the AI check get in the way of sending
@@ -463,6 +525,11 @@ begin
   select * into m from public.messages where id = p_msg;
   if not found or m.sender_id is null then return 0; end if;
   if (select agreed_at from public.conversations where id = m.conversation_id) is not null then return 0; end if;
+  insert into public.message_originals (message_id, conversation_id, sender_id, original, caught_by)
+    select id, conversation_id, sender_id, body, 'ai' from public.messages
+     where conversation_id = m.conversation_id and sender_id = m.sender_id and not masked
+       and id = any(array_append(p_ids, p_msg)) and created_at > now() - interval '1 hour'
+  on conflict (message_id) do nothing;
   update public.messages set body = '[contact info hidden]', masked = true
    where conversation_id = m.conversation_id and sender_id = m.sender_id and not masked
      and id = any(array_append(p_ids, p_msg)) and created_at > now() - interval '1 hour';
@@ -640,27 +707,70 @@ begin
   if not public.in_chat(p_conv) then raise exception 'That chat no longer exists'; end if;
   insert into public.chat_reports (conversation_id, user_id, reason) values (p_conv, auth.uid(), left(trim(p_reason), 500))
   on conflict (conversation_id, user_id) do update set reason = excluded.reason, created_at = now(), resolved_at = null;
+  perform public.chat_notify_admin((select id from public.chat_reports where conversation_id = p_conv and user_id = auth.uid()));
 end $$;
 
--- For rhedr.com/admin: reported chats, with their messages
+-- For rhedr.com/admin: reported and flagged chats, with their messages. "flagged" is the student Rhedr flagged
+-- (automatic flags) or the one who was reported. "why" lists the hidden messages with what they really said.
+drop function if exists public.chat_report_queue(boolean);
 create or replace function public.chat_report_queue(p_done boolean default false)
 returns table (report_id bigint, created_at timestamptz, reason text, reporter text, resolved_at timestamptz,
                conversation_id bigint, sublet_id bigint, sublet_title text, poster text, student text,
-               agreed_at timestamptz, closed_at timestamptz, messages jsonb)
+               agreed_at timestamptz, closed_at timestamptz, messages jsonb,
+               auto boolean, flagged_id uuid, flagged_email text, flagged_role text, flagged_limited boolean, why jsonb)
 language plpgsql stable security definer set search_path = public as $$
 begin
   if not public.is_admin() then raise exception 'Only Rhedr admins can see this'; end if;
   return query
-    select r.id, r.created_at, r.reason, case when r.auto then 'Rhedr (automatic flag on ' || coalesce(ru.email::text, 'a student') || ')' else ru.email::text end, r.resolved_at, c.id, c.sublet_id, c.sublet_title,
+    select r.id, r.created_at, r.reason,
+           case when r.auto then 'Rhedr (automatic flag)' else ru.email::text end,
+           r.resolved_at, c.id, c.sublet_id, c.sublet_title,
            pu.email::text, su.email::text, c.agreed_at, c.closed_at,
            (select coalesce(jsonb_agg(jsonb_build_object('at', m.created_at, 'masked', m.masked, 'body', m.body,
                     'from', case when m.sender_id is null then 'Rhedr' when m.sender_id = c.poster_id then 'Poster' else 'Student' end) order by m.id), '[]')
-              from public.messages m where m.conversation_id = c.id)
+              from public.messages m where m.conversation_id = c.id),
+           r.auto, f.fid, fu.email::text, case when f.fid = c.poster_id then 'poster' else 'student' end,
+           exists (select 1 from public.limited_users l where l.user_id = f.fid),
+           (select coalesce(jsonb_agg(jsonb_build_object('at', o.created_at, 'caught_by', o.caught_by, 'original', o.original,
+                    'from', case when o.sender_id = c.poster_id then 'Poster' else 'Student' end,
+                    'flagged', o.sender_id = f.fid) order by o.message_id), '[]')
+              from public.message_originals o where o.conversation_id = c.id)
       from public.chat_reports r join public.conversations c on c.id = r.conversation_id
-      left join auth.users ru on ru.id = r.user_id left join auth.users pu on pu.id = c.poster_id left join auth.users su on su.id = c.student_id
+      cross join lateral (select case when r.auto then r.user_id when r.user_id = c.poster_id then c.student_id else c.poster_id end as fid) f
+      left join auth.users ru on ru.id = r.user_id left join auth.users pu on pu.id = c.poster_id
+      left join auth.users su on su.id = c.student_id left join auth.users fu on fu.id = f.fid
      where (r.resolved_at is null) <> p_done
      order by r.created_at desc limit 100;
 end $$;
+
+-- Limit or unlimit a student from rhedr.com/admin
+create or replace function public.chat_limit(p_user uuid, p_limit boolean default true, p_reason text default null) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.is_admin() then raise exception 'Only Rhedr admins can do this'; end if;
+  if p_limit then
+    insert into public.limited_users (user_id, reason) values (p_user, left(p_reason, 500))
+    on conflict (user_id) do update set reason = coalesce(excluded.reason, limited_users.reason);
+  else
+    delete from public.limited_users where user_id = p_user;
+  end if;
+end $$;
+revoke all on function public.chat_limit(uuid, boolean, text) from public, anon;
+grant execute on function public.chat_limit(uuid, boolean, text) to authenticated;
+
+-- For the chat-emails function: what the admin email about a flag or report says
+create or replace function public.chat_flag_info(p_report bigint)
+returns table (report_id bigint, auto boolean, reason text, sublet_title text, flagged_email text, hidden int)
+language sql stable security definer set search_path = public as $$
+  select r.id, r.auto, r.reason, c.sublet_title, fu.email::text,
+         (select count(*)::int from public.messages m where m.conversation_id = c.id and m.sender_id = f.fid and m.masked)
+    from public.chat_reports r join public.conversations c on c.id = r.conversation_id
+    cross join lateral (select case when r.auto then r.user_id when r.user_id = c.poster_id then c.student_id else c.poster_id end as fid) f
+    left join auth.users fu on fu.id = f.fid
+   where r.id = p_report $$;
+revoke all on function public.chat_flag_info(bigint) from public, anon, authenticated;
+grant execute on function public.chat_flag_info(bigint) to service_role;
+
 create or replace function public.chat_report_resolve(p_report bigint, p_close boolean default false) returns void
 language plpgsql security definer set search_path = public as $$
 declare cid bigint;
