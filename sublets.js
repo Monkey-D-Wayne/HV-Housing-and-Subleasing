@@ -45,8 +45,9 @@ function badges(s){const b=[{k:"psu",t:"Penn State student",d:"Posted from a con
   if((s.photos||[]).length>=4)b.push({k:"photos",t:"Real photos",d:"The poster uploaded their own photos of the place."});
   const bb=bById[s.building_id];if(bb&&!(bb.ppm&&s.space==="room"&&s.price<bb.ppm*0.45))b.push({k:"bldg",t:"Known building",d:"Matches a building on Rhedr, and the price fits that building."});
   return b}
-function score(s){const age=(Date.now()-new Date(s.created_at||Date.now()))/864e5;
-  return (s.lease_verified?40:0)+(s.building_id?12:0)+Math.min((s.photos||[]).length,6)*3+(s.has_lease_doc?4:0)-Math.min(age,60)*0.3}
+/* "Most verified" sort: verification points first; when two listings tie, the cheaper one wins, then the newer one */
+function score(s){return (s.lease_verified?40:0)+(s.building_id?12:0)+Math.min((s.photos||[]).length,6)*3+(s.has_lease_doc?4:0)}
+function byVerified(a,b){return score(b)-score(a)||(+a.price||0)-(+b.price||0)||String(b.created_at).localeCompare(String(a.created_at))}
 
 /* client-side scam checks, shown as you type; the database runs the same checks again */
 const SCAM=[
@@ -164,7 +165,7 @@ let ALL=[],byId={},rows=[],USER=null;
 const state={tab:"all",q:"",maxp:2000,from:"",sort:"best"};
 function filtered(){const q=state.q.trim().toLowerCase();const tab=TABS.find(t=>t.k===state.tab);
   return ALL.filter(s=>tab.f(s)&&(!q||[s.title,s.address,s.building_name].join(" ").toLowerCase().includes(q))&&(state.maxp>=2000||s.price<=state.maxp)&&(!state.from||s.start_date<=state.from))
-   .sort((a,b)=>state.sort==="price"?a.price-b.price:state.sort==="start"?a.start_date.localeCompare(b.start_date):state.sort==="new"?String(b.created_at).localeCompare(String(a.created_at)):score(b)-score(a))}
+   .sort((a,b)=>state.sort==="price"?a.price-b.price:state.sort==="start"?a.start_date.localeCompare(b.start_date):state.sort==="new"?String(b.created_at).localeCompare(String(a.created_at)):byVerified(a,b))}
 function renderTabs(){$("#tabs").innerHTML=`<a class="tab" href="penn-state"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 11h2M11 11h2M15 11h2M7 15h2M11 15h2M15 15h2M6 7V4h12v3" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>All housing<span class="n">${BLD.length||""}</span></a><span class="tabsep" aria-hidden="true"></span>`+
   TABS.map(t=>`<button class="tab" role="tab" aria-selected="${state.tab===t.k}" data-k="${t.k}"><svg viewBox="0 0 24 24" aria-hidden="true">${t.ico}</svg>${t.label}${t.k==="spring"||t.k==="summer"||t.k==="fall"?" "+season(t.k).y:""}<span class="n">${ALL.filter(t.f).length}</span></button>`).join("")}
 function photoOf(s,i=0){const u=(s.photos||[])[i];return u?`<img src="${esc(u)}" alt="${esc(s.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'nophoto',textContent:'Photo unavailable'}))">`:`<div class="nophoto">No photos yet</div>`}
