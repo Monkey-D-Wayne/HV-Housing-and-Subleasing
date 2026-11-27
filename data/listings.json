@@ -19612,9 +19612,9 @@
 1,
 2
 ],
-"price": "$1,031–$1,977 per person / mo",
+"price": "$1,977–$2,267 per unit / mo",
 "ppm": 1031,
-"est": false,
+"est": true,
 "lat": 40.792686,
 "lng": -77.856906,
 "source": "site",
@@ -19681,13 +19681,18 @@
 {
 "name": "Two Bedroom",
 "beds": 2,
-"price": "$1,031 / person",
+"price": "$2,062–$2,267 / mo (whole unit)",
 "img": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Floorplan-2BR.png",
 "rates": [
 {
+"n": 1,
+"pp": 2062,
+"whole": true
+},
+{
 "n": 2,
 "pp": 1031,
-"was": null
+"unit": 2062
 }
 ],
 "note": "$2062-$2267/month per unit",
@@ -19696,13 +19701,13 @@
 {
 "name": "One Bedroom with Home Office",
 "beds": 1,
-"price": "$1,977 / person",
+"price": "$1,977–$2,199 / mo (whole unit)",
 "img": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Floorplan-1BR.png",
 "rates": [
 {
 "n": 1,
 "pp": 1977,
-"was": null
+"whole": true
 }
 ],
 "note": "$1977-$2199/month per unit",
@@ -19711,6 +19716,331 @@
 ],
 "grad": true,
 "checked": "2026-11-27",
-"note": "Graduate and professional only: the building's site says it doesn't rent to undergraduates (grad students, professionals and retirees)."
+"note": "Graduate, professional and retiree housing: the building's site says \"no undergraduate status\". Rents from the building's own site (Nov 27, 2026). Rent includes cold water, sewer, trash and internet; tenants pay electric, parking and phone.",
+"manager": "Atlas Realty Management"
+},
+{
+"id": 200,
+"name": "The Allenway",
+"address": "315 S Allen St",
+"type": "apartment",
+"beds": [
+0,
+2
+],
+"price": "$1,134–$1,865 per unit / mo",
+"ppm": 896,
+"est": true,
+"lat": 40.792454,
+"lng": -77.857826,
+"source": "site",
+"site": "https://theallenway.com/",
+"plans": [
+{
+"name": "Two Bedrooms",
+"beds": 2,
+"price": "$1,791–$1,865 / mo (whole unit)",
+"page": "https://theallenway.com/apartments/",
+"note": "975–1,113 sq ft",
+"img": "https://theallenway.com/wp-content/uploads/2018/06/Two-bedrooms.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 1791,
+"whole": true
+},
+{
+"n": 2,
+"pp": 896,
+"unit": 1791
+}
+]
+},
+{
+"name": "One Bedroom",
+"beds": 1,
+"price": "$1,304–$1,407 / mo (whole unit)",
+"page": "https://theallenway.com/apartments/",
+"note": "621–756 sq ft",
+"img": "https://theallenway.com/wp-content/uploads/2018/06/One-bedroom.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 1304,
+"whole": true
+}
+]
+},
+{
+"name": "Efficiency",
+"beds": 0,
+"price": "$1,134–$1,215 / mo (whole unit)",
+"page": "https://theallenway.com/apartments/",
+"note": "452–680 sq ft",
+"img": "https://theallenway.com/wp-content/uploads/2018/06/Efficiency.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 1134,
+"whole": true
+}
+]
+}
+],
+"photos": [
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/AR_Allenway_slide4.png",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/14.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/13.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/16.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/15.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/12.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/18.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/AR_Allenway_slide2.png",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/1.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/2.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/9.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/7.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/4.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/5.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/3.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/10.jpg",
+"page": "https://theallenway.com/"
+}
+],
+"grad": true,
+"manager": "Atlas Realty Management",
+"checked": "2026-11-27",
+"note": "Graduate, professional and retiree housing: the building's site says \"no undergraduate status\". Rents from the building's own site (Nov 27, 2026). Furnished units available. No pets. Contact rent@atlas-rmc.com or 814-238-0741."
+},
+{
+"id": 15,
+"name": "Southside Court II",
+"address": "921-951 Southgate Drive",
+"type": "townhouse",
+"beds": [
+1,
+3
+],
+"price": "$650–$2,030 per person / mo (2027-2028 Full Year)",
+"ppm": 650,
+"est": true,
+"lat": 40.77393,
+"lng": -77.86139,
+"source": "site",
+"site": "https://www.apartmentstore.com/locations/state-college/southside-court-2/",
+"plans": [
+{
+"name": "One Bedroom Townhouse Unfurnished",
+"beds": 1,
+"baths": "1",
+"sqft": "640",
+"price": "$1,450 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/04/Southside-Court-II_1Bed-Landscape.jpg?fit=768%2C336&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1450,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/one-bedroom-townhouse-unfurnished/"
+},
+{
+"name": "One Bedroom Townhouse Furnished",
+"beds": 1,
+"baths": "1",
+"sqft": "640",
+"price": "$1,475 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/04/Southside-Court-II_1Bed-Landscape.jpg?fit=768%2C336&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1475,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/one-bedroom-townhouse-unfurnished-2/"
+},
+{
+"name": "Two Bedroom Townhouse Unfurnished",
+"beds": 2,
+"baths": "1",
+"sqft": "896",
+"price": "$875–$1,750 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_2Bed.webp?fit=610%2C665&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1750,
+"whole": true,
+"was": null
+},
+{
+"n": 2,
+"pp": 875,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/two-bedroom-townhouse-unfurnished/"
+},
+{
+"name": "Two Bedroom Townhouse Furnished",
+"beds": 2,
+"baths": "1",
+"sqft": "896",
+"price": "$888–$1,775 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_2Bed.webp?fit=610%2C665&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1775,
+"whole": true,
+"was": null
+},
+{
+"n": 2,
+"pp": 888,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/two-bedroom-townhouse-furnished/"
+},
+{
+"name": "Three Bedroom Townhouse Unfurnished",
+"beds": 3,
+"baths": "2",
+"sqft": "1280",
+"price": "$650–$1,950 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_3Bed.webp?fit=648%2C617&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1950,
+"whole": true,
+"was": null
+},
+{
+"n": 2,
+"pp": 975,
+"was": null
+},
+{
+"n": 3,
+"pp": 650,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/three-bedroom-townhouse-unfurnished/"
+},
+{
+"name": "Three Bedroom Townhouse Furnished",
+"beds": 3,
+"baths": "2",
+"sqft": "1280",
+"price": "$677–$2,030 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_3Bed.webp?fit=648%2C617&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 2030,
+"whole": true,
+"was": null
+},
+{
+"n": 2,
+"pp": 1015,
+"was": null
+},
+{
+"n": 3,
+"pp": 677,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/three-bedroom-townhouse-furnished/"
+}
+],
+"photos": [
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Court2_Ext_001.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/3_Living-scaled.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/5_Kitchen-scaled.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/13_Bedroom-scaled.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/14_Bath-scaled.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/16_Laundry-scaled.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+}
+],
+"manager": "The Apartment Store",
+"grad": true,
+"checked": "2026-11-27",
+"note": "The Apartment Store says it \"provides a peaceful experience for graduates and professionals.\" Water/sewer $35/month per person; residents also pay electric, cable and Wi-Fi. Parking, trash, landscaping and snow removal included. Application fee $55."
 }
 ]
