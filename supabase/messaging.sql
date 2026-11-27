@@ -381,28 +381,31 @@ grant execute on function public.mask_split_contact(public.messages) to authenti
 -- A student whose messages keep getting hidden shows up in "Chat reports" on rhedr.com/admin as an automatic flag
 -- (from 3 hidden messages in a chat; if you mark it handled it comes back at every 5th hidden message).
 alter table public.chat_reports add column if not exists auto boolean not null default false;
+alter table public.chat_reports add column if not exists notified_at timestamptz;   -- when boaz@rhedr.com was emailed about it
 create or replace function public.chat_autoflag(p_conv bigint, p_user uuid) returns void
 language plpgsql security definer set search_path = public as $$
-declare n int; was_open boolean; rid bigint; open_now boolean;
+declare n int; rid bigint; open_now boolean;
 begin
   if p_user is null then return; end if;
   select count(*) into n from public.messages where conversation_id = p_conv and sender_id = p_user and masked;
   if n >= 3 then
-    select resolved_at is null into was_open from public.chat_reports where conversation_id = p_conv and user_id = p_user and auto;
     insert into public.chat_reports (conversation_id, user_id, reason, auto)
     values (p_conv, p_user, format('Automatic flag: Rhedr hid contact info in %s of this student''s messages before the two agreed.', n), true)
     on conflict (conversation_id, user_id) do update set reason = excluded.reason,
            created_at = case when chat_reports.resolved_at is not null and n % 5 = 0 then now() else chat_reports.created_at end,
-           resolved_at = case when n % 5 = 0 then null else chat_reports.resolved_at end
+           resolved_at = case when n % 5 = 0 then null else chat_reports.resolved_at end,
+           notified_at = case when chat_reports.resolved_at is not null and n % 5 = 0 then null else chat_reports.notified_at end
      where chat_reports.auto;
-    select id, resolved_at is null into rid, open_now from public.chat_reports where conversation_id = p_conv and user_id = p_user and auto;
-    if open_now and was_open is not true then perform public.chat_notify_admin(rid); end if;   -- new, or back after you marked it done
+    select id, resolved_at is null and notified_at is null into rid, open_now
+      from public.chat_reports where conversation_id = p_conv and user_id = p_user and auto;
+    if open_now then perform public.chat_notify_admin(rid); end if;   -- one email per open flag (new, never emailed, or back after you marked it done)
   end if;
 end $$;
 -- Emails boaz@rhedr.com about a flag or a report, with a link straight to it on rhedr.com/admin (chat-emails function)
 create or replace function public.chat_notify_admin(p_report bigint) returns void
 language plpgsql security definer set search_path = public as $$
 begin
+  update public.chat_reports set notified_at = now() where id = p_report;
   perform net.http_post(
     url := 'https://jszujotoetfhywyshxjq.supabase.co/functions/v1/chat-emails',
     headers := jsonb_build_object('Content-Type', 'application/json',
