@@ -4,56 +4,145 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Rhedr · Student housing near Penn State</title>
-<meta name="description" content="Rhedr: every place to live near Penn State University Park. Apartments, student complexes, townhouses, rooms and dorms on one map.">
+<title>Rhedr · Student housing near campus</title>
+<meta name="description" content="Rhedr puts every place to live near campus on one map: apartments, student complexes, townhouses, rooms and dorms, plus sublets from verified students.">
 <meta property="og:site_name" content="Rhedr">
-<meta property="og:title" content="Rhedr · Student housing near Penn State">
-<meta property="og:description" content="Every place to live near Penn State University Park on one map.">
+<meta property="og:title" content="Rhedr · Student housing near campus">
+<meta property="og:description" content="Every place to live near campus on one map, plus sublets from verified students.">
 <meta property="og:url" content="https://rhedr.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="home.css">
 </head>
-<body>
-<header id="head">
-  <div class="bar">
-    <a class="brand" href="./">
-      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M7 16 L17 7.5 L27 16 V27 H7 Z" fill="var(--accent-ink)"/><rect x="14" y="19" width="6" height="8" rx="1" fill="var(--accent)"/></svg>
-      <div>Rhedr<small>Penn State · Every place to live near University Park</small></div>
-    </a>
-    <div class="search" role="search">
-      <label for="q" class="grow"><span>Search</span><input id="q" type="search" placeholder="Building or street"></label>
-      <label for="maxp"><span>Max per person / mo</span><span class="rangebox"><input id="maxp" type="range" min="400" max="2000" step="50" value="2000"><output id="maxpv">Any</output></span></label>
-      <label for="beds"><span>Bedrooms</span><select id="beds"><option value="0">Any</option><option value="1">Studio / 1</option><option value="2">2</option><option value="3">3</option><option value="4">4+</option></select></label>
-      <label for="sort"><span>Sort</span><select id="sort"><option value="dist">Closest to Old Main</option><option value="price">Lowest price</option><option value="name">Name</option></select></label>
-    </div>
+<body class="home">
+<header class="top">
+  <div class="wrap topbar">
+    <a class="brand" href="./" aria-label="Rhedr home"><svg class="logo" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M8 15.2 16 8.5l8 6.7V24a1 1 0 0 1-1 1h-4.6v-5.2h-4.8V25H9a1 1 0 0 1-1-1z" fill="var(--accent-ink)"/></svg>Rhedr</a>
+    <nav class="topnav" aria-label="Main">
+      <a href="#campuses">Campuses</a>
+      <a href="#how">How it works</a>
+      <a class="btn primary sm" href="penn-state">Find housing</a>
+    </nav>
   </div>
-  <nav class="tabs" role="tablist" id="tabs"></nav>
 </header>
 
-<main>
-  <section class="list">
-    <div class="listhead">
-      <h1 id="count">Places near Penn State</h1>
-      <p>State College, PA · Fall 2026 search</p>
+<main class="homemain">
+  <section class="hero">
+    <div class="wrap herogrid">
+      <div class="herocopy">
+        <p class="eyebrow">Student housing, all in one place</p>
+        <h1>Find your place near campus.</h1>
+        <p class="lede">Every apartment, student complex, townhouse, room and dorm near your school on one map, with real prices per person. Plus sublets posted only by verified students.</p>
+        <form class="pick" action="penn-state" onsubmit="event.preventDefault();location.href=this.campus.value">
+          <label for="campus"><span>Your campus</span>
+            <select id="campus" name="campus">
+              <option value="penn-state">Penn State · University Park</option>
+              <option disabled>More campuses coming soon</option>
+            </select>
+          </label>
+          <button class="btn primary" type="submit">Search housing</button>
+        </form>
+        <ul class="proof">
+          <li><b>150+</b> buildings near Penn State</li>
+          <li><b>570+</b> floor plans with prices</li>
+          <li><b>School email</b> check on every sublet</li>
+        </ul>
+      </div>
+      <div class="heroart" aria-hidden="true">
+        <svg viewBox="0 0 520 420" class="mapart">
+          <rect width="520" height="420" rx="22" class="m-bg"/>
+          <path d="M-10 120 C120 100 200 160 300 140 S470 90 540 120" class="m-road big"/>
+          <path d="M60 -10 C90 120 70 260 120 430" class="m-road"/>
+          <path d="M250 -10 L270 430" class="m-road"/>
+          <path d="M-10 300 C140 280 300 330 540 290" class="m-road"/>
+          <path d="M400 -10 C380 140 430 300 410 430" class="m-road"/>
+          <rect x="300" y="170" width="90" height="90" rx="10" class="m-park"/>
+          <path d="M150 200 h70 v50 h-70z M160 330 h60 v40 h-60z M300 20 h70 v60 h-70z M440 180 h60 v60 h-60z" class="m-blk"/>
+          <g class="m-pin"><rect x="120" y="150" width="76" height="30" rx="15"/><text x="158" y="170">$745</text></g>
+          <g class="m-pin"><rect x="290" y="88" width="76" height="30" rx="15"/><text x="328" y="108">$899</text></g>
+          <g class="m-pin sel"><rect x="210" y="240" width="84" height="30" rx="15"/><text x="252" y="260">$1,050</text></g>
+          <g class="m-pin"><rect x="380" y="270" width="76" height="30" rx="15"/><text x="418" y="290">$680</text></g>
+          <g class="m-pin"><rect x="60" y="330" width="76" height="30" rx="15"/><text x="98" y="350">$820</text></g>
+        </svg>
+        <div class="floatcard">
+          <span class="fc-k">Verified sublet</span>
+          <b>1 bed in a 4-bed apartment</b>
+          <span class="fc-s">Spring semester · $690 / mo</span>
+          <span class="fc-badges"><i>School email</i><i>Known building</i><i>Real photos</i></span>
+        </div>
+      </div>
     </div>
-    <div class="notice" role="note">
-      <b>Early preview.</b> Names, addresses and listed prices come from Penn State's Off-Campus Housing site, public listing sites and Penn State Housing's 2026–27 rates (checked Nov 25, 2026). Photos come from each building's own website and are credited there. Availability is not confirmed.
-    </div>
-    <div class="grid" id="grid"></div>
-    <p class="foot">Rhedr is an independent site. It is not affiliated with, endorsed by, or sponsored by The Pennsylvania State University.</p>
   </section>
-  <aside class="mapwrap" aria-label="Map">
-    <div id="map"></div>
-  </aside>
+
+  <section class="band" id="campuses">
+    <div class="wrap">
+      <h2>Choose your campus</h2>
+      <p class="sub">Rhedr starts at Penn State. More schools are on the way.</p>
+      <div class="campusgrid">
+        <a class="ccard live" href="penn-state">
+          <span class="cstat">Live</span>
+          <h3>Penn State</h3>
+          <p>University Park · State College, PA</p>
+          <ul><li>150+ buildings and dorms</li><li>Student sublets and lease takeovers</li></ul>
+          <span class="cgo">Browse housing →</span>
+        </a>
+        <div class="ccard soon">
+          <span class="cstat">Coming soon</span>
+          <h3>Your campus next</h3>
+          <p>We're adding more schools. Each one gets the same full map of places to live and verified student sublets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="how">
+    <div class="wrap">
+      <h2>How Rhedr works</h2>
+      <div class="feat">
+        <div>
+          <span class="fi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z M9 4v14 M15 6v14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+          <h3>Every option on one map</h3>
+          <p>Apartments, student complexes, townhouses, rooms and on-campus dorms, gathered from public listings and the buildings' own websites.</p>
+        </div>
+        <div>
+          <span class="fi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4z M8 12h8 M12 9v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+          <h3>Real prices per person</h3>
+          <p>Compare by what you'll actually pay each month, with floor plans and rates by group size where the building publishes them.</p>
+        </div>
+        <div>
+          <span class="fi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+          <h3>Sublets from verified students</h3>
+          <p>Only students with a confirmed school email can post or reply. Listings show which checks they passed, and scam patterns are flagged for review.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap cta2">
+      <div>
+        <h2>Leaving for a semester?</h2>
+        <p class="sub">Post your sublet or lease takeover for other Penn State students. It's free.</p>
+      </div>
+      <a class="btn primary" href="sublets">Go to Penn State sublets</a>
+    </div>
+  </section>
 </main>
-<button class="maptoggle" id="maptoggle"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>Show map</span></button>
 
-<dialog id="dlg"><div class="dlg" id="dlgbody"></div></dialog>
-<dialog id="lb" aria-label="Photos"><div class="lbwrap"><div class="lbtop"><span class="lbcap"></span><button class="lbclose" aria-label="Close photos">×</button></div><div class="lbstage"><button class="lbprev" aria-label="Previous photo">‹</button><div class="lbimg"></div><button class="lbnext" aria-label="Next photo">›</button></div><div class="lbthumbs"></div></div></dialog>
-
-<script src="config.js"></script>
-<script src="app.js"></script>
+<footer class="sitefoot">
+  <div class="wrap footgrid">
+    <div>
+      <a class="brand" href="./"><svg class="logo" width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M8 15.2 16 8.5l8 6.7V24a1 1 0 0 1-1 1h-4.6v-5.2h-4.8V25H9a1 1 0 0 1-1-1z" fill="var(--accent-ink)"/></svg>Rhedr</a>
+      <p>Student housing near campus.</p>
+    </div>
+    <div>
+      <h4>Penn State</h4>
+      <a href="penn-state">All housing</a>
+      <a href="sublets">Sublets</a>
+    </div>
+  </div>
+  <div class="wrap legal">© 2026 Rhedr. Rhedr is independent and is not affiliated with, endorsed by, or sponsored by The Pennsylvania State University or any other school. School names are used only to describe location.</div>
+</footer>
 </body>
 </html>

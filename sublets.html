@@ -11,7 +11,7 @@
 <meta property="og:description" content="Student sublets and lease takeovers near Penn State University Park, posted by confirmed psu.edu students.">
 <meta property="og:url" content="https://rhedr.com/sublets.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="sublets.css">
@@ -19,10 +19,10 @@
 <body class="sub">
 <header id="head">
   <div class="bar">
-    <a class="brand" href="./">
-      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--accent)"/><path d="M7 16 L17 7.5 L27 16 V27 H7 Z" fill="var(--accent-ink)"/><rect x="14" y="19" width="6" height="8" rx="1" fill="var(--accent)"/></svg>
-      <div>Rhedr<small>Penn State · Student sublets</small></div>
-    </a>
+    <div class="brandwrap">
+      <a class="brand" href="./" aria-label="Rhedr home"><svg class="logo" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M8 15.2 16 8.5l8 6.7V24a1 1 0 0 1-1 1h-4.6v-5.2h-4.8V25H9a1 1 0 0 1-1-1z" fill="var(--accent-ink)"/></svg>Rhedr</a>
+      <a class="campus" href="./#campuses" title="Change campus">Penn State <small>University Park</small><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+    </div>
     <div class="search" role="search">
       <label for="q" class="grow"><span>Search</span><input id="q" type="search" placeholder="Building or street"></label>
       <label for="maxp"><span>Max / month</span><span class="rangebox"><input id="maxp" type="range" min="300" max="2000" step="50" value="2000"><output id="maxpv">Any</output></span></label>
@@ -45,7 +45,10 @@
     </div>
     <div class="notice" id="demonote" hidden role="note"><b>Demo mode.</b> These are example listings, not real ones. Anything you post here is saved only in this browser until the sublets database is connected.</div>
     <div class="grid" id="grid"></div>
-    <p class="foot">Rhedr is an independent site. It is not affiliated with, endorsed by, or sponsored by The Pennsylvania State University.</p>
+    <footer class="foot">
+      <span>© 2026 Rhedr</span><a href="./">All campuses</a><a href="penn-state">Penn State housing</a><a href="sublets">Penn State sublets</a>
+      <span>Rhedr is independent and is not affiliated with, endorsed by, or sponsored by The Pennsylvania State University.</span>
+    </footer>
   </section>
   <aside class="mapwrap" aria-label="Map">
     <div id="map"></div>
