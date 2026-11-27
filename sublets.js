@@ -71,6 +71,9 @@ function demoApi(){
   const write=a=>{try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){}};
   let user=null;try{user=JSON.parse(localStorage.getItem(UKEY)||"null")}catch(e){}
   const listeners=[];const emit=()=>listeners.forEach(f=>f(user));
+  const AKEY="rhedr-demo-alerts";
+  const readA=()=>{try{return JSON.parse(localStorage.getItem(AKEY)||"[]")}catch(e){return[]}};
+  const writeA=a=>{try{localStorage.setItem(AKEY,JSON.stringify(a))}catch(e){}};
   const fileUrl=f=>new Promise(ok=>{const r=new FileReader();r.onload=()=>ok(r.result);r.readAsDataURL(f)});
   return {
     demo:true,
@@ -93,7 +96,15 @@ function demoApi(){
     async settings(){return {lease_proof_required:!!CFG.demoLeaseRequired}},
     async attachLease(id,file){const all=read();const s=all.find(x=>x.id===id&&x.user_id===user?.id);if(s){s.has_lease_doc=true;write(all)}},
     async myChecks(){return []},
-    checkLease(){}
+    checkLease(){},
+    // saved searches (sublet alerts): in demo mode they stay in this browser and no email is sent
+    async searches(){return user?readA().filter(a=>a.user_id===user.id).sort((a,b)=>b.id-a.id):[]},
+    async saveSearch(row){const all=readA();if(row.active!==false&&all.filter(a=>a.user_id===user.id&&a.active).length>=5)throw new Error("You can have 5 alerts on at once. Turn one off first.");
+      const a={...row,id:Date.now(),user_id:user.id,active:true,created_at:new Date().toISOString(),token:"demo-"+Date.now()};all.push(a);writeA(all);return a},
+    async updateSearch(id,patch){const all=readA();const a=all.find(x=>x.id===id&&x.user_id===user?.id);if(!a)return;
+      if(patch.active&&!a.active&&all.filter(x=>x.user_id===user.id&&x.active).length>=5)throw new Error("You can have 5 alerts on at once. Turn one off first.");Object.assign(a,patch);writeA(all)},
+    async deleteSearch(id){writeA(readA().filter(x=>!(x.id===id&&x.user_id===user?.id)))},
+    async unsubscribe(token,all){const list=readA();const a=list.find(x=>x.token===token);if(!a)return 0;let n=0;list.forEach(x=>{if(x.active&&(x.token===token||(all&&x.user_id===a.user_id))){x.active=false;n++}});writeA(list);return n}
   };
 }
 function liveApi(){
@@ -138,7 +149,13 @@ function liveApi(){
       this.checkLease(id)},
     async myChecks(){await ready;if(!user)return [];const {data}=await sb.rpc("my_lease_checks");return data||[]},
     // ask the AI to read the proof now; if the function isn't set up, the proof just waits for a manual check
-    checkLease(id){ready.then(()=>sb.functions.invoke("check-lease",{body:{sublet_id:id}})).catch(()=>{})}
+    checkLease(id){ready.then(()=>sb.functions.invoke("check-lease",{body:{sublet_id:id}})).catch(()=>{})},
+    // saved searches (sublet alerts); the send-alerts Edge Function emails new matches
+    async searches(){await ready;if(!user)return [];const {data,error}=await sb.from("saved_searches").select("*").eq("user_id",user.id).order("created_at",{ascending:false});err(error);return data||[]},
+    async saveSearch(row){await ready;need();const {data,error}=await sb.from("saved_searches").insert(row).select().single();err(error);return data},
+    async updateSearch(id,patch){await ready;need();const {error}=await sb.from("saved_searches").update(patch).eq("id",id);err(error)},
+    async deleteSearch(id){await ready;need();const {error}=await sb.from("saved_searches").delete().eq("id",id);err(error)},
+    async unsubscribe(token,all){await ready;const {data,error}=await sb.rpc("alert_unsubscribe",{p_token:token,p_all:!!all});err(error);return data||0}
   };
 }
 /* shrink a photo before upload so it loads fast and fits the free storage */
@@ -285,9 +302,9 @@ async function geocode(addr){try{const u=`https://nominatim.openstreetmap.org/se
   return null}
 
 /* ---------- my sublets ---------- */
-async function openMine(){const d=$("#mine");$("#minebody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>My sublets</h2><p class="lead">Signed in as <b>${esc(USER.email)}</b></p><div id="mylist" class="mylist">Loading…</div><div class="cta"><button class="btn primary" id="mpost">Post a sublet</button><button class="btn" id="mout">Sign out</button></div></div>`;
+async function openMine(){const d=$("#mine");$("#minebody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>My sublets</h2><p class="lead">Signed in as <b>${esc(USER.email)}</b></p><div id="mylist" class="mylist">Loading…</div><div class="cta"><button class="btn primary" id="mpost">Post a sublet</button><button class="btn" id="malerts">My alerts</button><button class="btn" id="mout">Sign out</button></div></div>`;
   if(!d.open)d.showModal();d.querySelector(".close").onclick=()=>d.close();
-  $("#mpost").onclick=()=>{d.close();openPost()};$("#mout").onclick=async()=>{await API.signOut();d.close();toast("Signed out")};
+  $("#mpost").onclick=()=>{d.close();openPost()};$("#malerts").onclick=()=>{d.close();openAlerts()};$("#mout").onclick=async()=>{await API.signOut();d.close();toast("Signed out")};
   const draw=async()=>{let my=[],ck={};try{const [m,c]=await Promise.all([API.mine(),API.myChecks().catch(()=>[])]);my=m;c.forEach(x=>ck[x.sublet_id]=x)}catch(e){$("#mylist").textContent=e.message;return}
     const leaseTxt=s=>s.lease_verified?" · Lease checked":s.has_lease_doc?" · Lease being checked":ck[s.id]?.decision==="rejected"?" · Lease proof not accepted":"";
     const ST={live:["Live","ok"],review:["Waiting for review","wait"],taken:["Taken","off"],removed:["Removed","off"]};
@@ -298,6 +315,78 @@ async function openMine(){const d=$("#mine");$("#minebody").innerHTML=`<button c
     if(b.dataset.a==="del"){if(b.dataset.sure!=="1"){b.dataset.sure="1";b.textContent="Tap again to delete";return}await API.remove(id).catch(x=>toast(x.message))}
     else await API.setStatus(id,b.dataset.a).catch(x=>toast(x.message));await draw();load()};
   draw()}
+
+/* ---------- sublet alerts (saved searches) ---------- */
+// The same rules as public.search_matches in supabase/setup.sql
+const walkMin=s=>(s.mi??miles(OM,s))*20;
+function matchSearch(a,s){return (!a.kind||s.kind===a.kind)&&(!a.space||s.space===a.space)
+  &&(a.beds==null||(a.beds>=4?s.beds>=4:s.beds===a.beds))&&(!a.max_price||s.price<=a.max_price)
+  &&(!a.move_in_by||s.start_date<=a.move_in_by)&&(!a.stay_until||s.end_date>=a.stay_until)
+  &&(!a.lease_only||!!s.lease_verified)&&(!a.query||[s.title,s.address,s.building_name].join(" ").toLowerCase().includes(a.query.toLowerCase()))
+  &&(!a.max_walk_min||walkMin(s)<=a.max_walk_min)}
+function alertLabel(a){const p=[];
+  if(a.beds!=null)p.push(a.beds===0?"Studio":a.beds>=4?"4+ bed":a.beds+"-bed");
+  p.push(a.space==="unit"?"whole place":a.space==="room"?"room":"");if(a.kind==="takeover")p.push("takeover");
+  if(a.max_price)p.push("under "+fmt(a.max_price));if(a.max_walk_min)p.push(a.max_walk_min+" min walk");
+  if(a.move_in_by)p.push("by "+dTxt(a.move_in_by));if(a.query)p.push(`"${a.query}"`);
+  const t=p.filter(Boolean).join(", ");return (t?t[0].toUpperCase()+t.slice(1):"Any sublet").slice(0,60)}
+function alertDraft(){const a={kind:null,space:null,beds:null,max_price:state.maxp<2000?state.maxp:null,max_walk_min:null,move_in_by:state.from||null,stay_until:null,query:state.q.trim()||null,lease_only:true,frequency:"daily"};
+  if(["spring","summer","fall"].includes(state.tab)){const w=season(state.tab);a.move_in_by=a.move_in_by||iso(new Date(D(w.a).getTime()+14*864e5));a.stay_until=iso(new Date(D(w.b).getTime()-14*864e5))}
+  if(state.tab==="takeover")a.kind="takeover";if(state.tab==="unit")a.space="unit";return a}
+function alertSummary(a){return [a.space==="unit"?"Whole place":a.space==="room"?"Private room":"Room or whole place",a.kind==="takeover"?"lease takeovers":a.kind==="sublet"?"sublets only":"",
+  a.beds!=null?(a.beds===0?"studio":a.beds>=4?"4+ bedrooms":a.beds+" bedrooms"):"",a.max_price?"up to "+fmt(a.max_price)+"/mo":"",a.max_walk_min?"within a "+a.max_walk_min+" min walk":"",
+  a.move_in_by?"move in by "+dTxt(a.move_in_by):"",a.stay_until?"until at least "+dTxt(a.stay_until):"",a.query?`matching "${a.query}"`:"",a.lease_only?"lease checked only":""].filter(Boolean).join(" · ")}
+const BELL='<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4zM10 21h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></svg>';
+async function openAlerts(){if(!USER){openAuth(openAlerts);return}const d=$("#alerts");const a=alertDraft();const t=today();
+  const opt=(v,cur,txt)=>`<option value="${v}"${String(cur??"")===String(v)?" selected":""}>${txt}</option>`;
+  $("#alertsbody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>Get sublet alerts</h2>
+  <p class="lead">We email <b>${esc(USER.email)}</b> when a new sublet matches. Lease-checked sublets come first.</p>
+  <form id="af" class="stack" novalidate>
+   <fieldset class="seg seg3"><legend>Space</legend><label><input type="radio" name="space" value=""${!a.space?" checked":""}><span><b>Either</b></span></label><label><input type="radio" name="space" value="room"${a.space==="room"?" checked":""}><span><b>Private room</b></span></label><label><input type="radio" name="space" value="unit"${a.space==="unit"?" checked":""}><span><b>Whole place</b></span></label></fieldset>
+   <div class="three"><label>Bedrooms in unit<select name="beds">${opt("",a.beds,"Any")}${[0,1,2,3,4].map(n=>opt(n,a.beds,n===0?"Studio":n===4?"4 or more":n)).join("")}</select></label>
+    <label>Max price / month<span class="money"><input name="max_price" type="number" min="50" max="6000" inputmode="numeric" placeholder="Any" value="${a.max_price||""}"></span></label>
+    <label>Walk to Old Main<select name="max_walk_min">${opt("",a.max_walk_min,"Any distance")}${[10,15,20,30].map(n=>opt(n,a.max_walk_min,"Up to "+n+" min")).join("")}</select></label></div>
+   <div class="two"><label><span>Move in by <small>(optional)</small></span><input name="move_in_by" type="date" min="${t}" value="${a.move_in_by||""}"></label><label><span>Stay until at least <small>(optional)</small></span><input name="stay_until" type="date" min="${t}" value="${a.stay_until||""}"></label></div>
+   <div class="two"><label>Type<select name="kind">${opt("",a.kind,"Sublets and lease takeovers")}${opt("sublet",a.kind,"Sublets only")}${opt("takeover",a.kind,"Lease takeovers only")}</select></label><label><span>Building or street <small>(optional)</small></span><input name="query" maxlength="60" placeholder="Like Beaver Ave or The Rise" value="${esc(a.query||"")}"></label></div>
+   <div class="checks"><label><input type="checkbox" name="lease_only"${a.lease_only?" checked":""}> Only lease-checked sublets <small class="hint">(recommended)</small></label></div>
+   <fieldset class="seg"><legend>How often</legend><label><input type="radio" name="frequency" value="daily" checked><span><b>Once a day</b><small>One email in the morning with everything new</small></span></label><label><input type="radio" name="frequency" value="instant"><span><b>As they're posted</b><small>Within about 15 minutes</small></span></label></fieldset>
+   <label>Name this alert<input name="label" maxlength="60" placeholder="Summer 2-bed under $900"></label>
+   <p class="matchnow" id="amatch"></p>
+   <p class="err" id="aerr" hidden></p>
+   <button class="btn primary big" id="abtn">${BELL}Save alert</button>
+   <p class="fine">Every email has a link to turn it off. Up to 5 alerts at once. ${API.demo?"Demo mode: alerts are saved in this browser and no email is sent.":""}</p>
+  </form>
+  <h3 class="myalerts-h">Your alerts</h3><div id="alist" class="mylist">Loading…</div></div>`;
+  if(!d.open)d.showModal();d.querySelector(".close").onclick=()=>d.close();
+  const f=$("#af");let named=false;
+  const row=()=>{const n=v=>v===""?null:+v;return {space:f.space.value||null,kind:f.kind.value||null,beds:n(f.beds.value),max_price:n(f.max_price.value),max_walk_min:n(f.max_walk_min.value),
+    move_in_by:f.move_in_by.value||null,stay_until:f.stay_until.value||null,query:f.query.value.trim()||null,lease_only:f.lease_only.checked,frequency:f.frequency.value}};
+  const refresh=()=>{const r=row();if(!named)f.label.value=alertLabel(r);const all=ALL.filter(s=>!s.example&&matchSearch({...r,lease_only:false},s)),n=r.lease_only?all.filter(s=>s.lease_verified).length:all.length;
+    $("#amatch").innerHTML=r.lease_only&&all.length>n?`<b>${n}</b> lease-checked sublet${n===1?"":"s"} match right now (<b>${all.length}</b> counting ones without a lease check). We'll email you about new ones.`
+      :`<b>${n}</b> sublet${n===1?"":"s"} match${n===1?"es":""} right now. We'll email you about new ones.`};
+  f.label.addEventListener("input",()=>{named=!!f.label.value.trim()});
+  f.move_in_by.addEventListener("change",()=>{f.stay_until.min=f.move_in_by.value||t});
+  f.addEventListener("input",refresh);f.addEventListener("change",refresh);refresh();
+  const draw=async()=>{let list=[];try{list=await API.searches()}catch(e){$("#alist").textContent=e.message;return}
+    $("#alist").innerHTML=list.length?list.map(x=>`<div class="myrow arow"><div class="myt"><b>${esc(x.label)}</b><span>${esc(alertSummary(x))}</span><span class="st ${x.active?"st-ok":"st-off"}">${x.active?(x.frequency==="instant"?"On · as they're posted":"On · once a day"):"Off"}</span></div>
+      <div class="mya"><button class="btn" data-a="${x.active?"off":"on"}" data-id="${x.id}">${x.active?"Turn off":"Turn on"}</button><button class="btn ghost" data-a="del" data-id="${x.id}">Delete</button></div></div>`).join("")
+      :`<p class="fine">No alerts yet. Save one above.</p>`};
+  $("#alist").onclick=async e=>{const b=e.target.closest("button[data-a]");if(!b)return;const id=+b.dataset.id;
+    try{if(b.dataset.a==="del"){if(b.dataset.sure!=="1"){b.dataset.sure="1";b.textContent="Tap again to delete";return}await API.deleteSearch(id)}
+      else await API.updateSearch(id,{active:b.dataset.a==="on"})}catch(x){toast(x.message)}draw()};
+  f.onsubmit=async e=>{e.preventDefault();const er=$("#aerr");er.hidden=true;const r=row();
+    if(r.max_price!=null&&(r.max_price<50||r.max_price>6000)){er.textContent="Enter a max price between $50 and $6,000, or leave it empty.";er.hidden=false;return}
+    if(r.move_in_by&&r.stay_until&&r.stay_until<r.move_in_by){er.textContent="\"Stay until\" has to be after the move-in day.";er.hidden=false;return}
+    const btn=$("#abtn");btn.disabled=true;
+    try{await API.saveSearch({...r,label:f.label.value.trim()||alertLabel(r)});toast(r.frequency==="instant"?"Alert saved. We'll email you as matching sublets post.":"Alert saved. We'll email you each morning there's something new.");named=false;await draw()}
+    catch(x){er.textContent=x.message;er.hidden=false}finally{btn.disabled=false}};
+  draw()}
+// the "Turn off" links in alert emails land here
+async function unsubscribeFromLink(token,all){const d=$("#alerts");let msg;
+  try{const n=await API.unsubscribe(token,all);msg=n?(all?"All your Rhedr alerts are off. You won't get more alert emails.":"That alert is off. You won't get more emails for it."):"That alert was already off."}
+  catch(e){msg="We couldn't turn it off: "+e.message+". Try the link again, or email support@rhedr.com."}
+  $("#alertsbody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>Sublet alerts</h2><p>${esc(msg)}</p><div class="cta"><button class="btn" id="amanage">Manage alerts</button><button class="btn primary" id="adone">Done</button></div></div>`;
+  if(!d.open)d.showModal();d.querySelector(".close").onclick=()=>d.close();$("#adone").onclick=()=>d.close();$("#amanage").onclick=()=>{d.close();openAlerts()}}
 
 /* ---------- photo viewer ---------- */
 let LB={list:[],i:0,title:""};
@@ -349,9 +438,10 @@ function wire(){
   $("#grid").addEventListener("mouseover",e=>{const c=e.target.closest(".card");MAP.hot(c?.dataset.id)});
   $("#grid").addEventListener("mouseleave",()=>MAP.hot(null));
   $("#postbtn").onclick=openPost;
+  $("#alertbtn").onclick=openAlerts;
   $("#acctbtn").onclick=()=>USER?openMine():openAuth();
   $("#maptoggle").onclick=()=>{headH();document.body.classList.toggle("showmap");$("#maptoggle span").textContent=document.body.classList.contains("showmap")?"Show list":"Show map";if(document.body.classList.contains("showmap"))setTimeout(()=>{MAP.resize();MAP.fit()},30);else window.scrollTo(0,0)};
-  ["#dlg","#auth","#post","#mine"].forEach(id=>$(id).addEventListener("click",e=>{if(e.target===$(id))$(id).close()}));
+  ["#dlg","#auth","#post","#mine","#alerts"].forEach(id=>$(id).addEventListener("click",e=>{if(e.target===$(id))$(id).close()}));
   window.addEventListener("resize",()=>{headH();MAP.resize()});headH();document.fonts?.ready.then(headH);
 }
 async function load(){try{ALL=await API.list()}catch(e){console.error(e);toast("Couldn't load sublets: "+e.message);ALL=[]}
@@ -362,7 +452,12 @@ async function start(){wire();lbInit();$("#demonote").hidden=!API.demo;
   API.settings().then(x=>{LEASE_REQ=!!x?.lease_proof_required}).catch(()=>{});
   await load();
   try{if(CFG.googleMapsApiKey)await initGoogle();else await initLeaflet()}catch(e){console.error("Map failed, using OpenStreetMap",e);try{if(!MAP.ready)await initLeaflet()}catch(_){}}
-  if(/[?&]post=1/.test(location.search))openPost();
+  // links from emails: ?s=123 opens a sublet, ?alerts=1 opens your alerts, ?unsubscribe=... turns an alert off
+  const qs=new URLSearchParams(location.search),clean=()=>history.replaceState(null,"",location.pathname+location.hash);
+  if(qs.get("unsubscribe")){unsubscribeFromLink(qs.get("unsubscribe"),qs.get("all")==="1");clean()}
+  else if(qs.get("s")){const id=+qs.get("s");if(byId[id])open(id);else toast("That sublet is no longer listed.");clean()}
+  else if(qs.get("alerts")==="1"){openAlerts();clean()}
+  else if(/[?&]post=1/.test(location.search))openPost();
 }
 start();
 })();
