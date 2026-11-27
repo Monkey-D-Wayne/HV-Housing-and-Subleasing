@@ -30,6 +30,7 @@ const TABS=[
  {k:"summer",label:"Summer",f:s=>overlaps(s,season("summer")),ico:'<circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2" stroke="currentColor" stroke-width="1.6"/>'},
  {k:"fall",label:"Fall",f:s=>overlaps(s,season("fall")),ico:'<path d="M12 21v-5M12 16c-5 0-8-4-8-9 3 0 5 1 6 3 0-3 1-5 2-7 1 2 2 4 2 7 1-2 3-3 6-3 0 5-3 9-8 9z" fill="none" stroke="currentColor" stroke-width="1.6"/>'},
  {k:"takeover",label:"Lease takeovers",f:s=>s.kind==="takeover",ico:'<path d="M4 7h13l-3-3M20 17H7l3 3" fill="none" stroke="currentColor" stroke-width="1.6"/>'},
+ {k:"lease",label:"Lease checked",f:s=>!!s.lease_verified,ico:'<path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 14l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/>'},
  {k:"unit",label:"Whole places",f:s=>s.space==="unit",ico:'<rect x="6" y="2.5" width="12" height="18.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 6h2M13 6h2M9 10h2M13 10h2M11 21v-3h2v3" stroke="currentColor" stroke-width="1.6"/>'},
 ];
 
@@ -40,7 +41,7 @@ const bldPhotos=b=>(b?.photos||[]).map(p=>p.url);
 /* ---------- verification badges and ranking ---------- */
 const CHECK='<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 function badges(s){const b=[{k:"psu",t:"Penn State student",d:"Posted from a confirmed @psu.edu email."}];
-  if(s.lease_verified)b.push({k:"lease",t:"Lease checked",d:"We checked a lease or proof of residence for this address."});
+  if(s.lease_verified)b.push({k:"lease",t:"Lease checked",d:"The poster showed us a lease or bill with their name and this address. It's a document check, not a guarantee about the person or the deal."});
   if((s.photos||[]).length>=4)b.push({k:"photos",t:"Real photos",d:"The poster uploaded their own photos of the place."});
   const bb=bById[s.building_id];if(bb&&!(bb.ppm&&s.space==="room"&&s.price<bb.ppm*0.45))b.push({k:"bldg",t:"Known building",d:"Matches a building on Rhedr, and the price fits that building."});
   return b}
@@ -87,7 +88,11 @@ function demoApi(){
     async setStatus(id,status){const all=read();const s=all.find(x=>x.id===id&&x.user_id===user?.id);if(s){if(status==="live"&&s.flags?.length)return;s.status=status;write(all)}},
     async remove(id){write(read().filter(x=>!(x.id===id&&x.user_id===user?.id)))},
     async contact(id){if(!user)throw new Error("Sign in first");const s=read().find(x=>x.id===id);return {email:s?._email||"example.student@psu.edu",contact_name:s?.contact_name||"Example student",unit:s?.unit||"Shown after sign-in"}},
-    async report(id,reason){return true}
+    async report(id,reason){return true},
+    async settings(){return {lease_proof_required:!!CFG.demoLeaseRequired}},
+    async attachLease(id,file){const all=read();const s=all.find(x=>x.id===id&&x.user_id===user?.id);if(s){s.has_lease_doc=true;write(all)}},
+    async myChecks(){return []},
+    checkLease(){}
   };
 }
 function liveApi(){
@@ -115,7 +120,7 @@ function liveApi(){
       const lease_path=lease?await upload("lease-proofs",lease,2000,.85):null;
       const {data,error}=await sb.from("sublets").insert({...row,photos:urls,lease_path}).select().single();
       if(error){const own=urls.map(u=>u.split("/sublet-photos/")[1]).filter(Boolean);if(own.length)await sb.storage.from("sublet-photos").remove(own);if(lease_path)await sb.storage.from("lease-proofs").remove([lease_path])}
-      err(error);return data},
+      err(error);if(data?.has_lease_doc)this.checkLease(data.id);return data},
     async setStatus(id,status){await ready;need();const {error}=await sb.from("sublets").update({status}).eq("id",id);err(error)},
     async remove(id){await ready;need();const {data:row}=await sb.from("sublets").select("photos,lease_path").eq("id",id).maybeSingle();
       const {error}=await sb.from("sublets").delete().eq("id",id);err(error);
@@ -123,7 +128,16 @@ function liveApi(){
       const own=(row?.photos||[]).map(u=>u.split("/sublet-photos/")[1]).filter(Boolean);
       if(own.length)await sb.storage.from("sublet-photos").remove(own);if(row?.lease_path)await sb.storage.from("lease-proofs").remove([row.lease_path])},
     async contact(id){await ready;need();const {data,error}=await sb.rpc("sublet_contact",{sid:id});err(error);if(!data?.length)throw new Error("This sublet is no longer listed");return data[0]},
-    async report(id,reason){await ready;need();const {error}=await sb.from("sublet_reports").insert({sublet_id:id,reason});if(error&&!/duplicate/i.test(error.message))err(error);return true}
+    async report(id,reason){await ready;need();const {error}=await sb.from("sublet_reports").insert({sublet_id:id,reason});if(error&&!/duplicate/i.test(error.message))err(error);return true},
+    async settings(){await ready;const {data}=await sb.from("site_settings").select("lease_proof_required").eq("id",1).maybeSingle();return data||{lease_proof_required:false}},
+    // add a lease proof to a listing that has none (or whose proof was rejected)
+    async attachLease(id,file){await ready;need();const lease_path=await upload("lease-proofs",file,2000,.85);
+      const {data,error}=await sb.from("sublets").update({lease_path}).eq("id",id).select("has_lease_doc").single();
+      if(error||!data?.has_lease_doc){await sb.storage.from("lease-proofs").remove([lease_path]);err(error||{message:"That listing already has a lease proof"})}
+      this.checkLease(id)},
+    async myChecks(){await ready;if(!user)return [];const {data}=await sb.rpc("my_lease_checks");return data||[]},
+    // ask the AI to read the proof now; if the function isn't set up, the proof just waits for a manual check
+    checkLease(id){ready.then(()=>sb.functions.invoke("check-lease",{body:{sublet_id:id}})).catch(()=>{})}
   };
 }
 /* shrink a photo before upload so it loads fast and fits the free storage */
@@ -157,7 +171,7 @@ function photoOf(s,i=0){const u=(s.photos||[])[i];return u?`<img src="${esc(u)}"
 function vrow(s){return `<div class="vrow">${badges(s).map(b=>`<span class="v v-${b.k}" title="${esc(b.d)}">${CHECK}${esc(b.t)}</span>`).join("")}</div>`}
 function save(s){return s.orig_price&&s.orig_price>s.price?`<span class="save">${fmt(s.orig_price-s.price)} under lease</span>`:""}
 function renderList(){rows=filtered();
-  const tab=TABS.find(t=>t.k===state.tab);$("#count").textContent=`${rows.length} ${state.tab==="all"?"sublets":tab.label.toLowerCase()+(["spring","summer","fall"].includes(state.tab)?" sublets":"")} near Penn State`;
+  const tab=TABS.find(t=>t.k===state.tab);$("#count").textContent=`${rows.length} ${state.tab==="all"?"sublets":tab.label.toLowerCase()+(["spring","summer","fall","lease"].includes(state.tab)?" sublets":"")} near Penn State`;
   $("#grid").innerHTML=rows.length?rows.map(s=>`<button class="card" data-id="${s.id}" aria-label="${esc(s.title)}, ${fmt(s.price)} a month">
     <div class="photo">${photoOf(s)}<span class="badge">${s.kind==="takeover"?"Lease takeover":"Sublet"}${s.example?" · Example":""}</span>${(s.photos||[]).length>1?`<span class="count">1 / ${s.photos.length}</span>`:""}</div>
     <div class="meta"><div class="t"><b>${esc(s.building_name||s.address)}</b><em>${distTxt(s.mi)}</em></div>
@@ -216,7 +230,7 @@ function openAuth(then){afterAuth=then||null;const d=$("#auth");
   $("#back").onclick=()=>{f2.hidden=true;f1.hidden=false}}
 
 /* ---------- post a sublet ---------- */
-let PICS=[];
+let PICS=[],LEASE_REQ=false;
 function openPost(){if(!USER){openAuth(openPost);return}PICS=[];const d=$("#post");const t=today();
   $("#postbody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>Post a sublet</h2><p class="lead">Posting as <b>${esc(USER.email)}</b>. Listings with more checks show up higher.</p>
   <form id="pf" class="stack" novalidate>
@@ -232,7 +246,7 @@ function openPost(){if(!USER){openAuth(openPost);return}PICS=[];const d=$("#post
    <label>Description<textarea name="description" required minlength="20" maxlength="2000" rows="5" placeholder="What's the place like, why are you subletting, does your landlord allow it, how can people see it?"></textarea></label>
    <label><span>Your first name <small>(shown on the listing)</small></span><input name="contact_name" maxlength="40" autocomplete="given-name"></label>
    <div class="upl"><div class="uplh"><b>Photos</b><small>Take them yourself. 4 or more earns the Real photos check. Up to 10.</small></div><div class="thumbs" id="thumbs"></div><label class="btn"><input type="file" id="pics" accept="image/*" multiple hidden>Add photos</label></div>
-   <div class="upl"><div class="uplh"><b>Proof you live there</b> <small>(optional, private)</small><small>A photo or PDF of your lease's first page or a recent bill with your name and this address. Only we see it. Once checked, your listing gets the Lease checked badge and moves to the top.</small></div><label class="btn"><input type="file" id="lease" accept="image/*,application/pdf" hidden>Add lease proof</label><span id="leasename" class="fine"></span></div>
+   <div class="upl"><div class="uplh"><b>Proof you live there</b> <small>${LEASE_REQ?"(required, private)":"(optional, private)"}</small><small>A photo or PDF of your lease's first pages or a recent bill with your name and this address. Only Rhedr sees it. An AI reads it to compare it with your listing, then we delete the file once it's checked. ${LEASE_REQ?"Your listing shows once your proof is checked, and it gets the Lease checked badge.":"Once checked, your listing gets the Lease checked badge and moves to the top."}</small></div><label class="btn"><input type="file" id="lease" accept="image/*,application/pdf" hidden>Add lease proof</label><span id="leasename" class="fine"></span></div>
    <div id="warn" class="warn" hidden></div>
    <div class="earn" id="earn"></div>
    <p class="err" id="perr" hidden></p>
@@ -258,11 +272,12 @@ function openPost(){if(!USER){openAuth(openPost);return}PICS=[];const d=$("#post
     if(miss.length){er.textContent="Please add: "+miss.join(", ")+".";er.hidden=false;return}
     if(r.end_date<=r.start_date){er.textContent="The end date has to be after the start date.";er.hidden=false;return}
     if(r.price<50||r.price>6000){er.textContent="Enter a monthly price between $50 and $6,000.";er.hidden=false;return}
+    if(LEASE_REQ&&!lease){er.textContent="Add proof that you live there: your lease's first page or a recent bill.";er.hidden=false;return}
     const btn=$("#pbtn");btn.disabled=true;btn.textContent=PICS.length?"Uploading photos…":"Posting…";
     try{const b=bById[r.building_id];let pos=b?{lat:b.lat,lng:b.lng}:await geocode(r.address);
       if(!pos)throw new Error("We couldn't find that street address in State College. Check the spelling, or pick your building from the list.");
       const s=await API.post({...r,lat:pos.lat,lng:pos.lng},PICS,lease);d.close();
-      await load();toast(s.status==="review"?"Posted. A few words in your listing need a quick review before it shows.":"Your sublet is live.");if(s.status==="live"&&byId[s.id])open(s.id)}
+      await load();toast(s.status==="review"?(LEASE_REQ&&!(s.flags||[]).length?"Posted. It will show once we've checked your lease proof.":"Posted. A few words in your listing need a quick review before it shows."):"Your sublet is live.");if(s.status==="live"&&byId[s.id])open(s.id)}
     catch(x){er.textContent=x.message;er.hidden=false}finally{btn.disabled=false;btn.textContent="Post sublet"}}}
 async function geocode(addr){try{const u=`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&viewbox=-77.98,40.86,-77.75,40.73&bounded=1&q=${encodeURIComponent(addr+", State College, PA")}`;
   const r=await fetch(u,{headers:{"Accept":"application/json"}});const j=await r.json();if(j[0])return {lat:+j[0].lat,lng:+j[0].lon}}catch(e){}
@@ -272,9 +287,12 @@ async function geocode(addr){try{const u=`https://nominatim.openstreetmap.org/se
 async function openMine(){const d=$("#mine");$("#minebody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>My sublets</h2><p class="lead">Signed in as <b>${esc(USER.email)}</b></p><div id="mylist" class="mylist">Loading…</div><div class="cta"><button class="btn primary" id="mpost">Post a sublet</button><button class="btn" id="mout">Sign out</button></div></div>`;
   if(!d.open)d.showModal();d.querySelector(".close").onclick=()=>d.close();
   $("#mpost").onclick=()=>{d.close();openPost()};$("#mout").onclick=async()=>{await API.signOut();d.close();toast("Signed out")};
-  const draw=async()=>{let my=[];try{my=await API.mine()}catch(e){$("#mylist").textContent=e.message;return}
+  const draw=async()=>{let my=[],ck={};try{const [m,c]=await Promise.all([API.mine(),API.myChecks().catch(()=>[])]);my=m;c.forEach(x=>ck[x.sublet_id]=x)}catch(e){$("#mylist").textContent=e.message;return}
+    const leaseTxt=s=>s.lease_verified?" · Lease checked":s.has_lease_doc?" · Lease being checked":ck[s.id]?.decision==="rejected"?" · Lease proof not accepted":"";
     const ST={live:["Live","ok"],review:["Waiting for review","wait"],taken:["Taken","off"],removed:["Removed","off"]};
-    $("#mylist").innerHTML=my.length?my.map(s=>{const st=s.end_date<today()?["Ended","off"]:ST[s.status]||[s.status,""];return `<div class="myrow"><div class="myimg">${photoOf(s)}</div><div class="myt"><b>${esc(s.title)}</b><span>${fmt(s.price)} / mo · ${dTxt(s.start_date)} – ${dTxt(s.end_date)}</span><span class="st st-${st[1]}">${st[0]}${s.lease_verified?" · Lease checked":s.has_lease_doc?" · Lease being checked":""}</span></div><div class="mya">${s.status==="live"?`<button class="btn" data-a="taken" data-id="${s.id}">Mark taken</button>`:s.status==="taken"?`<button class="btn" data-a="live" data-id="${s.id}">Relist</button>`:""}<button class="btn ghost" data-a="del" data-id="${s.id}">Delete</button></div></div>`}).join(""):`<p>You haven't posted a sublet yet.</p>`};
+    $("#mylist").innerHTML=my.length?my.map(s=>{const st=s.end_date<today()?["Ended","off"]:ST[s.status]||[s.status,""];return `<div class="myrow"><div class="myimg">${photoOf(s)}</div><div class="myt"><b>${esc(s.title)}</b><span>${fmt(s.price)} / mo · ${dTxt(s.start_date)} – ${dTxt(s.end_date)}</span><span class="st st-${st[1]}">${st[0]}${leaseTxt(s)}</span>${!s.has_lease_doc&&ck[s.id]?.decision==="rejected"&&ck[s.id].note?`<span class="leasenote">${esc(ck[s.id].note)}</span>`:""}</div><div class="mya">${!s.has_lease_doc&&s.end_date>=today()&&s.status!=="removed"?`<label class="btn" title="Earn the Lease checked badge"><input type="file" accept="image/*,application/pdf" hidden data-lease="${s.id}">Add lease proof</label>`:""}${s.status==="live"?`<button class="btn" data-a="taken" data-id="${s.id}">Mark taken</button>`:s.status==="taken"?`<button class="btn" data-a="live" data-id="${s.id}">Relist</button>`:""}<button class="btn ghost" data-a="del" data-id="${s.id}">Delete</button></div></div>`}).join(""):`<p>You haven't posted a sublet yet.</p>`};
+  $("#mylist").onchange=async e=>{const inp=e.target.closest("input[data-lease]");if(!inp||!inp.files[0])return;const lb=inp.parentElement;lb.classList.add("busy");lb.lastChild.nodeValue="Uploading…";
+    try{await API.attachLease(+inp.dataset.lease,inp.files[0]);toast("Thanks. We'll check your proof and add the badge.")}catch(x){toast(x.message)}await draw()};
   $("#mylist").onclick=async e=>{const b=e.target.closest("button[data-a]");if(!b)return;const id=+b.dataset.id;
     if(b.dataset.a==="del"){if(b.dataset.sure!=="1"){b.dataset.sure="1";b.textContent="Tap again to delete";return}await API.remove(id).catch(x=>toast(x.message))}
     else await API.setStatus(id,b.dataset.a).catch(x=>toast(x.message));await draw();load()};
@@ -340,6 +358,7 @@ async function load(){try{ALL=await API.list()}catch(e){console.error(e);toast("
 async function start(){wire();lbInit();$("#demonote").hidden=!API.demo;
   try{BLD=await (await fetch("data/listings.json")).json();BLD.forEach(b=>bById[b.id]=b)}catch(e){console.error(e)}
   API.onAuth(u=>{const was=USER;USER=u;setAcct();if(!!was!==!!u&&ALL.length)renderList()});
+  API.settings().then(x=>{LEASE_REQ=!!x?.lease_proof_required}).catch(()=>{});
   await load();
   try{if(CFG.googleMapsApiKey)await initGoogle();else await initLeaflet()}catch(e){console.error("Map failed, using OpenStreetMap",e);try{if(!MAP.ready)await initLeaflet()}catch(_){}}
   if(/[?&]post=1/.test(location.search))openPost();

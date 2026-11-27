@@ -66,8 +66,34 @@ The site already asks for a psu.edu email, but someone could skip the page and a
 ## 6. Try it
 Open https://rhedr.com/sublets.html. The yellow "Demo mode" box should be gone. Click **Sign in**, enter your psu.edu email, type the code from the email, then **Post a sublet**.
 
+## 7. Lease checks
+
+Students can add proof they live at the place (a lease page or a bill). An AI reads it, compares it with the listing, and you approve or reject it on the admin page. Approved listings get the **Lease checked** badge, rank first, and show under the **Lease checked** tab. The file is deleted once it's decided.
+
+### 7a. Update the database (2 minutes)
+1. Open the [Supabase SQL Editor](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/sql/new).
+2. Open [supabase/setup.sql on GitHub](https://github.com/Monkey-D-Wayne/hv-housing-and-subleasing/blob/main/supabase/setup.sql), click the **Copy raw file** button (two squares), paste it into the editor and click **Run**. If it asks about "destructive operations", click **Run this query**. Running it again is safe.
+
+### 7b. Make yourself an admin (1 minute)
+1. Open the [Table Editor](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/editor) and click the **admins** table.
+2. Click **Insert**, then **Insert row**. In **email**, type your own psu.edu email in lowercase (the one you sign in to Rhedr with). Click **Save**.
+3. Open https://rhedr.com/admin and sign in with that email. You should see the two switches and an empty "Waiting" list.
+
+### 7c. Turn on the AI reader (10 minutes, optional, costs a little)
+Without this, every proof simply waits for you to open the file and decide. With it, each proof arrives already read and marked green, yellow or red.
+1. Go to https://console.anthropic.com and sign in with boaz@rhedr.com. Add a payment method and a small amount of credit (for example $5) under **Billing**. Each lease costs roughly a few cents to read (an estimate; long PDFs cost more).
+2. Click **API keys**, then **Create key**, name it `rhedr-lease-checks`, and copy it (it starts with `sk-ant-`). You can't see it again later.
+3. In Supabase, open [Edge Functions secrets](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/functions/secrets). Add a secret with name `ANTHROPIC_API_KEY` and the key as the value. Click **Save**.
+4. Open [Edge Functions](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/functions), click **Deploy a new function**, then **Via Editor**.
+5. Name it exactly `check-lease`. Delete the example code, then paste the whole file [supabase/functions/check-lease/index.ts](https://github.com/Monkey-D-Wayne/hv-housing-and-subleasing/blob/main/supabase/functions/check-lease/index.ts) (use **Copy raw file** again). Click **Deploy function**.
+6. Test it: on https://rhedr.com/admin, a waiting proof has a **Read with AI** button. Press it; after a few seconds it shows green, yellow or red.
+
+### The two switches on the admin page
+- **Require lease proof to post**: off by default. Off means proof is optional and earns the badge. On means every new post needs a proof and stays hidden until you approve it. You can flip it back any time.
+- **Approve green checks automatically**: off by default. On means a proof where the name, address, dates and rent all match gets the badge right away without you. Yellow and red always wait for you. Leave it off until you've seen the AI get a few right.
+
 ## Running it day to day
 - **Listings waiting for review** (they mentioned wire transfers, WhatsApp, "I'm out of the country", or got 3 reports): **Table Editor**, `sublets`, click **Filter**, `status` equals `review`. Double-click the status cell and change it to `live` (looks fine) or `removed` (scam).
-- **Lease checks**: **Storage**, `lease-proofs`. Each folder is one student; open the file. If the name and address match the listing, go to **Table Editor**, `sublets`, find the row (`has_lease_doc` is true, same `user_id` as the folder name) and set `lease_verified` to `true`. The listing gets the Lease checked badge and moves up.
+- **Lease checks**: open https://rhedr.com/admin (see section 7). Each proof shows the listing next to what the AI read, with green, yellow or red. Press **Approve** or pick a reason and press **Reject**. The file is deleted right after.
 - **Reports**: **Table Editor**, `sublet_reports`.
 - The free plan pauses a project after a week with no visits. If that happens, open the Supabase dashboard and click **Restore**. Once students use the site regularly it stays awake.

@@ -43,7 +43,8 @@
 <p><b>Browsing the housing map.</b> You can browse buildings and sublets without an account. We don't ask for your name or email to browse.</p>
 <p><b>Signing in.</b> To post a sublet or contact a poster, you sign in with your school email (for Penn State, an @psu.edu address). We email you a one-time code. We store your email address, when your account was created and when you last signed in.</p>
 <p><b>Posting a sublet.</b> When you post, we store what you enter: listing type, building, street address, unit number, bedrooms and bathrooms, price, your lease rent if you add it, dates, furnished and utilities details, roommate notes, title, description and the first name you choose to show. We also store the map location of the address and any photos you upload.</p>
-<p><b>Proof of residence.</b> If you choose to upload a lease page or bill to earn the "Lease checked" badge, we store that file privately. It isn't shown to other users. Rhedr's administrator opens it only to check that you live at the address.</p>
+<p><b>Proof of residence.</b> If you upload a lease page or bill (to earn the "Lease checked" badge, or because posting requires one), we store that file privately. It isn't shown to other users. To check it, we send the file to Anthropic, an AI service, which reads the names, address, landlord, lease dates and rent from it so we can compare them with your listing. Rhedr's administrator may also open the file to check it by hand.</p>
+<p>We delete the file once it has been checked, and we delete any file still unchecked after 30 days. After the check we keep what was read from it except the names: the address, landlord, lease dates and rent, and whether it was approved. We use the rent and dates, without your name, to learn what places near campus really cost, for example to spot listings with unrealistic prices.</p>
 <p><b>Reports.</b> If you report a listing, we store the reason you give and which account sent it.</p>
 <p><b>Emails to us.</b> If you write to us, we keep the message and your email address so we can reply.</p>
 <p><b>Technical information.</b> Like most websites, the services that host and run Rhedr receive standard technical data when you visit, such as your IP address, browser type, the pages you request and the time. These logs are used to run the site, keep it secure and fix problems.</p>
@@ -71,7 +72,9 @@
 <ul>
   <li><b>Vercel</b> hosts the website.</li>
   <li><b>Supabase</b> stores accounts, listings, photos and lease proofs, and handles sign-in.</li>
-  <li><b>Google Workspace</b> sends sign-in codes and handles email to and from rhedr.com.</li>
+  <li><b>Resend</b> sends sign-in codes and other emails from the site.</li>
+  <li><b>Anthropic</b> reads lease proofs for us with its AI (Claude) so we can check them. We send it the file only for that check.</li>
+  <li><b>Google Workspace</b> handles email to and from rhedr.com.</li>
   <li><b>Google Maps</b> shows the map. If Google Maps isn't available, the map uses <b>OpenStreetMap</b> instead.</li>
   <li><b>OpenStreetMap Nominatim</b> turns the street address you type in a sublet post into a map location. The address you type is sent to it.</li>
   <li><b>Google Fonts</b> and public code libraries (cdnjs, jsDelivr, unpkg) supply the site's fonts and scripts.</li>
@@ -82,7 +85,7 @@
 <p>Rhedr doesn't use advertising or analytics cookies. Your browser's local storage keeps a few things on your device so the site works: your sign-in session (so you stay signed in), and small preferences such as the housing type tab you last picked. Google Maps may set its own cookies or storage when the map loads. You can clear this anytime in your browser settings, which signs you out.</p>
 
 <h2 id="keep">6. How long we keep it</h2>
-<p>We keep your account while it's open. Listings you post are stored until you delete them, though listings past their end date stop showing publicly. You can ask us to delete a lease proof at any time. When you delete your account, we delete its data within a reasonable time, except reports and records of removed listings that we may keep to prevent fraud and repeat abuse, or data we must keep by law. Backups and hosting and service logs are kept for the periods those services set.</p>
+<p>We keep your account while it's open. Listings you post are stored until you delete them, though listings past their end date stop showing publicly. Lease proof files are deleted once checked, or after 30 days if unchecked, as described above. You can ask us to delete one sooner at any time. When you delete your account, we delete its data within a reasonable time, except reports and records of removed listings that we may keep to prevent fraud and repeat abuse, or data we must keep by law. Backups and hosting and service logs are kept for the periods those services set.</p>
 
 <h2 id="choices">7. Your choices</h2>
 <ul>

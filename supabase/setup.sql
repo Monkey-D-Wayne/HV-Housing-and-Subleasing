@@ -67,6 +67,22 @@ $$;
 revoke all on function public.my_file_count(text) from public, anon;
 grant execute on function public.my_file_count(text) to authenticated;
 
+-- Site switches. Change them on rhedr.com/admin (or here in Table Editor, table site_settings).
+create table if not exists public.site_settings (
+  id                   int primary key default 1 check (id = 1),
+  lease_proof_required boolean not null default false,  -- false: optional, with a Lease checked badge. true: every post needs one and waits for the check
+  auto_approve_green   boolean not null default false,  -- true: when the AI check finds everything matches, the badge goes on without waiting for you
+  updated_at           timestamptz not null default now()
+);
+insert into public.site_settings (id) values (1) on conflict (id) do nothing;
+alter table public.site_settings enable row level security;
+drop policy if exists "settings: anyone can read" on public.site_settings;
+create policy "settings: anyone can read" on public.site_settings for select to anon, authenticated using (true);
+grant select on public.site_settings to anon, authenticated;
+create or replace function public.lease_required() returns boolean
+language sql stable security definer set search_path = public as $$
+  select coalesce((select lease_proof_required from public.site_settings where id = 1), false) $$;
+
 -- 4. Scam checks, run by the database on every new or edited listing -------
 create or replace function public.sublet_checks() returns trigger
 language plpgsql security definer set search_path = public as $$
@@ -98,13 +114,19 @@ begin
     end loop;
   end if;
 
-  -- lease proof: only counts if the file is really in this person's lease-proofs folder
-  if tg_op = 'INSERT' then
+  -- lease proof: only counts if the file is really in this person's lease-proofs folder.
+  -- A listing without one can get one later (also after a rejected proof), but a proof can't be swapped once sent.
+  if tg_op = 'INSERT' or (not old.has_lease_doc and new.lease_path is distinct from old.lease_path) then
     new.has_lease_doc := new.lease_path is not null
       and (storage.foldername(new.lease_path))[1] = auth.uid()::text
       and exists (select 1 from storage.objects o where o.bucket_id = 'lease-proofs' and o.name = new.lease_path);
     if not new.has_lease_doc then new.lease_path := null; end if;
   else new.has_lease_doc := old.has_lease_doc; new.lease_path := old.lease_path; end if;
+  -- when lease proof is required (site_settings), a post needs one and stays hidden until it's checked
+  if tg_op = 'INSERT' and public.lease_required() then
+    if not new.has_lease_doc then raise exception 'Add proof that you live there (a lease page or a bill) to post a sublet'; end if;
+    new.status := 'review';
+  end if;
 
   if txt ~ '(western union|moneygram|wire (the|a|me)|wire transfer|gift ?card|bitcoin|crypto|usdt|cashier.?s check|money order)' then f := array_append(f, 'payment'); end if;
   if txt ~ '(whats ?app|telegram|signal app|text me at|kik)' then f := array_append(f, 'offsite'); end if;
@@ -224,3 +246,191 @@ begin
 end $$;
 grant execute on function public.hook_psu_only(jsonb) to supabase_auth_admin;
 revoke execute on function public.hook_psu_only(jsonb) from public, anon, authenticated;
+
+-- 11. Lease checks -------------------------------------------------------------
+-- Who can review lease proofs. Add your own psu.edu email in Table Editor, table admins (see SUBLETS-SETUP.md).
+create table if not exists public.admins (
+  email      text primary key check (email = lower(email)),
+  created_at timestamptz not null default now()
+);
+alter table public.admins enable row level security;   -- no policies: only the dashboard can read or change it
+
+create or replace function public.is_admin() returns boolean
+language sql stable security definer set search_path = public as $$
+  select public.is_psu() and exists (select 1 from public.admins a where a.email = lower(auth.jwt() ->> 'email')) $$;
+-- admins, or the check-lease Edge Function (which runs with the service role key)
+create or replace function public.can_review() returns boolean
+language sql stable security definer set search_path = public as $$
+  select coalesce(auth.jwt() ->> 'role', '') = 'service_role' or coalesce(current_setting('role', true), '') = 'service_role'
+      or public.is_admin() $$;
+
+-- One row per lease proof sent. The file itself is deleted once it's been checked; the row keeps what was read from it.
+create table if not exists public.lease_checks (
+  id              bigint generated always as identity primary key,
+  created_at      timestamptz not null default now(),
+  sublet_id       bigint not null references public.sublets(id) on delete cascade,
+  user_id         uuid not null references auth.users(id) on delete cascade,
+  file_path       text,                          -- in the lease-proofs bucket; empty once the file is deleted
+  result          text not null default 'waiting' check (result in ('waiting','green','yellow','red')),
+  reasons         text[] not null default '{}',  -- why it is yellow or red
+  extracted       jsonb,                         -- what the AI read: address, dates, rent (names are dropped after the decision)
+  ai_checked_at   timestamptz,
+  decision        text check (decision in ('approved','rejected')),
+  decided_at      timestamptz,
+  decided_by      text,
+  note            text,                          -- shown to the poster when a proof is rejected
+  file_deleted_at timestamptz
+);
+create index if not exists lease_checks_open on public.lease_checks (decision, created_at);
+alter table public.lease_checks enable row level security;   -- no policies: read through the functions below
+
+-- Real rents seen per building. Every checked lease adds one. Private.
+create table if not exists public.building_prices (
+  id          bigint generated always as identity primary key,
+  created_at  timestamptz not null default now(),
+  building_id int not null,                 -- id from data/listings.json
+  beds        int,
+  rent        int not null,                 -- per month
+  per_person  boolean not null default true,
+  lease_start date,
+  lease_end   date,
+  source      text not null,                -- 'lease' (read from a checked lease) or 'poster' (the poster's own number, on a checked listing)
+  sublet_id   bigint references public.sublets(id) on delete set null
+);
+alter table public.building_prices enable row level security;   -- no policies: dashboard only
+
+-- A new lease proof on a listing opens a check
+create or replace function public.lease_check_open() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if new.has_lease_doc and new.lease_path is not null and (tg_op = 'INSERT' or not old.has_lease_doc) then
+    insert into public.lease_checks (sublet_id, user_id, file_path) values (new.id, new.user_id, new.lease_path);
+  end if;
+  return new;
+end $$;
+drop trigger if exists lease_check_open on public.sublets;
+create trigger lease_check_open after insert or update of has_lease_doc, lease_path on public.sublets
+  for each row execute function public.lease_check_open();
+-- proofs sent before lease checks existed
+insert into public.lease_checks (sublet_id, user_id, file_path)
+  select s.id, s.user_id, s.lease_path from public.sublets s
+   where s.has_lease_doc and not s.lease_verified and s.lease_path is not null
+     and not exists (select 1 from public.lease_checks c where c.sublet_id = s.id);
+
+-- Approve or reject a proof. Returns the file to delete from storage (the caller deletes it, then calls lease_file_deleted).
+create or replace function public.lease_decide(p_check bigint, p_approve boolean, p_note text default null)
+returns text language plpgsql security definer set search_path = public as $$
+declare c public.lease_checks; s public.sublets; r numeric; pp boolean;
+begin
+  if not public.can_review() then raise exception 'Only Rhedr admins can do this'; end if;
+  select * into c from public.lease_checks where id = p_check for update;
+  if not found then raise exception 'That lease check no longer exists'; end if;
+  if c.decision is not null then return c.file_path; end if;
+  select * into s from public.sublets where id = c.sublet_id for update;
+  update public.lease_checks
+     set decision = case when p_approve then 'approved' else 'rejected' end, decided_at = now(),
+         decided_by = coalesce(auth.jwt() ->> 'email', 'automatic'), note = nullif(trim(p_note), ''),
+         extracted = extracted - 'tenant_names'
+   where id = p_check;
+  if p_approve then
+    update public.sublets set lease_verified = true, lease_path = null,
+           -- a listing that only waited for its lease check goes live
+           status = case when status = 'review'
+                          and not (flags && array['payment','offsite','story','deposit','reported']) then 'live' else status end
+     where id = s.id;
+    if s.building_id is not null then
+      r := case when coalesce(c.extracted ->> 'monthly_rent', '') ~ '^[0-9]+(\.[0-9]+)?$' then (c.extracted ->> 'monthly_rent')::numeric end;
+      pp := coalesce((c.extracted ->> 'rent_is_per_person')::boolean, true);
+      if r between 50 and 20000 then
+        insert into public.building_prices (building_id, beds, rent, per_person, lease_start, lease_end, source, sublet_id)
+        values (s.building_id, s.beds, round(r), pp,
+                case when coalesce(c.extracted ->> 'lease_start', '') ~ '^\d{4}-\d{2}-\d{2}$' then (c.extracted ->> 'lease_start')::date end,
+                case when coalesce(c.extracted ->> 'lease_end', '') ~ '^\d{4}-\d{2}-\d{2}$' then (c.extracted ->> 'lease_end')::date end,
+                'lease', s.id);
+      elsif s.orig_price is not null then
+        insert into public.building_prices (building_id, beds, rent, per_person, source, sublet_id)
+        values (s.building_id, s.beds, s.orig_price, true, 'poster', s.id);
+      end if;
+    end if;
+  else
+    -- the poster can send a new proof from My sublets
+    update public.sublets set has_lease_doc = false, lease_verified = false, lease_path = null where id = s.id;
+  end if;
+  return c.file_path;
+end $$;
+
+create or replace function public.lease_file_deleted(p_check bigint) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.can_review() then raise exception 'Only Rhedr admins can do this'; end if;
+  update public.lease_checks set file_path = null, file_deleted_at = now() where id = p_check;
+end $$;
+
+-- Files that should be deleted now: proofs already decided, and proofs nobody checked within 30 days (rejected first).
+create or replace function public.lease_files_to_delete()
+returns table (check_id bigint, file_path text)
+language plpgsql security definer set search_path = public as $$
+declare x record;
+begin
+  if not public.can_review() then raise exception 'Only Rhedr admins can do this'; end if;
+  for x in select id from public.lease_checks where decision is null and created_at < now() - interval '30 days' loop
+    perform public.lease_decide(x.id, false, 'We couldn''t check this proof in time. You can send it again.');
+  end loop;
+  return query select c.id, c.file_path from public.lease_checks c where c.decision is not null and c.file_path is not null;
+end $$;
+
+-- The review list for rhedr.com/admin
+create or replace function public.lease_queue(p_done boolean default false)
+returns table (check_id bigint, created_at timestamptz, result text, reasons text[], extracted jsonb, ai_checked_at timestamptz,
+               decision text, decided_at timestamptz, note text, file_path text,
+               sublet_id bigint, title text, kind text, space text, building_id int, building_name text, address text, unit text,
+               beds int, price int, orig_price int, start_date date, end_date date, contact_name text, status text, email text)
+language plpgsql stable security definer set search_path = public as $$
+begin
+  if not public.is_admin() then raise exception 'Only Rhedr admins can see this'; end if;
+  return query
+    select c.id, c.created_at, c.result, c.reasons, c.extracted, c.ai_checked_at, c.decision, c.decided_at, c.note, c.file_path,
+           s.id, s.title, s.kind, s.space, s.building_id, s.building_name, s.address, s.unit, s.beds, s.price, s.orig_price,
+           s.start_date, s.end_date, s.contact_name, s.status, u.email::text
+      from public.lease_checks c join public.sublets s on s.id = c.sublet_id join auth.users u on u.id = c.user_id
+     where (c.decision is null) <> p_done
+     order by case when p_done then extract(epoch from c.decided_at) * -1 else extract(epoch from c.created_at) end
+     limit 100;
+end $$;
+
+-- Change the switches from rhedr.com/admin
+create or replace function public.set_lease_settings(p_required boolean, p_auto_green boolean) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.is_admin() then raise exception 'Only Rhedr admins can do this'; end if;
+  update public.site_settings set lease_proof_required = p_required, auto_approve_green = p_auto_green, updated_at = now() where id = 1;
+end $$;
+
+-- What the poster sees about their own proofs (only the outcome and the note, never the AI's reasons)
+create or replace function public.my_lease_checks()
+returns table (sublet_id bigint, decision text, note text, created_at timestamptz)
+language sql stable security definer set search_path = public as $$
+  select distinct on (c.sublet_id) c.sublet_id, c.decision, c.note, c.created_at
+    from public.lease_checks c where c.user_id = auth.uid()
+   order by c.sublet_id, c.created_at desc $$;
+
+revoke all on function public.lease_decide(bigint, boolean, text) from public, anon;
+revoke all on function public.lease_file_deleted(bigint) from public, anon;
+revoke all on function public.lease_files_to_delete() from public, anon;
+revoke all on function public.lease_queue(boolean) from public, anon;
+revoke all on function public.set_lease_settings(boolean, boolean) from public, anon;
+revoke all on function public.my_lease_checks() from public, anon;
+grant execute on function public.lease_decide(bigint, boolean, text) to authenticated, service_role;
+grant execute on function public.lease_file_deleted(bigint) to authenticated, service_role;
+grant execute on function public.lease_files_to_delete() to authenticated, service_role;
+grant execute on function public.lease_queue(boolean) to authenticated;
+grant execute on function public.set_lease_settings(boolean, boolean) to authenticated;
+grant execute on function public.my_lease_checks() to authenticated;
+
+-- Admins can open and delete lease proofs (the admin page shows each file through a link that works for 5 minutes)
+drop policy if exists "lease proofs: admin read" on storage.objects;
+create policy "lease proofs: admin read" on storage.objects for select to authenticated
+  using (bucket_id = 'lease-proofs' and public.is_admin());
+drop policy if exists "lease proofs: admin delete" on storage.objects;
+create policy "lease proofs: admin delete" on storage.objects for delete to authenticated
+  using (bucket_id = 'lease-proofs' and public.is_admin());
