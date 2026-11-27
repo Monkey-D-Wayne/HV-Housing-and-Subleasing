@@ -1,6 +1,8 @@
-# Happy Valley Housing
+# Rhedr
 
-A static website that shows every place to live near Penn State University Park on one map.
+Rhedr ("heder" is Hebrew for room, R for rent) is a student housing site: every place to live near campus on one map, plus verified student sublets. Penn State University Park is the first campus.
+
+Live at https://rhedr.com. Rhedr is independent and is not affiliated with Penn State.
 
 ## Files
 - `index.html`, `styles.css`, `app.js`: the site
@@ -14,10 +16,10 @@ A static website that shows every place to live near Penn State University Park 
 With `googleMapsApiKey` set in `config.js`, the site uses Google Maps (Maps JavaScript API, with grouped price pins).
 With it empty, it uses an OpenStreetMap street map instead.
 
-Lock the key in Google Cloud Console: Credentials, then the key, then "Websites" restriction set to the site address (for example `https://USERNAME.github.io/*`), and API restriction set to Maps JavaScript API.
+Lock the key in Google Cloud Console: Credentials, then the key, then "Websites" restriction set to the site address (`https://rhedr.com/*` and `https://www.rhedr.com/*`), and API restriction set to Maps JavaScript API.
 
 ## Hosting
-GitHub Pages: push these files to a repository, then Settings, Pages, "Deploy from a branch", `main`, `/ (root)`.
+Vercel (project "rhedr") deploys the `main` branch to https://rhedr.com about a minute after each merge. No build step: the files are served as they are.
 
 ## Data notes
 - Prices come from Penn State's Off-Campus Housing site, public listing sites and Penn State Housing 2026–27 rates, checked Nov 25, 2026.

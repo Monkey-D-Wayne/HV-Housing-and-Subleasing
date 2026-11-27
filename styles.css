@@ -48,6 +48,7 @@ main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,46%)}
 .listhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .listhead h1{font-family:var(--display);font-size:22px;font-weight:700;margin:0;text-wrap:balance}
 .listhead p{margin:0;color:var(--muted);font-size:13px}
+.foot{margin:28px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
 .notice{background:var(--tag);color:var(--tag-ink);border-radius:10px;padding:10px 12px;font-size:13px;margin-bottom:16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:24px 18px}
 .card{display:flex;flex-direction:column;gap:8px;cursor:pointer;border:none;background:none;text-align:left;padding:0;min-width:0}
