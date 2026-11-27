@@ -67,6 +67,13 @@ begin
   if t is null then return null; end if;
   -- emails, also "name at gmail dot com"
   t := regexp_replace(t, '[A-Za-z0-9._%+-]+\s*(@|\(at\)|\[at\]|\s+at\s+)\s*[A-Za-z0-9-]+(\s*(\.|\(dot\)|\[dot\]|\s+dot\s+)\s*[A-Za-z0-9-]+)*\s*(\.|\(dot\)|\[dot\]|\s+dot\s+)\s*(com|edu|net|org|io|me|co|us|info)\y', h, 'gi');
+  -- emails written with spaces or words: "boaz psu .edu", "abc123 at psu dot edu", "name (at) psu"
+  t := regexp_replace(t, '[A-Za-z0-9._%+-]{2,}\s*(@|\(at\)|\[at\]|\yat\y)?\s*psu\s*(\.|\(dot\)|\[dot\]|\ydot\y)?\s*edu\y', h, 'gi');
+  t := regexp_replace(t, '[A-Za-z0-9._%+-]{2,}\s*(@|\(at\)|\[at\])\s*psu\y', h, 'gi');
+  -- "name gmail", "name at outlook dot com" and other webmail
+  t := regexp_replace(t, '[A-Za-z0-9._%+-]{2,}\s*(@|\(at\)|\[at\]|\yat\y)?\s*(gmail|googlemail|yahoo|outlook|hotmail|icloud|aol|protonmail)\y(\s*(\.|\(dot\)|\[dot\]|\ydot\y)?\s*(com|net)\y)?', h, 'gi');
+  -- "site dot com", "site . com"
+  t := regexp_replace(t, '\y(?!rhedr\y)[A-Za-z0-9-]{2,}(\s*(\(dot\)|\[dot\]|\ydot\y)\s*|\s+\.\s*|\.\s+)(com|net|org|edu)\y', h, 'gi');
   -- links, except rhedr.com
   t := regexp_replace(t, 'https?://(?!(www\.)?rhedr\.com)[^\s]+', h, 'gi');
   t := regexp_replace(t, '\ywww\.(?!rhedr\.com)[^\s]+', h, 'gi');
@@ -74,10 +81,14 @@ begin
   -- phone numbers: 814-555-1234, (814) 555 1234, +1 814.555.1234, 8145551234, 555-1234
   t := regexp_replace(t, '(\+?1[\s.-]*)?\(?\d{3}\)?[\s.-]*\d{3}[\s.-]*\d{4}', h, 'g');
   t := regexp_replace(t, '\y\d{3}[\s.-]\d{4}\y', h, 'g');
+  -- Penn State access IDs on their own: abc1234, xy12 (2-3 letters and 1-4 digits)
+  t := regexp_replace(t, '\y(?!(mp3|mp4|ps2|ps3|ps4|ps5)\y)[A-Za-z]{2,3}\d{1,4}\y', h, 'gi');
   -- a number spelled out or spaced out: "eight one four five five five ..." (7 or more digits in a row)
   t := regexp_replace(t, '(\y(zero|oh|one|two|three|four|five|six|seven|eight|nine|\d)\y[\s,.-]+){6,}\y(zero|oh|one|two|three|four|five|six|seven|eight|nine|\d)\y', h, 'gi');
   -- payment and social handles: "venmo @sam-l", "cash app $saml", "my insta is sam.l", "snapchat: saml"
   t := regexp_replace(t, '\y(venmo|cash\s?app|zelle|paypal|pay\s?pal|insta(gram)?|snapchat|whats\s?app|telegram|discord|kik|groupme|imessage|facebook|messenger|tiktok|twitter|ig|sc)\y[\s:=-]*((is|me|at|on|to)\y[\s:=-]*)*(@|\$)?[A-Za-z0-9._-]*[A-Za-z0-9_]', h, 'gi');
+  -- "snap: name", "snap is name"
+  t := regexp_replace(t, '\ysnap\s*(:|@|\yis\y)[\s:@]*[A-Za-z0-9._-]*[A-Za-z0-9_]', h, 'gi');
   t := regexp_replace(t, '\$[A-Za-z][A-Za-z0-9_]{2,}', h, 'g');                  -- $cashtag (not $650)
   t := regexp_replace(t, '(^|[^A-Za-z0-9._%+-])@[A-Za-z0-9._]{3,}', '\1' || h, 'g'); -- @handle
   -- several hidden bits in a row read better as one
@@ -367,6 +378,15 @@ end $$;
 drop trigger if exists zy_sublet_mask on public.sublets;
 create trigger zy_sublet_mask before insert or update of description, roommates on public.sublets
   for each row when (current_user in ('authenticated','anon')) execute function public.sublet_mask();
+
+-- When the hiding rules get stricter, apply them to what's already saved too (chats not yet agreed, and listings)
+update public.messages m set body = public.mask_contact(m.body), masked = true
+  from public.conversations c
+ where c.id = m.conversation_id and c.agreed_at is null and m.sender_id is not null
+   and public.mask_contact(m.body) is distinct from m.body;
+update public.sublets s set description = public.mask_contact(s.description), roommates = public.mask_contact(s.roommates)
+ where public.mask_contact(s.description) is distinct from s.description
+    or public.mask_contact(s.roommates) is distinct from s.roommates;
 
 -- Live updates in the open chat (Supabase Realtime). Row level security still applies.
 do $$ begin

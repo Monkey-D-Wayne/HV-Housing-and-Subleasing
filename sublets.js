@@ -71,13 +71,19 @@ const HID="[contact info hidden]";
 const NUMW="(?:zero|oh|one|two|three|four|five|six|seven|eight|nine|\\d)";
 const MASKS=[
  /[A-Za-z0-9._%+-]+\s*(?:@|\(at\)|\[at\]|\s+at\s+)\s*[A-Za-z0-9-]+(?:\s*(?:\.|\(dot\)|\[dot\]|\s+dot\s+)\s*[A-Za-z0-9-]+)*\s*(?:\.|\(dot\)|\[dot\]|\s+dot\s+)\s*(?:com|edu|net|org|io|me|co|us|info)\b/gi,
+ /[A-Za-z0-9._%+-]{2,}\s*(?:@|\(at\)|\[at\]|\bat\b)?\s*psu\s*(?:\.|\(dot\)|\[dot\]|\bdot\b)?\s*edu\b/gi,
+ /[A-Za-z0-9._%+-]{2,}\s*(?:@|\(at\)|\[at\])\s*psu\b/gi,
+ /[A-Za-z0-9._%+-]{2,}\s*(?:@|\(at\)|\[at\]|\bat\b)?\s*(?:gmail|googlemail|yahoo|outlook|hotmail|icloud|aol|protonmail)\b(?:\s*(?:\.|\(dot\)|\[dot\]|\bdot\b)?\s*(?:com|net)\b)?/gi,
+ /\b(?!rhedr\b)[A-Za-z0-9-]{2,}(?:\s*(?:\(dot\)|\[dot\]|\bdot\b)\s*|\s+\.\s*|\.\s+)(?:com|net|org|edu)\b/gi,
  /https?:\/\/(?!(?:www\.)?rhedr\.com)\S+/gi,
  /\bwww\.(?!rhedr\.com)\S+/gi,
  /\b(?!rhedr\.)[A-Za-z0-9-]{2,}\.(?:com|net|org|me|io|ly|gg|app|link|co)(?:\/\S*)?\b/gi,
  /(?:\+?1[\s.-]*)?\(?\d{3}\)?[\s.-]*\d{3}[\s.-]*\d{4}/g,
  /\b\d{3}[\s.-]\d{4}\b/g,
+ /\b(?!(?:mp3|mp4|ps2|ps3|ps4|ps5)\b)[A-Za-z]{2,3}\d{1,4}\b/gi,
  new RegExp(`(?:\\b${NUMW}\\b[\\s,.-]+){6,}\\b${NUMW}\\b`,"gi"),
  /\b(?:venmo|cash\s?app|zelle|paypal|pay\s?pal|insta(?:gram)?|snapchat|whats\s?app|telegram|discord|kik|groupme|imessage|facebook|messenger|tiktok|twitter|ig|sc)\b[\s:=-]*(?:(?:is|me|at|on|to)\b[\s:=-]*)*[@$]?[A-Za-z0-9._-]*[A-Za-z0-9_]/gi,
+ /\bsnap\s*(?::|@|\bis\b)[\s:@]*[A-Za-z0-9._-]*[A-Za-z0-9_]/gi,
  /\$[A-Za-z][A-Za-z0-9_]{2,}/g,
 ];
 function maskContact(t){let x=String(t??"");MASKS.forEach(r=>{x=x.replace(r,HID)});
