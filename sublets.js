@@ -55,13 +55,31 @@ const SCAM=[
  {k:"offsite",re:/(whats ?app|telegram|signal app|text me at|\bkik\b)/i,msg:"Moving the chat to WhatsApp or Telegram is a common scam sign. Students can contact you through the site."},
  {k:"story",re:/(out of (the )?(country|state)|overseas|abroad|military deploy|missionary|god bless|can.?t show|no viewing|keys? (will be )?(mailed|shipped|sent))/i,msg:"\"I'm away, I'll mail the keys\" is a classic scam story. If you can't show the place, say who can."},
  {k:"deposit",re:/(deposit|pay|payment).{0,40}(before|to hold|first|today)/i,msg:"Asking for money before a viewing or a signed agreement makes students wary, and the listing waits for review."},
- {k:"contact",re:/(\b\d{3}[\s.-]?\d{3}[\s.-]?\d{4}\b|[^\s@]+@(?!psu\.edu)[^\s@]+\.[a-z]{2,})/i,warn:true,msg:"Tip: leave phone numbers and outside emails out. Students reach you through your psu.edu email, which keeps scammers away."},
+ {k:"contact",re:/(\b\d{3}[\s.-]?\d{3}[\s.-]?\d{4}\b|[^\s@]+@(?!psu\.edu)[^\s@]+\.[a-z]{2,})/i,warn:true,msg:"Phone numbers and outside emails are hidden on Rhedr. Students message you in the Rhedr chat, and you see each other's email once you both agree on Rhedr."},
 ];
 function scamCheck(s){const txt=[s.title,s.description,s.roommates].join(" ");const out=SCAM.filter(c=>c.re.test(txt)).map(c=>({k:c.k,msg:c.msg,warn:!!c.warn}));
   const b=bById[s.building_id];
   if(b&&b.ppm&&s.price&&s.space==="room"&&s.price<b.ppm*0.45)out.push({k:"price",msg:`${fmt(s.price)} is far below ${b.name}'s lowest rent (${fmt(b.ppm)} per person). Very low prices draw scam reports. Double-check it.`,warn:true});
   if(s.orig_price&&s.price<s.orig_price*0.35)out.push({k:"price",msg:"The price is under a third of your lease rent. If that's right, say why in the description.",warn:true});
   return out}
+
+/* contact-info masking for chats: the same rules as public.mask_contact in supabase/messaging.sql.
+   The database is what really hides it; this copy shows a heads-up while you type (and runs demo mode). */
+const HID="[contact info hidden]";
+const NUMW="(?:zero|oh|one|two|three|four|five|six|seven|eight|nine|\\d)";
+const MASKS=[
+ /[A-Za-z0-9._%+-]+\s*(?:@|\(at\)|\[at\]|\s+at\s+)\s*[A-Za-z0-9-]+(?:\s*(?:\.|\(dot\)|\[dot\]|\s+dot\s+)\s*[A-Za-z0-9-]+)*\s*(?:\.|\(dot\)|\[dot\]|\s+dot\s+)\s*(?:com|edu|net|org|io|me|co|us|info)\b/gi,
+ /https?:\/\/(?!(?:www\.)?rhedr\.com)\S+/gi,
+ /\bwww\.(?!rhedr\.com)\S+/gi,
+ /\b(?!rhedr\.)[A-Za-z0-9-]{2,}\.(?:com|net|org|me|io|ly|gg|app|link|co)(?:\/\S*)?\b/gi,
+ /(?:\+?1[\s.-]*)?\(?\d{3}\)?[\s.-]*\d{3}[\s.-]*\d{4}/g,
+ /\b\d{3}[\s.-]\d{4}\b/g,
+ new RegExp(`(?:\\b${NUMW}\\b[\\s,.-]+){6,}\\b${NUMW}\\b`,"gi"),
+ /\b(?:venmo|cash\s?app|zelle|paypal|pay\s?pal|insta(?:gram)?|snapchat|whats\s?app|telegram|discord|kik|groupme|imessage|facebook|messenger|tiktok|twitter|ig|sc)\b[\s:=-]*(?:(?:is|me|at|on|to)\b[\s:=-]*)*[@$]?[A-Za-z0-9._-]*[A-Za-z0-9_]/gi,
+ /\$[A-Za-z][A-Za-z0-9_]{2,}/g,
+];
+function maskContact(t){let x=String(t??"");MASKS.forEach(r=>{x=x.replace(r,HID)});
+  x=x.replace(/(^|[^A-Za-z0-9._%+-])@[A-Za-z0-9._]{3,}/g,"$1"+HID).replace(/(?:\[contact info hidden\][\s,;:/-]*){2,}/g,HID+" ");return x.trim()}
 
 /* ---------- data layer ---------- */
 const API=DEMO?demoApi():liveApi();
@@ -93,6 +111,8 @@ function demoApi(){
     async remove(id){write(read().filter(x=>!(x.id===id&&x.user_id===user?.id)))},
     async contact(id){if(!user)throw new Error("Sign in first");const s=read().find(x=>x.id===id);return {email:s?._email||"example.student@psu.edu",contact_name:s?.contact_name||"Example student",unit:s?.unit||"Shown after sign-in"}},
     async report(id,reason){return true},
+    // chats: in demo mode they stay in this browser, and "the poster" answers by itself so you can try every step
+    ...demoChat(()=>user),
     async settings(){return {lease_proof_required:!!CFG.demoLeaseRequired}},
     async attachLease(id,file){const all=read();const s=all.find(x=>x.id===id&&x.user_id===user?.id);if(s){s.has_lease_doc=true;write(all)}},
     async myChecks(){return []},
@@ -107,13 +127,49 @@ function demoApi(){
     async unsubscribe(token,all){const list=readA();const a=list.find(x=>x.token===token);if(!a)return 0;let n=0;list.forEach(x=>{if(x.active&&(x.token===token||(all&&x.user_id===a.user_id))){x.active=false;n++}});writeA(list);return n}
   };
 }
+function demoChat(who){
+  const CK="rhedr-demo-chats",OTHER="demo-poster";
+  const rd=()=>{try{return JSON.parse(localStorage.getItem(CK)||"null")||{n:0,c:[],m:[]}}catch(e){return {n:0,c:[],m:[]}}};
+  const wr=x=>{try{localStorage.setItem(CK,JSON.stringify(x))}catch(e){}};
+  const L=[];const fire=ev=>setTimeout(()=>L.forEach(f=>f(ev)),0);
+  const add=(db,cid,sender,body)=>{const c=db.c.find(x=>x.id===cid);const t=String(body).trim();const mk=!!sender&&!c.agreed_at?maskContact(t):t;
+    const m={id:++db.n,created_at:new Date().toISOString(),conversation_id:cid,sender_id:sender,body:mk||HID,masked:mk!==t};db.m.push(m);c.last_at=m.created_at;if(sender===who()?.id)c.read=m.created_at;return m};
+  const later=(f,ms=1400)=>setTimeout(()=>{const db=rd();const ev=f(db);wr(db);if(ev)fire(ev)},ms);
+  const shape=c=>{const db=rd(),ms=db.m.filter(m=>m.conversation_id===c.id),last=ms[ms.length-1]||{};const s=byId[c.sublet_id];
+    return {id:c.id,sublet_id:c.sublet_id,sublet_title:c.title,photo:s?.photos?.[0]||null,price:s?.price,building_name:s?.building_name,address:s?.address,i_am:"student",other_name:c.poster_name,
+      last_body:last.body||"",last_from_me:last.sender_id===who()?.id,last_at:c.last_at,unread:ms.filter(m=>m.sender_id!==who()?.id&&m.created_at>(c.read||"")).length,
+      i_agreed:!!c.me_ok,they_agreed:!!c.them_ok,agreed_at:c.agreed_at||null,closed_at:c.closed_at||null,listed:!!s}};
+  const mine=c=>c.student===who()?.id;
+  return {
+    async chats(){const u=who();if(!u)return [];return rd().c.filter(mine).map(shape).sort((a,b)=>String(b.last_at).localeCompare(String(a.last_at)))},
+    async messages(cid){return rd().m.filter(m=>m.conversation_id===cid)},
+    async startChat(sid,body,name){const u=who();if(!u)throw new Error("Sign in first");const s=byId[sid];if(!s)throw new Error("This sublet is no longer listed");
+      const db=rd();let c=db.c.find(x=>x.sublet_id===sid&&x.student===u.id);
+      if(!c){c={id:++db.n,sublet_id:sid,title:s.title,student:u.id,name,poster_name:s.contact_name||"The poster",last_at:new Date().toISOString()};db.c.push(c)}
+      const first=!db.m.some(m=>m.conversation_id===c.id);add(db,c.id,u.id,body);wr(db);
+      if(first)later(db=>({type:"message",row:add(db,c.id,OTHER,`Hi${name?" "+name:""}! Yes, it's still available. Want to come see it this week? I'm free most afternoons.`)}),1800);
+      return c.id},
+    async send(cid,body){const u=who();const db=rd();const c=db.c.find(x=>x.id===cid&&mine(x));if(!c)throw new Error("That chat no longer exists");if(c.closed_at)throw new Error("This chat is closed");
+      const m=add(db,cid,u.id,body);wr(db);return m},
+    async agree(cid,yes){const db=rd();const c=db.c.find(x=>x.id===cid&&mine(x));if(!c||c.agreed_at)return;c.me_ok=!!yes;
+      add(db,cid,null,yes?`${c.name||"You"} tapped "We agreed on Rhedr". Once you tap it too, you'll both see each other's email.`:`${c.name||"You"} took back "We agreed on Rhedr".`);c.read=new Date().toISOString();wr(db);
+      if(yes)later(db=>{const x=db.c.find(y=>y.id===cid);if(!x||!x.me_ok||x.agreed_at)return null;x.them_ok=true;x.agreed_at=new Date().toISOString();
+        add(db,cid,null,"You both agreed on Rhedr. Your psu.edu emails are now shown at the top of this chat. Next: ask the landlord for their sublease form, and see the place before you pay.");return {type:"chat",row:{id:cid}}})},
+    async chatContact(cid){const c=rd().c.find(x=>x.id===cid&&mine(x));if(!c?.agreed_at)throw new Error("Contact details are shared once you both agree on Rhedr");const s=byId[c.sublet_id];
+      return {name:c.poster_name,email:"example.poster@psu.edu",unit:s?.unit||"",address:s?.address||""}},
+    async readChat(cid){const db=rd();const c=db.c.find(x=>x.id===cid&&mine(x));if(c){c.read=new Date().toISOString();wr(db)}},
+    async closeChat(cid){const db=rd();const c=db.c.find(x=>x.id===cid&&mine(x));if(!c||c.closed_at)return;c.closed_at=new Date().toISOString();add(db,cid,null,"This chat was closed. Neither of you can send more messages here.");c.read=new Date().toISOString();wr(db)},
+    async reportChat(cid,reason){return true},
+    onChat(f){L.push(f);return ()=>{const i=L.indexOf(f);if(i>=0)L.splice(i,1)}}
+  };
+}
 function liveApi(){
   let sb=null,user=null;const listeners=[];
   const ready=(async()=>{await loadScript(SUPABASE_JS);sb=window.supabase.createClient(CFG.supabaseUrl,CFG.supabaseKey,{auth:{persistSession:true,detectSessionInUrl:true,autoRefreshToken:true}});
     sb.auth.onAuthStateChange((_e,session)=>{user=session?.user||null;listeners.forEach(f=>f(user))});
     const {data}=await sb.auth.getSession();user=data.session?.user||null;listeners.forEach(f=>f(user))})();
   const need=()=>{if(!user)throw new Error("Sign in with your Penn State email first")};
-  const err=e=>{if(e)throw new Error(e.message||String(e))};
+  const err=e=>{if(e)throw new Error(/Could not find the function public\.(start_chat|my_chats|agree_deal|chat_)/i.test(e.message||"")?"Messages aren't switched on yet. Try again soon.":e.message||String(e))};
   async function upload(bucket,f,max,q){const blob=f.type==="application/pdf"?f:await shrink(f,max,q);const ext=blob.type==="application/pdf"?"pdf":"jpg";
     const path=`${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
     const {error}=await sb.storage.from(bucket).upload(path,blob,{contentType:blob.type||"image/jpeg",upsert:false});
@@ -155,7 +211,22 @@ function liveApi(){
     async saveSearch(row){await ready;need();const {data,error}=await sb.from("saved_searches").insert(row).select().single();err(error);return data},
     async updateSearch(id,patch){await ready;need();const {error}=await sb.from("saved_searches").update(patch).eq("id",id);err(error)},
     async deleteSearch(id){await ready;need();const {error}=await sb.from("saved_searches").delete().eq("id",id);err(error)},
-    async unsubscribe(token,all){await ready;const {data,error}=await sb.rpc("alert_unsubscribe",{p_token:token,p_all:!!all});err(error);return data||0}
+    async unsubscribe(token,all){await ready;const {data,error}=await sb.rpc("alert_unsubscribe",{p_token:token,p_all:!!all});err(error);return data||0},
+    // chats between students (supabase/messaging.sql). Row level security means you only ever get your own.
+    async chats(){await ready;if(!user)return [];const {data,error}=await sb.rpc("my_chats");err(error);return data||[]},
+    async messages(cid){await ready;need();const {data,error}=await sb.from("messages").select("id,created_at,conversation_id,sender_id,body,masked").eq("conversation_id",cid).order("id",{ascending:true}).limit(1000);err(error);return data||[]},
+    async startChat(sid,body,name){await ready;need();const {data,error}=await sb.rpc("start_chat",{p_sublet:sid,p_body:body,p_name:name||null});err(error);return data},
+    async send(cid,body){await ready;need();const {data,error}=await sb.from("messages").insert({conversation_id:cid,body}).select("id,created_at,conversation_id,sender_id,body,masked").single();err(error);return data},
+    async agree(cid,yes){await ready;need();const {error}=await sb.rpc("agree_deal",{p_conv:cid,p_agree:!!yes});err(error)},
+    async chatContact(cid){await ready;need();const {data,error}=await sb.rpc("chat_contact",{p_conv:cid});err(error);return data?.[0]||null},
+    async readChat(cid){await ready;if(user)await sb.rpc("chat_read",{p_conv:cid})},
+    async closeChat(cid){await ready;need();const {error}=await sb.rpc("chat_close",{p_conv:cid});err(error)},
+    async reportChat(cid,reason){await ready;need();const {error}=await sb.rpc("chat_report",{p_conv:cid,p_reason:reason});err(error);return true},
+    // live updates (Supabase Realtime); the page also checks every few seconds in case they're off
+    onChat(f){let ch=null,off=false;ready.then(()=>{if(off)return;ch=sb.channel("rhedr-chat-"+Math.random().toString(36).slice(2))
+        .on("postgres_changes",{event:"INSERT",schema:"public",table:"messages"},p=>f({type:"message",row:p.new}))
+        .on("postgres_changes",{event:"UPDATE",schema:"public",table:"conversations"},p=>f({type:"chat",row:p.new})).subscribe()});
+      return ()=>{off=true;if(ch)sb.removeChannel(ch)}}
   };
 }
 /* shrink a photo before upload so it loads fast and fits the free storage */
@@ -202,6 +273,10 @@ function renderList(){rows=filtered();
 
 /* ---------- detail ---------- */
 let gi=0;
+const CHAT_SVG='<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+function msgLabel(s){if(!USER)return "Sign in with your psu.edu email to message";
+  if(MYIDS.has(s.id)){const n=CHATS.filter(c=>c.sublet_id===s.id).length;return n?`Your sublet · ${n} chat${n>1?"s":""}`:"Your sublet · no messages yet"}
+  return CHATS.some(c=>c.sublet_id===s.id&&c.i_am==="student")?"Open your chat":"Message "+(s.contact_name||"the poster")}
 function open(id){const s=byId[id];if(!s)return;gi=0;MAP.select(id);const ph=s.photos||[];const b=bById[s.building_id];
   const vs=badges(s);
   $("#dlgbody").innerHTML=`<div class="hero" id="hero">${photoOf(s,0)}${ph.length>1?`<button class="nav prev" aria-label="Previous photo">‹</button><button class="nav next" aria-label="Next photo">›</button><span class="count" id="gcount">1 / ${ph.length}</span><button class="allph" id="allph">See all ${ph.length} photos</button>`:""}<button class="close" aria-label="Close">×</button></div>
@@ -211,7 +286,7 @@ function open(id){const s=byId[id];if(!s)return;gi=0;MAP.select(id);const ph=s.p
   <div class="verif"><h3>Verified</h3><ul>${vs.map(v=>`<li class="v-${v.k}"><span class="vi">${CHECK}</span><div><b>${esc(v.t)}</b><span>${esc(v.d)}</span></div></li>`).join("")}${s.has_lease_doc&&!s.lease_verified?`<li class="pending"><span class="vi">…</span><div><b>Lease being checked</b><span>The poster sent proof of residence and we're reviewing it.</span></div></li>`:""}</ul></div>
   <p class="desc">${esc(s.description)}</p>
   ${s.roommates?`<p><b>Roommates:</b> ${esc(s.roommates)}</p>`:""}
-  <div class="contact" id="contact"><button class="btn primary" id="contactbtn">${USER?"Contact "+esc(s.contact_name||"the poster"):"Sign in with your psu.edu email to contact"}</button>${b?`<a class="btn" href="./#b=${b.id}">See ${esc(b.name)}</a>`:""}<button class="btn ghost" id="reportbtn">Report</button></div>
+  <div class="contact" id="contact"><button class="btn primary" id="contactbtn">${CHAT_SVG}${esc(msgLabel(s))}</button>${b?`<a class="btn" href="./#b=${b.id}">See ${esc(b.name)}</a>`:""}<button class="btn ghost" id="reportbtn">Report</button></div>
   <div class="safety"><b>Stay safe.</b> See the place in person or on a live video call before you pay. Never pay by wire, gift card or crypto. Ask the landlord about their sublease or lease-transfer form, and sign it before you move in.</div>
   <div class="src">${s.example?`<span>Example listing for the demo. Photos belong to the building's owner or manager${s.photoCredit?` (<a href="${esc(s.photoCredit)}" target="_blank" rel="noopener">source</a>)`:""}.</span>`:`<span>Posted ${new Date(s.created_at).toLocaleDateString("en-US",{month:"short",day:"numeric"})} by a Penn State student. Photos are the poster's own.</span>`}</div></div>`;
   const d=$("#dlg");if(!d.open)d.showModal();
@@ -220,10 +295,9 @@ function open(id){const s=byId[id];if(!s)return;gi=0;MAP.select(id);const ph=s.p
   d.querySelector(".prev")?.addEventListener("click",()=>show(gi-1));d.querySelector(".next")?.addEventListener("click",()=>show(gi+1));
   d.querySelector("#allph")?.addEventListener("click",()=>lbOpen(ph,gi,s.title));
   $("#hero").addEventListener("click",e=>{if(e.target.tagName==="IMG")lbOpen(ph,gi,s.title)});
-  $("#contactbtn").onclick=async()=>{if(!USER){openAuth(()=>open(id));return}
-    try{const c=await API.contact(s.id);const subj=encodeURIComponent(`Your sublet: ${s.title}`);const body=encodeURIComponent(`Hi ${c.contact_name||""},\n\nI saw your sublet on Rhedr (${s.building_name||s.address}, ${dTxt(s.start_date)} – ${dTxt(s.end_date)}). Is it still available? When could I see it?\n\nThanks!`);
-      $("#contact").insertAdjacentHTML("afterend",`<div class="reveal"><div><span>Email</span><b>${esc(c.email)}</b></div>${c.unit?`<div><span>Unit</span><b>${esc(c.unit)}</b></div>`:""}<a class="btn primary" href="mailto:${esc(c.email)}?subject=${subj}&body=${body}">Write an email</a></div>`);$("#contactbtn").disabled=true}
-    catch(e){toast(e.message)}};
+  $("#contactbtn").onclick=()=>{if(!USER){openAuth(()=>open(id));return}
+    const mineChats=CHATS.filter(c=>c.sublet_id===s.id&&c.i_am==="poster"),ex=CHATS.find(c=>c.sublet_id===s.id&&c.i_am==="student");d.close();
+    if(MYIDS.has(s.id)||mineChats.length)openChats();else if(ex)openChat(ex.id);else newChat(s)};
   $("#reportbtn").onclick=()=>{if(!USER){openAuth(()=>open(id));return}if(d.querySelector(".reportbox"))return;
     $("#contact").insertAdjacentHTML("afterend",`<form class="reportbox"><label>What's wrong?<select name="r"><option>Looks like a scam</option><option>Already taken</option><option>Wrong photos or details</option><option>Not a Penn State student</option><option>Something else</option></select></label><input name="x" placeholder="Details (optional)" maxlength="300"><button class="btn">Send report</button></form>`);
     d.querySelector(".reportbox").onsubmit=async e=>{e.preventDefault();const f=e.target;try{await API.report(s.id,(f.r.value+" "+f.x.value).trim());f.outerHTML=`<div class="reveal"><b>Thanks. We'll look at it.</b> Three reports hide a listing until it's checked.</div>`}catch(er){toast(er.message)}}}
@@ -233,7 +307,7 @@ function open(id){const s=byId[id];if(!s)return;gi=0;MAP.select(id);const ph=s.p
 let afterAuth=null;
 function openAuth(then){afterAuth=then||null;const d=$("#auth");
   $("#authbody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>Sign in with your Penn State email</h2>
-  <p>Only students with a psu.edu email can post sublets or contact posters. That keeps scammers out. We send you a code, no password needed.</p>
+  <p>Only students with a psu.edu email can post sublets or message posters. That keeps scammers out. We send you a code, no password needed.</p>
   <form id="f1" class="stack"><label>Penn State email<input name="email" type="email" required autocomplete="email" placeholder="abc1234@psu.edu" inputmode="email"></label><p class="err" id="e1" hidden></p><button class="btn primary">Send my code</button><p class="fine">By signing in, you agree to Rhedr's <a href="terms" target="_blank" rel="noopener">Terms of Use</a> and <a href="privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p></form>
   <form id="f2" class="stack" hidden><p id="sent"></p><label>Code from the email<input name="code" inputmode="numeric" autocomplete="one-time-code" required pattern="[0-9]{6,10}" placeholder="12345678"></label><p class="err" id="e2" hidden></p><button class="btn primary">Sign in</button><button type="button" class="linkbtn" id="back">Use a different email</button></form>
   ${API.demo?`<p class="fine">Demo mode: no email is sent. Use any @psu.edu address and type any 6 digits.</p>`:""}</div>`;
@@ -302,9 +376,9 @@ async function geocode(addr){try{const u=`https://nominatim.openstreetmap.org/se
   return null}
 
 /* ---------- my sublets ---------- */
-async function openMine(){const d=$("#mine");$("#minebody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>My sublets</h2><p class="lead">Signed in as <b>${esc(USER.email)}</b></p><div id="mylist" class="mylist">Loading…</div><div class="cta"><button class="btn primary" id="mpost">Post a sublet</button><button class="btn" id="malerts">My alerts</button><button class="btn" id="mout">Sign out</button></div></div>`;
+async function openMine(){const d=$("#mine");$("#minebody").innerHTML=`<button class="close" aria-label="Close">×</button><div class="body"><h2>My sublets</h2><p class="lead">Signed in as <b>${esc(USER.email)}</b></p><div id="mylist" class="mylist">Loading…</div><div class="cta"><button class="btn primary" id="mpost">Post a sublet</button><button class="btn" id="mmsg">Messages</button><button class="btn" id="malerts">My alerts</button><button class="btn" id="mout">Sign out</button></div></div>`;
   if(!d.open)d.showModal();d.querySelector(".close").onclick=()=>d.close();
-  $("#mpost").onclick=()=>{d.close();openPost()};$("#malerts").onclick=()=>{d.close();openAlerts()};$("#mout").onclick=async()=>{await API.signOut();d.close();toast("Signed out")};
+  $("#mpost").onclick=()=>{d.close();openPost()};$("#malerts").onclick=()=>{d.close();openAlerts()};$("#mmsg").onclick=()=>{d.close();openChats()};$("#mout").onclick=async()=>{await API.signOut();d.close();toast("Signed out")};
   const draw=async()=>{let my=[],ck={};try{const [m,c]=await Promise.all([API.mine(),API.myChecks().catch(()=>[])]);my=m;c.forEach(x=>ck[x.sublet_id]=x)}catch(e){$("#mylist").textContent=e.message;return}
     const leaseTxt=s=>s.lease_verified?" · Lease checked":s.has_lease_doc?" · Lease being checked":ck[s.id]?.decision==="rejected"?" · Lease proof not accepted":"";
     const ST={live:["Live","ok"],review:["Waiting for review","wait"],taken:["Taken","off"],removed:["Removed","off"]};
@@ -315,6 +389,102 @@ async function openMine(){const d=$("#mine");$("#minebody").innerHTML=`<button c
     if(b.dataset.a==="del"){if(b.dataset.sure!=="1"){b.dataset.sure="1";b.textContent="Tap again to delete";return}await API.remove(id).catch(x=>toast(x.message))}
     else await API.setStatus(id,b.dataset.a).catch(x=>toast(x.message));await draw();load()};
   draw()}
+
+/* ---------- messages between students ---------- */
+// Emails and phone numbers stay hidden (the database masks them) until both students tap "We agreed on Rhedr".
+let CHATS=[],CHAT=null,MSGS=[],MYIDS=new Set(),chatT=null,threadPoll=null,chatOff=null;
+const ago=t=>{const d=(Date.now()-new Date(t))/1000;return d<60?"now":d<3600?Math.floor(d/60)+" min":d<86400?Math.floor(d/3600)+" h":new Date(t).toLocaleDateString("en-US",{month:"short",day:"numeric"})};
+const clock=t=>new Date(t).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+const chatKey=c=>c?[c.agreed_at,c.i_agreed,c.they_agreed,c.closed_at].join("|"):"";
+function setUnread(){const b=$("#msgbtn");b.hidden=!USER;const n=CHATS.reduce((a,c)=>a+(c.unread||0),0);const el=$("#msgn");el.textContent=n>9?"9+":String(n);el.hidden=!n;b.setAttribute("aria-label",n?`Messages, ${n} unread`:"Messages")}
+async function refreshChats(){if(!USER){CHATS=[];setUnread();return}
+  try{CHATS=await API.chats()}catch(e){console.error(e);return}setUnread();
+  if(!$("#chat").open)return;
+  if(!CHAT)drawInbox();
+  else{const c=CHATS.find(x=>x.id===CHAT.id);if(c){const changed=chatKey(c)!==chatKey(CHAT);CHAT=c;if(changed){drawDeal();drawComposer();loadMsgs()}}}}
+const refreshSoon=()=>{clearTimeout(chatT);chatT=setTimeout(refreshChats,500)};
+function onChatEvent(ev){
+  if(ev.type==="message"&&CHAT&&ev.row.conversation_id===CHAT.id&&$("#chat").open){if(!MSGS.some(m=>m.id===ev.row.id)){MSGS.push(ev.row);drawMsgs();if(document.visibilityState==="visible")API.readChat(CHAT.id).then(refreshSoon)}}
+  refreshSoon()}
+function stopPoll(){clearInterval(threadPoll);threadPoll=null}
+function chatShell(html){stopPoll();$("#chatbody").innerHTML=html;const d=$("#chat");if(!d.open)d.showModal();d.querySelectorAll(".close").forEach(b=>b.onclick=()=>d.close())}
+
+async function openChats(){if(!USER){openAuth(openChats);return}CHAT=null;
+  chatShell(`<button class="close" aria-label="Close">×</button><div class="body"><h2>Messages</h2><p class="lead">Your chats with other Penn State students. Emails and phone numbers stay hidden until you both agree on Rhedr.</p><div id="inbox" class="inbox"><p class="fine">Loading…</p></div></div>`);
+  await refreshChats();drawInbox()}
+function drawInbox(){const el=$("#inbox");if(!el)return;
+  el.innerHTML=CHATS.length?CHATS.map(c=>`<button class="crow${c.unread?" new":""}" data-c="${c.id}"><span class="myimg">${c.photo?`<img src="${esc(c.photo)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:`<span class="nophoto"></span>`}</span>
+    <span class="ct"><span class="ct1"><b>${esc(c.other_name)}</b><small>${ago(c.last_at)}</small></span><span class="ct2">${c.i_am==="poster"?"Your sublet: ":""}${esc(c.sublet_title)}</span><span class="ct3">${c.last_from_me?"You: ":""}${esc(c.last_body||"")}</span></span>
+    ${c.unread?`<span class="un" aria-label="${c.unread} unread">${c.unread}</span>`:c.agreed_at?`<span class="cchip ok">Agreed</span>`:c.closed_at?`<span class="cchip">Closed</span>`:""}</button>`).join("")
+   :`<p class="empty">No messages yet. Open a sublet and tap <b>Message</b> to ask the poster about it.</p>`;
+  el.onclick=e=>{const b=e.target.closest("[data-c]");if(b)openChat(+b.dataset.c)}}
+
+async function openChat(id){if(!USER){openAuth(()=>openChat(id));return}
+  let c=CHATS.find(x=>x.id===id);if(!c){await refreshChats();c=CHATS.find(x=>x.id===id)}
+  if(!c){toast("That chat isn't in your messages. Sign in with the email it was sent to.");return openChats()}
+  CHAT=c;MSGS=[];
+  const sub=c.listed&&c.sublet_id&&byId[c.sublet_id]?`<button class="linkbtn" data-open="${c.sublet_id}">${esc(c.sublet_title)}</button>`:esc(c.sublet_title);
+  chatShell(`<div class="chat"><div class="chead"><button class="back" aria-label="Back to messages">‹</button><div class="chw"><b>${esc(c.other_name)}</b><span>${c.i_am==="poster"?"Your sublet · ":""}${sub}</span></div><button class="close" aria-label="Close">×</button></div>
+    <div class="deal" id="deal" hidden></div><div class="msgs" id="msgs"><p class="fine">Loading…</p></div><div id="comp"></div></div>`);
+  $("#chatbody .back").onclick=openChats;
+  $("#chatbody .chw").onclick=e=>{const b=e.target.closest("[data-open]");if(b){$("#chat").close();open(+b.dataset.open)}};
+  drawDeal();drawComposer();await loadMsgs();
+  threadPoll=setInterval(()=>{if(document.visibilityState==="visible"&&$("#chat").open&&CHAT){loadMsgs(true);refreshChats()}},12000)}
+async function loadMsgs(quiet){if(!CHAT)return;const id=CHAT.id;let list;try{list=await API.messages(id)}catch(e){if(!quiet)$("#msgs").innerHTML=`<p class="err">${esc(e.message)}</p>`;return}
+  if(!CHAT||CHAT.id!==id)return;const grew=list.length!==MSGS.length;MSGS=list;if(grew||!quiet)drawMsgs();
+  if(grew||!quiet)API.readChat(id).then(refreshSoon).catch(()=>{})}
+function msgHtml(m){if(!m.sender_id)return `<div class="m sys">${esc(m.body)}</div>`;const me=m.sender_id===USER?.id;
+  return `<div class="m ${me?"me":"them"}"><div class="bub">${esc(m.body)}</div><span class="mt">${clock(m.created_at)}${m.masked?" · some of it is hidden until you both agree":""}</span></div>`}
+function drawMsgs(){const el=$("#msgs");if(!el)return;
+  el.innerHTML=(CHAT?.agreed_at?"":`<div class="m sys">Chats stay on Rhedr. Emails, phone numbers and payment handles are hidden until you both tap "We agreed on Rhedr". Scammers often ask to move to text or Venmo, and deals made off Rhedr aren't covered.</div>`)+MSGS.map(msgHtml).join("");
+  el.scrollTop=el.scrollHeight}
+async function drawDeal(){const c=CHAT,el=$("#deal");if(!c||!el)return;let h="";
+  if(c.agreed_at){let k=null;try{k=await API.chatContact(c.id)}catch(e){console.error(e)}
+    if(CHAT!==c)return;
+    h=`<div class="dealok"><b>${CHECK} You both agreed on Rhedr</b>${k?`<div class="kgrid"><div><span>${esc(k.name)}'s email</span><a href="mailto:${esc(k.email)}">${esc(k.email)}</a></div>${k.unit?`<div><span>Unit</span><b>${esc(k.unit)}</b></div>`:""}</div>`:""}<small>Next: ask the landlord for their sublease form, and see the place before you pay. Signing the sublease on Rhedr is coming soon.</small></div>`}
+  else if(c.closed_at)h="";
+  else if(c.i_agreed)h=`<div class="dealq"><div><b>You tapped "We agreed on Rhedr"</b><span>Waiting for ${esc(c.other_name)}. Once they tap it too, you'll both see each other's psu.edu email.</span></div><button class="btn ghost" data-deal="0">Take it back</button></div>`;
+  else if(c.they_agreed)h=`<div class="dealq hot"><div><b>${esc(c.other_name)} says you agreed</b><span>Tap to confirm. Then you'll both see each other's psu.edu email.</span></div><button class="btn primary" data-deal="1">We agreed on Rhedr</button></div>`;
+  else h=`<div class="dealq"><div><b>Agreed on the place, dates and price?</b><span>When you both tap this, Rhedr shows you each other's psu.edu email.</span></div><button class="btn" data-deal="1">We agreed on Rhedr</button></div>`;
+  el.innerHTML=h;el.hidden=!h;
+  el.onclick=async e=>{const b=e.target.closest("[data-deal]");if(!b)return;b.disabled=true;try{await API.agree(c.id,b.dataset.deal==="1");await refreshChats();await loadMsgs()}catch(x){toast(x.message)}finally{b.disabled=false}}}
+function drawComposer(){const c=CHAT,el=$("#comp");if(!c||!el)return;
+  if(c.closed_at){el.innerHTML=`<p class="cclosed">This chat is closed.</p>`;return}
+  el.innerHTML=`<form class="composer" id="cf"><p class="mtip" id="mtip" hidden></p><div class="cin"><textarea name="m" rows="1" maxlength="2000" placeholder="Write a message" aria-label="Message" required></textarea><button class="btn primary">Send</button></div>
+    <div class="cfoot"><span>${c.agreed_at?"You both agreed, so nothing is hidden now.":"Contact info is hidden until you both agree."}</span><span><button type="button" class="linkbtn" data-x="report">Report</button> · <button type="button" class="linkbtn" data-x="close">Close chat</button></span></div></form>`;
+  const f=$("#cf"),ta=f.m,btn=f.querySelector(".cin .btn");
+  const grow=()=>{ta.style.height="auto";ta.style.height=Math.min(ta.scrollHeight,140)+"px"};
+  ta.oninput=()=>{grow();tipFor(ta.value,!c.agreed_at)};
+  ta.onkeydown=e=>{if(e.key==="Enter"&&!e.shiftKey&&matchMedia("(pointer:fine)").matches){e.preventDefault();f.requestSubmit()}};
+  f.onsubmit=async e=>{e.preventDefault();const t=ta.value.trim();if(!t)return;btn.disabled=true;
+    try{const m=await API.send(c.id,t);ta.value="";grow();tipFor("");if(m&&!MSGS.some(x=>x.id===m.id))MSGS.push(m);drawMsgs();refreshSoon()}catch(x){toast(x.message)}finally{btn.disabled=false;ta.focus()}};
+  f.querySelector(".cfoot").onclick=async e=>{const b=e.target.closest("[data-x]");if(!b)return;
+    if(b.dataset.x==="close"){if(b.dataset.sure!=="1"){b.dataset.sure="1";b.textContent="Tap again to close it for both of you";return}
+      try{await API.closeChat(c.id);await refreshChats();toast("Chat closed")}catch(x){toast(x.message)}}
+    if(b.dataset.x==="report"){if(el.querySelector(".reportbox"))return;
+      el.insertAdjacentHTML("afterbegin",`<form class="reportbox"><label>What's wrong?<select name="r"><option>Looks like a scam</option><option>Asking to pay outside Rhedr</option><option>Harassment or rude</option><option>Not a real student</option><option>Something else</option></select></label><input name="x" placeholder="Details (optional)" maxlength="300"><button class="btn">Send report</button></form>`);
+      el.querySelector(".reportbox").onsubmit=async ev=>{ev.preventDefault();const r=ev.target;try{await API.reportChat(c.id,(r.r.value+" "+r.x.value).trim());r.outerHTML=`<p class="cclosed">Thanks. Rhedr will read this chat and follow up. You can also close it.</p>`}catch(x){toast(x.message)}}}}}
+function tipFor(v,on=true){const t=$("#mtip");if(!t)return;const hit=on&&v.trim()&&maskContact(v)!==v.trim();t.hidden=!hit;
+  if(hit)t.textContent="Heads up: phone numbers, emails, links and payment handles will be hidden until you both agree on Rhedr."}
+
+function newChat(s){if(!USER){openAuth(()=>newChat(s));return}CHAT=null;MSGS=[];
+  const name=s.contact_name||"the poster";let me="";try{me=localStorage.getItem("rhedr-first-name")||""}catch(e){}
+  const draft=`Hi ${s.contact_name||"there"}! Is your ${s.kind==="takeover"?"lease takeover":"sublet"} at ${s.building_name||s.address} still available for ${dTxt(s.start_date)} to ${dTxt(s.end_date)}? When could I see it?`;
+  chatShell(`<div class="chat"><div class="chead"><button class="back" aria-label="Back to the sublet">‹</button><div class="chw"><b>Message ${esc(name)}</b><span>${esc(s.title)}</span></div><button class="close" aria-label="Close">×</button></div>
+   <form class="stack newchat" id="nc">
+    <div class="ncl"><span class="myimg">${photoOf(s)}</span><div><b>${fmt(s.price)} / mo</b><span>${dTxt(s.start_date)} – ${dTxt(s.end_date)} · ${esc(s.building_name||s.address)}</span></div></div>
+    <label><span>Your first name <small>(shown to ${esc(name)})</small></span><input name="n" maxlength="40" autocomplete="given-name" required value="${esc(me)}"></label>
+    <label>Message<textarea name="m" rows="4" maxlength="2000" required>${esc(draft)}</textarea></label>
+    <p class="mtip" id="mtip" hidden></p>
+    <p class="fine">${esc(name)} won't see your email or phone number. You'll see each other's psu.edu email once you both tap "We agreed on Rhedr" in the chat.</p>
+    <button class="btn primary big">Send message</button></form></div>`);
+  $("#chatbody .back").onclick=()=>{$("#chat").close();open(s.id)};
+  const f=$("#nc");f.m.oninput=()=>tipFor(f.m.value);
+  f.onsubmit=async e=>{e.preventDefault();const n=f.n.value.trim(),m=f.m.value.trim();if(!n||!m){toast(n?"Write a message first":"Add your first name");return}
+    const b=f.querySelector("button.btn");b.disabled=true;b.textContent="Sending…";
+    try{try{localStorage.setItem("rhedr-first-name",n)}catch(_){}const id=await API.startChat(s.id,m,n);await refreshChats();await openChat(id)}
+    catch(x){toast(x.message);b.disabled=false;b.textContent="Send message"}}}
+async function loadMine(){MYIDS=new Set();if(!USER)return;try{(await API.mine()).forEach(s=>MYIDS.add(s.id))}catch(e){}}
 
 /* ---------- sublet alerts (saved searches) ---------- */
 // The same rules as public.search_matches in supabase/setup.sql
@@ -441,14 +611,19 @@ function wire(){
   $("#alertbtn").onclick=openAlerts;
   $("#acctbtn").onclick=()=>USER?openMine():openAuth();
   $("#maptoggle").onclick=()=>{headH();document.body.classList.toggle("showmap");$("#maptoggle span").textContent=document.body.classList.contains("showmap")?"Show list":"Show map";if(document.body.classList.contains("showmap"))setTimeout(()=>{MAP.resize();MAP.fit()},30);else window.scrollTo(0,0)};
-  ["#dlg","#auth","#post","#mine","#alerts"].forEach(id=>$(id).addEventListener("click",e=>{if(e.target===$(id))$(id).close()}));
+  $("#msgbtn").onclick=openChats;
+  ["#dlg","#auth","#post","#mine","#alerts","#chat"].forEach(id=>$(id).addEventListener("click",e=>{if(e.target===$(id))$(id).close()}));
   window.addEventListener("resize",()=>{headH();MAP.resize()});headH();document.fonts?.ready.then(headH);
 }
 async function load(){try{ALL=await API.list()}catch(e){console.error(e);toast("Couldn't load sublets: "+e.message);ALL=[]}
   byId={};ALL.forEach(s=>{s.mi=miles(OM,s);byId[s.id]=s});renderTabs();renderList()}
 async function start(){wire();lbInit();$("#demonote").hidden=!API.demo;
   try{BLD=await (await fetch("data/listings.json")).json();BLD.forEach(b=>bById[b.id]=b)}catch(e){console.error(e)}
-  API.onAuth(u=>{const was=USER;USER=u;setAcct();if(!!was!==!!u&&ALL.length)renderList()});
+  API.onAuth(u=>{const was=USER;USER=u;setAcct();setUnread();
+    if((was?.id||null)!==(u?.id||null)){chatOff?.();chatOff=u?API.onChat(onChatEvent):null;CHATS=[];MYIDS=new Set();if(u){refreshChats();loadMine()}else if($("#chat").open)$("#chat").close()}
+    if(!!was!==!!u&&ALL.length)renderList()});
+  setInterval(()=>{if(USER&&document.visibilityState==="visible"&&!threadPoll)refreshChats()},60000);
+  $("#chat").addEventListener("close",()=>{stopPoll();CHAT=null});
   API.settings().then(x=>{LEASE_REQ=!!x?.lease_proof_required}).catch(()=>{});
   await load();
   try{if(CFG.googleMapsApiKey)await initGoogle();else await initLeaflet()}catch(e){console.error("Map failed, using OpenStreetMap",e);try{if(!MAP.ready)await initLeaflet()}catch(_){}}
@@ -457,6 +632,7 @@ async function start(){wire();lbInit();$("#demonote").hidden=!API.demo;
   if(qs.get("unsubscribe")){unsubscribeFromLink(qs.get("unsubscribe"),qs.get("all")==="1");clean()}
   else if(qs.get("s")){const id=+qs.get("s");if(byId[id])open(id);else toast("That sublet is no longer listed.");clean()}
   else if(qs.get("alerts")==="1"){openAlerts();clean()}
+  else if(qs.get("chat")){const id=+qs.get("chat");clean();if(USER)openChat(id);else openAuth(()=>openChat(id))}
   else if(/[?&]post=1/.test(location.search))openPost();
 }
 start();

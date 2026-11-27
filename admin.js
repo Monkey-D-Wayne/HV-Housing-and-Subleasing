@@ -40,6 +40,7 @@ function signIn(){
 }
 
 async function render(){
+  if(view==="chats")return renderChats();
   const [{data:set},{data:rows,error}]=await Promise.all([sb.from("site_settings").select("*").eq("id",1).maybeSingle(),sb.rpc("lease_queue",{p_done:view==="done"})]);
   if(error){$("#app").innerHTML=`<p class="err">${esc(error.message)}</p>`;return}
   const s=set||{lease_proof_required:false,auto_approve_green:false};
@@ -47,7 +48,7 @@ async function render(){
     <label class="set"><input type="checkbox" id="req" ${s.lease_proof_required?"checked":""}><div><b>Require lease proof to post</b><span>Off: proof is optional, and listings with a checked proof get the Lease checked badge and rank first. On: every new post needs a proof and stays hidden until you approve it.</span></div></label>
     <label class="set"><input type="checkbox" id="auto" ${s.auto_approve_green?"checked":""}><div><b>Approve green checks automatically</b><span>When the AI finds the name, address, dates and rent all match, give the badge right away and delete the file. Yellow and red still wait for you.</span></div></label>
   </div>
-  <div class="tabsw"><button data-v="open" aria-pressed="${view==="open"}">Waiting</button><button data-v="done" aria-pressed="${view==="done"}">Decided</button></div>
+  ${tabs()}
   <div id="list">${rows?.length?rows.map(card).join(""):`<p class="empty">${view==="open"?"Nothing waiting. Nice.":"Nothing decided yet."}</p>`}</div>`;
   const save=async()=>{const {error}=await sb.rpc("set_lease_settings",{p_required:$("#req").checked,p_auto_green:$("#auto").checked});toast(error?error.message:"Saved")};
   $("#req").onchange=save;$("#auto").onchange=save;
@@ -87,6 +88,24 @@ async function onAction(e){
       toast(b.dataset.a==="yes"?"Approved. The badge is on and the file is deleted.":"Rejected. The poster can send a new proof.");await render()}
   }catch(x){toast(x.message||String(x))}finally{b.disabled=false}
 }
+
+function tabs(){return `<div class="tabsw"><button data-v="open" aria-pressed="${view==="open"}">Waiting</button><button data-v="done" aria-pressed="${view==="done"}">Decided</button><button data-v="chats" aria-pressed="${view==="chats"}">Chat reports</button></div>`}
+
+/* reported chats (supabase/messaging.sql). You only see a chat when one of the two students reports it. */
+async function renderChats(){
+  const [{data:st},{data:rows,error}]=await Promise.all([sb.rpc("chat_stats"),sb.rpc("chat_report_queue",{p_done:false})]);
+  if(error){$("#app").innerHTML=`${tabs()}<p class="err">${esc(/function|does not exist/i.test(error.message)?"Messages aren't set up yet. Run supabase/messaging.sql (see SUBLETS-SETUP.md).":error.message)}</p>`;wireTabs();return}
+  const x=st?.[0]||{};
+  $("#app").innerHTML=`${tabs()}<p class="meta">${x.chats??0} chats so far · ${x.chats_7d??0} new and ${x.messages_7d??0} messages this week · ${x.agreed??0} agreed on Rhedr · ${x.masked_7d??0} messages had contact info hidden this week</p>
+  <div id="list">${rows?.length?rows.map(r=>`<div class="chk" data-rid="${r.report_id}"><div class="top"><div><h3>${esc(r.sublet_title)}</h3><div class="meta">Reported ${dt(r.created_at)} by ${esc(r.reporter)} · poster ${esc(r.poster)} · student ${esc(r.student)}${r.agreed_at?" · agreed":""}${r.closed_at?" · closed":""}</div></div></div>
+    <p><b>Reason:</b> ${esc(r.reason)}</p>
+    <div class="chatlog">${(r.messages||[]).map(m=>`<div><b>${esc(m.from)}</b> <span class="meta">${dt(m.at)}${m.masked?" · contact hidden":""}</span><br>${esc(m.body)}</div>`).join("")}</div>
+    <div class="acts"><button class="btn" data-c="ok">Done, nothing to do</button><button class="btn" data-c="close">Close the chat</button></div></div>`).join(""):`<p class="empty">No reported chats. Nice.</p>`}</div>`;
+  wireTabs();
+  $("#list").onclick=async e=>{const b=e.target.closest("button[data-c]");if(!b)return;const id=+b.closest("[data-rid]").dataset.rid;b.disabled=true;
+    const {error}=await sb.rpc("chat_report_resolve",{p_report:id,p_close:b.dataset.c==="close"});toast(error?error.message:b.dataset.c==="close"?"Chat closed":"Marked done");renderChats()};
+}
+function wireTabs(){document.querySelectorAll(".tabsw button").forEach(b=>b.onclick=()=>{view=b.dataset.v;render()})}
 
 /* delete files that are done with; proofs nobody checked within 30 days are rejected first */
 async function cleanup(){try{const {data}=await sb.rpc("lease_files_to_delete");

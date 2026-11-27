@@ -44,12 +44,13 @@
   .acts select{border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--bg);max-width:100%}
   .btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}
   .empty{color:var(--muted)}
+  .chatlog{display:flex;flex-direction:column;gap:8px;max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:14px;margin-top:8px;overflow-wrap:anywhere}
   .topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 </style>
 </head>
 <body>
 <div class="adm">
-  <div class="topline"><div><h1>Lease checks</h1><p class="sub">Rhedr admin. Approve or reject lease proofs, and choose whether they're required.</p></div><button class="btn" id="out" hidden>Sign out</button></div>
+  <div class="topline"><div><h1>Lease checks</h1><p class="sub">Rhedr admin. Approve or reject lease proofs, choose whether they're required, and check reported chats.</p></div><button class="btn" id="out" hidden>Sign out</button></div>
   <div id="app"><p class="empty">Loading…</p></div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
