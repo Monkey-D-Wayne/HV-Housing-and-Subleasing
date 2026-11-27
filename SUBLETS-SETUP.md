@@ -30,20 +30,18 @@ Everything below is free. Supabase's free plan holds 500 MB of listings and 1 GB
 3. Under **Redirect URLs** click **Add URL**: `https://rhedr.com/**`, then **Save URLs**. Add `https://www.rhedr.com/**` the same way.
 
 ## 5. Let Supabase email sign-in codes to students
-Supabase's built-in email only sends to people on your own Supabase team, so students won't get codes until you connect a sender. Rhedr sends codes from `noreply@rhedr.com`, an alias on the Google Workspace account `boaz@rhedr.com` (Gmail allows about 2,000 emails a day from Workspace).
+Supabase's built-in email only sends to people on your own Supabase team, so students won't get codes until you connect a sender. Rhedr sends codes through Resend (https://resend.com) from `noreply@send.rhedr.com`. Sign in to Resend as boaz@rhedr.com. The `send.rhedr.com` domain is verified there with DNS records in Vercel.
 
-1. Signed in as boaz@rhedr.com, go to https://myaccount.google.com/security and turn on **2-Step Verification**.
-2. Go to https://myaccount.google.com/apppasswords. App name: `Supabase`. Click **Create** and copy the 16-letter password it shows.
-3. Make sure `noreply@rhedr.com` is an alias of boaz@rhedr.com (Google Admin, https://admin.google.com, then **Directory**, **Users**, boaz, **Add alternate emails**), and that Gmail can send as it (Gmail, gear, **See all settings**, **Accounts**, **Send mail as**).
-4. In Supabase: **Authentication**, then **Emails** (or **Email**), then the **SMTP Settings** tab. Turn on **Enable Custom SMTP** and fill in:
-   - Sender email: `noreply@rhedr.com`
+1. In Resend, open **API Keys**, click **Create API Key**, name it `Supabase`, permission **Sending access**, and copy the key (it starts with `re_`).
+2. In Supabase: **Authentication**, then **Emails** (or **Email**), then the **SMTP Settings** tab. Turn on **Enable Custom SMTP** and fill in:
+   - Sender email: `noreply@send.rhedr.com`
    - Sender name: `Rhedr`
-   - Host: `smtp.gmail.com`
+   - Host: `smtp.resend.com`
    - Port: `465`
-   - Username: `boaz@rhedr.com`
-   - Password: the 16-letter app password (no spaces)
+   - Username: `resend`
+   - Password: the Resend API key
    Click **Save changes**.
-5. Still under **Emails**, open the **Templates** tab, then **Magic Link**. Replace the message body with:
+3. Still under **Emails**, open the **Templates** tab, then **Magic Link**. Replace the message body with:
    ```html
    <h2>Your Rhedr code</h2>
    <p>Your sign-in code is <b style="font-size:22px">{{ .Token }}</b></p>
@@ -52,8 +50,8 @@ Supabase's built-in email only sends to people on your own Supabase team, so stu
    ```
    Subject: `Your Rhedr sign-in code`. Click **Save changes**.
    Leave the sign-in link out on purpose: Penn State's Microsoft security opens every link in incoming mail, which uses up the one-time code before the student can type it. Then open the **Confirm signup** template and paste the same subject and body there too. A student's very first sign-in uses Confirm signup, later ones use Magic Link, so both need the code. Click **Save changes**.
-6. Every code also appears in boaz@rhedr.com's Gmail **Sent** folder, which helps while testing. If Penn State's email (Microsoft) starts holding codes, switch to a sending service on rhedr.com (for example Resend or Brevo).
-7. Optional but helpful: **Authentication**, **Rate Limits**, set "emails sent per hour" to 100.
+4. While testing, every sent code shows in Resend under **Emails**, with whether it was delivered.
+5. Optional but helpful: **Authentication**, **Rate Limits**, set "emails sent per hour" to 100.
 
 ## 5b. Only let psu.edu emails sign up
 The site already asks for a psu.edu email, but someone could skip the page and ask Supabase directly. This hook makes Supabase itself refuse other emails, so no code is ever sent to them.
