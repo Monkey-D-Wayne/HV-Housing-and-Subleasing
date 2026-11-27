@@ -7,7 +7,7 @@ Everything below is free. Supabase's free plan holds 500 MB of listings and 1 GB
 ## 1. Make a Supabase project
 1. Go to https://supabase.com and click **Start your project**. Sign up with your Rhedr Google account (boaz@rhedr.com).
 2. Click **New project**. If it asks for an organization, make one called "Rhedr" on the **Free** plan.
-3. Project name: `happy-valley-housing`. Click **Generate a password** and save it somewhere safe (you will rarely need it). Region: **East US (North Virginia)**. Click **Create new project** and wait about 2 minutes.
+3. Project name: `rhedr`. Click **Generate a password** and save it somewhere safe (you will rarely need it). Region: **East US (North Virginia)**. Click **Create new project** and wait about 2 minutes.
 
 ## 2. Create the database
 1. In the left sidebar, click **SQL Editor**, then **+ New query**.
