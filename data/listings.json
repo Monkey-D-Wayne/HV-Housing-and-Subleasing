@@ -488,7 +488,8 @@
 ],
 "lease": "2027-2028 Full Year",
 "status": "Fully rented",
-"page": "https://www.apartmentstore.com/locations/state-college/south-allen/2-bedroom-furnished/"
+"page": "https://www.apartmentstore.com/locations/state-college/south-allen/2-bedroom-furnished/",
+"note": "Only 1 Unit Left!"
 },
 {
 "name": "Two Bedroom Furnished #2",
@@ -575,10 +576,14 @@
 ],
 "lease": "2027-2028 Full Year",
 "status": "Fully rented",
-"page": "https://www.apartmentstore.com/locations/state-college/south-allen/two-bedroom-unfurnished-4/"
+"page": "https://www.apartmentstore.com/locations/state-college/south-allen/two-bedroom-unfurnished-4/",
+"note": "Only 1 Unit Left!"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"tag": "Fully leased for 2027–28",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 3,
@@ -1710,7 +1715,8 @@
 "note": "SIGN NOW FOR $75 OFF/MONTH!",
 "page": "https://theviewstatecollege.com/floor-plans/"
 }
-]
+],
+"note": "Utilities: The View's fee guide lists electric, water and sewer as billed by use (split between roommates), plus a $7/mo utility billing fee. Internet is included."
 },
 {
 "id": 10,
@@ -1721,8 +1727,8 @@
 0,
 5
 ],
-"price": "$1,334–$2,310 per person / mo (2027-2028)",
-"ppm": 1334,
+"price": "$1,459–$2,310 per person / mo (2027-2028)",
+"ppm": 1459,
 "est": false,
 "lat": 40.79898,
 "lng": -77.85491,
@@ -1800,13 +1806,12 @@
 "beds": 0,
 "baths": "1",
 "sqft": "482",
-"price": "$1,400 / person",
+"price": "$1,475 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_Studio-Bunk-A.webp",
 "rates": [
 {
 "n": 1,
-"pp": 1400,
-"was": 1475
+"pp": 1475
 }
 ],
 "lease": "2027-2028",
@@ -1818,13 +1823,12 @@
 "beds": 0,
 "baths": "1",
 "sqft": "482",
-"price": "$1,500 / person",
+"price": "$1,575 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_Studio-Bunk-A.webp",
 "rates": [
 {
 "n": 1,
-"pp": 1500,
-"was": 1575
+"pp": 1575
 }
 ],
 "lease": "2027-2028",
@@ -1836,13 +1840,12 @@
 "beds": 0,
 "baths": "1",
 "sqft": "482",
-"price": "$1,600 / person",
+"price": "$1,675 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_Studio-Bunk-A.webp",
 "rates": [
 {
 "n": 1,
-"pp": 1600,
-"was": 1675
+"pp": 1675
 }
 ],
 "lease": "2027-2028",
@@ -1870,8 +1873,7 @@
 "rates": [
 {
 "n": 2,
-"pp": 2310,
-"was": null
+"pp": 2310
 }
 ],
 "lease": "2027-2028",
@@ -1887,8 +1889,7 @@
 "rates": [
 {
 "n": 3,
-"pp": 1639,
-"was": null
+"pp": 1639
 }
 ],
 "lease": "2027-2028",
@@ -1899,10 +1900,16 @@
 "beds": 3,
 "baths": "2",
 "sqft": "865",
-"price": "Call for pricing",
+"price": "$1,729 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_3x2-A.webp",
 "lease": "2027-2028",
-"page": "https://olivhetzel.com/floor-plans/"
+"page": "https://olivhetzel.com/floor-plans/",
+"rates": [
+{
+"n": 3,
+"pp": 1729
+}
+]
 },
 {
 "name": "4x2 Lite",
@@ -1914,8 +1921,7 @@
 "rates": [
 {
 "n": 4,
-"pp": 1599,
-"was": null
+"pp": 1599
 }
 ],
 "lease": "2027-2028",
@@ -1931,8 +1937,7 @@
 "rates": [
 {
 "n": 4,
-"pp": 1699,
-"was": null
+"pp": 1699
 }
 ],
 "lease": "2027-2028",
@@ -1943,13 +1948,12 @@
 "beds": 5,
 "baths": "3",
 "sqft": "1277",
-"price": "$1,665 / person",
+"price": "$1,790 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x3-A.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1665,
-"was": 1790
+"pp": 1790
 }
 ],
 "lease": "2027-2028",
@@ -1961,13 +1965,12 @@
 "beds": 5,
 "baths": "3",
 "sqft": "1586",
-"price": "$1,735 / person",
+"price": "$1,860 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x3-.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1735,
-"was": 1860
+"pp": 1860
 }
 ],
 "lease": "2027-2028",
@@ -1979,13 +1982,12 @@
 "beds": 5,
 "baths": "3",
 "sqft": "1452",
-"price": "$1,520 / person",
+"price": "$1,529 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x3-Lite-A.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1520,
-"was": 1645
+"pp": 1529
 }
 ],
 "lease": "2027-2028",
@@ -1997,13 +1999,12 @@
 "beds": 5,
 "baths": "3",
 "sqft": "1305",
-"price": "$1,404 / person",
+"price": "$1,645 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x3-Lite.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1404,
-"was": 1529
+"pp": 1645
 }
 ],
 "lease": "2027-2028",
@@ -2015,13 +2016,12 @@
 "beds": 5,
 "baths": "3",
 "sqft": "1305",
-"price": "$1,554 / person",
+"price": "$1,629 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x3-Lite.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1554,
-"was": 1629
+"pp": 1629
 }
 ],
 "lease": "2027-2028",
@@ -2033,13 +2033,12 @@
 "beds": 5,
 "baths": "3",
 "sqft": "1296",
-"price": "$1,345 / person",
+"price": "$1,470 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x3-Shared-A-1.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1345,
-"was": 1470
+"pp": 1470
 }
 ],
 "lease": "2027-2028",
@@ -2051,13 +2050,12 @@
 "beds": 5,
 "baths": "3",
 "sqft": "1296",
-"price": "$1,719 / person",
+"price": "$1,570 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x3-Shared-A-1.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1719,
-"was": 1844
+"pp": 1570
 }
 ],
 "lease": "2027-2028",
@@ -2069,13 +2067,12 @@
 "beds": 5,
 "baths": "3",
 "sqft": "1277",
-"price": "$1,765 / person",
+"price": "$1,890 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x3-A.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1765,
-"was": 1890
+"pp": 1890
 }
 ],
 "lease": "2027-2028",
@@ -2087,13 +2084,12 @@
 "beds": 5,
 "baths": "4",
 "sqft": "1465",
-"price": "$1,664 / person",
+"price": "$1,789 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x4-A.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1664,
-"was": 1789
+"pp": 1789
 }
 ],
 "lease": "2027-2028",
@@ -2105,13 +2101,12 @@
 "beds": 5,
 "baths": "4",
 "sqft": "1330",
-"price": "$1,490 / person",
+"price": "$1,565 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x4-Lite.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1490,
-"was": 1565
+"pp": 1565
 }
 ],
 "lease": "2027-2028",
@@ -2123,13 +2118,12 @@
 "beds": 5,
 "baths": "4",
 "sqft": "1330",
-"price": "$1,540 / person",
+"price": "$1,665 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x4-Lite.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1540,
-"was": 1665
+"pp": 1665
 }
 ],
 "lease": "2027-2028",
@@ -2141,13 +2135,12 @@
 "beds": 5,
 "baths": "4",
 "sqft": "1472",
-"price": "$1,334 / person",
+"price": "$1,459 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x3-Shared-A.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1334,
-"was": 1459
+"pp": 1459
 }
 ],
 "lease": "2027-2028",
@@ -2159,13 +2152,12 @@
 "beds": 5,
 "baths": "4",
 "sqft": "1472",
-"price": "$1,434 / person",
+"price": "$1,559 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x3-Shared-A.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1434,
-"was": 1559
+"pp": 1559
 }
 ],
 "lease": "2027-2028",
@@ -2177,52 +2169,21 @@
 "beds": 5,
 "baths": "4",
 "sqft": "1465",
-"price": "$1,764 / person",
+"price": "$1,889 / person",
 "img": "https://olivhetzel.com/wp-content/uploads/2025/07/OlivHetzel_Floorplans_5x4-A.webp",
 "rates": [
 {
 "n": 5,
-"pp": 1764,
-"was": 1889
+"pp": 1889
 }
 ],
 "lease": "2027-2028",
 "note": "Private: $1,764 (was $1,889) per person",
 "page": "https://olivhetzel.com/floor-plans/"
 }
-]
-},
-{
-"id": 11,
-"name": "Southside Commons",
-"address": "610 Southgate Dr",
-"type": "townhouse",
-"beds": [
-2,
-3
 ],
-"price": "$1,700–$1,880 per unit",
-"ppm": 567,
-"est": true,
-"lat": 40.77497,
-"lng": -77.85684,
-"source": "ocp"
-},
-{
-"id": 13,
-"name": "Southside Court",
-"address": "1610 S Ashwicken Ct",
-"type": "townhouse",
-"beds": [
-2,
-2
-],
-"price": "$1,800–$1,875 per unit",
-"ppm": 900,
-"est": true,
-"lat": 40.77272,
-"lng": -77.86199,
-"source": "ocp"
+"checked": "2026-11-27",
+"note": "2027–28 prices (Aug 19, 2027 move-in) from the Penn State Off-Campus listing and ForRent, Nov 27, 2026; Apartments.com shows some plans about $10 lower (from $1,449). The building's own site no longer shows prices. Gas, water, sewer, trash and internet included (Apartments.com). Application fee $65, Resident Life fee $100."
 },
 {
 "id": 14,
@@ -2233,7 +2194,7 @@
 0,
 7
 ],
-"price": "$1,165–$1,934 per person / mo (2027-2028)",
+"price": "$1,165–$1,999 per person / mo (2027-2028)",
 "ppm": 1165,
 "est": false,
 "lat": 40.79354,
@@ -2597,13 +2558,12 @@
 "beds": 5,
 "baths": "4",
 "sqft": "2921",
-"price": "$1,749 / person",
+"price": "$1,799 / person",
 "img": "https://www.olivhighland.com/wp-content/uploads/2025/07/oliv-highland_0013_5x4-Lite-TH-A.png",
 "rates": [
 {
 "n": 5,
-"pp": 1749,
-"was": null
+"pp": 1799
 }
 ],
 "lease": "2027-2028",
@@ -2643,189 +2603,9 @@
 "status": "Fully rented",
 "page": "https://www.olivhighland.com/floor-plans/"
 }
-]
-},
-{
-"id": 15,
-"name": "Southside Court II",
-"address": "921-951 Southgate Drive",
-"type": "townhouse",
-"beds": [
-1,
-3
 ],
-"price": "$650–$1,475 per person / mo (2027-2028 Full Year)",
-"ppm": 650,
-"est": true,
-"lat": 40.77393,
-"lng": -77.86139,
-"source": "site",
-"site": "https://www.apartmentstore.com/locations/state-college/southside-court-2/",
-"plans": [
-{
-"name": "One Bedroom Townhouse Unfurnished",
-"beds": 1,
-"baths": "1",
-"sqft": "640",
-"price": "$1,450 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/04/Southside-Court-II_1Bed-Landscape.jpg?fit=768%2C336&ssl=1",
-"rates": [
-{
-"n": 1,
-"pp": 1450,
-"was": null
-}
-],
-"lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/one-bedroom-townhouse-unfurnished/"
-},
-{
-"name": "One Bedroom Townhouse Furnished",
-"beds": 1,
-"baths": "1",
-"sqft": "640",
-"price": "$1,475 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/04/Southside-Court-II_1Bed-Landscape.jpg?fit=768%2C336&ssl=1",
-"rates": [
-{
-"n": 1,
-"pp": 1475,
-"was": null
-}
-],
-"lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/one-bedroom-townhouse-unfurnished-2/"
-},
-{
-"name": "Two Bedroom Townhouse Unfurnished",
-"beds": 2,
-"baths": "1",
-"sqft": "896",
-"price": "$875–$1,750 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_2Bed.webp?fit=610%2C665&ssl=1",
-"rates": [
-{
-"n": 1,
-"pp": 1750,
-"whole": true,
-"was": null
-},
-{
-"n": 2,
-"pp": 875,
-"was": null
-}
-],
-"lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/two-bedroom-townhouse-unfurnished/"
-},
-{
-"name": "Two Bedroom Townhouse Furnished",
-"beds": 2,
-"baths": "1",
-"sqft": "896",
-"price": "$888–$1,775 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_2Bed.webp?fit=610%2C665&ssl=1",
-"rates": [
-{
-"n": 1,
-"pp": 1775,
-"whole": true,
-"was": null
-},
-{
-"n": 2,
-"pp": 888,
-"was": null
-}
-],
-"lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/two-bedroom-townhouse-furnished/"
-},
-{
-"name": "Three Bedroom Townhouse Unfurnished",
-"beds": 3,
-"baths": "2",
-"sqft": "1280",
-"price": "$650–$1,950 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_3Bed.webp?fit=648%2C617&ssl=1",
-"rates": [
-{
-"n": 1,
-"pp": 1950,
-"whole": true,
-"was": null
-},
-{
-"n": 2,
-"pp": 975,
-"was": null
-},
-{
-"n": 3,
-"pp": 650,
-"was": null
-}
-],
-"lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/three-bedroom-townhouse-unfurnished/"
-},
-{
-"name": "Three Bedroom Townhouse Furnished",
-"beds": 3,
-"baths": "2",
-"sqft": "1280",
-"price": "$677–$2,030 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_3Bed.webp?fit=648%2C617&ssl=1",
-"rates": [
-{
-"n": 1,
-"pp": 2030,
-"whole": true,
-"was": null
-},
-{
-"n": 2,
-"pp": 1015,
-"was": null
-},
-{
-"n": 3,
-"pp": 677,
-"was": null
-}
-],
-"lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/three-bedroom-townhouse-furnished/"
-}
-],
-"photos": [
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Court2_Ext_001.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/3_Living-scaled.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/5_Kitchen-scaled.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/13_Bedroom-scaled.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/14_Bath-scaled.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/16_Laundry-scaled.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
-}
-],
-"manager": "The Apartment Store"
+"checked": "2026-11-27",
+"note": "2027–28 prices (Aug 18, 2027 move-in); the Penn State Off-Campus listing, Apartments.com and ForRent all agree, Nov 27, 2026. $1,165 is a bunk bed in a 5x4; regular plans start at $1,665. Water, sewer and trash included. Application fee $65, Resident Life fee $100, move-in fee $60."
 },
 {
 "id": 16,
@@ -2836,12 +2616,16 @@
 1,
 2
 ],
-"price": "$1,095–$1,850 per bedroom",
-"ppm": 1095,
+"price": "$1,049–$2,199 per person (2027-2028)",
+"ppm": 1049,
 "est": false,
 "lat": 40.7979,
 "lng": -77.85336,
-"source": "ocp"
+"source": "ocp",
+"manager": "Core Spaces",
+"site": "https://www.liveparkhill.com/",
+"note": "Utilities are not included in rent (about $25–$30/mo utility fee). Parking $190/mo. Managed by Core Spaces.",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 17,
@@ -2963,12 +2747,15 @@
 1,
 3
 ],
-"price": "$1,654–$3,960 per unit",
-"ppm": 1320,
+"price": "$1,764–$4,230 per unit",
+"ppm": 1376,
 "est": true,
 "lat": 40.79088,
 "lng": -77.8642,
-"source": "ocp"
+"source": "ocp",
+"manager": "G&N Realty",
+"note": "All utilities are included, including electric and internet. Not limited to grad students despite the name.",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 19,
@@ -3099,22 +2886,6 @@
 ]
 },
 {
-"id": 20,
-"name": "Barcroft Building",
-"address": "522 E College Ave",
-"type": "apartment",
-"beds": [
-0,
-0
-],
-"price": "$1,795 furnished studio · 7-month lease",
-"ppm": 1795,
-"est": false,
-"lat": 40.79969,
-"lng": -77.85408,
-"source": "ocp"
-},
-{
 "id": 21,
 "name": "Blue Course Commons",
 "address": "446 Blue Course Dr",
@@ -3230,22 +3001,6 @@
 "page": "https://www.livebluecourse.com/floor-plans/"
 }
 ]
-},
-{
-"id": 22,
-"name": "Divine Comfort Space",
-"address": "663 Marjorie Mae St",
-"type": "room",
-"beds": [
-3,
-3
-],
-"price": "$1,250–$1,500 per room · shared house",
-"ppm": 1250,
-"est": false,
-"lat": 40.81355,
-"lng": -77.88827,
-"source": "ocp"
 },
 {
 "id": 23,
@@ -3367,23 +3122,9 @@
 "page": "https://www.apartmentstore.com/locations/state-college/the-palmerton/two-bedroom-furnished-12/"
 }
 ],
-"manager": "The Apartment Store"
-},
-{
-"id": 24,
-"name": "Longmeadow Townhouses",
-"address": "100–102 Long Meadow Ln",
-"type": "townhouse",
-"beds": [
-4,
-4
-],
-"price": "$750 per bedroom",
-"ppm": 750,
-"est": false,
-"lat": 40.80206,
-"lng": -77.877,
-"source": "ocp"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 25,
@@ -3584,7 +3325,40 @@
 "page": "https://www.apartmentstore.com/locations/state-college/collegiate-arms/two-bedroom-large-furnished-2/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026",
+"years": {
+"2026-27": {
+"price": "$525 per person / mo (Spring Semester 2027)",
+"ppm": 525,
+"plans": [
+{
+"name": "Two Bedroom Large Furnished",
+"beds": 2,
+"baths": "1",
+"price": "$525–$800 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/fp-12.png?fit=768%2C259&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 800,
+"whole": true,
+"was": null
+},
+{
+"n": 4,
+"pp": 525,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/collegiate-arms/two-bedroom-large-furnished-2/"
+}
+],
+"lease": "Spring Semester 2027"
+}
+}
 },
 {
 "id": 27,
@@ -3636,7 +3410,8 @@
 ],
 "lease": "2027-2028 Full Year",
 "status": "Fully rented",
-"page": "https://www.apartmentstore.com/locations/state-college/nicholas-tower/one-bedroom-furnished-9/"
+"page": "https://www.apartmentstore.com/locations/state-college/nicholas-tower/one-bedroom-furnished-9/",
+"note": "Only 1 Unit Left!"
 },
 {
 "name": "One Bedroom Furnished UPDATED KITCHEN",
@@ -3713,7 +3488,8 @@
 ],
 "lease": "2027-2028 Full Year",
 "status": "Fully rented",
-"page": "https://www.apartmentstore.com/locations/state-college/nicholas-tower/two-bedroom-furnished-10/"
+"page": "https://www.apartmentstore.com/locations/state-college/nicholas-tower/two-bedroom-furnished-10/",
+"note": "Only 1 Unit Left!"
 },
 {
 "name": "Two Bedroom Furnished UPDATED KITCHEN",
@@ -3765,7 +3541,8 @@
 ],
 "lease": "2027-2028 Full Year",
 "status": "Fully rented",
-"page": "https://www.apartmentstore.com/locations/state-college/nicholas-tower/two-bedroom-furnished-updated-kitchen/"
+"page": "https://www.apartmentstore.com/locations/state-college/nicholas-tower/two-bedroom-furnished-updated-kitchen/",
+"note": "Only 1 Unit Left!"
 }
 ],
 "photos": [
@@ -3794,7 +3571,50 @@
 "page": "https://www.apartmentstore.com/locations/state-college/nicholas-tower/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026",
+"years": {
+"2026-27": {
+"price": "$1,167 per person / mo (Immediate Availability)",
+"ppm": 1167,
+"plans": [
+{
+"name": "Two Bedroom Furnished UPDATED KITCHEN",
+"beds": 2,
+"baths": "2",
+"price": "$1,167 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/5f6a1eb49a68c9.17331372609.jpg?fit=640%2C480&ssl=1",
+"photos": [
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-01.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-02.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-03.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-04.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-05.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-06.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-07.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-08.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-09.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-10.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-11.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NicTower-Unit601-12.jpg?w=1400&ssl=1"
+],
+"rates": [
+{
+"n": 1,
+"pp": 1167,
+"whole": true,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/nicholas-tower/two-bedroom-furnished-updated-kitchen/",
+"note": "Only 1 Male Space Available!"
+}
+],
+"lease": "Immediate Availability"
+}
+}
 },
 {
 "id": 28,
@@ -4471,7 +4291,8 @@
 "status": "Fully rented",
 "page": "https://www.arpm.com/property/fairmount-hills/"
 }
-]
+],
+"note": "Some units are also available starting January 2027."
 },
 {
 "id": 32,
@@ -4672,7 +4493,8 @@
 }
 ],
 "lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/lexington-house/two-bedroom-unfurnished-8/"
+"page": "https://www.apartmentstore.com/locations/state-college/lexington-house/two-bedroom-unfurnished-8/",
+"note": "Only 1 Unit Left!"
 },
 {
 "name": "Two Bedroom Furnished",
@@ -4761,10 +4583,47 @@
 }
 ],
 "lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/lexington-house/three-bedroom-furnished-3/"
+"page": "https://www.apartmentstore.com/locations/state-college/lexington-house/three-bedroom-furnished-3/",
+"note": "Only 1 Unit Left!"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026",
+"years": {
+"2026-27": {
+"price": "$850 per person / mo (Immediate Availability)",
+"ppm": 850,
+"plans": [
+{
+"name": "Two Bedroom Furnished",
+"beds": 2,
+"baths": "1",
+"price": "$850 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/54f777ed30825671.jpg?fit=640%2C480&ssl=1",
+"photos": [
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/Lexington-Studio-1.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/Lex-1-Bed-Bedroom-3.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/Lex-1-Bed-LR-4.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2019/04/Lex-1-Bed-LR-2.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/Lexington-2BD-Bedroom.jpg?w=1400&ssl=1"
+],
+"rates": [
+{
+"n": 1,
+"pp": 850,
+"whole": true,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/lexington-house/two-bedroom-furnished-9/",
+"note": "Only 1 Female Roommate Matching Space!"
+}
+],
+"lease": "Immediate Availability"
+}
+}
 },
 {
 "id": 40,
@@ -4775,8 +4634,8 @@
 1,
 1
 ],
-"price": "$4,150 per semester + required meal plan ($2,988 default)",
-"ppm": 1038,
+"price": "$4,254 per semester + required meal plan ($3,063 Signature plan)",
+"ppm": 1064,
 "est": false,
 "lat": 40.79647,
 "lng": -77.86602,
@@ -4787,7 +4646,14 @@
 "url": "photos/westhalls.jpg",
 "page": "https://commons.wikimedia.org/wiki/File:West_Halls_PSU.jpg"
 }
-]
+],
+"years": {
+"2026-27": {
+"price": "$4,150 per semester + required meal plan ($2,988 default)",
+"ppm": 1038
+}
+},
+"checked": "Nov 27, 2026"
 },
 {
 "id": 41,
@@ -4798,8 +4664,8 @@
 1,
 1
 ],
-"price": "$4,766 per semester + required meal plan",
-"ppm": 1192,
+"price": "$4,885 per semester + required meal plan",
+"ppm": 1221,
 "est": false,
 "lat": 40.79922,
 "lng": -77.85776,
@@ -4810,7 +4676,14 @@
 "url": "photos/southhalls.jpg",
 "page": "https://commons.wikimedia.org/wiki/File:South_Residence_Halls_at_Pennsylvania_State_University_from_Shortlidge_Road.jpeg"
 }
-]
+],
+"years": {
+"2026-27": {
+"price": "$4,766 per semester + required meal plan",
+"ppm": 1192
+}
+},
+"checked": "Nov 27, 2026"
 },
 {
 "id": 42,
@@ -4821,13 +4694,21 @@
 2,
 2
 ],
-"price": "$5,323 per semester + required meal plan",
-"ppm": 1331,
+"price": "$5,456 per semester + required meal plan",
+"ppm": 1364,
 "est": false,
 "lat": 40.8029,
 "lng": -77.86682,
 "source": "psu",
-"semester": true
+"semester": true,
+"years": {
+"2026-27": {
+"price": "$5,323 per semester + required meal plan",
+"ppm": 1331
+}
+},
+"checked": "Nov 27, 2026",
+"note": "2026–27 rate is from Penn State's current rate table (liveon.psu.edu)."
 },
 {
 "id": 43,
@@ -4838,8 +4719,8 @@
 1,
 1
 ],
-"price": "$6,456 per semester + required meal plan",
-"ppm": 1614,
+"price": "$6,617 per semester + required meal plan",
+"ppm": 1654,
 "est": false,
 "lat": 40.8064,
 "lng": -77.8602,
@@ -4851,7 +4732,14 @@
 "url": "photos/eastview.jpg",
 "page": "https://commons.wikimedia.org/wiki/File:Penn_State_University_Eastview_Terrace_Appartments.jpg"
 }
-]
+],
+"years": {
+"2026-27": {
+"price": "$6,456 per semester + required meal plan",
+"ppm": 1614
+}
+},
+"checked": "Nov 27, 2026"
 },
 {
 "id": 44,
@@ -4862,13 +4750,20 @@
 4,
 4
 ],
-"price": "$5,650 per semester · meal plan optional",
-"ppm": 1413,
+"price": "$5,791 per semester · meal plan optional",
+"ppm": 1448,
 "est": false,
 "lat": 40.80369,
 "lng": -77.85699,
 "source": "psu",
-"semester": true
+"semester": true,
+"years": {
+"2026-27": {
+"price": "$5,650 per semester · meal plan optional",
+"ppm": 1413
+}
+},
+"checked": "Nov 27, 2026"
 },
 {
 "id": 45,
@@ -4879,12 +4774,19 @@
 4,
 4
 ],
-"price": "$938 per person per month · meal plan optional",
+"price": "$938 per person per month ($6,057 per semester) · meal plan optional",
 "ppm": 938,
 "est": false,
 "lat": 40.79001,
 "lng": -77.87272,
-"source": "psu"
+"source": "psu",
+"years": {
+"2026-27": {
+"price": "$938 per person per month · meal plan optional",
+"ppm": 938
+}
+},
+"checked": "Nov 27, 2026"
 },
 {
 "id": 50,
@@ -6831,7 +6733,7 @@
 {
 "id": 55,
 "name": "The Retreat on Westerly",
-"address": "418 Westerly Pkwy",
+"address": "462 Westerly Pkwy",
 "type": "complex",
 "beds": [
 2,
@@ -6840,8 +6742,8 @@
 "price": "$1,038–$1,553 per person / mo (2027-2028 (opening Fall 2027; 11.5-month lease, installment incl. mandatory fees))",
 "ppm": 1038,
 "est": false,
-"lat": 40.783908,
-"lng": -77.852095,
+"lat": 40.7836434,
+"lng": -77.852971,
 "source": "site",
 "site": "https://www.retreatwesterly.com/",
 "photos": [
@@ -7098,7 +7000,9 @@
 "lease": "2027-2028 (opening Fall 2027; 11.5-month lease, installment incl. mandatory fees)",
 "page": "https://www.retreatwesterly.com/floorplans/"
 }
-]
+],
+"tag": "Opening Fall 2027",
+"note": "New community under construction (546 beds, built by Landmark Properties), expected to open for the 2027-28 school year. You can't tour a finished unit yet."
 },
 {
 "id": 56,
@@ -7259,30 +7163,15 @@
 2,
 4
 ],
-"price": "$550–$1,878 per bedroom",
+"price": "$550–$1,908 per bedroom",
 "ppm": 550,
 "est": false,
 "lat": 40.812972,
 "lng": -77.886426,
 "source": "ocp",
-"site": "https://tremontstudentliving.com/"
-},
-{
-"id": 59,
-"name": "Vairo Village",
-"address": "10 Vairo Blvd",
-"type": "apartment",
-"beds": [
-0,
-3
-],
-"price": "$1,195–$1,930 per unit",
-"ppm": 643,
-"est": true,
-"lat": 40.816476,
-"lng": -77.887146,
-"source": "ocp",
-"site": "https://www.vairovillage.com/"
+"site": "https://tremontstudentliving.com/",
+"note": "The building says it is under new management (Nov 2026). Water, sewer, trash and internet are included.",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 60,
@@ -7769,15 +7658,52 @@
 "address": "348 Blue Course Dr",
 "type": "complex",
 "beds": [
-4,
+2,
 4
 ],
-"price": "From $599 per bedroom",
-"ppm": 599,
+"price": "$619–$919 per person / mo (2027-2028)",
+"ppm": 619,
 "est": false,
 "lat": 40.800322,
 "lng": -77.8865,
-"source": "ocp"
+"source": "site",
+"site": "https://alight-statecollege.com/",
+"manager": "The Scion Group",
+"checked": "Nov 27, 2026",
+"lease": "12-month (Aug 12, 2027 – Jul 22, 2028)",
+"plans": [
+{
+"name": "4 Bedroom, 2 Bath",
+"beds": 4,
+"baths": "2",
+"price": "$619 / person",
+"rates": [
+{
+"n": 4,
+"pp": 619,
+"was": null
+}
+],
+"page": "https://alight-statecollege.com/rates-floorplans/",
+"note": "Limited spots left"
+},
+{
+"name": "2 Bedroom, 1 Bath",
+"beds": 2,
+"baths": "1",
+"price": "$919 / person",
+"rates": [
+{
+"n": 2,
+"pp": 919,
+"was": null
+}
+],
+"page": "https://alight-statecollege.com/rates-floorplans/",
+"note": "Limited spots left"
+}
+],
+"note": "Furnished, with in-unit washer/dryer, internet and trash included; electric, water and gas aren't stated. Annual admin fee $450 ($100 with a guarantor). Free parking. Managed by The Scion Group."
 },
 {
 "id": 63,
@@ -7915,13 +7841,16 @@
 1,
 2
 ],
-"price": "From $710 per bedroom",
+"price": "$710–$3,240 per person by group size (2027-2028)",
 "ppm": 710,
 "est": false,
 "lat": 40.801025,
 "lng": -77.852012,
 "source": "af",
-"site": "https://www.meridianoncollegeavenue.com/"
+"site": "https://www.meridianoncollegeavenue.com/",
+"manager": "McKinney Properties",
+"note": "The lowest price is a shared bedroom (5 people in a 2-bedroom). A private bedroom starts at $1,320. Electric is billed by use. Managed by McKinney Properties.",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 65,
@@ -7932,119 +7861,15 @@
 1,
 2
 ],
-"price": "$1,824–$2,804 per unit",
-"ppm": 912,
+"price": "$1,824–$3,680 per unit",
+"ppm": 1402,
 "est": true,
 "lat": 40.791001,
 "lng": -77.862074,
-"source": "af"
-},
-{
-"id": 66,
-"name": "Marion Place",
-"address": "135 E Nittany Ave",
-"type": "apartment",
-"beds": [
-1,
-2
-],
-"price": "$1,031–$1,977 per person / mo",
-"ppm": 1031,
-"est": false,
-"lat": 40.792686,
-"lng": -77.856906,
-"source": "site",
-"site": "https://marionplace.com/",
-"photos": [
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4866.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4869.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4901.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4931.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4966.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5639.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5642.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5660.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5663.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5692.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5711.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5729.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5736.jpg",
-"page": "https://marionplace.com/"
-},
-{
-"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5793.jpg",
-"page": "https://marionplace.com/"
-}
-],
-"plans": [
-{
-"name": "Two Bedroom",
-"beds": 2,
-"price": "$1,031 / person",
-"img": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Floorplan-2BR.png",
-"rates": [
-{
-"n": 2,
-"pp": 1031,
-"was": null
-}
-],
-"note": "$2062-$2267/month per unit",
-"page": "https://marionplace.com/apartments/"
-},
-{
-"name": "One Bedroom with Home Office",
-"beds": 1,
-"price": "$1,977 / person",
-"img": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Floorplan-1BR.png",
-"rates": [
-{
-"n": 1,
-"pp": 1977,
-"was": null
-}
-],
-"note": "$1977-$2199/month per unit",
-"page": "https://marionplace.com/apartments/"
-}
-]
+"source": "af",
+"manager": "G&N Realty",
+"note": "All utilities are included.",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 67,
@@ -8055,13 +7880,16 @@
 1,
 2
 ],
-"price": "$1,360 per unit (2 bd)",
-"ppm": 680,
-"est": true,
+"price": "$890–$4,356 per person by group size (2027-2028)",
+"ppm": 890,
+"est": false,
 "lat": 40.799304,
 "lng": -77.853671,
 "source": "ocp",
-"site": "https://www.caldercommons.com/"
+"site": "https://www.caldercommons.com/",
+"manager": "McKinney Properties",
+"note": "Priced per person by how many share: a 2-bedroom shared by 5 is from $890 each, by 4 from $1,053; a 1-bedroom shared by 2 is from $1,138. Listings disagree on whether water, sewer and trash are included, so ask.",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 68,
@@ -8093,7 +7921,9 @@
 "est": true,
 "lat": 40.796605,
 "lng": -77.884964,
-"source": "af"
+"source": "af",
+"checked": "Nov 27, 2026",
+"note": "General apartment community (not student-focused), with 12-month and short-term leases. Water, sewer and trash included."
 },
 {
 "id": 70,
@@ -8120,12 +7950,13 @@
 1,
 3
 ],
-"price": "$1,475–$2,050 per unit",
-"ppm": 683,
+"price": "$1,459–$1,979 per unit",
+"ppm": 626,
 "est": true,
 "lat": 40.775454,
 "lng": -77.858459,
-"source": "ocp"
+"source": "ocp",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 72,
@@ -8136,17 +7967,20 @@
 4,
 5
 ],
-"price": "From $2,300 per unit",
-"ppm": 460,
+"price": "From $2,215 per unit (4 bd)",
+"ppm": 554,
 "est": true,
 "lat": 40.782449,
 "lng": -77.850153,
-"source": "af"
+"source": "af",
+"manager": "Nevins Real Estate Management",
+"note": "No units listed as available right now.",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 73,
 "name": "Nittany Garden Apartments",
-"address": "445 Waupalani Drive",
+"address": "445 Waupelani Drive",
 "type": "apartment",
 "beds": [
 0,
@@ -8290,56 +8124,6 @@
 ],
 "lease": "2027-2028 Full Year",
 "page": "https://www.apartmentstore.com/locations/state-college/nittany-garden/two-bedroom-furnished-3/"
-},
-{
-"name": "Two Bedroom Corporate Standard",
-"beds": 2,
-"baths": "1",
-"price": "$2,100 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NG_2_bed_FURN.png?fit=768%2C424&ssl=1",
-"photos": [
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-2.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-5.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-7.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-8.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-10.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-11.jpg?w=1400&ssl=1"
-],
-"rates": [
-{
-"n": 1,
-"pp": 2100,
-"whole": true,
-"was": null
-}
-],
-"lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/nittany-garden/two-bedroom-corporate-2/"
-},
-{
-"name": "Two Bedroom Corporate Upgraded",
-"beds": 2,
-"baths": "1",
-"price": "$2,500 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NG_2_bed_FURN.png?fit=768%2C424&ssl=1",
-"photos": [
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-2.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-5.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-7.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-8.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-10.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/NittanyGardens-CorpUnit-11.jpg?w=1400&ssl=1"
-],
-"rates": [
-{
-"n": 1,
-"pp": 2500,
-"whole": true,
-"was": null
-}
-],
-"lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/nittany-garden/two-bedroom-corporate-upgraded/"
 },
 {
 "name": "Three Bedroom Standard Unfurnished",
@@ -8563,7 +8347,10 @@
 "page": "https://www.apartmentstore.com/locations/state-college/nittany-garden/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"note": "The lowest price assumes 6 people sharing a 3-bedroom, 1-bath apartment ($1,625/mo for the whole unit).",
+"checked": "Nov 27, 2026",
+"lease_label": "2027-2028 Full Year"
 },
 {
 "id": 74,
@@ -8579,7 +8366,9 @@
 "est": true,
 "lat": 40.779179,
 "lng": -77.856064,
-"source": "ocp"
+"source": "ocp",
+"checked": "Nov 27, 2026",
+"note": "Formerly listed as Imperial Towers. General apartment community managed by Berger Communities, about 3 miles from campus on the CATA bus route."
 },
 {
 "id": 75,
@@ -8595,7 +8384,9 @@
 "est": true,
 "lat": 40.777993,
 "lng": -77.852514,
-"source": "ocp"
+"source": "ocp",
+"manager": "Continental Real Estate Management",
+"site": "https://www.lionsgateapts.com/"
 },
 {
 "id": 76,
@@ -8999,23 +8790,6 @@
 "source": "ocp"
 },
 {
-"id": 82,
-"name": "Twin Towers",
-"address": "1218 S Allen St",
-"type": "apartment",
-"beds": [
-1,
-1
-],
-"price": "$1,699 per unit",
-"ppm": 1699,
-"est": false,
-"lat": 40.785498,
-"lng": -77.848816,
-"source": "ocp",
-"site": "https://www.brickworkproperties.com/state-college/twin-towers/student/"
-},
-{
 "id": 83,
 "name": "Falport 1215",
 "address": "1215 S Allen St",
@@ -9029,7 +8803,9 @@
 "est": false,
 "lat": 40.785713,
 "lng": -77.848541,
-"source": "ocp"
+"source": "ocp",
+"checked": "Nov 27, 2026",
+"note": "Penn State's Off-Campus site lists it as convenient for graduate students and faculty/staff, but nothing restricts undergrads. Gas, cable, internet, trash and water/sewer are included. Managed by Brickwork Properties."
 },
 {
 "id": 84,
@@ -9190,7 +8966,10 @@
 "page": "https://www.apartmentstore.com/locations/state-college/hamilton-house/one-bedroom-standard-unfurnished-units-5-and-6/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026",
+"note": "The landlord describes it as perfect for graduate students or young professionals, but undergrads aren't excluded."
 },
 {
 "id": 86,
@@ -9342,7 +9121,8 @@
 }
 ],
 "lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/three-bedroom-two-bath-furnished/"
+"page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/three-bedroom-two-bath-furnished/",
+"note": "Only 1 Unit Left!"
 },
 {
 "name": "Three Bedroom Three Bath Furnished",
@@ -9407,7 +9187,83 @@
 "page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/three-bedroom-xl-furnished/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026",
+"years": {
+"2026-27": {
+"price": "$492–$1,400 per person / mo (Spring Semester 2027)",
+"ppm": 492,
+"plans": [
+{
+"name": "One Bedroom Furnished",
+"beds": 1,
+"baths": "1",
+"price": "$583–$1,400 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/Bellaire-1bed-1.png?fit=768%2C424&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1400,
+"was": null
+},
+{
+"n": 3,
+"pp": 583,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/one-bedroom-standard-furnished/"
+},
+{
+"name": "Two Bedroom Two Bath Furnished",
+"beds": 2,
+"baths": "2",
+"price": "$575–$800 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/Bellaire-2bed.png?fit=768%2C424&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 800,
+"whole": true,
+"was": null
+},
+{
+"n": 6,
+"pp": 575,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/two-bedroom-two-bath-furnished/"
+},
+{
+"name": "Three Bedroom Three Bath Furnished",
+"beds": 3,
+"baths": "3",
+"price": "$492–$633 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/Bellaire-3bed.png?fit=768%2C424&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 633,
+"whole": true,
+"was": null
+},
+{
+"n": 8,
+"pp": 492,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/the-bellaire/three-bedroom-three-bath-furnished/"
+}
+],
+"lease": "Spring Semester 2027"
+}
+}
 },
 {
 "id": 87,
@@ -9861,7 +9717,80 @@
 "page": "https://www.apartmentstore.com/locations/state-college/university-terrace/three-bedroom-custom-split-furnished/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026",
+"years": {
+"2026-27": {
+"price": "$396–$780 per person / mo (Spring Semester 2027)",
+"ppm": 396,
+"plans": [
+{
+"name": "Private Bedroom in a Three Bedroom Apartment Furnished",
+"beds": 1,
+"baths": "1",
+"price": "$780 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/UT3bedpatiofurn.png?fit=768%2C424&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 780,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/university-terrace/private-bedroom-in-a-three-bedroom-apartment-furnished/",
+"note": "Only Female Roommate Matching Available"
+},
+{
+"name": "Three Bedroom Patio Unfurnished",
+"beds": 3,
+"baths": "2",
+"price": "$396–$1,989 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/UT3bedPAtio.png?fit=768%2C424&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1989,
+"whole": true,
+"was": null
+},
+{
+"n": 6,
+"pp": 396,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/university-terrace/three-bedroom-patio-unfurnished/",
+"note": "Only 1 Unit Left!"
+},
+{
+"name": "Three Bedroom Patio Furnished",
+"beds": 3,
+"baths": "2",
+"price": "$396–$1,999 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/UT3bedpatiofurn.png?fit=768%2C424&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1999,
+"whole": true,
+"was": null
+},
+{
+"n": 6,
+"pp": 396,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/university-terrace/three-bedroom-patio-furnished/"
+}
+],
+"lease": "Spring Semester 2027"
+}
+}
 },
 {
 "id": 88,
@@ -10091,7 +10020,9 @@
 "page": "https://www.apartmentstore.com/locations/state-college/penn-state-apartments/three-bedroom-furnished-6/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 89,
@@ -10197,7 +10128,8 @@
 }
 ],
 "lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/one-bedroom-unfurnished-2/"
+"page": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/one-bedroom-unfurnished-2/",
+"note": "Only 1 Unit Left!"
 },
 {
 "name": "One Bedroom Furnished",
@@ -10239,10 +10171,13 @@
 }
 ],
 "lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/one-bedroom-1-5-bath-unfurnished/"
+"page": "https://www.apartmentstore.com/locations/state-college/college-avenue-apartments/one-bedroom-1-5-bath-unfurnished/",
+"note": "Only 1 Unit Left!"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 90,
@@ -10253,7 +10188,7 @@
 3,
 3
 ],
-"price": "$780–$1,067 per person / mo (2027-2028 Full Year)",
+"price": "$780–$1,100 per person / mo (2027-2028 Full Year)",
 "ppm": 780,
 "est": false,
 "lat": 40.788129,
@@ -10355,7 +10290,9 @@
 "page": "https://www.apartmentstore.com/locations/state-college/811-west-college-ave/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 91,
@@ -10555,7 +10492,8 @@
 ],
 "lease": "2027-2028 Full Year",
 "status": "Fully rented",
-"page": "https://www.apartmentstore.com/locations/state-college/sutton-court/efficiency-furnished-3/"
+"page": "https://www.apartmentstore.com/locations/state-college/sutton-court/efficiency-furnished-3/",
+"note": "Only 1 Unit Left!"
 },
 {
 "name": "Studio Furnished Upgraded Lower Level",
@@ -10582,7 +10520,8 @@
 }
 ],
 "lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/sutton-court/studio-furnished-upgraded-lower-level/"
+"page": "https://www.apartmentstore.com/locations/state-college/sutton-court/studio-furnished-upgraded-lower-level/",
+"note": "Only 1 Unit Left!"
 },
 {
 "name": "Studio Furnished w/Den",
@@ -10668,43 +10607,6 @@
 ],
 "lease": "2027-2028 Full Year",
 "page": "https://www.apartmentstore.com/locations/state-college/sutton-court/one-bedroom-large-unfurnished/"
-},
-{
-"name": "Two Bedroom Unfurnished",
-"beds": 2,
-"baths": "1",
-"price": "$700–$1,400 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/SC_2bed-1.png?fit=768%2C424&ssl=1",
-"photos": [
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Living-scaled.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Dining-scaled.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Kitchen-scaled.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Bed-1-scaled.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Bed-2-scaled.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Bath-scaled.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.1_2D_web.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.2_2D_web.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.3_2D_web.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2_2D_web.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/4.2D.web_.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.4_2D_web.jpg?w=1400&ssl=1"
-],
-"rates": [
-{
-"n": 1,
-"pp": 1400,
-"whole": true,
-"was": 1700
-},
-{
-"n": 2,
-"pp": 700,
-"was": 850
-}
-],
-"lease": "Immediate Availability",
-"status": "Fully rented",
-"page": "https://www.apartmentstore.com/locations/state-college/sutton-court/two-bedroom-unfurnished-6/"
 },
 {
 "name": "Two Bedroom Furnished",
@@ -10884,10 +10786,128 @@
 ],
 "lease": "2027-2028 Full Year",
 "status": "Fully rented",
-"page": "https://www.apartmentstore.com/locations/state-college/sutton-court/three-bedroom-furnished-2/"
+"page": "https://www.apartmentstore.com/locations/state-college/sutton-court/three-bedroom-furnished-2/",
+"note": "Only 1 Unit Left!"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026",
+"years": {
+"2026-27": {
+"price": "$430–$950 per person / mo (Immediate Availability)",
+"ppm": 430,
+"plans": [
+{
+"name": "Two Bedroom Unfurnished",
+"beds": 2,
+"baths": "1",
+"price": "$700–$1,400 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/SC_2bed-1.png?fit=768%2C424&ssl=1",
+"photos": [
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Living-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Dining-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Kitchen-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Bed-1-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Bed-2-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2-Bed-Unf-Bath-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.1_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.2_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.3_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/4.2D.web_.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.4_2D_web.jpg?w=1400&ssl=1"
+],
+"rates": [
+{
+"n": 1,
+"pp": 1400,
+"whole": true,
+"was": 1700
+},
+{
+"n": 2,
+"pp": 700,
+"was": 850
+}
+],
+"lease": "Immediate Availability",
+"status": "Fully rented",
+"page": "https://www.apartmentstore.com/locations/state-college/sutton-court/two-bedroom-unfurnished-6/",
+"note": "Only 1 Unit Left!"
+},
+{
+"name": "Two Bedroom Furnished",
+"beds": 2,
+"baths": "1",
+"price": "$430–$700 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/SC_2bed-2.png?fit=768%2C424&ssl=1",
+"photos": [
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/SuttonCourt-Unit662A-3.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/SuttonCourt-Unit662A-2.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/SuttonCourt-Unit662A-1.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/SuttonCourt-Unit662A-5.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/SuttonCourt-Unit662A-6.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/SuttonCourt-Unit662A-4.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.4_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/4.2D.web_.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.3_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.2_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.1_2D_web.jpg?w=1400&ssl=1"
+],
+"rates": [
+{
+"n": 1,
+"pp": 700,
+"whole": true,
+"was": null
+},
+{
+"n": 5,
+"pp": 430,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/sutton-court/two-bedroom-furnished-2/"
+},
+{
+"name": "Two Bedroom Furnished Upgraded",
+"beds": 2,
+"baths": "1",
+"price": "$950 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/SC_2bed-2.png?fit=768%2C424&ssl=1",
+"photos": [
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_6504-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_6483-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_6479-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_6475-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_6466-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/IMG_6464-scaled.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.4_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/4.2D.web_.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.3_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.2_2D_web.jpg?w=1400&ssl=1",
+"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/12/2.1_2D_web.jpg?w=1400&ssl=1"
+],
+"rates": [
+{
+"n": 1,
+"pp": 950,
+"whole": true,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/sutton-court/two-bedroom-furnished-upgraded/",
+"note": "Only 1 Female Roommate Matching Available"
+}
+],
+"lease": "Immediate Availability"
+}
+}
 },
 {
 "id": 93,
@@ -10970,7 +10990,9 @@
 "page": "https://www.apartmentstore.com/locations/state-college/foster/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 94,
@@ -11086,7 +11108,8 @@
 }
 ],
 "lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/greenwich-court/two-bedroom-loft-furnished-style-c/"
+"page": "https://www.apartmentstore.com/locations/state-college/greenwich-court/two-bedroom-loft-furnished-style-c/",
+"note": "Only 1 Unit Left!"
 },
 {
 "name": "Two Bedroom Furnished Style D",
@@ -11253,7 +11276,54 @@
 "page": "https://www.apartmentstore.com/locations/state-college/greenwich-court/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026",
+"years": {
+"2026-27": {
+"price": "$935–$963 per person / mo (Immediate Availability)",
+"ppm": 935,
+"plans": [
+{
+"name": "Two Bedroom Furnished Style D",
+"beds": 2,
+"baths": "2",
+"price": "$963 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/Greenwich_StyleB.png?fit=768%2C424&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 963,
+"whole": true,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/greenwich-court/two-bedroom-furnished-style-d/",
+"note": "Only 1 Male Space Available!"
+},
+{
+"name": "Two Bedroom Furnished Style F",
+"beds": 2,
+"baths": "2",
+"price": "$935 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2020/10/Greenwich_StyleB.png?fit=768%2C424&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 935,
+"whole": true,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/greenwich-court/two-bedroom-furnished-style-f/",
+"note": "Only 1 Male Space Available!"
+}
+],
+"lease": "Immediate Availability"
+}
+}
 },
 {
 "id": 95,
@@ -11475,7 +11545,8 @@
 "page": "https://www.arpm.com/property/university-towers/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "ARPM",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 96,
@@ -11678,8 +11749,8 @@
 1,
 2
 ],
-"price": "From $1,029 per bedroom",
-"ppm": 1029,
+"price": "Contact for pricing",
+"ppm": null,
 "est": false,
 "lat": 40.795915,
 "lng": -77.85717,
@@ -11830,7 +11901,9 @@
 "lease": "2027-2028",
 "page": "https://www.livethecanyon.com/alexander-two-bedroom/"
 }
-]
+],
+"checked": "Nov 27, 2026",
+"note": "The Canyon lists every floor plan as 'Call for Pricing' (814-636-8471). Units are fully furnished; heat/AC, Wi-Fi, water/sewer and gas are included, plus a $40/mo utility flat fee for 2027–28. Parking $195."
 },
 {
 "id": 98,
@@ -11841,8 +11914,8 @@
 0,
 2
 ],
-"price": "From $1,249 per bedroom",
-"ppm": 1249,
+"price": "Contact for pricing",
+"ppm": null,
 "est": false,
 "lat": 40.79584,
 "lng": -77.856801,
@@ -11983,7 +12056,9 @@
 "lease": "2027-2028",
 "page": "https://www.livethecanyon.com/cedarbrook-standard-two-bedroom/"
 }
-]
+],
+"checked": "Nov 27, 2026",
+"note": "The Canyon lists every floor plan as 'Call for Pricing' (814-636-8471). Units are fully furnished; heat/AC, Wi-Fi, water/sewer and gas are included, plus a $40/mo utility flat fee for 2027–28. Parking $195."
 },
 {
 "id": 99,
@@ -12011,12 +12086,368 @@
 0,
 3
 ],
-"price": "$1,388–$2,517 per unit",
-"ppm": 839,
+"price": "$1,388–$2,517 per unit / mo",
+"ppm": 660,
 "est": true,
 "lat": 40.823325,
 "lng": -77.891652,
-"source": "ocp"
+"source": "web",
+"plans": [
+{
+"name": "Studio Parkgate",
+"beds": 0,
+"baths": "1",
+"sqft": 418,
+"price": "From $1,388 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1388,
+"whole": true
+}
+],
+"note": "Available now"
+},
+{
+"name": "Studio Hillside",
+"beds": 0,
+"baths": "1",
+"sqft": 440,
+"price": "From $1,529 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1529,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "Studio Cricklewood",
+"beds": 0,
+"baths": "1",
+"sqft": 378,
+"price": "From $1,418 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1418,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "1 Bed Hillside",
+"beds": 1,
+"baths": "1",
+"sqft": 781,
+"price": "From $1,715 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1715,
+"whole": true
+}
+],
+"note": "Available now"
+},
+{
+"name": "1 Bed Parkgate (W/D)",
+"beds": 1,
+"baths": "1",
+"sqft": 816,
+"price": "From $1,612 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1612,
+"whole": true
+}
+],
+"note": "Available now"
+},
+{
+"name": "1 Bed Foxrun (W/D)",
+"beds": 1,
+"baths": "1",
+"sqft": 863,
+"price": "From $1,679 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1679,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "1 Bed Cricklewood",
+"beds": 1,
+"baths": "1",
+"sqft": 799,
+"price": "From $1,509 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1509,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "1 Bed Wildridge (W/D)",
+"beds": 1,
+"baths": "1",
+"sqft": 863,
+"price": "From $1,596 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1596,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "1 Bed Squirrel Run (W/D)",
+"beds": 1,
+"baths": "1",
+"sqft": 750,
+"price": "From $1,716 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1716,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "1 Bed Highwoods",
+"beds": 1,
+"baths": "1",
+"sqft": 905,
+"price": "From $1,770 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1770,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "2 Bed Cricklewood",
+"beds": 2,
+"baths": "1",
+"sqft": 946,
+"price": "From $1,775 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1775,
+"whole": true
+},
+{
+"n": 2,
+"pp": 888,
+"unit": 1775
+}
+],
+"note": "Available now"
+},
+{
+"name": "2 Bed Parkgate (W/D)",
+"beds": 2,
+"baths": "1.5",
+"sqft": 921,
+"price": "From $1,790 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1790,
+"whole": true
+},
+{
+"n": 2,
+"pp": 895,
+"unit": 1790
+}
+],
+"note": "Available now"
+},
+{
+"name": "2 Bed Wildridge (W/D)",
+"beds": 2,
+"baths": "1.5",
+"sqft": 1066,
+"price": "From $1,855 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1855,
+"whole": true
+},
+{
+"n": 2,
+"pp": 928,
+"unit": 1855
+}
+],
+"note": "Available now"
+},
+{
+"name": "2 Bed Squirrel Run (W/D)",
+"beds": 2,
+"baths": "1",
+"sqft": 970,
+"price": "From $1,739 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1739,
+"whole": true
+},
+{
+"n": 2,
+"pp": 870,
+"unit": 1739
+}
+],
+"note": "Available soon"
+},
+{
+"name": "2 Bed Hillside",
+"beds": 2,
+"baths": "2",
+"sqft": 1182,
+"price": "From $1,903 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1903,
+"whole": true
+},
+{
+"n": 2,
+"pp": 952,
+"unit": 1903
+}
+],
+"note": "Available soon"
+},
+{
+"name": "2 Bed Highwoods (1,162 sq ft)",
+"beds": 2,
+"baths": "2",
+"sqft": 1162,
+"price": "From $2,122 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 2122,
+"whole": true
+},
+{
+"n": 2,
+"pp": 1061,
+"unit": 2122
+}
+],
+"note": "Available soon"
+},
+{
+"name": "2 Bed Highwoods",
+"beds": 2,
+"baths": "2",
+"sqft": 1240,
+"price": "From $2,167 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 2167,
+"whole": true
+},
+{
+"n": 2,
+"pp": 1084,
+"unit": 2167
+}
+],
+"note": "Available now"
+},
+{
+"name": "3 Bed Parkgate (W/D)",
+"beds": 3,
+"baths": "1.5",
+"sqft": 1081,
+"price": "From $1,980 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1980,
+"whole": true
+},
+{
+"n": 3,
+"pp": 660,
+"unit": 1980
+}
+],
+"note": "Available now"
+},
+{
+"name": "3 Bed Highwoods",
+"beds": 3,
+"baths": "2",
+"sqft": 1510,
+"price": "From $2,287 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 2287,
+"whole": true
+},
+{
+"n": 3,
+"pp": 762,
+"unit": 2287
+}
+],
+"note": "Available soon"
+}
+],
+"manager": "Berger Communities",
+"site": "https://www.toftrees.net/",
+"lease": "3 to 12 months",
+"checked": "2026-11-27",
+"note": "Base rents from ForRent and Apartments.com (they match), Nov 27, 2026; the building's own site posts no prices. Plans show starting rent; some units cost up to about $250 more. Extra monthly fees: admin $13, utility $20, internet $65. Water, sewer, trash and A/C included. Application $65 and reservation fee $150 per person. A general apartment community about 3 miles from campus on the CATA bus route."
 },
 {
 "id": 101,
@@ -12081,7 +12512,9 @@
 "page": "https://www.apartmentstore.com/locations/state-college/sundown-apartments/one-bedroom-unfurnished-7/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 102,
@@ -12245,12 +12678,14 @@
 "page": "https://www.apartmentstore.com/locations/state-college/old-boalsburg-road/two-bedroom-furnished-11/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 103,
 "name": "Corl West",
-"address": "419 Corl St",
+"address": "419–421 Corl St",
 "type": "apartment",
 "beds": [
 2,
@@ -12262,142 +12697,8 @@
 "lat": 40.780381,
 "lng": -77.870335,
 "source": "ocp",
-"site": "https://www.brickworkproperties.com/state-college/corl-west-apartments/student/"
-},
-{
-"id": 200,
-"name": "The Allenway",
-"address": "315 S Allen St",
-"type": "apartment",
-"beds": [
-0,
-2
-],
-"price": "$896–$1,304 per person / mo",
-"ppm": 896,
-"est": false,
-"lat": 40.792454,
-"lng": -77.857826,
-"source": "site",
-"site": "https://theallenway.com/",
-"plans": [
-{
-"name": "Two Bedrooms",
-"beds": 2,
-"sqft": "975-1113",
-"price": "$896 / person",
-"img": "https://theallenway.com/wp-content/uploads/2018/06/Two-bedrooms.jpg",
-"rates": [
-{
-"n": 2,
-"pp": 896,
-"was": null
-}
-],
-"note": "$1791-$1865 per unit",
-"page": "https://theallenway.com/apartments/"
-},
-{
-"name": "One Bedroom",
-"beds": 1,
-"baths": "1",
-"sqft": "621-756",
-"price": "$1,304 / person",
-"img": "https://theallenway.com/wp-content/uploads/2018/06/One-bedroom.jpg",
-"rates": [
-{
-"n": 1,
-"pp": 1304,
-"was": null
-}
-],
-"note": "$1304-$1407 per unit",
-"page": "https://theallenway.com/apartments/"
-},
-{
-"name": "Efficiency",
-"beds": 0,
-"baths": "1",
-"sqft": "452-680",
-"price": "$1,134 / person",
-"img": "https://theallenway.com/wp-content/uploads/2018/06/Efficiency.jpg",
-"rates": [
-{
-"n": 1,
-"pp": 1134,
-"was": null
-}
-],
-"note": "$1134-$1215 per unit",
-"page": "https://theallenway.com/apartments/"
-}
-],
-"photos": [
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/AR_Allenway_slide4.png",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/14.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/13.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/16.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/15.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/12.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/18.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/AR_Allenway_slide2.png",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/1.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/2.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/9.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/7.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/4.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/5.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/3.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/10.jpg",
-"page": "https://theallenway.com/"
-}
-]
+"site": "https://www.brickworkproperties.com/state-college/corl-west-apartments/student/",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 201,
@@ -12487,22 +12788,6 @@
 "page": "https://www.arpm.com/property/phoenix/"
 }
 ]
-},
-{
-"id": 202,
-"name": "Kensington Court",
-"address": "930 Oakwood Ave",
-"type": "apartment",
-"beds": [
-1,
-1
-],
-"price": "$848 - $913 /Bedroom",
-"ppm": 848,
-"est": false,
-"lat": 40.819021,
-"lng": -77.895203,
-"source": "web"
 },
 {
 "id": 203,
@@ -12607,7 +12892,9 @@
 "page": "https://www.apartmentstore.com/locations/state-college/carlton-apartments/one-bedroom-furnished-3/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 204,
@@ -12729,10 +13016,13 @@
 ],
 "lease": "2027-2028 Full Year",
 "status": "Fully rented",
-"page": "https://www.apartmentstore.com/locations/state-college/homerella/two-bedroom-furnished-8/"
+"page": "https://www.apartmentstore.com/locations/state-college/homerella/two-bedroom-furnished-8/",
+"note": "Only 1 Unit Left!"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 205,
@@ -12743,7 +13033,7 @@
 1,
 3
 ],
-"price": "$750–$2,000 per person / mo (2027-2028 Full Year)",
+"price": "$750–$2,250 per person / mo (2027-2028 Full Year)",
 "ppm": 750,
 "est": false,
 "lat": 40.793861,
@@ -12892,7 +13182,9 @@
 "page": "https://www.apartmentstore.com/locations/state-college/graham-building/three-bedroom-furnished-4/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 206,
@@ -12903,7 +13195,7 @@
 0,
 2
 ],
-"price": "$412–$1,250 per person / mo (2027-2028 Full Year)",
+"price": "$412–$1,275 per person / mo (2027-2028 Full Year)",
 "ppm": 412,
 "est": false,
 "lat": 40.789872,
@@ -13097,10 +13389,13 @@
 }
 ],
 "lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/burrowes-street-apartments/two-bedroom-unfurnished-9/"
+"page": "https://www.apartmentstore.com/locations/state-college/burrowes-street-apartments/two-bedroom-unfurnished-9/",
+"note": "Only 1 Unit Left!"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 207,
@@ -13111,11 +13406,11 @@
 0,
 3
 ],
-"price": "$992–$1,350 per person / mo (2027-2028 Full Year)",
+"price": "$992–$1,425 per person / mo (2027-2028 Full Year)",
 "ppm": 992,
 "est": false,
-"lat": 40.790883,
-"lng": -77.855737,
+"lat": 40.789801,
+"lng": -77.853037,
 "source": "site",
 "site": "https://www.apartmentstore.com/locations/state-college/allen/",
 "photos": [
@@ -13209,7 +13504,9 @@
 "page": "https://www.apartmentstore.com/locations/state-college/allen/three-bedroom-one-bathroom-unfurnished/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"checked": "Nov 27, 2026",
+"lease_label": "2027-2028 Full Year"
 },
 {
 "id": 208,
@@ -13281,7 +13578,9 @@
 "page": "https://www.apartmentstore.com/locations/state-college/irvin/one-bedroom-one-bathroom-unfurnished/"
 }
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 209,
@@ -13398,59 +13697,8 @@
 "page": "https://www.arpm.com/property/hetzel-plaza/"
 }
 ],
-"manager": "The Apartment Store"
-},
-{
-"id": 210,
-"name": "The Brandywine",
-"address": "510 Brandywine Drive",
-"type": "apartment",
-"beds": [
-3,
-3
-],
-"price": "$1,233 per person / mo (January - July 2027)",
-"ppm": 1233,
-"est": true,
-"lat": 40.785294,
-"lng": -77.804455,
-"source": "site",
-"site": "https://www.apartmentstore.com/locations/state-college/the-brandywine/",
-"photos": [
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2023/04/Brandywine-3rd-floor-base.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/the-brandywine/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2023/04/Brandywine-2nd-floor-base.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/the-brandywine/"
-}
-],
-"plans": [
-{
-"name": "3 Bedroom, 3.5 Bathroom Townhome",
-"beds": 3,
-"baths": "3.5",
-"sqft": "2,037",
-"price": "$3,700 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2023/04/Brandywine-Livingroom.png?fit=768%2C644&ssl=1",
-"photos": [
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2023/04/Brandywine-3rd-floor-base.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2023/04/Brandywine-2nd-floor-base.jpg?w=1400&ssl=1"
-],
-"rates": [
-{
-"n": 1,
-"pp": 3700,
-"whole": true,
-"was": null
-}
-],
-"lease": "January - July 2027",
-"page": "https://www.apartmentstore.com/locations/state-college/the-brandywine/3-bedroom-3-5-bathroom/"
-}
-],
-"manager": "The Apartment Store"
+"manager": "ARPM",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 211,
@@ -13520,75 +13768,9 @@
 "page": "https://www.apartmentstore.com/locations/state-college/alma-mater-court/two-bedroom-1-5-bath/"
 }
 ],
-"manager": "The Apartment Store"
-},
-{
-"id": 212,
-"name": "629 W Park Avenue",
-"address": "629 W Park Avenue",
-"type": "apartment",
-"lat": 40.792596,
-"lng": -77.876454,
-"site": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/",
-"source": "site",
-"plans": [
-{
-"name": "Four Bedroom 2.5 Bathroom Furnished",
-"beds": 4,
-"baths": "2.5",
-"price": "$1,217 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_DiningRoom.jpg?fit=480%2C640&ssl=1",
-"photos": [
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bathroom_01.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Kitchen_01.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_LivingRoom.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_HalfBath.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bedroom_01.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bedroom_02.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bathroom_02.jpg?w=1400&ssl=1"
-],
-"rates": [
-{
-"n": 3,
-"pp": 1217,
-"unit": 3650,
-"was": null
-}
-],
-"lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/four-bedroom-2-5-bathroom-furnished/"
-}
-],
-"photos": [
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Exterior_01.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Exterior_02.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Den.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bedroom_03.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bathroom_03.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/"
-}
-],
-"ppm": 1217,
-"est": false,
-"price": "$1,217 per person / mo (2027-2028 Full Year)",
-"beds": [
-4,
-4
-],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"checked": "Nov 27, 2026",
+"note": "The landlord says it's perfect for graduate students or working professionals, but undergrads aren't excluded. One furnished 2-bed townhouse; a $500/mo utility fee covers water, sewer, trash and more."
 },
 {
 "id": 213,
@@ -13661,7 +13843,10 @@
 3,
 3
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"tag": "Fully leased for 2027–28",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 214,
@@ -13723,7 +13908,9 @@
 3,
 3
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 215,
@@ -13760,7 +13947,10 @@
 3,
 3
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"tag": "Fully leased for 2027–28",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 216,
@@ -13818,7 +14008,10 @@
 3,
 3
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"tag": "Fully leased for 2027–28",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 217,
@@ -13920,7 +14113,9 @@
 3,
 3
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 218,
@@ -14092,7 +14287,8 @@
 "beds": [
 0,
 2
-]
+],
+"note": "The Canyon lists every floor plan as 'Call for Pricing' (814-636-8471). Units are fully furnished; heat/AC, Wi-Fi, water/sewer and gas are included, plus a $40/mo utility flat fee for 2027–28. Parking $195."
 },
 {
 "id": 219,
@@ -14180,7 +14376,8 @@
 "beds": [
 2,
 2
-]
+],
+"note": "The Canyon lists every floor plan as 'Call for Pricing' (814-636-8471). Units are fully furnished; heat/AC, Wi-Fi, water/sewer and gas are included, plus a $40/mo utility flat fee for 2027–28. Parking $195."
 },
 {
 "id": 220,
@@ -14317,7 +14514,8 @@
 "beds": [
 0,
 3
-]
+],
+"note": "The Canyon lists every floor plan as 'Call for Pricing' (814-636-8471). Units are fully furnished; heat/AC, Wi-Fi, water/sewer and gas are included, plus a $40/mo utility flat fee for 2027–28. Parking $195."
 },
 {
 "id": 221,
@@ -14899,7 +15097,9 @@
 "beds": [
 0,
 4
-]
+],
+"yr": "2026-27",
+"note": "ARPM is still leasing this building for the 2026–27 year; 2027–28 prices are not posted yet."
 },
 {
 "id": 225,
@@ -18460,7 +18660,10 @@
 1,
 1
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"tag": "Fully leased for 2027–28",
+"checked": "Nov 27, 2026"
 },
 {
 "id": 259,
@@ -18532,6 +18735,1311 @@
 1,
 1
 ],
-"manager": "The Apartment Store"
+"manager": "The Apartment Store",
+"lease_label": "2027-2028 Full Year",
+"tag": "Fully leased for 2027–28",
+"checked": "Nov 27, 2026"
+},
+{
+"id": 260,
+"name": "State College Collective on Aaron",
+"address": "1100 W Aaron Dr",
+"type": "townhouse",
+"beds": [
+3,
+3
+],
+"price": "$750–$802 per person / mo (2027-2028, \"starting at\" prices)",
+"ppm": 750,
+"est": false,
+"lat": 40.80188,
+"lng": -77.89899,
+"source": "site",
+"site": "https://www.statecollegecollective.com/aaron/",
+"plans": [
+{
+"name": "3BR/3.5BA – Unfurnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $750 / person",
+"rates": [
+{
+"n": 3,
+"pp": 750,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $755 / person",
+"rates": [
+{
+"n": 3,
+"pp": 755,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/",
+"status": "Sold out"
+},
+{
+"name": "3BR/3.5BA – Upgraded Unfurnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $755 / person",
+"rates": [
+{
+"n": 3,
+"pp": 755,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/",
+"status": "Sold out"
+},
+{
+"name": "3BR/3.5BA – Furnished – A",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $775 / person",
+"rates": [
+{
+"n": 3,
+"pp": 775,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $778 / person",
+"rates": [
+{
+"n": 3,
+"pp": 778,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Furnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $795 / person",
+"rates": [
+{
+"n": 3,
+"pp": 795,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – A",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $772 / person",
+"rates": [
+{
+"n": 3,
+"pp": 772,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $802 / person",
+"rates": [
+{
+"n": 3,
+"pp": 802,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – A",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $764 / person",
+"rates": [
+{
+"n": 3,
+"pp": 764,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+}
+],
+"checked": "Nov 26, 2026",
+"note": "Formerly Copper Beech. Same company as Northbrook."
+},
+{
+"id": 261,
+"name": "State College Collective on Aaron II",
+"address": "1003 W Aaron Dr",
+"type": "townhouse",
+"beds": [
+0,
+3
+],
+"price": "$765–$1,120 per person / mo (2027-2028, \"starting at\" prices)",
+"ppm": 765,
+"est": false,
+"lat": 40.803776,
+"lng": -77.900219,
+"source": "site",
+"site": "https://www.statecollegecollective.com/aaron-2/",
+"plans": [
+{
+"name": "Studio",
+"beds": 0,
+"baths": "1",
+"sqft": "650",
+"price": "From $1,120 / person",
+"rates": [
+{
+"n": 1,
+"pp": 1120,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/",
+"status": "Sold out"
+},
+{
+"name": "2BR/2.5BA – Furnished",
+"beds": 2,
+"baths": "2.5",
+"sqft": "1100",
+"price": "From $925 / person",
+"rates": [
+{
+"n": 2,
+"pp": 925,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $790 / person",
+"rates": [
+{
+"n": 3,
+"pp": 790,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $765 / person",
+"rates": [
+{
+"n": 3,
+"pp": 765,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $765 / person",
+"rates": [
+{
+"n": 3,
+"pp": 765,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $805 / person",
+"rates": [
+{
+"n": 3,
+"pp": 805,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Furnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $796 / person",
+"rates": [
+{
+"n": 3,
+"pp": 796,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $780 / person",
+"rates": [
+{
+"n": 3,
+"pp": 780,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+}
+],
+"checked": "Nov 27, 2026"
+},
+{
+"id": 262,
+"name": "State College Collective on Oakwood",
+"address": "400 Oakwood Ave",
+"type": "townhouse",
+"beds": [
+3,
+3
+],
+"price": "$755–$785 per person / mo (2027-2028, \"starting at\" prices)",
+"ppm": 755,
+"est": false,
+"lat": 40.816368,
+"lng": -77.890559,
+"source": "site",
+"site": "https://www.statecollegecollective.com/oakwood/",
+"plans": [
+{
+"name": "3BR/3.5BA – Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $765 / person",
+"rates": [
+{
+"n": 3,
+"pp": 765,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Furnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $757 / person",
+"rates": [
+{
+"n": 3,
+"pp": 757,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $770 / person",
+"rates": [
+{
+"n": 3,
+"pp": 770,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $755 / person",
+"rates": [
+{
+"n": 3,
+"pp": 755,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $785 / person",
+"rates": [
+{
+"n": 3,
+"pp": 785,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $775 / person",
+"rates": [
+{
+"n": 3,
+"pp": 775,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Unfurnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $785 / person",
+"rates": [
+{
+"n": 3,
+"pp": 785,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Unfurnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $775 / person",
+"rates": [
+{
+"n": 3,
+"pp": 775,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+}
+],
+"checked": "Nov 27, 2026"
+},
+{
+"id": 263,
+"name": "State College Collective on Farmstead",
+"address": "130 Farmstead Ln",
+"type": "townhouse",
+"beds": [
+3,
+3
+],
+"price": "$760–$800 per person / mo (2027-2028, \"starting at\" prices)",
+"ppm": 760,
+"est": false,
+"lat": 40.7910027,
+"lng": -77.9065939,
+"source": "site",
+"site": "https://www.statecollegecollective.com/farmstead/",
+"plans": [
+{
+"name": "3BR/3.5BA – Large – Unfurnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "2000",
+"price": "From $770 / person",
+"rates": [
+{
+"n": 3,
+"pp": 770,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Standard – Upgraded Furnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1750",
+"price": "From $775 / person",
+"rates": [
+{
+"n": 3,
+"pp": 775,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Large – Upgraded Furnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "2000",
+"price": "From $800 / person",
+"rates": [
+{
+"n": 3,
+"pp": 800,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Standard – Upgraded Unfurnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1750",
+"price": "From $775 / person",
+"rates": [
+{
+"n": 3,
+"pp": 775,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Large – Upgraded Unfurnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "2000",
+"price": "From $790 / person",
+"rates": [
+{
+"n": 3,
+"pp": 790,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Standard – Furnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1750",
+"price": "From $760 / person",
+"rates": [
+{
+"n": 3,
+"pp": 760,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Large – Furnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "2000",
+"price": "From $785 / person",
+"rates": [
+{
+"n": 3,
+"pp": 785,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Standard – Unfurnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1750",
+"price": "From $760 / person",
+"rates": [
+{
+"n": 3,
+"pp": 760,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+}
+],
+"checked": "Nov 26, 2026"
+},
+{
+"id": 264,
+"name": "The Legacy at State College",
+"address": "478 E Calder Way",
+"type": "apartment",
+"beds": [
+4,
+4
+],
+"price": "$1,037–$1,592 per person / mo (incl. mandatory monthly fees; 11.5-month lease)",
+"ppm": 1037,
+"est": false,
+"lat": 40.7985477,
+"lng": -77.8541192,
+"source": "site",
+"site": "https://www.thelegacystatecollege.com/",
+"checked": "Nov 26, 2026",
+"note": "Utilities included: internet, electric, water/sewer and trash. 12-month contract (September to August), individual leases. Parking $170/mo. Run by Landmark Properties.",
+"plans": [
+{
+"name": "4 Bed / 2 Bath – Shared room (5 occupants)",
+"beds": 4,
+"baths": "2",
+"sqft": "1140",
+"price": "$1,037 / person",
+"rates": [
+{
+"n": 1,
+"pp": 1037,
+"was": null
+}
+],
+"note": "Base $990 + mandatory fees",
+"lease": "2027-2028",
+"page": "https://www.thelegacystatecollege.com/floorplans/"
+},
+{
+"name": "4 Bed / 2 Bath – Private room (5 occupants)",
+"beds": 4,
+"baths": "2",
+"sqft": "1140",
+"price": "$1,542 / person",
+"rates": [
+{
+"n": 1,
+"pp": 1542,
+"was": null
+}
+],
+"note": "Base $1,495 + mandatory fees",
+"lease": "2027-2028",
+"page": "https://www.thelegacystatecollege.com/floorplans/"
+},
+{
+"name": "4 Bed / 2 Bath – Private room (4 occupants)",
+"beds": 4,
+"baths": "2",
+"sqft": "1140",
+"price": "$1,592 / person",
+"rates": [
+{
+"n": 1,
+"pp": 1592,
+"was": null
+}
+],
+"note": "Base $1,545 + mandatory fees",
+"lease": "2027-2028",
+"page": "https://www.thelegacystatecollege.com/floorplans/"
+}
+],
+"lease": "12-month"
+},
+{
+"id": 265,
+"name": "Clearwater",
+"address": "817 W College Ave",
+"type": "townhouse",
+"beds": [
+5,
+5
+],
+"price": "$1,029 per person / mo (2027-2028)",
+"ppm": 1029,
+"est": false,
+"lat": 40.7878422,
+"lng": -77.8706938,
+"source": "site",
+"site": "https://www.arpm.com/property/clearwater/",
+"checked": "Nov 26, 2026",
+"note": "Whole house, 5 bed / 2.5 bath, unfurnished, $5,145/mo total (up to 8 people). Tenants pay electric, oil heat, TV, internet and water; parking extra. 12-month lease from August. Managed by ARPM.",
+"plans": [
+{
+"name": "5 BR house",
+"beds": 5,
+"baths": "2.5",
+"price": "$1,029 / person",
+"rates": [
+{
+"n": 5,
+"pp": 1029,
+"was": null
+}
+],
+"lease": "2027-2028",
+"note": "$5,145 per unit per month (unfurnished, max occupancy 8)",
+"page": "https://www.arpm.com/property/clearwater/",
+"status": "Fully rented"
+}
+],
+"tag": "Fully leased for 2027–28",
+"lease": "12-month"
+},
+{
+"id": 266,
+"name": "Conway",
+"address": "833 W College Ave",
+"type": "townhouse",
+"beds": [
+7,
+7
+],
+"price": "$1,000 per person / mo (2027-2028)",
+"ppm": 1000,
+"est": false,
+"lat": 40.7875438,
+"lng": -77.8710791,
+"source": "site",
+"site": "https://www.arpm.com/property/conway/",
+"checked": "Nov 26, 2026",
+"note": "Whole house, 7 bed / 2 bath, unfurnished, $7,000/mo total (up to 10 people). Washer/dryer and 7 parking spaces included; tenants pay electric, oil heat, TV and internet. 12-month lease from August. Managed by ARPM.",
+"plans": [
+{
+"name": "7 BR house",
+"beds": 7,
+"baths": "2",
+"price": "$1,000 / person",
+"rates": [
+{
+"n": 7,
+"pp": 1000,
+"was": null
+}
+],
+"lease": "2027-2028",
+"note": "$7,000 per unit per month (unfurnished, max occupancy 10)",
+"page": "https://www.arpm.com/property/conway/",
+"status": "Fully rented"
+}
+],
+"tag": "Fully leased for 2027–28",
+"lease": "12-month"
+},
+{
+"id": 267,
+"name": "The Keys",
+"address": "227 E Prospect Ave",
+"type": "townhouse",
+"beds": [
+5,
+5
+],
+"price": "$760 per person / mo (2027-2028)",
+"ppm": 760,
+"est": false,
+"lat": 40.7926737,
+"lng": -77.8537919,
+"source": "site",
+"site": "https://www.arpm.com/property/the-keys/",
+"checked": "Nov 26, 2026",
+"note": "Whole house, 5 bed / 2 bath, unfurnished, $3,800/mo total (up to 5 people). Duplex (5 bed per side). Gas heat included; tenants pay electric, TV and internet; parking extra. 12-month lease from August. Managed by ARPM.",
+"plans": [
+{
+"name": "5 BR house",
+"beds": 5,
+"baths": "2",
+"price": "$760 / person",
+"rates": [
+{
+"n": 5,
+"pp": 760,
+"was": null
+}
+],
+"lease": "2027-2028",
+"note": "$3,800 per unit per month (unfurnished, max occupancy 5)",
+"page": "https://www.arpm.com/property/the-keys/"
+}
+],
+"lease": "12-month"
+},
+{
+"id": 268,
+"name": "Westside Village Apartments",
+"address": "400 S Allen St",
+"type": "apartment",
+"beds": [
+0,
+4
+],
+"price": "From $895 per unit (studio/1 bd) up to $4,220 (2027-2028)",
+"ppm": 895,
+"est": false,
+"lat": 40.7914651,
+"lng": -77.8573367,
+"source": "site",
+"site": "https://westsidevillage.appfolio.com/listings/listings",
+"checked": "Nov 27, 2026",
+"tag": "Units across downtown",
+"note": "Westside Village rents about 21 apartments in different buildings around downtown (studios to 4 bedrooms), not one complex. The pin marks one of their addresses. Leasing office: 140 S Gill St."
+},
+{
+"id": 269,
+"name": "Laurel Terrace",
+"address": "317 E Beaver Ave",
+"type": "apartment",
+"beds": [
+0,
+2
+],
+"price": "Contact for pricing",
+"ppm": null,
+"est": false,
+"lat": 40.7958916,
+"lng": -77.8572029,
+"source": "af",
+"site": "https://www.apartments.com/laurel-terrace-state-college-pa/3pynvcg/",
+"checked": "Nov 26, 2026",
+"note": "Studios to 2-bedrooms, managed by Property Management Inc. (814-278-7700). Prices online don't agree, so contact them for current rates."
+},
+{
+"id": 270,
+"name": "Lion's Gate (grad & professional units)",
+"address": "424 Waupelani Dr",
+"type": "apartment",
+"beds": [
+2,
+2
+],
+"price": "$1,445 per unit (2 bd, unfurnished)",
+"ppm": 723,
+"est": true,
+"lat": 40.777993,
+"lng": -77.852514,
+"source": "af",
+"site": "https://continentalre.appfolio.com/listings",
+"manager": "Continental Real Estate Management",
+"grad": true,
+"checked": "Nov 27, 2026",
+"note": "The landlord's own listing (Continental Real Estate) for unit G-11, a 2-bed, 1-bath unfurnished unit at $1,445/mo available now, says \"Welcome to our professional and graduate community\". Its PadMapper listing adds \"Eligibility: Graduate students and professionals only.\" Water, sewer, trash, gas heat, parking and internet included. The building's other units are listed under Apartments."
+},
+{
+"id": 66,
+"name": "Marion Place",
+"address": "135 E Nittany Ave",
+"type": "apartment",
+"beds": [
+1,
+2
+],
+"price": "$1,977–$2,267 per unit / mo",
+"ppm": 1031,
+"est": true,
+"lat": 40.792686,
+"lng": -77.856906,
+"source": "site",
+"site": "https://marionplace.com/",
+"photos": [
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4866.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4869.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4901.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4931.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4966.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5639.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5642.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5660.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5663.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5692.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5711.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5729.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5736.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5793.jpg",
+"page": "https://marionplace.com/"
+}
+],
+"plans": [
+{
+"name": "Two Bedroom",
+"beds": 2,
+"price": "$2,062–$2,267 / mo (whole unit)",
+"img": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Floorplan-2BR.png",
+"rates": [
+{
+"n": 1,
+"pp": 2062,
+"whole": true
+},
+{
+"n": 2,
+"pp": 1031,
+"unit": 2062
+}
+],
+"note": "$2062-$2267/month per unit",
+"page": "https://marionplace.com/apartments/"
+},
+{
+"name": "One Bedroom with Home Office",
+"beds": 1,
+"price": "$1,977–$2,199 / mo (whole unit)",
+"img": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Floorplan-1BR.png",
+"rates": [
+{
+"n": 1,
+"pp": 1977,
+"whole": true
+}
+],
+"note": "$1977-$2199/month per unit",
+"page": "https://marionplace.com/apartments/"
+}
+],
+"grad": true,
+"checked": "2026-11-27",
+"note": "Graduate, professional and retiree housing: the building's site says \"no undergraduate status\". Rents from the building's own site (Nov 27, 2026). Rent includes cold water, sewer, trash and internet; tenants pay electric, parking and phone.",
+"manager": "Atlas Realty Management"
+},
+{
+"id": 200,
+"name": "The Allenway",
+"address": "315 S Allen St",
+"type": "apartment",
+"beds": [
+0,
+2
+],
+"price": "$1,134–$1,865 per unit / mo",
+"ppm": 896,
+"est": true,
+"lat": 40.792454,
+"lng": -77.857826,
+"source": "site",
+"site": "https://theallenway.com/",
+"plans": [
+{
+"name": "Two Bedrooms",
+"beds": 2,
+"price": "$1,791–$1,865 / mo (whole unit)",
+"page": "https://theallenway.com/apartments/",
+"note": "975–1,113 sq ft",
+"img": "https://theallenway.com/wp-content/uploads/2018/06/Two-bedrooms.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 1791,
+"whole": true
+},
+{
+"n": 2,
+"pp": 896,
+"unit": 1791
+}
+]
+},
+{
+"name": "One Bedroom",
+"beds": 1,
+"price": "$1,304–$1,407 / mo (whole unit)",
+"page": "https://theallenway.com/apartments/",
+"note": "621–756 sq ft",
+"img": "https://theallenway.com/wp-content/uploads/2018/06/One-bedroom.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 1304,
+"whole": true
+}
+]
+},
+{
+"name": "Efficiency",
+"beds": 0,
+"price": "$1,134–$1,215 / mo (whole unit)",
+"page": "https://theallenway.com/apartments/",
+"note": "452–680 sq ft",
+"img": "https://theallenway.com/wp-content/uploads/2018/06/Efficiency.jpg",
+"rates": [
+{
+"n": 1,
+"pp": 1134,
+"whole": true
+}
+]
+}
+],
+"photos": [
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/AR_Allenway_slide4.png",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/14.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/13.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/16.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/15.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/12.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/18.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/AR_Allenway_slide2.png",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/1.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/2.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/9.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/7.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/4.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/5.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/3.jpg",
+"page": "https://theallenway.com/"
+},
+{
+"url": "https://theallenway.com/wp-content/uploads/2018/06/10.jpg",
+"page": "https://theallenway.com/"
+}
+],
+"grad": true,
+"manager": "Atlas Realty Management",
+"checked": "2026-11-27",
+"note": "Graduate, professional and retiree housing: the building's site says \"no undergraduate status\". Rents from the building's own site (Nov 27, 2026). Furnished units available. No pets. Contact rent@atlas-rmc.com or 814-238-0741."
+},
+{
+"id": 15,
+"name": "Southside Court II",
+"address": "921-951 Southgate Drive",
+"type": "townhouse",
+"beds": [
+1,
+3
+],
+"price": "$650–$2,030 per person / mo (2027-2028 Full Year)",
+"ppm": 650,
+"est": true,
+"lat": 40.77393,
+"lng": -77.86139,
+"source": "site",
+"site": "https://www.apartmentstore.com/locations/state-college/southside-court-2/",
+"plans": [
+{
+"name": "One Bedroom Townhouse Unfurnished",
+"beds": 1,
+"baths": "1",
+"sqft": "640",
+"price": "$1,450 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/04/Southside-Court-II_1Bed-Landscape.jpg?fit=768%2C336&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1450,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/one-bedroom-townhouse-unfurnished/"
+},
+{
+"name": "One Bedroom Townhouse Furnished",
+"beds": 1,
+"baths": "1",
+"sqft": "640",
+"price": "$1,475 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/04/Southside-Court-II_1Bed-Landscape.jpg?fit=768%2C336&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1475,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/one-bedroom-townhouse-unfurnished-2/"
+},
+{
+"name": "Two Bedroom Townhouse Unfurnished",
+"beds": 2,
+"baths": "1",
+"sqft": "896",
+"price": "$875–$1,750 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_2Bed.webp?fit=610%2C665&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1750,
+"whole": true,
+"was": null
+},
+{
+"n": 2,
+"pp": 875,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/two-bedroom-townhouse-unfurnished/"
+},
+{
+"name": "Two Bedroom Townhouse Furnished",
+"beds": 2,
+"baths": "1",
+"sqft": "896",
+"price": "$888–$1,775 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_2Bed.webp?fit=610%2C665&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1775,
+"whole": true,
+"was": null
+},
+{
+"n": 2,
+"pp": 888,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/two-bedroom-townhouse-furnished/"
+},
+{
+"name": "Three Bedroom Townhouse Unfurnished",
+"beds": 3,
+"baths": "2",
+"sqft": "1280",
+"price": "$650–$1,950 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_3Bed.webp?fit=648%2C617&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 1950,
+"whole": true,
+"was": null
+},
+{
+"n": 2,
+"pp": 975,
+"was": null
+},
+{
+"n": 3,
+"pp": 650,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/three-bedroom-townhouse-unfurnished/"
+},
+{
+"name": "Three Bedroom Townhouse Furnished",
+"beds": 3,
+"baths": "2",
+"sqft": "1280",
+"price": "$677–$2,030 / person",
+"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Southside-Court-II_3Bed.webp?fit=648%2C617&ssl=1",
+"rates": [
+{
+"n": 1,
+"pp": 2030,
+"whole": true,
+"was": null
+},
+{
+"n": 2,
+"pp": 1015,
+"was": null
+},
+{
+"n": 3,
+"pp": 677,
+"was": null
+}
+],
+"lease": "2027-2028 Full Year",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/three-bedroom-townhouse-furnished/"
+}
+],
+"photos": [
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/Court2_Ext_001.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/3_Living-scaled.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/5_Kitchen-scaled.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/13_Bedroom-scaled.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/14_Bath-scaled.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+},
+{
+"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2024/03/16_Laundry-scaled.jpg?w=1400&ssl=1",
+"page": "https://www.apartmentstore.com/locations/state-college/southside-court-2/"
+}
+],
+"manager": "The Apartment Store",
+"checked": "2026-11-27",
+"note": "The Apartment Store says it \"provides a peaceful experience for graduates and professionals\", but undergrads aren't excluded. Water/sewer $35/month per person; residents also pay electric, cable and Wi-Fi. Parking, trash, landscaping and snow removal included. Application fee $55."
 }
 ]
