@@ -5,9 +5,9 @@ Until these steps are done, the Sublets page runs in **demo mode**: it shows exa
 Everything below is free. Supabase's free plan holds 500 MB of listings and 1 GB of photos, which is thousands of sublets.
 
 ## 1. Make a Supabase project
-1. Go to https://supabase.com and click **Start your project**. Sign up with GitHub (easiest) or email.
-2. Click **New project**. If it asks for an organization, make one called "Happy Valley Housing" on the **Free** plan.
-3. Project name: `happy-valley-housing`. Click **Generate a password** and save it somewhere safe (you will rarely need it). Region: **East US (North Virginia)**. Click **Create new project** and wait about 2 minutes.
+1. Go to https://supabase.com and click **Start your project**. Sign up with your Rhedr Google account (boaz@rhedr.com).
+2. Click **New project**. If it asks for an organization, make one called "Rhedr" on the **Free** plan.
+3. Project name: `rhedr`. Click **Generate a password** and save it somewhere safe (you will rarely need it). Region: **East US (North Virginia)**. Click **Create new project** and wait about 2 minutes.
 
 ## 2. Create the database
 1. In the left sidebar, click **SQL Editor**, then **+ New query**.
@@ -30,17 +30,17 @@ Everything below is free. Supabase's free plan holds 500 MB of listings and 1 GB
 3. Under **Redirect URLs** click **Add URL**: `https://rhedr.com/**`, then **Save URLs**. Add `https://www.rhedr.com/**` the same way.
 
 ## 5. Let Supabase email sign-in codes to students
-Supabase's built-in email only sends to people on your own Supabase team, so students won't get codes until you connect a sender. A Gmail account works and is free (up to about 500 emails a day).
+Supabase's built-in email only sends to people on your own Supabase team, so students won't get codes until you connect a sender. Rhedr sends codes from `noreply@rhedr.com`, an alias on the Google Workspace account `boaz@rhedr.com` (Gmail allows about 2,000 emails a day from Workspace).
 
-1. Make a new Gmail for the site, like `happyvalleyhousing.app@gmail.com` (or use your own).
-2. In that Google account, go to https://myaccount.google.com/security and turn on **2-Step Verification**.
-3. Go to https://myaccount.google.com/apppasswords. App name: `Supabase`. Click **Create** and copy the 16-letter password it shows.
+1. Signed in as boaz@rhedr.com, go to https://myaccount.google.com/security and turn on **2-Step Verification**.
+2. Go to https://myaccount.google.com/apppasswords. App name: `Supabase`. Click **Create** and copy the 16-letter password it shows.
+3. Make sure `noreply@rhedr.com` is an alias of boaz@rhedr.com (Google Admin, https://admin.google.com, then **Directory**, **Users**, boaz, **Add alternate emails**), and that Gmail can send as it (Gmail, gear, **See all settings**, **Accounts**, **Send mail as**).
 4. In Supabase: **Authentication**, then **Emails** (or **Email**), then the **SMTP Settings** tab. Turn on **Enable Custom SMTP** and fill in:
-   - Sender email: your Gmail address
+   - Sender email: `noreply@rhedr.com`
    - Sender name: `Rhedr`
    - Host: `smtp.gmail.com`
    - Port: `465`
-   - Username: your Gmail address
+   - Username: `boaz@rhedr.com`
    - Password: the 16-letter app password (no spaces)
    Click **Save changes**.
 5. Still under **Emails**, open the **Templates** tab, then **Magic Link**. Replace the message body with:
@@ -52,7 +52,7 @@ Supabase's built-in email only sends to people on your own Supabase team, so stu
    ```
    Subject: `Your Rhedr sign-in code`. Click **Save changes**.
    Leave the sign-in link out on purpose: Penn State's Microsoft security opens every link in incoming mail, which uses up the one-time code before the student can type it. Then open the **Confirm signup** template and paste the same subject and body there too. A student's very first sign-in uses Confirm signup, later ones use Magic Link, so both need the code. Click **Save changes**.
-6. Heads-up: Penn State's email (Microsoft) can hold mail from a brand-new Gmail for hours or longer. Every code also appears in the Gmail's **Sent** folder, which helps while testing. Before launch, send from your own domain through a sending service (for example Resend or Brevo) so codes land reliably.
+6. Every code also appears in boaz@rhedr.com's Gmail **Sent** folder, which helps while testing. If Penn State's email (Microsoft) starts holding codes, switch to a sending service on rhedr.com (for example Resend or Brevo).
 7. Optional but helpful: **Authentication**, **Rate Limits**, set "emails sent per hour" to 100.
 
 ## 5b. Only let psu.edu emails sign up

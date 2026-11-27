@@ -2,7 +2,7 @@
    Data lives in Supabase when supabaseUrl/supabaseKey are set in config.js; otherwise demo mode (this browser only). */
 (function(){
 "use strict";
-const CFG=window.HVH_CONFIG||{};
+const CFG=window.RHEDR_CONFIG||window.HVH_CONFIG||{};
 const DEMO=!(CFG.supabaseUrl&&CFG.supabaseKey);
 const SUPABASE_JS="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js";
 const OM={lat:40.79647,lng:-77.86279}; // Old Main
@@ -64,7 +64,7 @@ function scamCheck(s){const txt=[s.title,s.description,s.roommates].join(" ");co
 /* ---------- data layer ---------- */
 const API=DEMO?demoApi():liveApi();
 function demoApi(){
-  const KEY="hvh-demo-sublets",UKEY="hvh-demo-user";
+  const KEY="rhedr-demo-sublets",UKEY="rhedr-demo-user";
   const read=()=>{try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}};
   const write=a=>{try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){}};
   let user=null;try{user=JSON.parse(localStorage.getItem(UKEY)||"null")}catch(e){}

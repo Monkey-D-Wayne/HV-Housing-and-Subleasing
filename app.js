@@ -1,7 +1,7 @@
 /* Rhedr: listings, filters, map and detail view. */
 (function(){
 "use strict";
-const CFG=window.HVH_CONFIG||{};
+const CFG=window.RHEDR_CONFIG||window.HVH_CONFIG||{};
 const OCP="https://livingoffcampus.psu.edu/housing/campus-Penn+State+University";
 const PSU="https://liveon.psu.edu/university-park/rates";
 const OM={lat:40.79647,lng:-77.86279}; // Old Main
@@ -57,7 +57,7 @@ function ptag(l){const p=(l.photos||[])[0];return p?`<div class="ptag"><span>Pho
 /* state */
 let ALL=[],byId={},rows=[];
 const state={type:"all",q:"",maxp:2000,beds:0,sort:"dist",sel:null,year:"2027-28"};
-try{const t=localStorage.getItem("hvh-type");if(t&&TYPES.some(x=>x.k===t))state.type=t}catch(e){}
+try{const t=localStorage.getItem("rhedr-type")||localStorage.getItem("hvh-type");if(t&&TYPES.some(x=>x.k===t))state.type=t}catch(e){}
 function filtered(){
   const q=state.q.trim().toLowerCase();
   return ALL.filter(l=>inTab(l,state.type)
@@ -184,7 +184,7 @@ async function initLeaflet(){
 function headH(){document.documentElement.style.setProperty("--head",$("#head").offsetHeight+"px")}
 function setToggle(){$("#maptoggle span").textContent=document.body.classList.contains("showmap")?"Show list":"Show map"}
 function wire(){
-  $("#tabs").addEventListener("click",e=>{const b=e.target.closest(".tab[data-k]");if(!b)return;state.type=b.dataset.k;try{localStorage.setItem("hvh-type",state.type)}catch(_){}renderTabs();renderList()});
+  $("#tabs").addEventListener("click",e=>{const b=e.target.closest(".tab[data-k]");if(!b)return;state.type=b.dataset.k;try{localStorage.setItem("rhedr-type",state.type)}catch(_){}renderTabs();renderList()});
   let qt;$("#q").addEventListener("input",e=>{clearTimeout(qt);qt=setTimeout(()=>{state.q=e.target.value;renderList()},150)});
   $("#maxp").addEventListener("input",e=>{state.maxp=+e.target.value;$("#maxpv").textContent=state.maxp>=2000?"Any":fmt(state.maxp);renderList()});
   $("#beds").addEventListener("change",e=>{state.beds=+e.target.value;renderList()});
