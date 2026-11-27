@@ -619,6 +619,12 @@ insert into public.alert_job (id) values (1) on conflict (id) do nothing;
 alter table public.alert_job enable row level security;   -- no policies: only the database and the Edge Function read it
 revoke all on public.alert_job from anon, authenticated;
 
+-- The Edge Functions (send-alerts, check-lease) sign in as service_role. This project doesn't give it
+-- table access by default, so grant it here.
+grant usage on schema public to service_role;
+grant select, insert, update, delete on all tables in schema public to service_role;
+grant usage, select on all sequences in schema public to service_role;
+
 -- 13. Run send-alerts every 15 minutes --------------------------------------------
 -- Uses two Supabase extensions: pg_cron (scheduled jobs) and pg_net (web requests from the database).
 create extension if not exists pg_cron;

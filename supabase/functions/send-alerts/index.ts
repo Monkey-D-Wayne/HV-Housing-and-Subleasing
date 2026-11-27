@@ -156,8 +156,12 @@ Deno.serve(async (req) => {
     if (!a) return json({ error: "Save an alert on the Sublets page first" }, 400);
     const { data: u } = await admin.auth.admin.getUserById(a.user_id);
     const { data: subs } = await admin.from("sublets_public").select("*").order("lease_verified", { ascending: false }).order("price").limit(3);
-    if (!u?.user?.email || !subs?.length) return json({ error: "Needs at least one live sublet to show" }, 400);
-    rows = subs.map((s) => ({ ...s, search_id: a.id, user_id: a.user_id, email: u.user!.email!, token: a.token, label: a.label,
+    if (!u?.user?.email) return json({ error: "Couldn't find that alert's email" }, 400);
+    // no live sublets yet: show one made-up example so the test still sends
+    const sample = [{ id: 0, title: "Example: private room in a 2-bed near campus", kind: "sublet", space: "room", building_name: null,
+      address: "100 W College Ave", beds: 2, baths: 1, price: 650, orig_price: 780, start_date: "2027-05-15", end_date: "2027-08-10",
+      furnished: true, utilities: false, lease_verified: true, photos: [], lat: 40.7955, lng: -77.8611 }];
+    rows = (subs?.length ? subs : sample).map((s) => ({ ...s, search_id: a.id, user_id: a.user_id, email: u.user!.email!, token: a.token, label: a.label,
       frequency: a.frequency, sublet_id: s.id, photo: s.photos?.[0] ?? null }) as Row);
   } else {
     const { data, error } = await admin.rpc("alerts_due");
