@@ -443,3 +443,192 @@ create policy "lease proofs: admin read" on storage.objects for select to authen
 drop policy if exists "lease proofs: admin delete" on storage.objects;
 create policy "lease proofs: admin delete" on storage.objects for delete to authenticated
   using (bucket_id = 'lease-proofs' and public.is_admin());
+
+-- 12. Sublet alerts (saved searches) --------------------------------------------
+-- A student saves a search on the Sublets page and gets an email when a new sublet matches it.
+-- The send-alerts Edge Function (supabase/functions/send-alerts) sends the emails through Resend.
+-- It runs every 15 minutes (section 13 below). Daily alerts go out once a day after 8 AM Penn State time.
+
+-- When each listing became visible, and when it got the Lease checked badge (alerts only send what's new)
+alter table public.sublets add column if not exists live_at timestamptz;
+alter table public.sublets add column if not exists lease_checked_at timestamptz;
+update public.sublets set live_at = created_at where live_at is null and status = 'live';
+update public.sublets set lease_checked_at = created_at where lease_checked_at is null and lease_verified;
+create or replace function public.sublet_times() returns trigger
+language plpgsql as $$
+begin
+  if new.status = 'live' and (tg_op = 'INSERT' or old.status <> 'live') then new.live_at := now(); end if;
+  if new.lease_verified and (tg_op = 'INSERT' or not old.lease_verified) then new.lease_checked_at := now(); end if;
+  if tg_op = 'UPDATE' and new.status = 'live' and old.status = 'live' then new.live_at := old.live_at; end if;
+  if tg_op = 'UPDATE' and new.lease_verified and old.lease_verified then new.lease_checked_at := old.lease_checked_at; end if;
+  return new;
+end $$;
+-- runs for everyone (students, admins, the dashboard), after the scam checks have set the status
+drop trigger if exists zz_sublet_times on public.sublets;
+create trigger zz_sublet_times before insert or update on public.sublets
+  for each row execute function public.sublet_times();
+
+create table if not exists public.saved_searches (
+  id            bigint generated always as identity primary key,
+  created_at    timestamptz not null default now(),
+  user_id       uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  label         text not null default 'My sublet alert' check (char_length(label) between 1 and 60),
+  kind          text check (kind in ('sublet','takeover')),     -- empty: both
+  space         text check (space in ('room','unit')),          -- empty: both
+  beds          int check (beds between 0 and 4),               -- bedrooms in the unit; 4 means 4 or more; empty: any
+  max_price     int check (max_price between 50 and 6000),      -- per month
+  max_walk_min  int check (max_walk_min between 5 and 60),      -- minutes walking from Old Main (about 20 minutes a mile)
+  move_in_by    date,                                           -- the sublet starts on or before this day
+  stay_until    date,                                           -- the sublet lasts until at least this day
+  query         text check (char_length(query) <= 60),          -- building or street words
+  lease_only    boolean not null default true,                  -- only sublets with the Lease checked badge
+  frequency     text not null default 'daily' check (frequency in ('daily','instant')),
+  active        boolean not null default true,
+  last_sent_at  timestamptz,
+  token         uuid not null default gen_random_uuid() unique  -- for the unsubscribe link in each email
+);
+create index if not exists saved_searches_active on public.saved_searches (active, frequency);
+
+-- Which sublet was sent to whom, so nobody gets the same sublet twice
+create table if not exists public.alert_sends (
+  id         bigint generated always as identity primary key,
+  sent_at    timestamptz not null default now(),
+  search_id  bigint references public.saved_searches(id) on delete set null,
+  user_id    uuid not null references auth.users(id) on delete cascade,
+  sublet_id  bigint not null references public.sublets(id) on delete cascade,
+  unique (user_id, sublet_id)
+);
+alter table public.alert_sends enable row level security;   -- no policies: only the send-alerts function writes it
+
+-- Students manage their own saved searches. Up to 5 turned on at once.
+create or replace function public.saved_search_checks() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.is_psu() and not public.is_admin() then raise exception 'Sign in with your Penn State email to save a search'; end if;
+  new.user_id := auth.uid();
+  if tg_op = 'INSERT' then
+    new.created_at := now(); new.last_sent_at := null; new.token := gen_random_uuid();
+  else
+    new.created_at := old.created_at; new.token := old.token; new.last_sent_at := old.last_sent_at;
+    -- an alert turned back on only sends what's new from now on
+    if new.active and not old.active then new.created_at := now(); end if;
+  end if;
+  new.label := coalesce(nullif(trim(new.label), ''), 'My sublet alert');
+  new.query := nullif(trim(new.query), '');
+  if new.move_in_by is not null and new.stay_until is not null and new.stay_until < new.move_in_by then
+    raise exception 'The "stay until" day has to be after the move-in day'; end if;
+  if new.active and (tg_op = 'INSERT' or not old.active)
+     and (select count(*) from public.saved_searches s where s.user_id = auth.uid() and s.active and s.id <> coalesce(new.id, -1)) >= 5 then
+    raise exception 'You can have 5 alerts on at once. Turn one off first.'; end if;
+  return new;
+end $$;
+drop trigger if exists saved_search_checks on public.saved_searches;
+create trigger saved_search_checks before insert or update on public.saved_searches
+  for each row when (current_user in ('authenticated','anon')) execute function public.saved_search_checks();
+
+alter table public.saved_searches enable row level security;
+drop policy if exists "own searches: read" on public.saved_searches;
+create policy "own searches: read" on public.saved_searches for select to authenticated using (user_id = auth.uid());
+drop policy if exists "own searches: add" on public.saved_searches;
+create policy "own searches: add" on public.saved_searches for insert to authenticated with check (user_id = auth.uid());
+drop policy if exists "own searches: edit" on public.saved_searches;
+create policy "own searches: edit" on public.saved_searches for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
+drop policy if exists "own searches: delete" on public.saved_searches;
+create policy "own searches: delete" on public.saved_searches for delete to authenticated using (user_id = auth.uid());
+revoke all on public.saved_searches from anon;
+grant select, insert, update, delete on public.saved_searches to authenticated;
+
+-- Does a sublet match a saved search? (The Sublets page runs the same rules to show "N match right now".)
+create or replace function public.search_matches(a public.saved_searches, s public.sublets) returns boolean
+language sql immutable as $$
+  select (a.kind is null or s.kind = a.kind)
+     and (a.space is null or s.space = a.space)
+     and (a.beds is null or (case when a.beds >= 4 then s.beds >= 4 else s.beds = a.beds end))
+     and (a.max_price is null or s.price <= a.max_price)
+     and (a.move_in_by is null or s.start_date <= a.move_in_by)
+     and (a.stay_until is null or s.end_date >= a.stay_until)
+     and (not a.lease_only or s.lease_verified)
+     and (a.query is null or strpos(lower(concat_ws(' ', s.title, s.address, s.building_name)), lower(a.query)) > 0)
+     -- walking minutes from Old Main (40.79647, -77.86279), about 20 minutes a mile, like the Sublets page shows
+     and (a.max_walk_min is null or 20 * 3958.8 * 2 * asin(sqrt(
+            power(sin(radians(s.lat - 40.79647) / 2), 2)
+            + cos(radians(40.79647)) * cos(radians(s.lat)) * power(sin(radians(s.lng + 77.86279) / 2), 2))) <= a.max_walk_min)
+$$;
+
+-- What the send-alerts function should email now: new matches for alerts that are due, best first
+-- (Lease checked first, then the cheaper one). Only the service role (the Edge Function) can call it.
+create or replace function public.alerts_due()
+returns table (search_id bigint, user_id uuid, email text, token uuid, label text, frequency text,
+               sublet_id bigint, title text, kind text, space text, building_name text, address text,
+               beds int, baths numeric, price int, orig_price int, start_date date, end_date date,
+               furnished boolean, utilities boolean, lease_verified boolean, photo text, lat double precision, lng double precision)
+language sql stable security definer set search_path = public as $$
+  select a.id, a.user_id, u.email::text, a.token, a.label, a.frequency,
+         s.id, s.title, s.kind, s.space, s.building_name, s.address, s.beds, s.baths, s.price, s.orig_price,
+         s.start_date, s.end_date, s.furnished, s.utilities, s.lease_verified, s.photos[1], s.lat, s.lng
+    from public.saved_searches a
+    join auth.users u on u.id = a.user_id and u.email_confirmed_at is not null
+    join public.sublets s on s.status = 'live' and s.end_date >= public.local_today() and s.user_id <> a.user_id
+   where a.active
+     and (a.frequency = 'instant'
+          or ((a.last_sent_at is null or (a.last_sent_at at time zone 'America/New_York')::date < public.local_today())
+              and extract(hour from now() at time zone 'America/New_York') >= 8))
+     -- only what became visible (or, for lease-checked alerts, got its badge) after the alert was saved
+     and (case when a.lease_only then greatest(s.live_at, s.lease_checked_at) else s.live_at end) > a.created_at
+     and public.search_matches(a, s)
+     and not exists (select 1 from public.alert_sends x where x.user_id = a.user_id and x.sublet_id = s.id)
+   order by a.user_id, s.lease_verified desc, s.price, s.live_at desc
+$$;
+revoke all on function public.alerts_due() from public, anon, authenticated;
+grant execute on function public.alerts_due() to service_role;
+
+-- The unsubscribe link in every alert email (works without signing in; the token is the key)
+create or replace function public.alert_unsubscribe(p_token uuid, p_all boolean default false)
+returns int language plpgsql security definer set search_path = public as $$
+declare uid uuid; n int;
+begin
+  select a.user_id into uid from public.saved_searches a where a.token = p_token;
+  if uid is null then return 0; end if;
+  update public.saved_searches a set active = false
+   where a.active and (a.token = p_token or (p_all and a.user_id = uid));
+  get diagnostics n = row_count;
+  return n;
+end $$;
+revoke all on function public.alert_unsubscribe(uuid, boolean) from public;
+grant execute on function public.alert_unsubscribe(uuid, boolean) to anon, authenticated, service_role;
+
+-- How many students are waiting for alerts, for rhedr.com/admin (demand data)
+create or replace function public.alert_stats()
+returns table (active_alerts bigint, students bigint, sublets_sent_7d bigint)
+language plpgsql stable security definer set search_path = public as $$
+begin
+  if not public.is_admin() then raise exception 'Only Rhedr admins can see this'; end if;
+  return query select (select count(*) from public.saved_searches where active),
+                      (select count(distinct user_id) from public.saved_searches where active),
+                      (select count(*) from public.alert_sends where sent_at > now() - interval '7 days');
+end $$;
+revoke all on function public.alert_stats() from public, anon;
+grant execute on function public.alert_stats() to authenticated;
+
+-- The key the scheduled job sends to send-alerts, so nobody else can make it send. Made once, here.
+create table if not exists public.alert_job (
+  id     int primary key default 1 check (id = 1),
+  secret text not null default encode(extensions.gen_random_bytes(24), 'hex')
+);
+insert into public.alert_job (id) values (1) on conflict (id) do nothing;
+alter table public.alert_job enable row level security;   -- no policies: only the database and the Edge Function read it
+revoke all on public.alert_job from anon, authenticated;
+
+-- 13. Run send-alerts every 15 minutes --------------------------------------------
+-- Uses two Supabase extensions: pg_cron (scheduled jobs) and pg_net (web requests from the database).
+create extension if not exists pg_cron;
+create extension if not exists pg_net with schema extensions;
+select cron.unschedule(jobid) from cron.job where jobname = 'send-alerts';
+select cron.schedule('send-alerts', '*/15 * * * *', $job$
+  select net.http_post(
+    url := 'https://jszujotoetfhywyshxjq.supabase.co/functions/v1/send-alerts',
+    headers := jsonb_build_object('Content-Type', 'application/json',
+                                  'x-rhedr-job', (select secret from public.alert_job where id = 1)),
+    body := '{}'::jsonb,
+    timeout_milliseconds := 60000)
+$job$);

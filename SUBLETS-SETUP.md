@@ -88,6 +88,40 @@ Without this, every proof simply waits for you to open the file and decide. With
 - **Require lease proof to post**: off by default. Off means proof is optional and earns the badge. On means every new post needs a proof and stays hidden until you approve it. You can flip it back any time.
 - **Approve green checks automatically**: off by default. On means a proof where the name, address, dates and rent all match gets the badge right away without you. Yellow and red always wait for you. Leave it off until you've seen the AI get a few right.
 
+## 8. Sublet alerts
+
+Students click **Get alerts** on the Sublets page, pick what they want (room or whole place, bedrooms, max price, walk to Old Main, dates, building) and choose **once a day** or **as they're posted**. When a new sublet matches, the `send-alerts` Edge Function emails them through Resend from `noreply@send.rhedr.com`. Alerts are set to **lease-checked sublets only** unless the student unticks it, and lease-checked sublets always come first (cheaper first when two tie). Nobody gets the same sublet twice, and nobody gets alerts about their own post. Every email has links to turn off that alert or all alerts, and Gmail and Outlook show their own one-click unsubscribe too.
+
+### 8a. Update the database
+Run the latest `supabase/setup.sql` in the [SQL Editor](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/sql/new), the same way as step 7a. It adds the alert tables and schedules `send-alerts` to run every 15 minutes (it uses the `pg_cron` and `pg_net` extensions, which the file turns on).
+
+### 8b. A Resend key for the function
+1. In [Resend API Keys](https://resend.com/api-keys) (signed in as boaz@rhedr.com), click **Create API Key**. Name `rhedr-alerts`, permission **Sending access**, domain `send.rhedr.com`. Copy the key (starts with `re_`).
+2. In Supabase [Edge Functions secrets](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/functions/secrets), add a secret named `RESEND_API_KEY` with that key. Click **Save**.
+
+### 8c. Deploy the function
+1. [Edge Functions](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/functions), **Deploy a new function**, **Via Editor**.
+2. Name it exactly `send-alerts`. Delete the example code, paste the whole file [supabase/functions/send-alerts/index.ts](https://github.com/Monkey-D-Wayne/hv-housing-and-subleasing/blob/main/supabase/functions/send-alerts/index.ts), click **Deploy function**.
+3. Open the function's **Details** (or **Settings**) tab and turn **off** the JWT check (called "Enforce JWT verification" or "Verify JWT"). Save. The scheduled job and email apps' unsubscribe buttons can't sign in, so the function checks its own private key instead.
+
+### 8d. Send yourself a test
+1. On https://rhedr.com/sublets, sign in with your psu.edu email, click **Get alerts** and save any alert.
+2. In the SQL Editor, run:
+   ```sql
+   select net.http_post(
+     url := 'https://jszujotoetfhywyshxjq.supabase.co/functions/v1/send-alerts',
+     headers := jsonb_build_object('Content-Type','application/json','x-rhedr-job',(select secret from public.alert_job)),
+     body := '{"test": true}'::jsonb);
+   ```
+   That emails the newest alert's owner a sample (subject starts with "[Test]") with up to 3 live sublets. It needs at least one live sublet. Nothing is marked as sent.
+3. To see what the function answered, run `select status_code, content from net._http_response order by id desc limit 1;`
+4. Use `{"dry_run": true}` instead of `{"test": true}` to see who would get what right now without sending anything.
+
+### Running alerts
+- How many students have alerts on: `select * from public.alert_stats();` while signed in as an admin, or **Table Editor**, `saved_searches`.
+- Every alert email shows in Resend under **Emails**, with whether it was delivered.
+- To pause all alert emails: `select cron.unschedule('send-alerts');`. Running `setup.sql` again turns them back on.
+
 ## Running it day to day
 - **Listings waiting for review** (they mentioned wire transfers, WhatsApp, "I'm out of the country", or got 3 reports): **Table Editor**, `sublets`, click **Filter**, `status` equals `review`. Double-click the status cell and change it to `live` (looks fine) or `removed` (scam).
 - **Lease checks**: open https://rhedr.com/admin (see section 7). Each proof shows the listing next to what the AI read, with green, yellow or red. Press **Approve** or pick a reason and press **Reject**. The file is deleted right after.

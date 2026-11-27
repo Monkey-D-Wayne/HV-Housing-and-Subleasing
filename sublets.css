@@ -103,3 +103,11 @@
 .mya{flex-wrap:wrap}
 .mya label.btn{padding:7px 12px;font-size:13px;cursor:pointer}
 .mya label.busy{opacity:.6;pointer-events:none}
+/* sublet alerts */
+.alertbtn{padding:8px 14px;font-size:14px;margin-left:auto}
+.seg.seg3{grid-template-columns:1fr 1fr 1fr}
+.matchnow{margin:0;font-size:14px;color:var(--muted)}.matchnow b{color:var(--ink)}
+.myalerts-h{margin:22px 0 10px;font-size:16px}
+.arow .myt{min-width:200px}
+.st-off{color:var(--muted)!important}
+@media (max-width:600px){.seg.seg3{grid-template-columns:1fr 1fr 1fr}.alertbtn{margin-left:0;width:100%}}
