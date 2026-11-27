@@ -7922,7 +7922,6 @@
 "lat": 40.796605,
 "lng": -77.884964,
 "source": "af",
-"grad": true,
 "checked": "Nov 27, 2026",
 "note": "General apartment community (not student-focused), with 12-month and short-term leases. Water, sewer and trash included."
 },
@@ -8368,7 +8367,6 @@
 "lat": 40.779179,
 "lng": -77.856064,
 "source": "ocp",
-"grad": true,
 "checked": "Nov 27, 2026",
 "note": "Formerly listed as Imperial Towers. General apartment community managed by Berger Communities, about 3 miles from campus on the CATA bus route."
 },
@@ -8806,9 +8804,8 @@
 "lat": 40.785713,
 "lng": -77.848541,
 "source": "ocp",
-"grad": true,
 "checked": "Nov 27, 2026",
-"note": "Penn State's listing says it's for graduate students and faculty/staff. Gas, cable, internet, trash and water/sewer are included. Managed by Brickwork Properties."
+"note": "Penn State's Off-Campus site lists it as convenient for graduate students and faculty/staff, but nothing restricts undergrads. Gas, cable, internet, trash and water/sewer are included. Managed by Brickwork Properties."
 },
 {
 "id": 84,
@@ -8972,8 +8969,7 @@
 "manager": "The Apartment Store",
 "lease_label": "2027-2028 Full Year",
 "checked": "Nov 27, 2026",
-"grad": true,
-"note": "The landlord describes it as perfect for graduate students or young professionals."
+"note": "The landlord describes it as perfect for graduate students or young professionals, but undergrads aren't excluded."
 },
 {
 "id": 86,
@@ -12090,12 +12086,368 @@
 0,
 3
 ],
-"price": "$1,388–$2,517 per unit",
-"ppm": 839,
+"price": "$1,388–$2,517 per unit / mo",
+"ppm": 660,
 "est": true,
 "lat": 40.823325,
 "lng": -77.891652,
-"source": "ocp"
+"source": "web",
+"plans": [
+{
+"name": "Studio Parkgate",
+"beds": 0,
+"baths": "1",
+"sqft": 418,
+"price": "From $1,388 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1388,
+"whole": true
+}
+],
+"note": "Available now"
+},
+{
+"name": "Studio Hillside",
+"beds": 0,
+"baths": "1",
+"sqft": 440,
+"price": "From $1,529 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1529,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "Studio Cricklewood",
+"beds": 0,
+"baths": "1",
+"sqft": 378,
+"price": "From $1,418 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1418,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "1 Bed Hillside",
+"beds": 1,
+"baths": "1",
+"sqft": 781,
+"price": "From $1,715 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1715,
+"whole": true
+}
+],
+"note": "Available now"
+},
+{
+"name": "1 Bed Parkgate (W/D)",
+"beds": 1,
+"baths": "1",
+"sqft": 816,
+"price": "From $1,612 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1612,
+"whole": true
+}
+],
+"note": "Available now"
+},
+{
+"name": "1 Bed Foxrun (W/D)",
+"beds": 1,
+"baths": "1",
+"sqft": 863,
+"price": "From $1,679 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1679,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "1 Bed Cricklewood",
+"beds": 1,
+"baths": "1",
+"sqft": 799,
+"price": "From $1,509 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1509,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "1 Bed Wildridge (W/D)",
+"beds": 1,
+"baths": "1",
+"sqft": 863,
+"price": "From $1,596 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1596,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "1 Bed Squirrel Run (W/D)",
+"beds": 1,
+"baths": "1",
+"sqft": 750,
+"price": "From $1,716 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1716,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "1 Bed Highwoods",
+"beds": 1,
+"baths": "1",
+"sqft": 905,
+"price": "From $1,770 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1770,
+"whole": true
+}
+],
+"note": "Available soon"
+},
+{
+"name": "2 Bed Cricklewood",
+"beds": 2,
+"baths": "1",
+"sqft": 946,
+"price": "From $1,775 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1775,
+"whole": true
+},
+{
+"n": 2,
+"pp": 888,
+"unit": 1775
+}
+],
+"note": "Available now"
+},
+{
+"name": "2 Bed Parkgate (W/D)",
+"beds": 2,
+"baths": "1.5",
+"sqft": 921,
+"price": "From $1,790 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1790,
+"whole": true
+},
+{
+"n": 2,
+"pp": 895,
+"unit": 1790
+}
+],
+"note": "Available now"
+},
+{
+"name": "2 Bed Wildridge (W/D)",
+"beds": 2,
+"baths": "1.5",
+"sqft": 1066,
+"price": "From $1,855 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1855,
+"whole": true
+},
+{
+"n": 2,
+"pp": 928,
+"unit": 1855
+}
+],
+"note": "Available now"
+},
+{
+"name": "2 Bed Squirrel Run (W/D)",
+"beds": 2,
+"baths": "1",
+"sqft": 970,
+"price": "From $1,739 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1739,
+"whole": true
+},
+{
+"n": 2,
+"pp": 870,
+"unit": 1739
+}
+],
+"note": "Available soon"
+},
+{
+"name": "2 Bed Hillside",
+"beds": 2,
+"baths": "2",
+"sqft": 1182,
+"price": "From $1,903 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1903,
+"whole": true
+},
+{
+"n": 2,
+"pp": 952,
+"unit": 1903
+}
+],
+"note": "Available soon"
+},
+{
+"name": "2 Bed Highwoods (1,162 sq ft)",
+"beds": 2,
+"baths": "2",
+"sqft": 1162,
+"price": "From $2,122 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 2122,
+"whole": true
+},
+{
+"n": 2,
+"pp": 1061,
+"unit": 2122
+}
+],
+"note": "Available soon"
+},
+{
+"name": "2 Bed Highwoods",
+"beds": 2,
+"baths": "2",
+"sqft": 1240,
+"price": "From $2,167 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 2167,
+"whole": true
+},
+{
+"n": 2,
+"pp": 1084,
+"unit": 2167
+}
+],
+"note": "Available now"
+},
+{
+"name": "3 Bed Parkgate (W/D)",
+"beds": 3,
+"baths": "1.5",
+"sqft": 1081,
+"price": "From $1,980 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 1980,
+"whole": true
+},
+{
+"n": 3,
+"pp": 660,
+"unit": 1980
+}
+],
+"note": "Available now"
+},
+{
+"name": "3 Bed Highwoods",
+"beds": 3,
+"baths": "2",
+"sqft": 1510,
+"price": "From $2,287 / mo (whole unit)",
+"page": "https://www.forrentuniversity.com/pa/state-college/toftrees/3wtdz3e",
+"rates": [
+{
+"n": 1,
+"pp": 2287,
+"whole": true
+},
+{
+"n": 3,
+"pp": 762,
+"unit": 2287
+}
+],
+"note": "Available soon"
+}
+],
+"manager": "Berger Communities",
+"site": "https://www.toftrees.net/",
+"lease": "3 to 12 months",
+"checked": "2026-11-27",
+"note": "Base rents from ForRent and Apartments.com (they match), Nov 27, 2026; the building's own site posts no prices. Plans show starting rent; some units cost up to about $250 more. Extra monthly fees: admin $13, utility $20, internet $65. Water, sewer, trash and A/C included. Application $65 and reservation fee $150 per person. A general apartment community about 3 miles from campus on the CATA bus route."
 },
 {
 "id": 101,
@@ -13417,9 +13769,8 @@
 }
 ],
 "manager": "The Apartment Store",
-"grad": true,
 "checked": "Nov 27, 2026",
-"note": "The landlord says it's for graduate students or working professionals. One furnished 2-bed townhouse; a $500/mo utility fee covers water, sewer, trash and more."
+"note": "The landlord says it's perfect for graduate students or working professionals, but undergrads aren't excluded. One furnished 2-bed townhouse; a $500/mo utility fee covers water, sewer, trash and more."
 },
 {
 "id": 213,
@@ -19251,5 +19602,115 @@
 "grad": true,
 "checked": "Nov 27, 2026",
 "note": "Some Lion's Gate units are leased only to graduate students and professionals. Includes gas heat, water, sewer, trash, internet and two parking spaces; residents pay electric and cable. The building's other units are listed under Apartments."
+},
+{
+"id": 66,
+"name": "Marion Place",
+"address": "135 E Nittany Ave",
+"type": "apartment",
+"beds": [
+1,
+2
+],
+"price": "$1,031–$1,977 per person / mo",
+"ppm": 1031,
+"est": false,
+"lat": 40.792686,
+"lng": -77.856906,
+"source": "site",
+"site": "https://marionplace.com/",
+"photos": [
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4866.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4869.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4901.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4931.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A4966.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5639.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5642.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5660.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5663.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5692.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5711.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5729.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5736.jpg",
+"page": "https://marionplace.com/"
+},
+{
+"url": "https://marionplace.com/wp-content/uploads/2018/07/8L4A5793.jpg",
+"page": "https://marionplace.com/"
+}
+],
+"plans": [
+{
+"name": "Two Bedroom",
+"beds": 2,
+"price": "$1,031 / person",
+"img": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Floorplan-2BR.png",
+"rates": [
+{
+"n": 2,
+"pp": 1031,
+"was": null
+}
+],
+"note": "$2062-$2267/month per unit",
+"page": "https://marionplace.com/apartments/"
+},
+{
+"name": "One Bedroom with Home Office",
+"beds": 1,
+"price": "$1,977 / person",
+"img": "https://marionplace.com/wp-content/uploads/2018/07/AR_Marion_Floorplan-1BR.png",
+"rates": [
+{
+"n": 1,
+"pp": 1977,
+"was": null
+}
+],
+"note": "$1977-$2199/month per unit",
+"page": "https://marionplace.com/apartments/"
+}
+],
+"grad": true,
+"checked": "2026-11-27",
+"note": "Graduate and professional only: the building's site says it doesn't rent to undergraduates (grad students, professionals and retirees)."
 }
 ]
