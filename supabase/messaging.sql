@@ -117,9 +117,9 @@ begin
   -- a number spelled out or spaced out: "eight one four five five five ..." (7 or more digits in a row)
   t := regexp_replace(t, '(\y(zero|oh|one|two|three|four|five|six|seven|eight|nine|\d)\y[\s,.-]+){6,}\y(zero|oh|one|two|three|four|five|six|seven|eight|nine|\d)\y', h, 'gi');
   -- payment and social handles: "venmo @sam-l", "cash app $saml", "my insta is sam.l", "snapchat: saml", "my name on ig is sam"
-  t := regexp_replace(t, '\y(venmo|cash\s?app|zelle|paypal|pay\s?pal|apple\s?pay|insta(\s?gram)?|the\s+gram|snap\s?chat|whats\s?app|telegram|discord|kik|group\s?me|imessage|face\s?book|fb|messenger|tik\s?tok|twitter|threads|linked\s?in|signal\s+app|wechat|reddit|bereal|ig|sc)\y[\s:=-]*((is|me|at|on|to|name|user\s?name|handle|id|account|@)\y[\s:=-]*)*' || sw || '(@|\$)?[A-Za-z0-9._#-]*[A-Za-z0-9_]', h, 'gi');
+  t := regexp_replace(t, '\y(venmo|cash\s?app|zelle|paypal|pay\s?pal|apple\s?pay|insta(\s?gram)?|the\s+gram|gram|snap\s?chat|whats\s?app|telegram|discord|kik|group\s?me|imessage|face\s?book|fb|messenger|tik\s?tok|twitter|threads|linked\s?in|signal\s+app|wechat|reddit|bereal|ig|sc)\y[\s:=-]*((is|me|at|on|to|name|user\s?name|handle|id|account|@)\y[\s:=-]*)*' || sw || '(@|\$)?[A-Za-z0-9._#-]*[A-Za-z0-9_]', h, 'gi');
   -- "sam_lee on insta", "saml on snap"
-  t := regexp_replace(t, '(?<![A-Za-z0-9._@$-])' || sw || '[@$]?[A-Za-z0-9._-]*[A-Za-z0-9_]{3,}\s+(on|at|via)\s+(venmo|cash\s?app|zelle|paypal|insta(\s?gram)?|the\s+gram|ig|snap(\s?chat)?|sc|whats\s?app|telegram|discord|group\s?me|face\s?book|fb|tik\s?tok|twitter|linked\s?in)\y', h, 'gi');
+  t := regexp_replace(t, '(?<![A-Za-z0-9._@$-])' || sw || '[@$]?[A-Za-z0-9._-]*[A-Za-z0-9_]{3,}\s+(on|at|via)\s+(venmo|cash\s?app|zelle|paypal|insta(\s?gram)?|the\s+gram|gram|ig|snap(\s?chat)?|sc|whats\s?app|telegram|discord|group\s?me|face\s?book|fb|tik\s?tok|twitter|linked\s?in)\y', h, 'gi');
   -- "snap: name", "snap is name", "my snap name is name"
   t := regexp_replace(t, '\ysnap\s*(:|@|\yis\y|\yname\y|\yuser\s?name\y|\yhandle\y)[\s:@]*((is|name)\y[\s:@]*)*' || sw || '[A-Za-z0-9._-]*[A-Za-z0-9_]', h, 'gi');
   -- "my username is sam.lee", "handle: saml"
@@ -274,6 +274,13 @@ begin
   return t;
 end $$;
 
+-- A message that's just one word that could be a username ("boazwc", "sam.lee"), not "ok" or "thanks"
+create or replace function public.contact_lone_word(t text) returns boolean
+language sql immutable as $f$
+  select lower(coalesce(t, '')) ~ '^\s*[a-z][a-z0-9._-]{2,19}[\s.!?]*$'
+         and lower(coalesce(t, '')) !~ '^\s*(ok|okay|yes|yeah|yep|yup|no|nope|nah|thanks|thank|thx|ty|cool|great|perfect|sure|lol|haha+|hah|nice|awesome|bet|hi|hello|hey|yo|sounds|deal|done|same|hmm+|wow|omg|sorry|np|true|agreed|definitely|absolutely|maybe|interested|available|when|where|what|why|how|who|which|please|pls|gotcha|alright|right|totally|exactly|congrats|welcome|bye|later|tomorrow|today|tonight|morning|afternoon|evening)[\s.!?]*$'
+$f$;
+
 -- Worth a quick AI look: numbers, contact words, odd spacing or lookalike letters
 create or replace function public.contact_suspicious(t text) returns boolean
 language plpgsql immutable as $$
@@ -285,6 +292,14 @@ begin
       or (select count(*) from regexp_matches(v, '(?<![a-z])(zero|oh|one|two|three|four|five|six|seven|eight|nine)(?![a-z])', 'g')) >= 3
       or (select count(*) from regexp_matches(v, '(?<![a-z0-9])[a-z0-9](?![a-z0-9])', 'g')) >= 5
       or v ~ '[@$#]|https?|www|\.\s*(com|net|org|edu|me|io)'
+      -- "X is Y" where Y could be a username ("gramercy is boazwc"), or a lone word that could be one ("boaz")
+      or v ~ '(?<![a-z])(is|=|:)\s*@?[a-z][a-z0-9._-]{2,}[\s.!]*$'
+         and substring(v from '([a-z][a-z0-9._-]{2,})[\s.!]*$') !~ '^(nice|good|great|fine|available|open|free|ready|mine|yours|here|there|done|sold|taken|cheap|close|small|big|clean|quiet|okay|true|right|wrong|perfect|awesome|amazing|included|furnished|new|old|cool|correct|possible|negotiable|flexible|due|late|soon|later|tomorrow|today|tonight|now|it|that|this|what|when|where|who|why|how|which|yes|no)$'
+      or public.contact_lone_word(v)
+
+      -- handle-like bits: bo-az-wc, s.a.m, sam_lee_22
+      or v ~ '(?<![a-z0-9])[a-z0-9]{1,4}([-._][a-z0-9]{1,4}){2,}(?![a-z0-9])' and v !~ '^[0-9.\-/ ]*$'
+      or v ~ '(?<![a-z0-9])[a-z]+[-_.][a-z0-9]+(?![a-z0-9])' and char_length(v) <= 12
       or v ~ '(?<![a-z])(numbers?|num|cell|phone|call|text|txt|sms|email|e-mail|mail|contact|reach|dm|pm|handle|user\s?name|add me|find me|look me up|search|follow|account|socials?|link|site|website|dot|com|edu|psu|gmail|outlook|yahoo|icloud|snap\w*|insta\w*|ig|venmo|zelle|cash\s?app|paypal|whats\s?app|telegram|discord|group\s?me|facebook|fb|linkedin|tiktok|twitter|hmu|hit me up|off (of )?rhedr|outside|backwards|reverse|digits)(?![a-z])';
 end $$;
 
@@ -320,7 +335,7 @@ begin
     if char_length(regexp_replace(g, '\s', '', 'g')) >= 5 and (
          public.mask_contact(g) is distinct from trim(g) or public.contact_found(g, true)
          or lower(regexp_replace(public.contact_deob(g), '[^a-z0-9@$]', '', 'g'))
-            ~ '(@|insta|snap|venmo|zelle|cashapp|paypal|whatsapp|telegram|discord|groupme|gmail|yahoo|outlook|hotmail|icloud|psuedu|dotcom|dotedu)') then
+            ~ '(@|insta|snap|venmo|zelle|cashapp|paypal|whatsapp|telegram|discord|groupme|facebook|linkedin|tiktok|twitter|gmail|yahoo|outlook|hotmail|icloud|psuedu|dotcom|dotedu)') then
       hit := true; end if;
   end loop;
   if not hit then return false; end if;
@@ -378,19 +393,26 @@ begin
   if (select count(*) from public.messages x where x.sender_id = new.sender_id and x.created_at > now() - interval '1 day') >= 400 then
     raise exception 'That''s the message limit for today. Try again tomorrow.'; end if;
   if c.agreed_at is null then
-    -- one or two letters at a time, over and over, is how people spell out a number or email past the filter
-    if char_length(new.body) <= 2 and (
-         select count(*) = 3 and bool_and(char_length(x.body) <= 2)
-           from (select m2.body from public.messages m2
-                  where m2.conversation_id = new.conversation_id and m2.sender_id = new.sender_id
-                    and m2.created_at > now() - interval '10 minutes'
+    -- a few letters at a time, over and over, is how people spell out a number or email past the filter:
+    -- a 4th very short message (5 characters or less) in a row, with no reply from the other student in between
+    if char_length(new.body) <= 5 and (
+         select count(*) = 3 and bool_and(x.sender_id = new.sender_id and char_length(x.body) <= 5)
+           from (select m2.sender_id, m2.body from public.messages m2
+                  where m2.conversation_id = new.conversation_id and m2.created_at > now() - interval '10 minutes'
                   order by m2.id desc limit 3) x) then
-      raise exception 'Please write your message in one go. Sending a letter at a time is blocked, because it''s a common way to sneak contact info past Rhedr.';
+      raise exception 'Please write your message in one go. Sending a few letters at a time is blocked, because it''s a common way to sneak contact info past Rhedr.';
     end if;
     m := public.mask_message(new.body);
     if m is distinct from new.body then new.masked := true; new.body := m; end if;
     -- and the same check over your last few messages read together
     if not new.masked and public.mask_split_contact(new) then new.masked := true; new.body := '[contact info hidden]'; end if;
+    -- right after Rhedr hid your last message, a lone username-like word ("boazwc") is hidden too
+    if not new.masked and public.contact_lone_word(new.body) and exists (
+         select 1 from public.messages x
+          where x.id = (select max(id) from public.messages where conversation_id = new.conversation_id)
+            and x.sender_id = new.sender_id and x.masked and x.created_at > now() - interval '10 minutes') then
+      new.masked := true; new.body := '[contact info hidden]';
+    end if;
     -- passed every rule but looks like it might be trying: a quick AI look right after it's saved (section C2)
     if not new.masked and (public.contact_suspicious(new.body) or (char_length(new.body) <= 6 and exists (
          select 1 from public.messages x where x.conversation_id = new.conversation_id and x.sender_id = new.sender_id
