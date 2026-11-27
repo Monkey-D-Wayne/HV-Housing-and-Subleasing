@@ -7,6 +7,8 @@ const DEMO=!(CFG.supabaseUrl&&CFG.supabaseKey);
 const SUPABASE_JS="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js";
 const OM={lat:40.79647,lng:-77.86279}; // Old Main
 const PSU_RE=/^[^@\s]+@psu\.edu$/i;
+// Rhedr admins (the "admins" table in Supabase) can sign in too, for testing. The database checks this again.
+const ADMIN_EMAILS=["boaz@rhedr.com"];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt=n=>"$"+Number(n).toLocaleString("en-US");
@@ -314,7 +316,7 @@ function openAuth(then){afterAuth=then||null;const d=$("#auth");
   if(!d.open)d.showModal();d.querySelector(".close").onclick=()=>d.close();
   let email="";const f1=$("#f1"),f2=$("#f2");
   f1.onsubmit=async e=>{e.preventDefault();email=f1.email.value.trim().toLowerCase();const er=$("#e1");er.hidden=true;
-    if(!PSU_RE.test(email)){er.textContent="Use your @psu.edu email, like abc1234@psu.edu.";er.hidden=false;return}
+    if(!PSU_RE.test(email)&&!ADMIN_EMAILS.includes(email)){er.textContent="Use your @psu.edu email, like abc1234@psu.edu.";er.hidden=false;return}
     const btn=f1.querySelector("button");btn.disabled=true;btn.textContent="Sending…";
     try{await API.sendCode(email);f1.hidden=true;f2.hidden=false;$("#sent").innerHTML=`We sent a code to <b>${esc(email)}</b>. Check your inbox and Junk. It can take a few minutes.`;f2.code.focus()}
     catch(x){er.textContent=/rate|limit|seconds/i.test(x.message)?"Too many codes asked for. Wait a minute, then try again.":x.message;er.hidden=false}finally{btn.disabled=false;btn.textContent="Send my code"}};
