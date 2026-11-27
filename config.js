@@ -10,7 +10,7 @@
 // and anything you post is saved only in your own browser.
 // The Supabase "publishable" (or "anon public") key is safe to put here; never paste the "secret" or "service_role" key.
 window.RHEDR_CONFIG = {
-  googleMapsApiKey: "AIzaSyA4WLCjx5R3aZYGH69Yut3f-8l-qEfP5SU",
+  googleMapsApiKey: "AIzaSyC2-5dsJpXNBIvP3UGIEIF84YqNnTaRIGo",
   googleMapId: "DEMO_MAP_ID",
   supabaseUrl: "https://jszujotoetfhywyshxjq.supabase.co",
   supabaseKey: "sb_publishable_fqP0hlqVyXpIS6cqOoBj2Q_2_HdH7Lp"
