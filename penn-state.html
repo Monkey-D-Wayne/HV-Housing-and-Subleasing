@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Penn State housing · Rhedr</title>
+<meta name="description" content="Every place to live near Penn State University Park on Rhedr: apartments, student complexes, townhouses, rooms and dorms on one map.">
+<meta property="og:site_name" content="Rhedr">
+<meta property="og:title" content="Penn State housing · Rhedr">
+<meta property="og:description" content="Every place to live near Penn State University Park on one map.">
+<meta property="og:url" content="https://rhedr.com/penn-state">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header id="head">
+  <div class="bar">
+    <div class="brandwrap">
+      <a class="brand" href="./" aria-label="Rhedr home"><svg class="logo" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M8 15.2 16 8.5l8 6.7V24a1 1 0 0 1-1 1h-4.6v-5.2h-4.8V25H9a1 1 0 0 1-1-1z" fill="var(--accent-ink)"/></svg>Rhedr</a>
+      <a class="campus" href="./#campuses" title="Change campus">Penn State <small>University Park</small><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+    </div>
+    <div class="search" role="search">
+      <label for="q" class="grow"><span>Search</span><input id="q" type="search" placeholder="Building or street"></label>
+      <label for="maxp"><span>Max per person / mo</span><span class="rangebox"><input id="maxp" type="range" min="400" max="2000" step="50" value="2000"><output id="maxpv">Any</output></span></label>
+      <label for="beds"><span>Bedrooms</span><select id="beds"><option value="0">Any</option><option value="1">Studio / 1</option><option value="2">2</option><option value="3">3</option><option value="4">4+</option></select></label>
+      <label for="sort"><span>Sort</span><select id="sort"><option value="dist">Closest to Old Main</option><option value="price">Lowest price</option><option value="name">Name</option></select></label>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+</header>
+
+<main>
+  <section class="list">
+    <div class="listhead">
+      <h1 id="count">Places near Penn State</h1>
+      <p>State College, PA · Fall 2026 search</p>
+    </div>
+    <div class="notice" role="note">
+      <b>Early preview.</b> Names, addresses and listed prices come from Penn State's Off-Campus Housing site, public listing sites and Penn State Housing's 2026–27 rates (checked Nov 25, 2026). Photos come from each building's own website and are credited there. Availability is not confirmed.
+    </div>
+    <div class="grid" id="grid"></div>
+    <footer class="foot">
+      <span>© 2026 Rhedr</span><a href="./">All campuses</a><a href="penn-state">Penn State housing</a><a href="sublets">Penn State sublets</a>
+      <span>Rhedr is independent and is not affiliated with, endorsed by, or sponsored by The Pennsylvania State University.</span>
+    </footer>
+  </section>
+  <aside class="mapwrap" aria-label="Map">
+    <div id="map"></div>
+  </aside>
+</main>
+<button class="maptoggle" id="maptoggle"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>Show map</span></button>
+
+<dialog id="dlg"><div class="dlg" id="dlgbody"></div></dialog>
+<dialog id="lb" aria-label="Photos"><div class="lbwrap"><div class="lbtop"><span class="lbcap"></span><button class="lbclose" aria-label="Close photos">×</button></div><div class="lbstage"><button class="lbprev" aria-label="Previous photo">‹</button><div class="lbimg"></div><button class="lbnext" aria-label="Next photo">›</button></div><div class="lbthumbs"></div></div></dialog>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

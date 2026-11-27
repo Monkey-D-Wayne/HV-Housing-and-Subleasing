@@ -57,7 +57,7 @@ function filtered(){
    .sort((a,b)=>state.sort==="price"?(a.ppm??9e9)-(b.ppm??9e9):state.sort==="name"?a.name.localeCompare(b.name):a.mi-b.mi);
 }
 function renderTabs(){
-  $("#tabs").innerHTML=TYPES.map(t=>{const n=t.k==="all"?ALL.length:ALL.filter(l=>l.type===t.k).length;return `<button class="tab" role="tab" aria-selected="${state.type===t.k}" data-k="${t.k}"><svg viewBox="0 0 24 24" aria-hidden="true">${t.ico}</svg>${t.label}<span class="n">${n}</span></button>`}).join("")+`<span class="tabsep" aria-hidden="true"></span><a class="tab sublets" href="sublets.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h13l-3-3M20 17H7l3 3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Sublets<span class="n">Students</span></a>`;
+  $("#tabs").innerHTML=TYPES.map(t=>{const n=t.k==="all"?ALL.length:ALL.filter(l=>l.type===t.k).length;return `<button class="tab" role="tab" aria-selected="${state.type===t.k}" data-k="${t.k}"><svg viewBox="0 0 24 24" aria-hidden="true">${t.ico}</svg>${t.label}<span class="n">${n}</span></button>`}).join("")+`<span class="tabsep" aria-hidden="true"></span><a class="tab sublets" href="sublets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h13l-3-3M20 17H7l3 3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Sublets<span class="n">Students</span></a>`;
 }
 function renderList(){
   rows=filtered();
