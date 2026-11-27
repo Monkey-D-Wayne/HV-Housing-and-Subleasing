@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Lease checks · Rhedr admin</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="sublets.css">
+<style>
+  body{min-height:100%}
+  .adm{max-width:980px;margin:0 auto;padding:20px 16px 60px}
+  .adm h1{font-family:var(--display);font-size:26px;letter-spacing:-.02em;margin:0 0 4px}
+  .adm h2{font-family:var(--display);font-size:18px;margin:28px 0 10px}
+  .adm .sub{color:var(--muted);margin:0 0 18px}
+  .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .stack{display:flex;flex-direction:column;gap:10px;max-width:360px}
+  .stack label{display:flex;flex-direction:column;gap:4px;font-weight:600;font-size:14px}
+  .stack input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg)}
+  .sets{display:grid;gap:12px}
+  .set{display:flex;gap:12px;align-items:flex-start}
+  .set input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex:none}
+  .set b{display:block}.set span{color:var(--muted);font-size:14px}
+  .tabsw{display:flex;gap:6px;margin:24px 0 12px}
+  .tabsw button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:600}
+  .tabsw button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .chk{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+  .chk .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+  .chk h3{margin:0;font-size:16px}
+  .chk .meta{color:var(--muted);font-size:13.5px}
+  .res{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:3px 10px}
+  .res-green{background:var(--ok-bg);color:var(--ok)}.res-yellow{background:var(--warn-bg);color:var(--warn-ink)}.res-red{background:var(--stop-bg);color:var(--stop-ink)}.res-waiting{background:var(--tag);color:var(--tag-ink)}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  @media (max-width:640px){.cols{grid-template-columns:1fr}}
+  .cols dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:14px}
+  .cols dt{color:var(--muted)}.cols dd{margin:0;overflow-wrap:anywhere}
+  .cols h4{margin:0 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .reasons{margin:10px 0 0;padding-left:18px;font-size:14px}
+  .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
+  .acts .btn{padding:8px 14px;font-size:14px}
+  .acts select{border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--bg);max-width:100%}
+  .btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+  .empty{color:var(--muted)}
+  .topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="adm">
+  <div class="topline"><div><h1>Lease checks</h1><p class="sub">Rhedr admin. Approve or reject lease proofs, and choose whether they're required.</p></div><button class="btn" id="out" hidden>Sign out</button></div>
+  <div id="app"><p class="empty">Loading…</p></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

@@ -99,3 +99,7 @@
   .search{order:3}
 }
 @media (max-width:600px){.two,.three,.seg{grid-template-columns:1fr}.dlg.form .body{padding:18px 16px}.earn ul{grid-template-columns:1fr}}
+.leasenote{color:var(--warn-ink)!important;font-size:12.5px!important}
+.mya{flex-wrap:wrap}
+.mya label.btn{padding:7px 12px;font-size:13px;cursor:pointer}
+.mya label.busy{opacity:.6;pointer-events:none}
