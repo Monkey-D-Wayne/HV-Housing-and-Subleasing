@@ -135,7 +135,7 @@ Only the two students in a chat can read it. You see a chat only when one of the
 ### 9b. Deploy the email function
 1. [Edge Functions](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/functions), **Deploy a new function**, **Via Editor**.
 2. Name it exactly `chat-emails`. Delete the example code, paste the whole file [supabase/functions/chat-emails/index.ts](https://github.com/Monkey-D-Wayne/hv-housing-and-subleasing/blob/main/supabase/functions/chat-emails/index.ts), click **Deploy function**.
-3. In the function's **Details** (or **Settings**) tab, turn **off** "Verify JWT" and save, the same as `send-alerts`. It uses the same `RESEND_API_KEY` secret, which is already set.
+3. In the function's **Details** (or **Settings**) tab, turn **off** "Verify JWT" and save, the same as `send-alerts`. It uses the same `RESEND_API_KEY` secret (emails) and `ANTHROPIC_API_KEY` secret (the AI check on suspicious messages), which are already set.
 
 ### 9c. Try it with two accounts
 1. Sign in on https://rhedr.com/sublets with one psu.edu email and post a test sublet (or use one that's live).
@@ -150,6 +150,17 @@ Only the two students in a chat can read it. You see a chat only when one of the
      body := '{"dry_run": true}'::jsonb);
    ```
    then `select status_code, content from net._http_response order by id desc limit 1;`
+
+### 9d. How the contact filter works
+Before a chat is agreed, every message goes through these, in the database (`supabase/messaging.sql`, sections B and C):
+1. **Lookalike letters undone**: Cyrillic or Greek letters, fancy fonts, fullwidth letters, emoji letters and digits (🅶, 8️⃣), accents and invisible characters.
+2. **The rules**: emails (also "at" / "dot" / "(at)" / "[dot]" written out), Penn State access IDs, phone numbers, links, Venmo / Cash App / Zelle / PayPal / Instagram / Snapchat / WhatsApp / Telegram / Discord / GroupMe / Facebook / LinkedIn / TikTok handles, "my username is ...", "@handle", "$cashtag".
+3. **A second reading** with the tricks undone: numbers spelled out or mixed ("eight 1 four", "double five"), leetspeak ("gm4il", "v3nmo"), spaced or split words ("g m a i l", "insta gram", "p s u . e d u", "gee mail"). If this finds something, the whole message is hidden.
+4. **Messages read together**: the sender's messages from the last 15 minutes ("814" / "555" / "1234"). If together they show contact info, all the pieces are hidden. Sending one or two letters per message more than 3 times in a row is refused.
+5. **AI check**: messages that pass all of that but look suspicious (numbers, "add me", odd spacing...) go to the `chat-emails` function, which asks Claude Haiku (a small, cheap model, using the same `ANTHROPIC_API_KEY` as lease checks) and hides the message if it's a disguised way to share contact info. At most 60 checks per student per day. This takes a second or two, so the other student may see the text briefly before it's hidden.
+6. **Automatic flags**: when 3 of one student's messages in a chat were hidden, the chat shows up under **Chat reports** as "Rhedr (automatic flag on ...)".
+
+The test list is `tests/contact-filter-cases.json` (tricks that must be hidden and normal messages that must stay). `node tests/contact-filter.test.js` checks the copy in `sublets.js`.
 
 ### Running messages
 - Numbers (chats, messages this week, how many agreed, how many had contact info hidden): the **Chat reports** tab on rhedr.com/admin.
