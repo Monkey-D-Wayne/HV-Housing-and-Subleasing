@@ -19597,11 +19597,11 @@
 "lat": 40.777993,
 "lng": -77.852514,
 "source": "af",
-"site": "https://www.lionsgateapts.com/",
+"site": "https://continentalre.appfolio.com/listings",
 "manager": "Continental Real Estate Management",
 "grad": true,
 "checked": "Nov 27, 2026",
-"note": "Some Lion's Gate units are leased only to graduate students and professionals. Includes gas heat, water, sewer, trash, internet and two parking spaces; residents pay electric and cable. The building's other units are listed under Apartments."
+"note": "The landlord's own listing (Continental Real Estate) for unit G-11, a 2-bed, 1-bath unfurnished unit at $1,445/mo available now, says \"Welcome to our professional and graduate community\". Its PadMapper listing adds \"Eligibility: Graduate students and professionals only.\" Water, sewer, trash, gas heat, parking and internet included. The building's other units are listed under Apartments."
 },
 {
 "id": 66,
@@ -20039,8 +20039,7 @@
 }
 ],
 "manager": "The Apartment Store",
-"grad": true,
 "checked": "2026-11-27",
-"note": "The Apartment Store says it \"provides a peaceful experience for graduates and professionals.\" Water/sewer $35/month per person; residents also pay electric, cable and Wi-Fi. Parking, trash, landscaping and snow removal included. Application fee $55."
+"note": "The Apartment Store says it \"provides a peaceful experience for graduates and professionals\", but undergrads aren't excluded. Water/sewer $35/month per person; residents also pay electric, cable and Wi-Fi. Parking, trash, landscaping and snow removal included. Application fee $55."
 }
 ]
