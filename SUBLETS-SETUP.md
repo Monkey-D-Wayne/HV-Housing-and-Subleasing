@@ -122,8 +122,41 @@ Run the latest `supabase/setup.sql` in the [SQL Editor](https://supabase.com/das
 - Every alert email shows in Resend under **Emails**, with whether it was delivered.
 - To pause all alert emails: `select cron.unschedule('send-alerts');`. Running `setup.sql` again turns them back on.
 
+## 9. Messages between students
+
+Students tap **Message** on a sublet and chat on Rhedr. Nobody sees the other's email at first. Until both students tap **We agreed on Rhedr**, the database hides phone numbers, emails, links and Venmo / Cash App / Instagram style handles in every message before it's saved (and in listing descriptions). Once both tapped it, each sees the other's psu.edu email at the top of the chat. Signing the sublease on Rhedr (moat plan step 4) will replace that simple switch later.
+
+Only the two students in a chat can read it. You see a chat only when one of them reports it, under **Chat reports** on https://rhedr.com/admin. When someone gets a message and doesn't read it within about 2 minutes, the `chat-emails` Edge Function emails them "you have a new message" through Resend (at most once every 30 minutes per chat).
+
+### 9a. Update the database (do this before the new site goes live)
+1. Open the [SQL Editor](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/sql/new).
+2. Paste the whole file [supabase/messaging.sql](https://github.com/Monkey-D-Wayne/hv-housing-and-subleasing/blob/main/supabase/messaging.sql) and click **Run**. It's safe to run again.
+
+### 9b. Deploy the email function
+1. [Edge Functions](https://supabase.com/dashboard/project/jszujotoetfhywyshxjq/functions), **Deploy a new function**, **Via Editor**.
+2. Name it exactly `chat-emails`. Delete the example code, paste the whole file [supabase/functions/chat-emails/index.ts](https://github.com/Monkey-D-Wayne/hv-housing-and-subleasing/blob/main/supabase/functions/chat-emails/index.ts), click **Deploy function**.
+3. In the function's **Details** (or **Settings**) tab, turn **off** "Verify JWT" and save, the same as `send-alerts`. It uses the same `RESEND_API_KEY` secret, which is already set.
+
+### 9c. Try it with two accounts
+1. Sign in on https://rhedr.com/sublets with one psu.edu email and post a test sublet (or use one that's live).
+2. In a private window (or another browser), sign in with a second psu.edu email, open that sublet and tap **Message**.
+3. Type a phone number in a message: it should show as "[contact info hidden]".
+4. Tap **We agreed on Rhedr** on both sides. The other student's email shows at the top of the chat.
+5. To see who'd get a new-message email right now without sending anything, run in the SQL Editor:
+   ```sql
+   select net.http_post(
+     url := 'https://jszujotoetfhywyshxjq.supabase.co/functions/v1/chat-emails',
+     headers := jsonb_build_object('Content-Type','application/json','x-rhedr-job',(select secret from public.alert_job)),
+     body := '{"dry_run": true}'::jsonb);
+   ```
+   then `select status_code, content from net._http_response order by id desc limit 1;`
+
+### Running messages
+- Numbers (chats, messages this week, how many agreed, how many had contact info hidden): the **Chat reports** tab on rhedr.com/admin.
+- To pause new-message emails: `select cron.unschedule('chat-emails');`. Running `messaging.sql` again turns them back on.
+
 ## Running it day to day
 - **Listings waiting for review** (they mentioned wire transfers, WhatsApp, "I'm out of the country", or got 3 reports): **Table Editor**, `sublets`, click **Filter**, `status` equals `review`. Double-click the status cell and change it to `live` (looks fine) or `removed` (scam).
 - **Lease checks**: open https://rhedr.com/admin (see section 7). Each proof shows the listing next to what the AI read, with green, yellow or red. Press **Approve** or pick a reason and press **Reject**. The file is deleted right after.
-- **Reports**: **Table Editor**, `sublet_reports`.
+- **Reports**: listings: **Table Editor**, `sublet_reports`. Chats: **Chat reports** on rhedr.com/admin.
 - The free plan pauses a project after a week with no visits. If that happens, open the Supabase dashboard and click **Restore**. Once students use the site regularly it stays awake.

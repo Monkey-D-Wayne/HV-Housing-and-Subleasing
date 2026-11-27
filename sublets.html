@@ -38,6 +38,7 @@
     </div>
     <div class="acct">
       <button class="btn primary" id="postbtn"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" fill="none"/></svg>Post a sublet</button>
+      <button class="btn msgbtn" id="msgbtn" hidden aria-label="Messages"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="msgl">Messages</span><span class="msgn" id="msgn" hidden>0</span></button>
       <button class="btn" id="acctbtn">Sign in</button>
     </div>
   </div>
@@ -69,6 +70,7 @@
 <dialog id="post"><div class="dlg form" id="postbody"></div></dialog>
 <dialog id="mine"><div class="dlg form" id="minebody"></div></dialog>
 <dialog id="alerts"><div class="dlg form" id="alertsbody"></div></dialog>
+<dialog id="chat" class="chatdlg" aria-label="Messages"><div class="dlg form" id="chatbody"></div></dialog>
 <dialog id="lb" aria-label="Photos"><div class="lbwrap"><div class="lbtop"><span class="lbcap"></span><button class="lbclose" aria-label="Close photos">×</button></div><div class="lbstage"><button class="lbprev" aria-label="Previous photo">‹</button><div class="lbimg"></div><button class="lbnext" aria-label="Next photo">›</button></div><div class="lbthumbs"></div></div></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

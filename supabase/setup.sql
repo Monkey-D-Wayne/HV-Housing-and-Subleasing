@@ -1,6 +1,7 @@
 -- Rhedr: sublets database.
 -- Paste this whole file into Supabase, SQL Editor, New query, then press Run.
 -- Running it again is safe.
+-- Messages between students live in a second file, messaging.sql. Run it after this one.
 
 -- 1. Sublet listings ------------------------------------------------------
 create table if not exists public.sublets (
