@@ -20,7 +20,8 @@ const fmt=n=>"$"+Number(n).toLocaleString("en-US");
 function miles(a,b){const R=3958.8,r=Math.PI/180,dLa=(b.lat-a.lat)*r,dLo=(b.lng-a.lng)*r,h=Math.sin(dLa/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLo/2)**2;return 2*R*Math.asin(Math.sqrt(h))}
 const distTxt=l=>l.mi<1.2?Math.max(2,Math.round(l.mi*20))+" min walk":l.mi.toFixed(1)+" mi · bus";
 function bedsTxt(l){const[a,b]=l.beds;const f=x=>x===0?"Studio":x+" bd";return a===b?f(a):f(a)+"–"+b+" bd"}
-const priceTxt=l=>l.ppm==null?"Ask for pricing":(l.est?"~":"")+fmt(l.ppm);
+const priceTxt=l=>l.ppm==null?"Contact for pricing":"From "+(l.est?"~":"")+fmt(l.ppm);
+const PNOTE=`<div class="pnote">Prices change; confirm with the landlord.</div>`;
 const pinTxt=l=>l.ppm==null?"Ask":(l.est?"~":"")+fmt(l.ppm);
 const gmaps=l=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(`${l.name}, ${l.address}, State College, PA`);
 const street=l=>`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${l.lat},${l.lng}`;
@@ -67,7 +68,7 @@ function renderList(){
     <div class="photo">${pic(l)}<span class="badge">${TLABEL[l.type]}</span>${ptag(l)}${(l.photos||[]).length>1?`<span class="count">1 / ${l.photos.length}</span>`:""}</div>
     <div class="meta"><div class="t"><b>${esc(l.name)}</b><em>${distTxt(l)}</em></div>
     <div class="s">${esc(l.address)} · ${bedsTxt(l)}</div>
-    <div class="p"><strong>${priceTxt(l)}</strong>${l.ppm==null?"":" per person / mo"+(l.semester?" equiv.":"")}</div>${(l.plans||[]).length?`<div class="fp">${l.plans.length} floor plan${l.plans.length>1?"s":""}</div>`:""}</div></button>`).join("")
+    <div class="p"><strong>${priceTxt(l)}</strong>${l.ppm==null?"":"/person"+(l.semester?" (monthly equiv.)":"")}</div>${l.ppm==null?"":PNOTE}${l.tag?`<div class="ltag">${esc(l.tag)}</div>`:""}${(l.plans||[]).length?`<div class="fp">${l.plans.length} floor plan${l.plans.length>1?"s":""}</div>`:""}</div></button>`).join("")
    :`<div class="empty">Nothing matches those filters. Try a higher price, another bedroom count or a different search.</div>`;
   MAP.setRows(rows);
 }
@@ -86,7 +87,7 @@ function plansHtml(l){
     <div class="pbody"><h4>${esc(p.name)}</h4><div class="pspec">${esc(spec)}</div>
     ${rates?`<ul class="rates">${rates}</ul>`:`<div class="pprice">${esc(p.price||"Ask for pricing")}</div>`}
     ${p.note?`<div class="plea">${esc(p.note)}</div>`:""}${p.lease?`<div class="plea">${esc(p.lease)} lease</div>`:""}${p.page?`<a href="${esc(p.page)}" target="_blank" rel="noopener">See this plan on ${esc(host(p.page))}</a>`:""}</div></article>`};
-  return `<div class="plans"><h3>Floor plans <span>${ps.length}</span></h3>${chips}<div class="pgrid">${ps.map(card).join("")}</div><p class="fine">Prices are per person per month, by how many people share the unit, as listed on the building's website on Nov 25, 2026. Confirm with the building before signing.</p></div>`;
+  return `<div class="plans"><h3>Floor plans <span>${ps.length}</span></h3>${chips}<div class="pgrid">${ps.map(card).join("")}</div><p class="fine">Prices are per person per month, by how many people share the unit, as listed on the building's website on ${esc(l.checked||"Nov 25, 2026")}. Confirm with the building before signing.</p></div>`;
 }
 /* full-screen photo viewer */
 let LB={list:[],i:0,title:""};
@@ -96,18 +97,19 @@ function lbStep(k){LB.i=(LB.i+k+LB.list.length)%LB.list.length;lbShow()}
 let gi=0;
 function open(id){
   const l=byId[id];if(!l)return;state.sel=id;gi=0;MAP.select(id);
-  const per=l.ppm==null?"Ask":l.semester?`${fmt(l.ppm)} / mo equivalent`:`${l.est?"~":""}${fmt(l.ppm)} / mo`;
+  const per=l.ppm==null?"Contact":l.semester?`${fmt(l.ppm)} / mo equivalent`:`${l.est?"~":""}${fmt(l.ppm)} / mo`;
   const ph=l.photos||[];
   const credit=ph.length?`Photos: ${ph.map(p=>`<a href="${esc(p.page||p.url)}" target="_blank" rel="noopener">${esc(host(p.page||p.url))}</a>`).filter((v,i,a)=>a.indexOf(v)===i).join(", ")}. Photos belong to the building's owner or manager.`:"No photo of this building yet. The picture is an illustration.";
   const priceSrc=l.source==="psu"?`Penn State Housing 2026–27 rates (<a href="${PSU}" target="_blank" rel="noopener">liveon.psu.edu</a>)`:l.source==="ocp"?`Penn State Off-Campus Housing (<a href="${OCP}" target="_blank" rel="noopener">livingoffcampus.psu.edu</a>)`:l.source==="site"&&l.site?`the building's website (<a href="${esc(l.site)}" target="_blank" rel="noopener">${esc(host(l.site))}</a>)`:"public listing sites";
   $("#dlgbody").innerHTML=`<div class="hero" id="hero">${pic(l,0)}${ph.length>1?`<button class="nav prev" aria-label="Previous photo">‹</button><button class="nav next" aria-label="Next photo">›</button><span class="count" id="gcount">1 / ${ph.length}</span><button class="allph" id="allph">See all ${ph.length} photos</button>`:""}<button class="close" aria-label="Close">×</button></div>
   <div class="body"><div><span class="kind">${TLABEL[l.type]}</span><h2>${esc(l.name)}</h2><div class="addr">${esc(l.address)}, State College, PA · ${l.mi.toFixed(1)} mi from Old Main (${distTxt(l)})</div></div>
-  <div class="facts"><div class="fact"><span>Listed price</span><b style="font-size:14px">${esc(l.price)}</b></div><div class="fact"><span>Per person, from</span><b>${per}</b></div><div class="fact"><span>Bedrooms</span><b>${bedsTxt(l)}</b></div><div class="fact"><span>Lease</span><b>${l.source==="psu"?"Academic year":(/(\d+)-month/.exec(l.price)?.[0]||"Ask")}</b></div></div>
+  <div class="facts"><div class="fact"><span>Listed price</span><b style="font-size:14px">${esc(l.price)}</b></div><div class="fact"><span>Per person, from</span><b>${per}</b></div><div class="fact"><span>Bedrooms</span><b>${bedsTxt(l)}</b></div><div class="fact"><span>Lease</span><b>${l.source==="psu"?"Academic year":(l.lease||/(\d+(?:\.\d+)?)-month/.exec(l.price)?.[0]||"Ask")}</b></div></div>${l.ppm==null?"":PNOTE}
+  ${l.tag?`<div class="ltag">${esc(l.tag)}</div>`:""}${l.note?`<p class="lnote">${esc(l.note)}</p>`:""}
   <p>${l.source==="psu"?"Penn State campus housing. Rates are per person and include utilities. Most residence halls require the Campus Meal Plan; Nittany and White Course Apartments do not.":(l.ppm==null?"Pricing isn't posted publicly. Contact the building for current rates.":l.est?"Price is listed for the whole unit. The per-person figure assumes the unit is fully shared.":l.source==="site"&&(l.plans||[]).some(p=>p.rates)?"Prices are per person and depend on how many people share the unit. Each floor plan below shows its price for every group size.":"Price is listed per bedroom.")}</p>
   ${plansHtml(l)}
   <div class="cta">${l.site?`<a class="btn primary" href="${esc(l.site)}" target="_blank" rel="noopener">Visit ${esc(host(l.site))}</a>`:l.source==="psu"?`<a class="btn primary" href="${PSU}" target="_blank" rel="noopener">See Penn State rates</a>`:`<a class="btn primary" href="${OCP}" target="_blank" rel="noopener">Find it on Penn State Off-Campus</a>`}
   <a class="btn" href="${gmaps(l)}" target="_blank" rel="noopener">Open in Google Maps</a><a class="btn" href="${street(l)}" target="_blank" rel="noopener">Street View</a></div>
-  <div class="src"><span>Price source: ${priceSrc}, checked Nov 25, 2026.</span><span>${credit}</span></div></div>`;
+  <div class="src"><span>Price source: ${priceSrc}, checked ${esc(l.checked||"Nov 25, 2026")}.</span><span>${credit}</span></div></div>`;
   const d=$("#dlg");if(!d.open)d.showModal();
   d.querySelector(".close").onclick=()=>d.close();
   const show=k=>{gi=(k+ph.length)%ph.length;const h=$("#hero");h.querySelector("img,svg")?.remove();h.insertAdjacentHTML("afterbegin",pic(l,gi));const c=$("#gcount");if(c)c.textContent=`${gi+1} / ${ph.length}`};

@@ -1710,7 +1710,8 @@
 "note": "SIGN NOW FOR $75 OFF/MONTH!",
 "page": "https://theviewstatecollege.com/floor-plans/"
 }
-]
+],
+"note": "Utilities: The View's fee guide lists electric, water and sewer as billed by use (split between roommates), plus a $7/mo utility billing fee. Internet is included."
 },
 {
 "id": 10,
@@ -3097,22 +3098,6 @@
 "page": "https://www.hausstatecollege.com/floor-plans/"
 }
 ]
-},
-{
-"id": 20,
-"name": "Barcroft Building",
-"address": "522 E College Ave",
-"type": "apartment",
-"beds": [
-0,
-0
-],
-"price": "$1,795 furnished studio · 7-month lease",
-"ppm": 1795,
-"est": false,
-"lat": 40.79969,
-"lng": -77.85408,
-"source": "ocp"
 },
 {
 "id": 21,
@@ -6831,7 +6816,7 @@
 {
 "id": 55,
 "name": "The Retreat on Westerly",
-"address": "418 Westerly Pkwy",
+"address": "462 Westerly Pkwy",
 "type": "complex",
 "beds": [
 2,
@@ -6840,8 +6825,8 @@
 "price": "$1,038–$1,553 per person / mo (2027-2028 (opening Fall 2027; 11.5-month lease, installment incl. mandatory fees))",
 "ppm": 1038,
 "est": false,
-"lat": 40.783908,
-"lng": -77.852095,
+"lat": 40.7836434,
+"lng": -77.852971,
 "source": "site",
 "site": "https://www.retreatwesterly.com/",
 "photos": [
@@ -7098,7 +7083,9 @@
 "lease": "2027-2028 (opening Fall 2027; 11.5-month lease, installment incl. mandatory fees)",
 "page": "https://www.retreatwesterly.com/floorplans/"
 }
-]
+],
+"tag": "Opening Fall 2027",
+"note": "New community under construction (546 beds, built by Landmark Properties), expected to open for the 2027-28 school year. You can't tour a finished unit yet."
 },
 {
 "id": 56,
@@ -12265,141 +12252,6 @@
 "site": "https://www.brickworkproperties.com/state-college/corl-west-apartments/student/"
 },
 {
-"id": 200,
-"name": "The Allenway",
-"address": "315 S Allen St",
-"type": "apartment",
-"beds": [
-0,
-2
-],
-"price": "$896–$1,304 per person / mo",
-"ppm": 896,
-"est": false,
-"lat": 40.792454,
-"lng": -77.857826,
-"source": "site",
-"site": "https://theallenway.com/",
-"plans": [
-{
-"name": "Two Bedrooms",
-"beds": 2,
-"sqft": "975-1113",
-"price": "$896 / person",
-"img": "https://theallenway.com/wp-content/uploads/2018/06/Two-bedrooms.jpg",
-"rates": [
-{
-"n": 2,
-"pp": 896,
-"was": null
-}
-],
-"note": "$1791-$1865 per unit",
-"page": "https://theallenway.com/apartments/"
-},
-{
-"name": "One Bedroom",
-"beds": 1,
-"baths": "1",
-"sqft": "621-756",
-"price": "$1,304 / person",
-"img": "https://theallenway.com/wp-content/uploads/2018/06/One-bedroom.jpg",
-"rates": [
-{
-"n": 1,
-"pp": 1304,
-"was": null
-}
-],
-"note": "$1304-$1407 per unit",
-"page": "https://theallenway.com/apartments/"
-},
-{
-"name": "Efficiency",
-"beds": 0,
-"baths": "1",
-"sqft": "452-680",
-"price": "$1,134 / person",
-"img": "https://theallenway.com/wp-content/uploads/2018/06/Efficiency.jpg",
-"rates": [
-{
-"n": 1,
-"pp": 1134,
-"was": null
-}
-],
-"note": "$1134-$1215 per unit",
-"page": "https://theallenway.com/apartments/"
-}
-],
-"photos": [
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/AR_Allenway_slide4.png",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/14.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/13.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/16.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/15.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/12.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/18.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/AR_Allenway_slide2.png",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/1.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/2.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/9.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/7.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/4.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/5.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/3.jpg",
-"page": "https://theallenway.com/"
-},
-{
-"url": "https://theallenway.com/wp-content/uploads/2018/06/10.jpg",
-"page": "https://theallenway.com/"
-}
-]
-},
-{
 "id": 201,
 "name": "The Phoenix",
 "address": "501 E. Beaver Ave",
@@ -13519,74 +13371,6 @@
 "lease": "2027-2028 Full Year",
 "page": "https://www.apartmentstore.com/locations/state-college/alma-mater-court/two-bedroom-1-5-bath/"
 }
-],
-"manager": "The Apartment Store"
-},
-{
-"id": 212,
-"name": "629 W Park Avenue",
-"address": "629 W Park Avenue",
-"type": "apartment",
-"lat": 40.792596,
-"lng": -77.876454,
-"site": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/",
-"source": "site",
-"plans": [
-{
-"name": "Four Bedroom 2.5 Bathroom Furnished",
-"beds": 4,
-"baths": "2.5",
-"price": "$1,217 / person",
-"img": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_DiningRoom.jpg?fit=480%2C640&ssl=1",
-"photos": [
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bathroom_01.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Kitchen_01.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_LivingRoom.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_HalfBath.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bedroom_01.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bedroom_02.jpg?w=1400&ssl=1",
-"https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bathroom_02.jpg?w=1400&ssl=1"
-],
-"rates": [
-{
-"n": 3,
-"pp": 1217,
-"unit": 3650,
-"was": null
-}
-],
-"lease": "2027-2028 Full Year",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/four-bedroom-2-5-bathroom-furnished/"
-}
-],
-"photos": [
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Exterior_01.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Exterior_02.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Den.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bedroom_03.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/"
-},
-{
-"url": "https://i0.wp.com/www.apartmentstore.com/wp-content/uploads/2025/11/WParkAve_Bathroom_03.jpg?w=1400&ssl=1",
-"page": "https://www.apartmentstore.com/locations/state-college/629-w-park-avenue/"
-}
-],
-"ppm": 1217,
-"est": false,
-"price": "$1,217 per person / mo (2027-2028 Full Year)",
-"beds": [
-4,
-4
 ],
 "manager": "The Apartment Store"
 },
@@ -18533,5 +18317,849 @@
 1
 ],
 "manager": "The Apartment Store"
+},
+{
+"id": 260,
+"name": "State College Collective on Aaron",
+"address": "1100 W Aaron Dr",
+"type": "townhouse",
+"beds": [
+3,
+3
+],
+"price": "$750–$802 per person / mo (2027-2028, \"starting at\" prices)",
+"ppm": 750,
+"est": false,
+"lat": 40.80188,
+"lng": -77.89899,
+"source": "site",
+"site": "https://www.statecollegecollective.com/aaron/",
+"plans": [
+{
+"name": "3BR/3.5BA – Unfurnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $750 / person",
+"rates": [
+{
+"n": 3,
+"pp": 750,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $755 / person",
+"rates": [
+{
+"n": 3,
+"pp": 755,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/",
+"status": "Sold out"
+},
+{
+"name": "3BR/3.5BA – Upgraded Unfurnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $755 / person",
+"rates": [
+{
+"n": 3,
+"pp": 755,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/",
+"status": "Sold out"
+},
+{
+"name": "3BR/3.5BA – Furnished – A",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $775 / person",
+"rates": [
+{
+"n": 3,
+"pp": 775,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $778 / person",
+"rates": [
+{
+"n": 3,
+"pp": 778,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Furnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $795 / person",
+"rates": [
+{
+"n": 3,
+"pp": 795,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – A",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $772 / person",
+"rates": [
+{
+"n": 3,
+"pp": 772,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $802 / person",
+"rates": [
+{
+"n": 3,
+"pp": 802,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – A",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $764 / person",
+"rates": [
+{
+"n": 3,
+"pp": 764,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron/"
+}
+],
+"checked": "Nov 26, 2026",
+"note": "Formerly Copper Beech. Same company as Northbrook."
+},
+{
+"id": 261,
+"name": "State College Collective on Aaron II",
+"address": "1003 W Aaron Dr",
+"type": "townhouse",
+"beds": [
+0,
+3
+],
+"price": "$765–$1,120 per person / mo (2027-2028, \"starting at\" prices)",
+"ppm": 765,
+"est": false,
+"lat": 40.803,
+"lng": -77.8975,
+"source": "site",
+"site": "https://www.statecollegecollective.com/aaron-2/",
+"plans": [
+{
+"name": "Studio",
+"beds": 0,
+"baths": "1",
+"sqft": "650",
+"price": "From $1,120 / person",
+"rates": [
+{
+"n": 1,
+"pp": 1120,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/",
+"status": "Sold out"
+},
+{
+"name": "2BR/2.5BA – Furnished",
+"beds": 2,
+"baths": "2.5",
+"sqft": "1100",
+"price": "From $925 / person",
+"rates": [
+{
+"n": 2,
+"pp": 925,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $790 / person",
+"rates": [
+{
+"n": 3,
+"pp": 790,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $765 / person",
+"rates": [
+{
+"n": 3,
+"pp": 765,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $765 / person",
+"rates": [
+{
+"n": 3,
+"pp": 765,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $805 / person",
+"rates": [
+{
+"n": 3,
+"pp": 805,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Furnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $796 / person",
+"rates": [
+{
+"n": 3,
+"pp": 796,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $780 / person",
+"rates": [
+{
+"n": 3,
+"pp": 780,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/aaron-2/"
+}
+],
+"checked": "Nov 26, 2026",
+"approx": true
+},
+{
+"id": 262,
+"name": "State College Collective on Oakwood",
+"address": "400 Oakwood Ave",
+"type": "townhouse",
+"beds": [
+3,
+3
+],
+"price": "$755–$785 per person / mo (2027-2028, \"starting at\" prices)",
+"ppm": 755,
+"est": false,
+"lat": 40.8165,
+"lng": -77.8955,
+"source": "site",
+"site": "https://www.statecollegecollective.com/oakwood/",
+"plans": [
+{
+"name": "3BR/3.5BA – Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $765 / person",
+"rates": [
+{
+"n": 3,
+"pp": 765,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Furnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $757 / person",
+"rates": [
+{
+"n": 3,
+"pp": 757,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $770 / person",
+"rates": [
+{
+"n": 3,
+"pp": 770,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Unfurnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $755 / person",
+"rates": [
+{
+"n": 3,
+"pp": 755,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $785 / person",
+"rates": [
+{
+"n": 3,
+"pp": 785,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Furnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $775 / person",
+"rates": [
+{
+"n": 3,
+"pp": 775,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Unfurnished – B",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $785 / person",
+"rates": [
+{
+"n": 3,
+"pp": 785,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+},
+{
+"name": "3BR/3.5BA – Upgraded Unfurnished – C",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1700",
+"price": "From $775 / person",
+"rates": [
+{
+"n": 3,
+"pp": 775,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/oakwood/"
+}
+],
+"checked": "Nov 26, 2026",
+"approx": true
+},
+{
+"id": 263,
+"name": "State College Collective on Farmstead",
+"address": "130 Farmstead Ln",
+"type": "townhouse",
+"beds": [
+3,
+3
+],
+"price": "$760–$800 per person / mo (2027-2028, \"starting at\" prices)",
+"ppm": 760,
+"est": false,
+"lat": 40.7910027,
+"lng": -77.9065939,
+"source": "site",
+"site": "https://www.statecollegecollective.com/farmstead/",
+"plans": [
+{
+"name": "3BR/3.5BA – Large – Unfurnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "2000",
+"price": "From $770 / person",
+"rates": [
+{
+"n": 3,
+"pp": 770,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Standard – Upgraded Furnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1750",
+"price": "From $775 / person",
+"rates": [
+{
+"n": 3,
+"pp": 775,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Large – Upgraded Furnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "2000",
+"price": "From $800 / person",
+"rates": [
+{
+"n": 3,
+"pp": 800,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Standard – Upgraded Unfurnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1750",
+"price": "From $775 / person",
+"rates": [
+{
+"n": 3,
+"pp": 775,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Large – Upgraded Unfurnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "2000",
+"price": "From $790 / person",
+"rates": [
+{
+"n": 3,
+"pp": 790,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Standard – Furnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1750",
+"price": "From $760 / person",
+"rates": [
+{
+"n": 3,
+"pp": 760,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Large – Furnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "2000",
+"price": "From $785 / person",
+"rates": [
+{
+"n": 3,
+"pp": 785,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+},
+{
+"name": "3BR/3.5BA – Standard – Unfurnished",
+"beds": 3,
+"baths": "3.5",
+"sqft": "1750",
+"price": "From $760 / person",
+"rates": [
+{
+"n": 3,
+"pp": 760,
+"was": null
+}
+],
+"lease": "2027-2028",
+"page": "https://www.statecollegecollective.com/farmstead/"
+}
+],
+"checked": "Nov 26, 2026"
+},
+{
+"id": 264,
+"name": "The Legacy at State College",
+"address": "478 E Calder Way",
+"type": "apartment",
+"beds": [
+4,
+4
+],
+"price": "$1,037–$1,592 per person / mo (incl. mandatory monthly fees; 11.5-month lease)",
+"ppm": 1037,
+"est": false,
+"lat": 40.7985477,
+"lng": -77.8541192,
+"source": "site",
+"site": "https://www.thelegacystatecollege.com/",
+"checked": "Nov 26, 2026",
+"note": "Utilities included: internet, electric, water/sewer and trash. 12-month contract (September to August), individual leases. Parking $170/mo. Run by Landmark Properties.",
+"plans": [
+{
+"name": "4 Bed / 2 Bath – Shared room (5 occupants)",
+"beds": 4,
+"baths": "2",
+"sqft": "1140",
+"price": "$1,037 / person",
+"rates": [
+{
+"n": 1,
+"pp": 1037,
+"was": null
+}
+],
+"note": "Base $990 + mandatory fees",
+"lease": "2027-2028",
+"page": "https://www.thelegacystatecollege.com/floorplans/"
+},
+{
+"name": "4 Bed / 2 Bath – Private room (5 occupants)",
+"beds": 4,
+"baths": "2",
+"sqft": "1140",
+"price": "$1,542 / person",
+"rates": [
+{
+"n": 1,
+"pp": 1542,
+"was": null
+}
+],
+"note": "Base $1,495 + mandatory fees",
+"lease": "2027-2028",
+"page": "https://www.thelegacystatecollege.com/floorplans/"
+},
+{
+"name": "4 Bed / 2 Bath – Private room (4 occupants)",
+"beds": 4,
+"baths": "2",
+"sqft": "1140",
+"price": "$1,592 / person",
+"rates": [
+{
+"n": 1,
+"pp": 1592,
+"was": null
+}
+],
+"note": "Base $1,545 + mandatory fees",
+"lease": "2027-2028",
+"page": "https://www.thelegacystatecollege.com/floorplans/"
+}
+],
+"lease": "12-month"
+},
+{
+"id": 265,
+"name": "Clearwater",
+"address": "817 W College Ave",
+"type": "townhouse",
+"beds": [
+5,
+5
+],
+"price": "$1,029 per person / mo (2027-2028)",
+"ppm": 1029,
+"est": false,
+"lat": 40.7878422,
+"lng": -77.8706938,
+"source": "site",
+"site": "https://www.arpm.com/property/clearwater/",
+"checked": "Nov 26, 2026",
+"note": "Whole house, 5 bed / 2.5 bath, unfurnished, $5,145/mo total (up to 8 people). Tenants pay electric, oil heat, TV, internet and water; parking extra. 12-month lease from August. Managed by ARPM.",
+"plans": [
+{
+"name": "5 BR house",
+"beds": 5,
+"baths": "2.5",
+"price": "$1,029 / person",
+"rates": [
+{
+"n": 5,
+"pp": 1029,
+"was": null
+}
+],
+"lease": "2027-2028",
+"note": "$5,145 per unit per month (unfurnished, max occupancy 8)",
+"page": "https://www.arpm.com/property/clearwater/",
+"status": "Fully rented"
+}
+],
+"tag": "Fully leased for 2027–28",
+"lease": "12-month"
+},
+{
+"id": 266,
+"name": "Conway",
+"address": "833 W College Ave",
+"type": "townhouse",
+"beds": [
+7,
+7
+],
+"price": "$1,000 per person / mo (2027-2028)",
+"ppm": 1000,
+"est": false,
+"lat": 40.7875438,
+"lng": -77.8710791,
+"source": "site",
+"site": "https://www.arpm.com/property/conway/",
+"checked": "Nov 26, 2026",
+"note": "Whole house, 7 bed / 2 bath, unfurnished, $7,000/mo total (up to 10 people). Washer/dryer and 7 parking spaces included; tenants pay electric, oil heat, TV and internet. 12-month lease from August. Managed by ARPM.",
+"plans": [
+{
+"name": "7 BR house",
+"beds": 7,
+"baths": "2",
+"price": "$1,000 / person",
+"rates": [
+{
+"n": 7,
+"pp": 1000,
+"was": null
+}
+],
+"lease": "2027-2028",
+"note": "$7,000 per unit per month (unfurnished, max occupancy 10)",
+"page": "https://www.arpm.com/property/conway/",
+"status": "Fully rented"
+}
+],
+"tag": "Fully leased for 2027–28",
+"lease": "12-month"
+},
+{
+"id": 267,
+"name": "The Keys",
+"address": "227 E Prospect Ave",
+"type": "townhouse",
+"beds": [
+5,
+5
+],
+"price": "$760 per person / mo (2027-2028)",
+"ppm": 760,
+"est": false,
+"lat": 40.7926737,
+"lng": -77.8537919,
+"source": "site",
+"site": "https://www.arpm.com/property/the-keys/",
+"checked": "Nov 26, 2026",
+"note": "Whole house, 5 bed / 2 bath, unfurnished, $3,800/mo total (up to 5 people). Duplex (5 bed per side). Gas heat included; tenants pay electric, TV and internet; parking extra. 12-month lease from August. Managed by ARPM.",
+"plans": [
+{
+"name": "5 BR house",
+"beds": 5,
+"baths": "2",
+"price": "$760 / person",
+"rates": [
+{
+"n": 5,
+"pp": 760,
+"was": null
+}
+],
+"lease": "2027-2028",
+"note": "$3,800 per unit per month (unfurnished, max occupancy 5)",
+"page": "https://www.arpm.com/property/the-keys/"
+}
+],
+"lease": "12-month"
+},
+{
+"id": 268,
+"name": "Westside Village Apartments",
+"address": "400 S Allen St",
+"type": "apartment",
+"beds": [
+0,
+4
+],
+"price": "$1,160–$4,220 per unit / mo (21 units listed for 2027-2028)",
+"ppm": 1035,
+"est": true,
+"lat": 40.7914651,
+"lng": -77.8573367,
+"source": "site",
+"site": "https://westsidevillage.appfolio.com/listings/listings",
+"checked": "Nov 26, 2026",
+"tag": "Units across downtown",
+"note": "Westside Village rents about 21 apartments in different buildings around downtown (studios to 4 bedrooms), not one complex. The pin marks one of their addresses. Leasing office: 140 S Gill St."
+},
+{
+"id": 269,
+"name": "Laurel Terrace",
+"address": "317 E Beaver Ave",
+"type": "apartment",
+"beds": [
+0,
+2
+],
+"price": "Contact for pricing",
+"ppm": null,
+"est": false,
+"lat": 40.7958916,
+"lng": -77.8572029,
+"source": "af",
+"site": "https://www.apartments.com/laurel-terrace-state-college-pa/3pynvcg/",
+"checked": "Nov 26, 2026",
+"note": "Studios to 2-bedrooms, managed by Property Management Inc. (814-278-7700). Prices online don't agree, so contact them for current rates."
 }
 ]
