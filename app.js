@@ -22,6 +22,12 @@ const distTxt=l=>l.mi<1.2?Math.max(2,Math.round(l.mi*20))+" min walk":l.mi.toFix
 function bedsTxt(l){const[a,b]=l.beds;const f=x=>x===0?"Studio":x+" bd";return a===b?f(a):f(a)+"–"+b+" bd"}
 const priceTxt=l=>l.ppm==null?"Contact for pricing":"From "+(l.est?"~":"")+fmt(l.ppm);
 const PNOTE=`<div class="pnote">Prices change; confirm with the landlord.</div>`;
+/* school years: base fields are the listing's main year (l.yr, default 2027-28); l.years holds other years */
+const YEARS=["2027-28","2026-27"];
+const yrTxt=y=>y.replace("-","–");
+const YF=["price","ppm","plans","est","tag","lease"];
+function initYears(l){l.yr=l.yr||"2027-28";const b={};YF.forEach(k=>b[k]=l[k]);l.Y={[l.yr]:b,...(l.years||{})};l.yrs=YEARS.filter(y=>l.Y[y])}
+function useYear(l,y){if(!l.Y[y])y=l.yr;const d=l.Y[y];YF.forEach(k=>{if(d[k]===undefined)delete l[k];else l[k]=d[k]});l.cy=y}
 const pinTxt=l=>l.ppm==null?"Ask":(l.est?"~":"")+fmt(l.ppm);
 const gmaps=l=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(`${l.name}, ${l.address}, State College, PA`);
 const street=l=>`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${l.lat},${l.lng}`;
@@ -47,11 +53,12 @@ function ptag(l){const p=(l.photos||[])[0];return p?`<div class="ptag"><span>Pho
 
 /* state */
 let ALL=[],byId={},rows=[];
-const state={type:"all",q:"",maxp:2000,beds:0,sort:"dist",sel:null};
+const state={type:"all",q:"",maxp:2000,beds:0,sort:"dist",sel:null,year:"2027-28"};
 try{const t=localStorage.getItem("hvh-type");if(t&&TYPES.some(x=>x.k===t))state.type=t}catch(e){}
 function filtered(){
   const q=state.q.trim().toLowerCase();
   return ALL.filter(l=>(state.type==="all"||l.type===state.type)
+    &&(state.year==="2027-28"||l.Y[state.year])
     &&(!q||(l.name+" "+l.address).toLowerCase().includes(q))
     &&(state.maxp>=2000||(l.ppm!=null&&l.ppm<=state.maxp))
     &&(state.beds===0||(state.beds===4?l.beds[1]>=4:(state.beds===1?l.beds[0]<=1:l.beds[0]<=state.beds&&l.beds[1]>=state.beds))))
@@ -63,12 +70,12 @@ function renderTabs(){
 function renderList(){
   rows=filtered();
   const tl=state.type==="all"?"places":TYPES.find(t=>t.k===state.type).label.toLowerCase();
-  $("#count").textContent=`${rows.length} ${tl} near Penn State`;
+  $("#count").textContent=`${rows.length} ${tl} near Penn State`+(state.year==="2027-28"?"":` with ${yrTxt(state.year)} openings`);
   $("#grid").innerHTML=rows.length?rows.map(l=>`<button class="card" data-id="${l.id}" aria-label="${esc(l.name)}, ${esc(l.price)}">
     <div class="photo">${pic(l)}<span class="badge">${TLABEL[l.type]}</span>${ptag(l)}${(l.photos||[]).length>1?`<span class="count">1 / ${l.photos.length}</span>`:""}</div>
     <div class="meta"><div class="t"><b>${esc(l.name)}</b><em>${distTxt(l)}</em></div>
     <div class="s">${esc(l.address)} · ${bedsTxt(l)}</div>
-    <div class="p"><strong>${priceTxt(l)}</strong>${l.ppm==null?"":"/person"+(l.semester?" (monthly equiv.)":"")}</div>${l.ppm==null?"":PNOTE}${l.tag?`<div class="ltag">${esc(l.tag)}</div>`:""}${(l.plans||[]).length?`<div class="fp">${l.plans.length} floor plan${l.plans.length>1?"s":""}</div>`:""}</div></button>`).join("")
+    <div class="p"><strong>${priceTxt(l)}</strong>${l.ppm==null?"":"/person"+(l.semester?" (monthly equiv.)":"")}</div>${l.ppm==null?"":PNOTE}${l.cy!==state.year?`<div class="pnote">${yrTxt(l.cy)} rates</div>`:l.yrs.length>1?`<div class="pnote">Also ${l.yrs.filter(y=>y!==l.cy).map(yrTxt).join(", ")} rates</div>`:""}${l.tag?`<div class="ltag">${esc(l.tag)}</div>`:""}${(l.plans||[]).length?`<div class="fp">${l.plans.length} floor plan${l.plans.length>1?"s":""}</div>`:""}</div></button>`).join("")
    :`<div class="empty">Nothing matches those filters. Try a higher price, another bedroom count or a different search.</div>`;
   MAP.setRows(rows);
 }
@@ -95,15 +102,16 @@ function lbShow(){const d=$("#lb");d.querySelectorAll(".lbprev,.lbnext").forEach
 function lbOpen(list,i,title){if(!list.length)return;LB={list,i,title};const d=$("#lb");lbShow();if(!d.open)d.showModal()}
 function lbStep(k){LB.i=(LB.i+k+LB.list.length)%LB.list.length;lbShow()}
 let gi=0;
-function open(id){
-  const l=byId[id];if(!l)return;state.sel=id;gi=0;MAP.select(id);
+function open(id,yr){
+  const l=byId[id];if(!l)return;if(yr)useYear(l,yr);const keepHero=!!yr;state.sel=id;if(!keepHero)gi=0;MAP.select(id);
   const per=l.ppm==null?"Contact":l.semester?`${fmt(l.ppm)} / mo equivalent`:`${l.est?"~":""}${fmt(l.ppm)} / mo`;
   const ph=l.photos||[];
   const credit=ph.length?`Photos: ${ph.map(p=>`<a href="${esc(p.page||p.url)}" target="_blank" rel="noopener">${esc(host(p.page||p.url))}</a>`).filter((v,i,a)=>a.indexOf(v)===i).join(", ")}. Photos belong to the building's owner or manager.`:"No photo of this building yet. The picture is an illustration.";
-  const priceSrc=l.source==="psu"?`Penn State Housing 2026–27 rates (<a href="${PSU}" target="_blank" rel="noopener">liveon.psu.edu</a>)`:l.source==="ocp"?`Penn State Off-Campus Housing (<a href="${OCP}" target="_blank" rel="noopener">livingoffcampus.psu.edu</a>)`:l.source==="site"&&l.site?`the building's website (<a href="${esc(l.site)}" target="_blank" rel="noopener">${esc(host(l.site))}</a>)`:"public listing sites";
+  const priceSrc=l.source==="psu"?`Penn State Housing ${yrTxt(l.cy)} rates (<a href="${PSU}" target="_blank" rel="noopener">liveon.psu.edu</a>)`:l.source==="ocp"?`Penn State Off-Campus Housing (<a href="${OCP}" target="_blank" rel="noopener">livingoffcampus.psu.edu</a>)`:l.source==="site"&&l.site?`the building's website (<a href="${esc(l.site)}" target="_blank" rel="noopener">${esc(host(l.site))}</a>)`:"public listing sites";
   $("#dlgbody").innerHTML=`<div class="hero" id="hero">${pic(l,0)}${ph.length>1?`<button class="nav prev" aria-label="Previous photo">‹</button><button class="nav next" aria-label="Next photo">›</button><span class="count" id="gcount">1 / ${ph.length}</span><button class="allph" id="allph">See all ${ph.length} photos</button>`:""}<button class="close" aria-label="Close">×</button></div>
   <div class="body"><div><span class="kind">${TLABEL[l.type]}</span><h2>${esc(l.name)}</h2><div class="addr">${esc(l.address)}, State College, PA · ${l.mi.toFixed(1)} mi from Old Main (${distTxt(l)})</div></div>
-  <div class="facts"><div class="fact"><span>Listed price</span><b style="font-size:14px">${esc(l.price)}</b></div><div class="fact"><span>Per person, from</span><b>${per}</b></div><div class="fact"><span>Bedrooms</span><b>${bedsTxt(l)}</b></div><div class="fact"><span>Lease</span><b>${l.source==="psu"?"Academic year":(l.lease||/(\d+(?:\.\d+)?)-month/.exec(l.price)?.[0]||"Ask")}</b></div></div>${l.ppm==null?"":PNOTE}
+  ${l.yrs.length>1?`<label class="yrpick"><span>School year</span><select id="yrsel">${l.yrs.map(y=>`<option value="${y}"${y===l.cy?" selected":""}>${yrTxt(y)}</option>`).join("")}</select></label>`:`<div class="yrpick one">School year: <b>${yrTxt(l.cy)}</b>${l.cy==="2027-28"&&l.source!=="psu"?" · no 2026–27 openings listed":""}</div>`}
+  <div class="facts"><div class="fact"><span>Listed price</span><b style="font-size:14px">${esc(l.price)}</b></div><div class="fact"><span>Per person, from</span><b>${per}</b></div><div class="fact"><span>Bedrooms</span><b>${bedsTxt(l)}</b></div><div class="fact"><span>Lease</span><b>${l.source==="psu"?"Academic year":(l.cy!=="2027-28"&&l.lease?esc(l.lease):l.lease||/(\d+(?:\.\d+)?)-month/.exec(l.price)?.[0]||"Ask")}</b></div></div>${l.ppm==null?"":PNOTE}
   ${l.tag?`<div class="ltag">${esc(l.tag)}</div>`:""}${l.note?`<p class="lnote">${esc(l.note)}</p>`:""}
   <p>${l.source==="psu"?"Penn State campus housing. Rates are per person and include utilities. Most residence halls require the Campus Meal Plan; Nittany and White Course Apartments do not.":(l.ppm==null?"Pricing isn't posted publicly. Contact the building for current rates.":l.est?"Price is listed for the whole unit. The per-person figure assumes the unit is fully shared.":l.source==="site"&&(l.plans||[]).some(p=>p.rates)?"Prices are per person and depend on how many people share the unit. Each floor plan below shows its price for every group size.":"Price is listed per bedroom.")}</p>
   ${plansHtml(l)}
@@ -112,6 +120,7 @@ function open(id){
   <div class="src"><span>Price source: ${priceSrc}, checked ${esc(l.checked||"Nov 25, 2026")}.</span><span>${credit}</span></div></div>`;
   const d=$("#dlg");if(!d.open)d.showModal();
   d.querySelector(".close").onclick=()=>d.close();
+  d.querySelector("#yrsel")?.addEventListener("change",e=>open(id,e.target.value));
   const show=k=>{gi=(k+ph.length)%ph.length;const h=$("#hero");h.querySelector("img,svg")?.remove();h.insertAdjacentHTML("afterbegin",pic(l,gi));const c=$("#gcount");if(c)c.textContent=`${gi+1} / ${ph.length}`};
   d.querySelector(".prev")?.addEventListener("click",()=>show(gi-1));d.querySelector(".next")?.addEventListener("click",()=>show(gi+1));
   const urls=ph.map(p=>p.url);
@@ -177,6 +186,8 @@ function wire(){
   $("#maxp").addEventListener("input",e=>{state.maxp=+e.target.value;$("#maxpv").textContent=state.maxp>=2000?"Any":fmt(state.maxp);renderList()});
   $("#beds").addEventListener("change",e=>{state.beds=+e.target.value;renderList()});
   $("#sort").addEventListener("change",e=>{state.sort=e.target.value;renderList()});
+  $("#year").addEventListener("change",e=>{state.year=e.target.value;ALL.forEach(l=>useYear(l,state.year));renderList()});
+  $("#dlg").addEventListener("close",()=>{const l=byId[state.sel];if(l&&l.cy!==(l.Y[state.year]?state.year:l.yr)){useYear(l,state.year);renderList()}});
   $("#grid").addEventListener("click",e=>{const c=e.target.closest(".card");if(c)open(+c.dataset.id)});
   $("#grid").addEventListener("mouseover",e=>{const c=e.target.closest(".card");MAP.hot(c?.dataset.id)});
   $("#grid").addEventListener("mouseleave",()=>MAP.hot(null));
@@ -196,7 +207,7 @@ function lbInit(){const d=$("#lb");if(!d)return;d.querySelector(".lbclose").oncl
 async function start(){
   wire();lbInit();
   const res=await fetch("data/listings.json");ALL=await res.json();
-  ALL.forEach(l=>{l.mi=miles(OM,l);byId[l.id]=l});
+  ALL.forEach(l=>{l.mi=miles(OM,l);byId[l.id]=l;initYears(l);useYear(l,state.year)});
   renderTabs();renderList();
   const hb=/#b=(\d+)/.exec(location.hash);if(hb&&byId[+hb[1]])open(+hb[1]);
   try{if(CFG.googleMapsApiKey)await initGoogle();else await initLeaflet()}
