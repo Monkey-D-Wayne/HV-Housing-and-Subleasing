@@ -113,7 +113,7 @@ Run the latest `supabase/setup.sql` in the [SQL Editor](https://supabase.com/das
      headers := jsonb_build_object('Content-Type','application/json','x-rhedr-job',(select secret from public.alert_job)),
      body := '{"test": true}'::jsonb);
    ```
-   That emails the newest alert's owner a sample (subject starts with "[Test]") with up to 3 live sublets. It needs at least one live sublet. Nothing is marked as sent.
+   That emails the newest alert's owner a sample with up to 3 live sublets (or one example sublet when none are live). Nothing is marked as sent.
 3. To see what the function answered, run `select status_code, content from net._http_response order by id desc limit 1;`
 4. Use `{"dry_run": true}` instead of `{"test": true}` to see who would get what right now without sending anything.
 

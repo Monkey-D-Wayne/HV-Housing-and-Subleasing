@@ -7,7 +7,8 @@
 // Lease-checked sublets come first in every email, and when two tie, the cheaper one comes first.
 //
 // It also handles the one-click unsubscribe that Gmail and Outlook show next to the sender
-// (a POST to ...?unsubscribe=<token>), which turns off all of that student's alerts.
+// (a POST to rhedr.com/api/unsubscribe?unsubscribe=<token>, which vercel.json passes on to this function).
+// It turns off all of that student's alerts.
 //
 // Settings in the Supabase dashboard:
 //   Secret RESEND_API_KEY   a Resend API key with Sending access (it starts with re_)
@@ -40,9 +41,12 @@ function miles(a: { lat: number; lng: number }, b: { lat: number; lng: number })
   const h = Math.sin(dLa / 2) ** 2 + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLo / 2) ** 2;
   return 2 * R * Math.asin(Math.sqrt(h));
 }
-const distTxt = (mi: number) => (mi < 1.2 ? Math.max(2, Math.round(mi * 20)) + " min walk to Old Main" : mi.toFixed(1) + " mi from Old Main");
+const distTxt = (mi: number) => (mi < 1.2 ? Math.max(2, Math.round(mi * 20)) + " min walk to Old Main" : mi.toFixed(1) + " miles from Old Main");
 const offUrl = (token: string, all = false) => `${SITE}/sublets?unsubscribe=${token}${all ? "&all=1" : ""}`;
 
+// Kept deliberately plain so school mail filters (Penn State uses Microsoft 365) treat it like a normal
+// personal email: no hidden preview text, no images, no button styling, no school names or logos,
+// and every link points at rhedr.com.
 function buildEmail(rows: Row[]) {
   // one entry per sublet, keeping the first search it matched; rows arrive best first
   const seen = new Set<number>();
@@ -52,70 +56,33 @@ function buildEmail(rows: Row[]) {
   const more = list.length - shown.length;
   const first = list[0];
   const subject = list.length === 1
-    ? `New sublet: ${first.building_name || first.address}, ${money(first.price)}/mo`
-    : `${list.length} new sublets match your Rhedr alert${searches.length > 1 ? "s" : ""}`;
-
-  const item = (r: Row) => {
-    const url = `${SITE}/sublets?s=${r.sublet_id}`;
-    const facts = [
-      `${day(r.start_date)} to ${day(r.end_date)}`,
-      `${r.space === "unit" ? "Whole place" : "Private room"} · ${bedsTxt(r.beds)}`,
-      distTxt(miles(OM, r)),
-    ];
-    const chips = [r.kind === "takeover" ? "Lease takeover" : "Sublet", r.furnished ? "Furnished" : "", r.utilities ? "Utilities included" : ""].filter(Boolean);
-    return `<tr><td style="padding:0 0 14px">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e7e2dc;border-radius:12px;border-collapse:separate">
-<tr>${r.photo ? `<td width="120" style="padding:12px 0 12px 12px;vertical-align:top"><a href="${esc(url)}"><img src="${esc(r.photo)}" width="120" height="90" alt="" style="display:block;width:120px;height:90px;object-fit:cover;border-radius:8px;border:0"></a></td>` : ""}
-<td style="padding:12px 14px;vertical-align:top;font-family:Arial,Helvetica,sans-serif;color:#1c1917">
-${r.lease_verified ? `<div style="display:inline-block;font-size:12px;font-weight:bold;color:#166534;background:#dcfce7;border-radius:999px;padding:2px 8px;margin-bottom:6px">&#10003; Lease checked</div>` : ""}
-<div style="font-size:16px;font-weight:bold;line-height:1.3"><a href="${esc(url)}" style="color:#1c1917;text-decoration:none">${esc(r.title)}</a></div>
-<div style="font-size:13px;color:#57534e;margin-top:2px">${esc(r.building_name ? `${r.building_name}, ${r.address}` : r.address)}</div>
-<div style="font-size:18px;font-weight:bold;margin-top:6px">${money(r.price)} <span style="font-size:13px;font-weight:normal;color:#57534e">/ month${r.orig_price && r.orig_price > r.price ? ` · ${money(r.orig_price - r.price)} under lease` : ""}</span></div>
-<div style="font-size:13px;color:#57534e;margin-top:4px">${facts.map(esc).join("<br>")}</div>
-<div style="font-size:12px;color:#57534e;margin-top:4px">${chips.map(esc).join(" · ")}</div>
-<div style="margin-top:10px"><a href="${esc(url)}" style="display:inline-block;background:#c2410c;color:#fff;font-weight:bold;font-size:14px;text-decoration:none;border-radius:8px;padding:8px 14px">See the sublet</a></div>
-</td></tr></table></td></tr>`;
-  };
-
-  const searchLines = searches.map((s) =>
-    `<div style="margin:4px 0">"${esc(s.label)}" (${s.frequency === "instant" ? "as they post" : "daily"}) · <a href="${esc(offUrl(s.token))}" style="color:#c2410c">Turn off this alert</a></div>`).join("");
-
-  const html = `<!doctype html><html><body style="margin:0;background:#faf8f5">
-<div style="display:none;max-height:0;overflow:hidden">${esc(list.length === 1 ? `${first.title}, ${money(first.price)} a month` : `${list.length} sublets near Penn State that match what you saved`)}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf8f5"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:16px;padding:0">
-<tr><td style="padding:22px 22px 8px;font-family:Arial,Helvetica,sans-serif">
-<div style="font-size:24px;font-weight:800;color:#1c1917;letter-spacing:-0.5px">Rhedr</div>
-<div style="font-size:18px;font-weight:bold;color:#1c1917;margin-top:14px">${list.length === 1 ? "A new sublet matches your alert" : `${list.length} new sublets match your alert${searches.length > 1 ? "s" : ""}`}</div>
-<div style="font-size:14px;color:#57534e;margin-top:4px">Posted by Penn State students with a confirmed psu.edu email. Good sublets go fast.</div>
-</td></tr>
-<tr><td style="padding:12px 22px 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">${shown.map(item).join("")}</table></td></tr>
-${more > 0 ? `<tr><td style="padding:0 22px 12px;font-family:Arial,Helvetica,sans-serif;font-size:14px"><a href="${SITE}/sublets" style="color:#c2410c;font-weight:bold">See ${more} more on Rhedr</a></td></tr>` : ""}
-<tr><td style="padding:4px 22px 22px;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#57534e;line-height:1.5">
-<p style="margin:0 0 8px"><b>Stay safe.</b> See the place in person or on a live video call before you pay. Never pay by wire, gift card or crypto.</p>
-<p style="margin:0 0 8px">You're getting this because you saved a search on Rhedr:</p>${searchLines}
-<p style="margin:10px 0 0"><a href="${SITE}/sublets?alerts=1" style="color:#c2410c">Change your alerts</a> · <a href="${esc(offUrl(searches[0].token, true))}" style="color:#c2410c">Turn off all Rhedr alerts</a></p>
-<p style="margin:10px 0 0;font-size:12px">Rhedr · State College, PA · <a href="${SITE}/privacy" style="color:#57534e">Privacy</a>. Rhedr is independent and not affiliated with Penn State.</p>
-</td></tr></table></td></tr></table></body></html>`;
-
+    ? `New sublet for your Rhedr alert: ${first.building_name || first.address}`
+    : `${list.length} new sublets for your Rhedr alert`;
+  const intro = list.length === 1 ? "A new sublet matches your Rhedr alert." : `${list.length} new sublets match your Rhedr alert${searches.length > 1 ? "s" : ""}.`;
+  const lines = (r: Row) => [
+    `${money(r.price)} a month · ${r.space === "unit" ? "whole place" : "private room"}, ${bedsTxt(r.beds)}${r.lease_verified ? " · lease checked" : ""}`,
+    `${day(r.start_date)} to ${day(r.end_date)}`,
+    `${r.building_name ? r.building_name + ", " : ""}${r.address} · ${distTxt(miles(OM, r))}`,
+  ];
+  const p = (t: string, st = "") => `<p style="margin:0 0 12px;${st}">${t}</p>`;
+  const html = `<!doctype html><html><head><meta charset="utf-8"></head><body style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5;color:#1c1917">
+${p(esc(intro))}
+${shown.map((r) => p(`<a href="${esc(`${SITE}/sublets?s=${r.sublet_id}`)}"><b>${esc(r.title)}</b></a><br>${lines(r).map(esc).join("<br>")}`)).join("\n")}
+${more > 0 ? p(`<a href="${SITE}/sublets">See ${more} more on Rhedr</a>`) : ""}
+${p("Before you pay anything, see the place in person or on a live video call.", "color:#57534e")}
+${p(`You saved ${searches.map((s) => `"${esc(s.label)}"`).join(" and ")} on Rhedr. <a href="${esc(offUrl(searches[0].token, true))}">Turn off alerts</a> or <a href="${SITE}/sublets?alerts=1">change them</a>.`, "color:#57534e;font-size:13px")}
+${p("Rhedr, State College, PA", "color:#57534e;font-size:13px")}
+</body></html>`;
   const plain = [
-    list.length === 1 ? "A new sublet matches your Rhedr alert:" : `${list.length} new sublets match your Rhedr alert${searches.length > 1 ? "s" : ""}:`,
-    "",
-    ...shown.flatMap((r) => [
-      `${r.lease_verified ? "[Lease checked] " : ""}${r.title}`,
-      `${money(r.price)} / month · ${day(r.start_date)} to ${day(r.end_date)} · ${r.space === "unit" ? "Whole place" : "Private room"} · ${bedsTxt(r.beds)}`,
-      `${r.building_name ? r.building_name + ", " : ""}${r.address} · ${distTxt(miles(OM, r))}`,
-      `${SITE}/sublets?s=${r.sublet_id}`,
-      "",
-    ]),
+    intro, "",
+    ...shown.flatMap((r) => [r.title, ...lines(r), `${SITE}/sublets?s=${r.sublet_id}`, ""]),
     more > 0 ? `See ${more} more: ${SITE}/sublets\n` : "",
-    "Stay safe: see the place before you pay. Never pay by wire, gift card or crypto.",
-    "",
-    "You're getting this because you saved a search on Rhedr:",
-    ...searches.map((s) => `"${s.label}": turn it off at ${offUrl(s.token)}`),
-    `Turn off all Rhedr alerts: ${offUrl(searches[0].token, true)}`,
+    "Before you pay anything, see the place in person or on a live video call.", "",
+    `You saved ${searches.map((s) => `"${s.label}"`).join(" and ")} on Rhedr.`,
+    `Turn off alerts: ${offUrl(searches[0].token, true)}`,
+    `Change them: ${SITE}/sublets?alerts=1`, "",
+    "Rhedr, State College, PA",
   ].join("\n");
-
   return { subject, html, plain, list, searches };
 }
 
@@ -187,11 +154,11 @@ Deno.serve(async (req) => {
         from: FROM,
         to: [rows[0].email],
         reply_to: REPLY_TO,
-        subject: (body?.test ? "[Test] " : "") + mail.subject,
+        subject: mail.subject,
         html: mail.html,
         text: mail.plain,
         headers: {
-          "List-Unsubscribe": `<${Deno.env.get("SUPABASE_URL")}/functions/v1/send-alerts?unsubscribe=${rows[0].token}>`,
+          "List-Unsubscribe": `<${SITE}/api/unsubscribe?unsubscribe=${rows[0].token}>`,
           "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
         },
         tags: [{ name: "type", value: "sublet_alert" }],
