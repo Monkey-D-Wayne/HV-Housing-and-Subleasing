@@ -29,7 +29,7 @@ async function start(){
 }
 
 function signIn(){
-  $("#app").innerHTML=`<div class="box"><form id="f1" class="stack"><label>Your admin psu.edu email<input name="email" type="email" required autocomplete="email"></label><p class="err" id="e" hidden></p><button class="btn primary">Send my code</button></form>
+  $("#app").innerHTML=`<div class="box"><form id="f1" class="stack"><label>Your admin email (boaz@rhedr.com)<input name="email" type="email" required autocomplete="email"></label><p class="err" id="e" hidden></p><button class="btn primary">Send my code</button></form>
   <form id="f2" class="stack" hidden><label>Code from the email<input name="code" inputmode="numeric" autocomplete="one-time-code" required></label><button class="btn primary">Sign in</button></form></div>`;
   let email="";const e=$("#e");
   $("#f1").onsubmit=async ev=>{ev.preventDefault();email=ev.target.email.value.trim().toLowerCase();e.hidden=true;
